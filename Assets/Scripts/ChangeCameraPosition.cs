@@ -22,30 +22,6 @@ public class ChangeCameraPosition : MonoBehaviour
     public GameObject _televisionCanvas;
 
     private VideoControls _videoControls;
-    /*
-     * If:
-     *    player within range of TV and
-     *    camera is currently on player and
-     *    player presses button Y
-     * then switch camera to focus on TV
-     */
-    private void OpenTelevision(InputAction.CallbackContext obj)
-    {
-        _televisionIsOpen = true;
-        _playerInput.actions.FindActionMap("Player").Disable();
-        _playerInput.actions.FindActionMap("Television").Enable();
-        
-        print("Triggered Open TV");
-        
-        _cameraOnPlayerTransform = new GameObject().transform;
-        _cameraOnPlayerTransform.position = _cameraTransform.position;
-        _cameraOnPlayerTransform.rotation = _cameraTransform.rotation;
-        
-        Camera.main.transform.SetPositionAndRotation(_cameraOnTelevisionTransform.position, _cameraOnTelevisionTransform.rotation);
-        _televisionCanvas.SetActive(true);
-
-        _videoControls = FindObjectOfType<VideoControls>();
-    }
 
     void Start()
     {
@@ -78,16 +54,37 @@ public class ChangeCameraPosition : MonoBehaviour
         // Calculate rotation of camera when it is on television
         Vector3 cameraRotationAtTelevision = _televisionTransform.rotation.eulerAngles + new Vector3(0, 180, 0);
         _cameraOnTelevisionTransform.rotation = Quaternion.Euler(cameraRotationAtTelevision);
-
-        _televisionCanvas.SetActive(false);
-
     }
-    
     
     /*
      * If:
-     *   camera currently on TV and
-     *   player pressed button B
+     *    TODO: player within range of TV and
+     *    camera is currently on player and
+     *    player presses button T
+     * then switch camera to focus on TV
+     */
+    private void OpenTelevision(InputAction.CallbackContext obj)
+    {
+        _televisionIsOpen = true;
+        _playerInput.actions.FindActionMap("Player").Disable();
+        _playerInput.actions.FindActionMap("Television").Enable();
+        
+        print("Triggered Open TV");
+        
+        _cameraOnPlayerTransform = new GameObject().transform;
+        _cameraOnPlayerTransform.position = _cameraTransform.position;
+        _cameraOnPlayerTransform.rotation = _cameraTransform.rotation;
+        
+        Camera.main.transform.SetPositionAndRotation(_cameraOnTelevisionTransform.position, _cameraOnTelevisionTransform.rotation);
+        _televisionCanvas.SetActive(true);
+
+        _videoControls = FindObjectOfType<VideoControls>();
+    }
+    
+    /*
+     * If:
+     *   camera currently on TV 
+     *   player pressed button G
      * then switch camera back onto player
      */
 
@@ -105,20 +102,5 @@ public class ChangeCameraPosition : MonoBehaviour
         _televisionCanvas.SetActive(false);
         _actions.Television.Enable();
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-        /*if (_inputActions.actions["OpenTV"].triggered)
-        {
-            OpenTV();
-            
-        }
-        else if (_inputActions.actions["CloseTV"].triggered)
-        {
-            CloseTV();
-        }*/
     }
 }
