@@ -877,15 +877,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Submit"",
-                    ""type"": ""Button"",
-                    ""id"": ""15f5c620-94d0-48d9-ab55-1dc8abac0dd1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1155,17 +1146,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""90cb7831-6b75-46ac-83d3-fd53868c38a1"",
-                    ""path"": ""*/{Submit}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR"",
-                    ""action"": ""Submit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""2e2294f0-b8f1-4ea6-8e39-ce04d4a93c85"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -1275,7 +1255,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Television = asset.FindActionMap("Television", throwIfNotFound: true);
         m_Television_CloseTV = m_Television.FindAction("CloseTV", throwIfNotFound: true);
         m_Television_Navigate = m_Television.FindAction("Navigate", throwIfNotFound: true);
-        m_Television_Submit = m_Television.FindAction("Submit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1535,14 +1514,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<ITelevisionActions> m_TelevisionActionsCallbackInterfaces = new List<ITelevisionActions>();
     private readonly InputAction m_Television_CloseTV;
     private readonly InputAction m_Television_Navigate;
-    private readonly InputAction m_Television_Submit;
     public struct TelevisionActions
     {
         private @InputActions m_Wrapper;
         public TelevisionActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @CloseTV => m_Wrapper.m_Television_CloseTV;
         public InputAction @Navigate => m_Wrapper.m_Television_Navigate;
-        public InputAction @Submit => m_Wrapper.m_Television_Submit;
         public InputActionMap Get() { return m_Wrapper.m_Television; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1558,9 +1535,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Navigate.started += instance.OnNavigate;
             @Navigate.performed += instance.OnNavigate;
             @Navigate.canceled += instance.OnNavigate;
-            @Submit.started += instance.OnSubmit;
-            @Submit.performed += instance.OnSubmit;
-            @Submit.canceled += instance.OnSubmit;
         }
 
         private void UnregisterCallbacks(ITelevisionActions instance)
@@ -1571,9 +1545,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Navigate.started -= instance.OnNavigate;
             @Navigate.performed -= instance.OnNavigate;
             @Navigate.canceled -= instance.OnNavigate;
-            @Submit.started -= instance.OnSubmit;
-            @Submit.performed -= instance.OnSubmit;
-            @Submit.canceled -= instance.OnSubmit;
         }
 
         public void RemoveCallbacks(ITelevisionActions instance)
@@ -1661,6 +1632,5 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnCloseTV(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
-        void OnSubmit(InputAction.CallbackContext context);
     }
 }
