@@ -8,6 +8,8 @@ public class ObjectDistance : MonoBehaviour
     public float distanceThreshold;
     private bool hasDestroyed;
 
+    float timeLeft = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class ObjectDistance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        while (!hasDestroyed) {
+        if (!hasDestroyed) {
             Vector3 targetXZ = new Vector3(targetObj.transform.position.x, 0f, targetObj.transform.position.z);
             Vector3 objectXZ = new Vector3(transform.position.x, 0f, transform.position.z);
             float dist = Vector3.Distance(targetXZ, objectXZ);
@@ -25,7 +27,16 @@ public class ObjectDistance : MonoBehaviour
                 Debug.Log("Correct!");
                 Destroy(targetObj);
                 hasDestroyed = true;
+                var outline = gameObject.GetComponent<Outline>();
+                outline.OutlineWidth = 5f;
             }
+        }
+        if (hasDestroyed) {
+            timeLeft -= Time.deltaTime;
+        }
+        if ( timeLeft < 0 ) {
+            var outline = gameObject.GetComponent<Outline>();
+            outline.OutlineWidth = 0f;
         }
     }
 }
