@@ -870,6 +870,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""125d72cf-ad8e-4099-89bb-af9fb6e9a558"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Navigate"",
                     ""type"": ""PassThrough"",
                     ""id"": ""3c597206-9cc2-4372-a3fa-89704a41e912"",
@@ -1158,11 +1167,44 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""579ec1e8-fa40-4b41-be47-3637a79dd4ff"",
-                    ""path"": ""<Keyboard>/g"",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""CloseTV"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4a9b3d7-ee8a-4358-a572-af0c4a85cae3"",
+                    ""path"": ""*/{Submit}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85f1e191-09b5-4b2e-8b48-bec6d7ff605b"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f3db20e8-0742-48c1-9704-648d440d9644"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1254,6 +1296,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Television
         m_Television = asset.FindActionMap("Television", throwIfNotFound: true);
         m_Television_CloseTV = m_Television.FindAction("CloseTV", throwIfNotFound: true);
+        m_Television_Submit = m_Television.FindAction("Submit", throwIfNotFound: true);
         m_Television_Navigate = m_Television.FindAction("Navigate", throwIfNotFound: true);
     }
 
@@ -1513,12 +1556,14 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Television;
     private List<ITelevisionActions> m_TelevisionActionsCallbackInterfaces = new List<ITelevisionActions>();
     private readonly InputAction m_Television_CloseTV;
+    private readonly InputAction m_Television_Submit;
     private readonly InputAction m_Television_Navigate;
     public struct TelevisionActions
     {
         private @InputActions m_Wrapper;
         public TelevisionActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @CloseTV => m_Wrapper.m_Television_CloseTV;
+        public InputAction @Submit => m_Wrapper.m_Television_Submit;
         public InputAction @Navigate => m_Wrapper.m_Television_Navigate;
         public InputActionMap Get() { return m_Wrapper.m_Television; }
         public void Enable() { Get().Enable(); }
@@ -1532,6 +1577,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @CloseTV.started += instance.OnCloseTV;
             @CloseTV.performed += instance.OnCloseTV;
             @CloseTV.canceled += instance.OnCloseTV;
+            @Submit.started += instance.OnSubmit;
+            @Submit.performed += instance.OnSubmit;
+            @Submit.canceled += instance.OnSubmit;
             @Navigate.started += instance.OnNavigate;
             @Navigate.performed += instance.OnNavigate;
             @Navigate.canceled += instance.OnNavigate;
@@ -1542,6 +1590,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @CloseTV.started -= instance.OnCloseTV;
             @CloseTV.performed -= instance.OnCloseTV;
             @CloseTV.canceled -= instance.OnCloseTV;
+            @Submit.started -= instance.OnSubmit;
+            @Submit.performed -= instance.OnSubmit;
+            @Submit.canceled -= instance.OnSubmit;
             @Navigate.started -= instance.OnNavigate;
             @Navigate.performed -= instance.OnNavigate;
             @Navigate.canceled -= instance.OnNavigate;
@@ -1631,6 +1682,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     public interface ITelevisionActions
     {
         void OnCloseTV(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
     }
 }
