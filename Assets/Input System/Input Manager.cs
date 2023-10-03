@@ -9,6 +9,9 @@ public class InputManager : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerInputActions playerInputActions;
 
+    private float _mouseSensitivity = 1f;
+    private float _speed = 3f;
+
     private void Awake()
     {
         playerBody = GetComponent<Rigidbody>();
@@ -27,20 +30,21 @@ public class InputManager : MonoBehaviour
     private void MovePlayer()
     {
         Vector2 movementInput = playerInputActions.Player.Move.ReadValue<Vector2>();
-        float speed = 3f;
-        playerBody.velocity = new Vector3(movementInput.x, 0, movementInput.y) * speed;
+
+        // Movement needs to be in local space axis not world space
+        Vector3 movement = transform.TransformDirection(new Vector3(movementInput.x, 0, movementInput.y)) * _speed;
+        playerBody.velocity = movement;
     }
 
     private void MoveCamera()
     {
         Vector2 cameraInput = playerInputActions.Player.Look.ReadValue<Vector2>();
-        float sensitivity = 1f;
 
         // Move the player to look around left/right when mouse pans left/right
-        transform.Rotate(0, cameraInput.x * sensitivity, 0);
+        transform.Rotate(0, cameraInput.x * _mouseSensitivity, 0);
 
         // Move the camera to look around up/down when mouse pans up/down
         Transform playerCamera = GetComponentInChildren<Camera>().transform;
-        playerCamera.Rotate(-cameraInput.y * sensitivity, 0, 0);
+        playerCamera.Rotate(-cameraInput.y * _mouseSensitivity, 0, 0);
     }
 }
