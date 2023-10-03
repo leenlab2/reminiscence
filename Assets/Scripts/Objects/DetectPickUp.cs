@@ -24,15 +24,15 @@ void Update()
     {
     //Shoot out a ray every frame
     RaycastHit hit;
-    NotDetected();
+    NotDetected();// Crosshairs function
     
     if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange) 
-        && (hit.transform.gameObject.tag == "LightObj"))
+        && (hit.transform.gameObject.tag == "LightObj")) //Object must be tagged "LightObj" in order to be picked up
     {
-            //WE ARE HITTING THE A MOVABLE OBJECT
-        Detected();
         
-        if(Input.GetMouseButtonDown(0))
+        Detected();//Crosshairs function
+        
+        if(Input.GetMouseButtonDown(0)) //TODO: Replace with new input system command.
         {
             if (heldObj == null)
             {
