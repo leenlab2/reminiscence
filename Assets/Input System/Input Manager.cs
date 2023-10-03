@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+        MoveCamera();
     }
 
     private void MovePlayer()
@@ -28,5 +29,18 @@ public class InputManager : MonoBehaviour
         Vector2 movementInput = playerInputActions.Player.Move.ReadValue<Vector2>();
         float speed = 3f;
         playerBody.velocity = new Vector3(movementInput.x, 0, movementInput.y) * speed;
+    }
+
+    private void MoveCamera()
+    {
+        Vector2 cameraInput = playerInputActions.Player.Look.ReadValue<Vector2>();
+        float sensitivity = 1f;
+
+        // Move the player to look around left/right when mouse pans left/right
+        transform.Rotate(0, cameraInput.x * sensitivity, 0);
+
+        // Move the camera to look around up/down when mouse pans up/down
+        Transform playerCamera = GetComponentInChildren<Camera>().transform;
+        playerCamera.Rotate(-cameraInput.y * sensitivity, 0, 0);
     }
 }
