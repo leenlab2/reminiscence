@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectDistance : MonoBehaviour
+public class ObjectDistance2 : MonoBehaviour
 {
     public GameObject targetObj;
     public float distanceThreshold;
     private bool hasDestroyed;
     public bool objectSolved;
-
-    // Define an event that gets triggered when the object is destroyed
-    public delegate void KeyItemPlaced(GameObject sender);
-    public event KeyItemPlaced OnKeyItemPlaced;
 
     float timeLeft = 3f;
 
@@ -31,8 +27,6 @@ public class ObjectDistance : MonoBehaviour
             float dist = Vector3.Distance(targetXZ, objectXZ);
             if (dist <= distanceThreshold) {
                 Debug.Log("Correct!");
-                OnKeyItemPlaced(gameObject);
-
                 Destroy(targetObj);
                 hasDestroyed = true;
                 objectSolved = true;
