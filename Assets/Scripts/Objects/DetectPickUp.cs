@@ -12,7 +12,8 @@ public class DetectPickUp : MonoBehaviour
     [SerializeField] Image crossHairs;
     [SerializeField] Sprite objectDetected;
     [SerializeField] Sprite noObjectDetected;
-    //[SerializeField] public LayerMask layersToHit;
+    [SerializeField] GameObject camera;
+    private ObjectDistance listener = null;
 
     [Header("Physics Parameters")]
     [SerializeField] private float pickupRange = 5.0f;
@@ -27,11 +28,20 @@ public class DetectPickUp : MonoBehaviour
         currentHit = null;
         RaycastHit hit;
         NotDetected();// Crosshairs function
+
+        if(listener != null)
+        {
+            if (listener.objectSolved == true)
+            {
+                ToggleHoldObject();
+                //listener = null;
+            }
+        }
     
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange) 
+        if (Physics.Raycast(camera.transform.position, camera.transform.TransformDirection(Vector3.forward), out hit, pickupRange) 
             && (hit.transform.gameObject.tag == "LightObj")) //Object must be tagged "LightObj" in order to be picked up
         {
-            Detected();//Crosshairs function
+            Detected();//Crosshairs function TODO: Fix crosshairs changing on listener == True objects
             currentHit = hit;
         }
 
@@ -47,6 +57,7 @@ public class DetectPickUp : MonoBehaviour
         if (heldObj == null && currentHit.HasValue)
         {
             PickupObject(currentHit.Value.transform.gameObject);
+            Debug.Log(heldObj.name);
             Debug.Log("Picked up Object");
         }
         else
@@ -73,6 +84,11 @@ public class DetectPickUp : MonoBehaviour
             heldObjRB.drag = 10;
             heldObjRB.constraints = RigidbodyConstraints.FreezeRotation;
 
+            if (pickObj.GetComponent<ObjectDistance>()!=null)
+            {
+                listener = pickObj.GetComponent<ObjectDistance>();
+            }
+
             heldObjRB.transform.parent = holdArea;
             heldObj = pickObj;
         }
@@ -86,6 +102,7 @@ public class DetectPickUp : MonoBehaviour
 
         heldObjRB.transform.parent = null;
         heldObj = null;
+        listener = null;
     }
 
     void Detected()

@@ -7,6 +7,7 @@ public class ObjectDistance : MonoBehaviour
     public GameObject targetObj;
     public float distanceThreshold;
     private bool hasDestroyed;
+    public bool objectSolved;
 
     float timeLeft = 3f;
 
@@ -14,6 +15,7 @@ public class ObjectDistance : MonoBehaviour
     void Start()
     {
         hasDestroyed = false;
+        objectSolved = false;
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class ObjectDistance : MonoBehaviour
                 Debug.Log("Correct!");
                 Destroy(targetObj);
                 hasDestroyed = true;
+                objectSolved = true;
                 var outline = gameObject.GetComponent<Outline>();
                 outline.OutlineWidth = 5f;
             }
