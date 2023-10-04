@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    public PlayerInputActions playerInputActions;
+
     private Rigidbody playerBody;
     private PlayerInput playerInput;
-    private PlayerInputActions playerInputActions;
 
     private float _mouseSensitivity = 3f;
     private float _speed = 3f;
@@ -19,10 +20,15 @@ public class InputManager : MonoBehaviour
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
+        playerInputActions.Television.Disable();
 
-        playerInputActions.Player.Interact.performed += ObjectInteract;
+
+        playerInputActions.Player.OpenTV.Enable();
+        playerInputActions.Player.OpenTV.performed += OpenTelevision;
+        playerInputActions.Television.CloseTV.performed += CloseTelevision;
     }
 
+    #region Player Movement
     private void FixedUpdate()
     {
         MovePlayer();
@@ -49,13 +55,27 @@ public class InputManager : MonoBehaviour
         Transform playerCamera = GetComponentInChildren<Camera>().transform;
         playerCamera.Rotate(-cameraInput.y * _mouseSensitivity, 0, 0);
     }
+    #endregion
 
-    #region Object Interactions
-    private void ObjectInteract(InputAction.CallbackContext context)
+    #region Television Toggle
+    private void OpenTelevision(InputAction.CallbackContext obj)
     {
-        // In the future if we want to use "Interact" for other things, we can add a check here
-        DetectPickUp detectPickUp = GetComponent<DetectPickUp>();
-        detectPickUp.ToggleHoldObject();
+        Debug.Log("Opening TV button pressed");
+        playerInputActions.Player.Disable();
+        playerInputActions.Television.Enable();
+
+        ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
+        cameraCtrl.SwitchToTapeView();
     }
+
+    private void CloseTelevision(InputAction.CallbackContext obj)
+    {
+        playerInputActions.Television.Disable();
+        playerInputActions.Player.Enable();
+
+        ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
+        cameraCtrl.SwitchToPlayerView();
+    }
+
     #endregion
 }
