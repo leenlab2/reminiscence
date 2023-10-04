@@ -46,7 +46,7 @@ public class VideoControls : MonoBehaviour
     public void FastForward()
     {
         print("FastForward!");
-        videoPlayer.time = videoPlayer.time + 3;
+        videoPlayer.time = videoPlayer.time + 5;
     }
     
     public void Replay()
