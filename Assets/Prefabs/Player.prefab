@@ -118,10 +118,8 @@ GameObject:
   - component: {fileID: 162036726717643507}
   - component: {fileID: 7402202247417972406}
   - component: {fileID: 5183293321125592636}
-  - component: {fileID: 2122834941142692303}
   - component: {fileID: 488999747442930134}
-  - component: {fileID: 4776164293688090385}
-  - component: {fileID: 9123760508364512275}
+  - component: {fileID: 7165676846656361597}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -218,36 +216,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2122834941142692303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112840480135186097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 346fbbc52ba074516bce4305e3a17d5b, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!54 &488999747442930134
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -275,7 +243,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &4776164293688090385
+--- !u!114 &7165676846656361597
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,30 +252,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7112840480135186097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81e4e5fd602224925ac6c5af5533d100, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ec4103906511ba40a2792e1b334879a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
---- !u!136 &9123760508364512275
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112840480135186097}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
