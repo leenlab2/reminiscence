@@ -26,6 +26,8 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.OpenTV.Enable();
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
         playerInputActions.Television.CloseTV.performed += CloseTelevision;
+
+        playerInputActions.Player.Interact.performed += ObjectInteract;
     }
 
     #region Player Movement
@@ -77,5 +79,14 @@ public class InputManager : MonoBehaviour
         cameraCtrl.SwitchToPlayerView();
     }
 
+    #endregion
+
+    #region Object Interactions
+    private void ObjectInteract(InputAction.CallbackContext context)
+    {
+        // In the future if we want to use "Interact" for other things, we can add a check here
+        DetectPickUp detectPickUp = GetComponent<DetectPickUp>();
+        detectPickUp.ToggleHoldObject();
+    }
     #endregion
 }
