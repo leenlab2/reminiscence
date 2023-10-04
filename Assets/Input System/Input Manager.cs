@@ -19,6 +19,8 @@ public class InputManager : MonoBehaviour
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
+
+        playerInputActions.Player.Interact.performed += ObjectInteract;
     }
 
     private void FixedUpdate()
@@ -47,4 +49,13 @@ public class InputManager : MonoBehaviour
         Transform playerCamera = GetComponentInChildren<Camera>().transform;
         playerCamera.Rotate(-cameraInput.y * _mouseSensitivity, 0, 0);
     }
+
+    #region Object Interactions
+    private void ObjectInteract(InputAction.CallbackContext context)
+    {
+        // In the future if we want to use "Interact" for other things, we can add a check here
+        DetectPickUp detectPickUp = GetComponent<DetectPickUp>();
+        detectPickUp.ToggleHoldObject();
+    }
+    #endregion
 }

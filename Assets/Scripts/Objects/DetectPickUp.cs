@@ -14,44 +14,46 @@ public class DetectPickUp : MonoBehaviour
     [SerializeField] Sprite noObjectDetected;
     //[SerializeField] public LayerMask layersToHit;
 
-
     [Header("Physics Parameters")]
     [SerializeField] private float pickupRange = 5.0f;
     [SerializeField] private float pickupForce = 150.0f;
 
-// Update is called once per frame
-void Update()
+    private RaycastHit? currentHit = null;
+
+    // Update is called once per frame
+    void Update()
     {
-    //Shoot out a ray every frame
-    RaycastHit hit;
-    NotDetected();// Crosshairs function
+        //Shoot out a ray every frame
+        currentHit = null;
+        RaycastHit hit;
+        NotDetected();// Crosshairs function
     
-    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange) 
-        && (hit.transform.gameObject.tag == "LightObj")) //Object must be tagged "LightObj" in order to be picked up
-    {
-        
-        Detected();//Crosshairs function
-        
-        if(Input.GetMouseButtonDown(0)) //TODO: Replace with new input system command.
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange) 
+            && (hit.transform.gameObject.tag == "LightObj")) //Object must be tagged "LightObj" in order to be picked up
         {
-            if (heldObj == null)
-            {
-                PickupObject(hit.transform.gameObject);
-                Debug.Log("Picked up Object");
-            }
-            else
-            {
-                DropObject();
-            }
+            Detected();//Crosshairs function
+            currentHit = hit;
         }
-    }
-    
-    if (heldObj != null)
-    {
-        MoveObject();
+
+        if (heldObj != null)
+        {
+            MoveObject();
+        }
+
     }
 
-}
+    public void ToggleHoldObject()
+    {
+        if (heldObj == null && currentHit.HasValue)
+        {
+            PickupObject(currentHit.Value.transform.gameObject);
+            Debug.Log("Picked up Object");
+        }
+        else
+        {
+            DropObject();
+        }
+    }
 
     void MoveObject()
     {
