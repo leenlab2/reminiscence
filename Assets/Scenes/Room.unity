@@ -1156,7 +1156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 0.28381535, g: 1, b: 0.11698109, a: 1}
-  outlineWidth: 2
+  outlineWidth: 0
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -1172,7 +1172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab06962f476e4d2091b17d28d9efe6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObj: {fileID: 0}
+  targetObj: {fileID: 1672288022}
   distanceThreshold: 0.5
 --- !u!1 &568281689
 GameObject:
@@ -1832,7 +1832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 0.09193252, g: 0.9433962, b: 0.04805973, a: 1}
-  outlineWidth: 2
+  outlineWidth: 0
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -2178,6 +2178,11 @@ Transform:
   - {fileID: 151907998}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1672288022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ff14f02c085e742b8905e7417f8179cf, type: 3}
+  m_PrefabInstance: {fileID: 1674805303}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1674805303
 PrefabInstance:
   m_ObjectHideFlags: 0

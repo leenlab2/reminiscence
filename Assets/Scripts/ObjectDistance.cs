@@ -29,7 +29,7 @@ public class ObjectDistance : MonoBehaviour
             float dist = Vector3.Distance(targetXZ, objectXZ);
             if (dist <= distanceThreshold) {
                 Debug.Log("Correct!");
-                OnKeyItemPlaced(this.gameObject);
+                OnKeyItemPlaced(gameObject);
 
                 Destroy(targetObj);
                 hasDestroyed = true;

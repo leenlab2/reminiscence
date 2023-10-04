@@ -21,11 +21,16 @@ public class PuzzleManager : MonoBehaviour
 
     private void HandleKeyItemPlaced(GameObject sender)
     {
+        Debug.Log(sender.name + " placed!");
+
         keyItems.Remove(sender.GetComponent<ObjectDistance>());
         if (keyItems.Count == 0)
         {
             Debug.Log("Puzzle complete!");
-            OnPuzzleComplete();
+            if (OnPuzzleComplete != null)
+            {
+                OnPuzzleComplete();
+            }
         }
     }
 }
