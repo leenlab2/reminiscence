@@ -2646,7 +2646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObj: {fileID: 1068696034}
-  distanceThreshold: 0.5
+  distanceThreshold: 1
   objectSolved: 0
 --- !u!65 &1576153995
 BoxCollider:
@@ -2867,7 +2867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObj: {fileID: 915250614}
-  distanceThreshold: 0.5
+  distanceThreshold: 1
   objectSolved: 0
 --- !u!54 &1603778204
 Rigidbody:
@@ -3220,7 +3220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObj: {fileID: 962454852}
-  distanceThreshold: 0.5
+  distanceThreshold: 1
   objectSolved: 0
 --- !u!54 &1703493854
 Rigidbody:
