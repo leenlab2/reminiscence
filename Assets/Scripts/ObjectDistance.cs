@@ -8,6 +8,10 @@ public class ObjectDistance : MonoBehaviour
     public float distanceThreshold;
     private bool hasDestroyed;
 
+    // Define an event that gets triggered when the object is destroyed
+    public delegate void KeyItemPlaced(GameObject sender);
+    public event KeyItemPlaced OnKeyItemPlaced;
+
     float timeLeft = 3f;
 
     // Start is called before the first frame update
@@ -25,6 +29,8 @@ public class ObjectDistance : MonoBehaviour
             float dist = Vector3.Distance(targetXZ, objectXZ);
             if (dist <= distanceThreshold) {
                 Debug.Log("Correct!");
+                OnKeyItemPlaced(gameObject);
+
                 Destroy(targetObj);
                 hasDestroyed = true;
                 var outline = gameObject.GetComponent<Outline>();
