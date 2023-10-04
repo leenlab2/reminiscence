@@ -41,6 +41,7 @@ public class DetectPickUp : MonoBehaviour
         if (Physics.Raycast(camera.transform.position, camera.transform.TransformDirection(Vector3.forward), out hit, pickupRange) 
             && (hit.transform.gameObject.tag == "LightObj")) //Object must be tagged "LightObj" in order to be picked up
         {
+            
             Detected();//Crosshairs function TODO: Fix crosshairs changing on listener == True objects
             currentHit = hit;
         }
