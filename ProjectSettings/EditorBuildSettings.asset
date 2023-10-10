@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 5bba4585c43f5c84d94cd321703ca321
+  - enabled: 1
+    path: Assets/Scenes/Room Completes Tape.unity
+    guid: 493df8dc4cea342989e47e56ee478787
   m_configObjects: {}
