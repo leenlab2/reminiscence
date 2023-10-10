@@ -10,6 +10,7 @@ public class VideoControls : MonoBehaviour
     private VideoPlayer videoPlayer;
     public Image _progressBarImage;
     public GameObject _televisionCanvas;
+    public VideoClip fixedTape;
 
 
     void Start()
@@ -40,13 +41,13 @@ public class VideoControls : MonoBehaviour
     public void Rewind()
     {
         print("Rewind!");
-        videoPlayer.time = videoPlayer.time - 3;
+        videoPlayer.time = videoPlayer.time - 7;
     }
 
     public void FastForward()
     {
         print("FastForward!");
-        videoPlayer.time = videoPlayer.time + 5;
+        videoPlayer.time = videoPlayer.time + 7;
     }
     
     public void Replay()
@@ -54,6 +55,12 @@ public class VideoControls : MonoBehaviour
         print("Replay!");
         videoPlayer.time = 0;
         videoPlayer.Play();
+    }
+
+    public void ChangeTape()
+    {
+        videoPlayer.clip = fixedTape;
+        videoPlayer.time = 60;
     }
 
     void Update()
