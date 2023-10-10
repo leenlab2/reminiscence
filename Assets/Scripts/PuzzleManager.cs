@@ -10,6 +10,13 @@ public class PuzzleManager : MonoBehaviour
     public delegate void PuzzleComplete();
     public event PuzzleComplete OnPuzzleComplete;
 
+    private VideoControls _videoControls;
+
+    void Start()
+    {
+        _videoControls = FindObjectOfType<VideoControls>();
+    }
+
     private void Awake()
     {
         keyItems = FindObjectsOfType<ObjectDistance>().ToList();
@@ -24,9 +31,11 @@ public class PuzzleManager : MonoBehaviour
         Debug.Log(sender.name + " placed!");
 
         keyItems.Remove(sender.GetComponent<ObjectDistance>());
-        if (keyItems.Count == 0)
+        if (keyItems.Count == 2)
         {
             Debug.Log("Puzzle complete!");
+            _videoControls.ChangeTape();
+            
             if (OnPuzzleComplete != null)
             {
                 OnPuzzleComplete();
