@@ -11,12 +11,16 @@ public class VideoControls : MonoBehaviour
     public Image _progressBarImage;
     public GameObject _televisionCanvas;
     public VideoClip fixedTape;
+    private AudioSource _televisionAudioSource;
+    private ParticleSystem _televisionEffectsOnPuzzleComplete;
 
 
     void Start()
     {
         videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
         _progressBarImage.fillAmount = 0;
+        _televisionAudioSource = GameObject.Find("TV").GetComponent<AudioSource>();
+        _televisionEffectsOnPuzzleComplete = GameObject.Find("TVEffectsPuzzleComplete").GetComponent<ParticleSystem>();
     }
 
     public void PauseOrPlay()
@@ -57,10 +61,16 @@ public class VideoControls : MonoBehaviour
         videoPlayer.Play();
     }
 
-    public void ChangeTape()
+    public void CompletePuzzle()
     {
+        // switch tape to fixed one
         videoPlayer.clip = fixedTape;
         videoPlayer.time = 60;
+        
+        // play confirmation noise from television
+        print(_televisionAudioSource);
+        _televisionAudioSource.Play();
+        _televisionEffectsOnPuzzleComplete.Play();
     }
 
     void Update()
