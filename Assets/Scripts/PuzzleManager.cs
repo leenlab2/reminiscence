@@ -34,7 +34,7 @@ public class PuzzleManager : MonoBehaviour
         if (keyItems.Count == 0)
         {
             Debug.Log("Puzzle complete!");
-            _videoControls.ChangeTape();
+            _videoControls.CompletePuzzle();
             
             if (OnPuzzleComplete != null)
             {
