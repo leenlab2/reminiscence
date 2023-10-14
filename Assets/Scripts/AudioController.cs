@@ -41,11 +41,21 @@ public class AudioController : MonoBehaviour
         // Set time for next step
         lastStepTime = Time.time;
 
-        // Select a random footstep noise
-        int randomIndex = Random.Range(0, footsteps.Count);
-        while (footsteps[randomIndex] == playerAudioSource.clip)
+        // Determine whether to play the floor creak noise
+        int randomIndex;
+        float rand = Random.value;
+        if (rand < 0.1f)
         {
-            randomIndex = Random.Range(0, footsteps.Count); 
+            randomIndex = footsteps.Count - 1;
+            // NOTE: this requires the floor creak noise to be the last in the list
+        } else
+        {
+            // Select a random footstep noise
+            randomIndex = Random.Range(0, footsteps.Count - 1);
+            while (footsteps[randomIndex] == playerAudioSource.clip)
+            {
+                randomIndex = Random.Range(0, footsteps.Count - 1);
+            }
         }
 
         AudioClip randomFootstep = footsteps[randomIndex];
