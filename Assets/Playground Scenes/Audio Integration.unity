@@ -2655,13 +2655,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.483
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 165
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -3900,13 +3900,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6435359707947890125, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6992450636416142980, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
       propertyPath: m_Name
       value: Main Audio Source
       objectReference: {fileID: 0}
     - target: {fileID: 8944915732866438509, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
       propertyPath: footsteps.Array.size
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8944915732866438509, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
       propertyPath: footsteps.Array.data[0]
@@ -3927,15 +3931,15 @@ PrefabInstance:
     - target: {fileID: 8944915732866438509, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
       propertyPath: footsteps.Array.data[4]
       value: 
-      objectReference: {fileID: 8300000, guid: 3ffa7eb7c97eae14cad82460dfa772a3, type: 3}
+      objectReference: {fileID: 8300000, guid: d69ef2e1d28ffc44e9794124479d2dd2, type: 3}
     - target: {fileID: 8944915732866438509, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
       propertyPath: footsteps.Array.data[5]
       value: 
-      objectReference: {fileID: 8300000, guid: d69ef2e1d28ffc44e9794124479d2dd2, type: 3}
+      objectReference: {fileID: 8300000, guid: 8bcc640bb27af1d46b01bd20c7fbdd41, type: 3}
     - target: {fileID: 8944915732866438509, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
       propertyPath: footsteps.Array.data[6]
       value: 
-      objectReference: {fileID: 8300000, guid: 8bcc640bb27af1d46b01bd20c7fbdd41, type: 3}
+      objectReference: {fileID: 8300000, guid: 91098b38aaa48854f82b8e9e368c1599, type: 3}
     - target: {fileID: 8944915732866438509, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
       propertyPath: footsteps.Array.data[7]
       value: 

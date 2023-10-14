@@ -45,10 +45,10 @@ public class InputManager : MonoBehaviour
         Vector3 movement = transform.TransformDirection(new Vector3(movementInput.x, 0, movementInput.y)) * _speed;
         playerBody.velocity = movement;
 
-        // Play footsteps audio   
-        if (!movementInput.Equals(Vector2.zero))
+        // Setup audio playback based on movement input
+        if (playerInputActions.Player.Move.phase == InputActionPhase.Started)
         {
-            AudioController.instance.PlayFootsteps();
+            AudioController.instance.PlayFootsteps(playerBody.velocity.magnitude);
         }
     }
 
