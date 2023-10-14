@@ -27,6 +27,5 @@
 
 ## Review Checklist
 - [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] Any modifications to prefabs have been applied to the original prefab file
 - [ ] I have kept my test scenes/assets in a folder called "To Be Deleted," and will remove them before merging
 - [ ] I have requested a review from at least one (1) team member (preferably someone working on a related task)
