@@ -66,6 +66,6 @@ public class InsertAndRemoveTape : MonoBehaviour
     
     public TapeSO GetCurrentTapeInTV()
     {
-        return currentTapeInTv.GetComponent<TapeSO>();
+        return currentTapeInTv.GetComponent<TapeInformation>().TapeSO;
     }
 }
