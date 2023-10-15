@@ -20,6 +20,14 @@ public class DetectPickUp : MonoBehaviour
     [SerializeField] private float pickupForce = 150.0f;
 
     private RaycastHit? currentHit = null;
+    
+    private bool crosshairOnTelevision = false;
+    private InsertAndRemoveTape insertAndRemoveTape;
+
+    void Start()
+    {
+        insertAndRemoveTape = FindObjectOfType<InsertAndRemoveTape>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -45,6 +53,13 @@ public class DetectPickUp : MonoBehaviour
             Detected();//Crosshairs function TODO: Fix crosshairs changing on listener == True objects
             currentHit = hit;
         }
+        
+        crosshairOnTelevision = false; // set to false before checking if crosshair on television
+        if (Physics.Raycast(camera.transform.position, camera.transform.TransformDirection(Vector3.forward), out hit, pickupRange) 
+            && (hit.transform.parent?.name == "TV" || hit.transform.parent?.name == "TV_V3")) //If holding a tape and clicked TV
+        {
+            crosshairOnTelevision = true;
+        }
 
         if (heldObj != null)
         {
@@ -61,6 +76,17 @@ public class DetectPickUp : MonoBehaviour
             Debug.Log(heldObj.name);
             Debug.Log("Picked up Object");
         }
+        else if (crosshairOnTelevision){ // if clicked on TV
+            if (heldObj != null && heldObj.name == "VHS_Tape") // if holding VHS tape, insert tape into TV
+            {
+                insertAndRemoveTape.insertTape(heldObj);
+                
+            }
+            else if(heldObj == null) // if holding nothing, remove tape from TV if any
+            {
+                insertAndRemoveTape.removeTape();
+            }
+        }
         else
         {
             DropObject();
@@ -76,7 +102,7 @@ public class DetectPickUp : MonoBehaviour
         }
     }
 
-    void PickupObject(GameObject pickObj)
+    public void PickupObject(GameObject pickObj)
     {
         if (pickObj.GetComponent<Rigidbody>())
         {
@@ -95,7 +121,7 @@ public class DetectPickUp : MonoBehaviour
         }
     }
 
-    void DropObject()
+    public void DropObject()
     {
         heldObjRB.useGravity = true;
         heldObjRB.drag = 1;
