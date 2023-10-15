@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corruptedVideoClip: {fileID: 32900000, guid: 7f704022dc0764aec93f9ad920c3bb46, type: 3}
   fixedVideoClip: {fileID: 32900000, guid: defdee21b2d5f42bfb786ce4aaaf26e4, type: 3}
-  timeGlitchFixedInFixedTape: 100
+  timeGlitchFixedInFixedTape: 60
