@@ -62,7 +62,7 @@ public class VideoControls : MonoBehaviour
         _videoPlayer.Play();
     }
 
-    public void CompletePuzzle() // TODO: Only call this method if there exits a tape in the TV. Otherwise, we wouldn't know which tape's puzzle we are currently solving
+    public void CompletePuzzle() // TODO: Only call this method if there exists a tape in the TV. Otherwise, we wouldn't know which tape's puzzle we are currently solving
     {
         // play confirmation noise from television
         print(_televisionAudioSource);
@@ -71,7 +71,7 @@ public class VideoControls : MonoBehaviour
         
         // Set tape to fixed one and play from time the glitch was fixed
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
-        tapeSOInTV.SetTapeToFixed();
+        tapeSOInTV.SetTapeToFixed("A"); // TODO: Choose which solution branch is reached: A or B. Hard coded A for now.
         _videoPlayer.clip = tapeSOInTV.GetVideoClip();
         _videoPlayer.time = tapeSOInTV.GetTimeGlitchFixedInFixedTape();
     }
