@@ -20,6 +20,12 @@ public class DetectPickUp : MonoBehaviour
     [SerializeField] private float pickupForce = 150.0f;
 
     private RaycastHit? currentHit = null;
+    private Quaternion rotationReset;
+
+    void Start()
+    {
+        rotationReset = holdArea.transform.rotation;
+    }
 
     // Update is called once per frame
     void Update()
@@ -58,6 +64,8 @@ public class DetectPickUp : MonoBehaviour
     {
         if (heldObj == null && currentHit.HasValue)
         {
+            ResetHoldArea();
+
             PickupObject(currentHit.Value.transform.gameObject);
             Debug.Log(heldObj.name);
             Debug.Log("Picked up Object");
@@ -65,6 +73,7 @@ public class DetectPickUp : MonoBehaviour
         else
         {
             DropObject();
+            ResetHoldArea();
         }
     }
 
@@ -79,8 +88,8 @@ public class DetectPickUp : MonoBehaviour
 
     void RotateObject()
     {
-        //heldObj.transform.rotation = holdArea.transform.rotation - heldObj.transform.rotation;
-        if(Quaternion.Angle(holdArea.transform.rotation, heldObj.transform.rotation) > 0.1f)
+        heldObjRB.isKinematic = false;
+        if (Quaternion.Angle(holdArea.transform.rotation, heldObj.transform.rotation) > 0.1f)
         {
             heldObj.transform.rotation = holdArea.transform.rotation * heldObj.transform.rotation;
         }
@@ -95,19 +104,23 @@ public class DetectPickUp : MonoBehaviour
             heldObjRB.useGravity = false;
             heldObjRB.drag = 10;
             heldObjRB.constraints = RigidbodyConstraints.FreezeRotation;
+            heldObjRB.isKinematic = true;
 
             if (pickObj.GetComponent<ObjectDistance>()!=null)
             {
                 listener = pickObj.GetComponent<ObjectDistance>();
             }
 
+            pickObj.transform.rotation = holdArea.transform.rotation;
             heldObjRB.transform.parent = holdArea;
             heldObj = pickObj;
+            pickObj.transform.position = holdArea.transform.position;
         }
     }
 
     void DropObject()
     {
+        heldObjRB.isKinematic = false;
         heldObjRB.useGravity = true;
         heldObjRB.drag = 1;
         heldObjRB.constraints = RigidbodyConstraints.None;
@@ -128,4 +141,10 @@ public class DetectPickUp : MonoBehaviour
         //Debug.Log("I am NOT looking at sth");
         crossHairs.sprite = noObjectDetected;
     }
+
+    void ResetHoldArea()
+    {
+        holdArea.transform.rotation = rotationReset;
+    }
+
 }
