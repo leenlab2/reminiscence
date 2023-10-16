@@ -29,11 +29,11 @@ public class ChangeCameraPosition : MonoBehaviour
         
         // Calculate position of camera when it is on television
         _cameraOnTelevisionTransform = new GameObject().transform;
-        _cameraOnTelevisionTransform.position = _televisionTransform.position + new Vector3(-2.0f, 1.70f, -1.43f);
+        _cameraOnTelevisionTransform.position = _televisionTransform.position + new Vector3(-2.0f, 1.70f, 0.43f);
         
         // Calculate rotation of camera when it is on television
         Vector3 televisionRotation = _televisionTransform.rotation.eulerAngles;
-        Vector3 cameraRotationAtTelevision = televisionRotation +  new Vector3(0, 43f, 0);
+        Vector3 cameraRotationAtTelevision = televisionRotation +  new Vector3(0, 90f, 0);
         _cameraOnTelevisionTransform.rotation = Quaternion.Euler(cameraRotationAtTelevision);
         
         _videoControls = FindObjectOfType<VideoControls>();

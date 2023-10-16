@@ -56,10 +56,11 @@ public class DetectPickUp : MonoBehaviour
         
         crosshairOnTelevision = false; // set to false before checking if crosshair on television
         if (Physics.Raycast(camera.transform.position, camera.transform.TransformDirection(Vector3.forward), out hit, pickupRange) 
-            && (hit.transform.parent?.name == "TV" || hit.transform.parent?.name == "TV_V3")) //If holding a tape and clicked TV
+            && (hit.transform.name == "TV" || hit.transform.parent?.name == "TV")) //If holding a tape and clicked TV
         {
             crosshairOnTelevision = true;
         }
+        print(hit.transform.name);
 
         if (heldObj != null)
         {
