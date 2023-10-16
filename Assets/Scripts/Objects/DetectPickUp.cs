@@ -49,6 +49,7 @@ public class DetectPickUp : MonoBehaviour
         if (heldObj != null)
         {
             MoveObject();
+            RotateObject();
         }
 
     }
@@ -75,6 +76,12 @@ public class DetectPickUp : MonoBehaviour
             heldObjRB.AddForce(moveDirection * pickupForce);
         }
     }
+
+    void RotateObject()
+    {
+        heldObj.transform.rotation = holdArea.transform.rotation;
+    }
+ 
 
     void PickupObject(GameObject pickObj)
     {
@@ -108,11 +115,13 @@ public class DetectPickUp : MonoBehaviour
 
     void Detected()
     {
+        //Debug.Log("I am looking at sth");
         crossHairs.sprite = objectDetected;
     }
 
     void NotDetected()
     {
+        //Debug.Log("I am NOT looking at sth");
         crossHairs.sprite = noObjectDetected;
     }
 }

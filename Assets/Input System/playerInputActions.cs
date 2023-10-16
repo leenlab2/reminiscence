@@ -62,6 +62,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""27d1238d-2016-4f7f-9055-3edaab655ea6"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotateToggle"",
+                    ""type"": ""Value"",
+                    ""id"": ""4b3cfd31-8751-4e33-8343-cb806e0e02c7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotateToggle2"",
+                    ""type"": ""Value"",
+                    ""id"": ""74f60000-5406-4f77-909e-56e81a8d15a1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -216,6 +243,94 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""MouseRotate"",
+                    ""id"": ""6bab47e1-05cb-43c0-90e2-4e21b8477bb1"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""f5e0e103-296b-4690-a749-35aad7b705c4"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""0335c989-ca7f-4d43-83f9-507e81252d41"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a00ad6f1-d11a-4d7d-8110-f75441cfae51"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e05ed639-bf11-4d30-8296-2bb25d1d5edd"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""RotateToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""23a16214-3341-40e6-b085-3e320a365b22"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RotateToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0640d0a9-943c-4471-8cc7-c0dc3c73718c"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""RotateToggle2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f27b40a-6b24-4f12-8cf5-ea366e6d9aec"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RotateToggle2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1150,6 +1265,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_OpenTV = m_Player.FindAction("OpenTV", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
+        m_Player_RotateToggle = m_Player.FindAction("RotateToggle", throwIfNotFound: true);
+        m_Player_RotateToggle2 = m_Player.FindAction("RotateToggle2", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1232,6 +1350,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_OpenTV;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Rotate;
+    private readonly InputAction m_Player_RotateToggle;
+    private readonly InputAction m_Player_RotateToggle2;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1240,6 +1361,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @OpenTV => m_Wrapper.m_Player_OpenTV;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
+        public InputAction @RotateToggle => m_Wrapper.m_Player_RotateToggle;
+        public InputAction @RotateToggle2 => m_Wrapper.m_Player_RotateToggle2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1261,6 +1385,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Rotate.started += instance.OnRotate;
+            @Rotate.performed += instance.OnRotate;
+            @Rotate.canceled += instance.OnRotate;
+            @RotateToggle.started += instance.OnRotateToggle;
+            @RotateToggle.performed += instance.OnRotateToggle;
+            @RotateToggle.canceled += instance.OnRotateToggle;
+            @RotateToggle2.started += instance.OnRotateToggle2;
+            @RotateToggle2.performed += instance.OnRotateToggle2;
+            @RotateToggle2.canceled += instance.OnRotateToggle2;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1277,6 +1410,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Rotate.started -= instance.OnRotate;
+            @Rotate.performed -= instance.OnRotate;
+            @Rotate.canceled -= instance.OnRotate;
+            @RotateToggle.started -= instance.OnRotateToggle;
+            @RotateToggle.performed -= instance.OnRotateToggle;
+            @RotateToggle.canceled -= instance.OnRotateToggle;
+            @RotateToggle2.started -= instance.OnRotateToggle2;
+            @RotateToggle2.performed -= instance.OnRotateToggle2;
+            @RotateToggle2.canceled -= instance.OnRotateToggle2;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1525,6 +1667,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnOpenTV(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
+        void OnRotateToggle(InputAction.CallbackContext context);
+        void OnRotateToggle2(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
