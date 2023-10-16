@@ -44,6 +44,12 @@ public class InputManager : MonoBehaviour
         // Movement needs to be in local space axis not world space
         Vector3 movement = transform.TransformDirection(new Vector3(movementInput.x, 0, movementInput.y)) * _speed;
         playerBody.velocity = movement;
+
+        // Setup audio playback based on movement input
+        if (playerInputActions.Player.Move.phase == InputActionPhase.Started)
+        {
+            AudioController.instance.PlayFootsteps(playerBody.velocity.magnitude);
+        }
     }
 
     private void MoveCamera()
