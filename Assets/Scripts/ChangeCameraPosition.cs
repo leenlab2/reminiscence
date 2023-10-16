@@ -16,8 +16,13 @@ public class ChangeCameraPosition : MonoBehaviour
 
     private VideoControls _videoControls;
 
+    private GameObject _player;
+
     void Start()
     {        
+        // Get Player
+        _player = GameObject.Find("Player");
+        
         // Get Television and Camera Transforms
         _televisionTransform = GameObject.Find("TV").GetComponent<Transform>();
         _cameraTransform = GetComponent<Transform>();
@@ -56,12 +61,13 @@ public class ChangeCameraPosition : MonoBehaviour
 
         _televisionCanvas.SetActive(true);
         _videoControls = FindObjectOfType<VideoControls>();
+        _player.GetComponent<MeshRenderer>().enabled = false;
     }
     
     /*
      * If:
      *   camera currently on TV 
-     *   player pressed button G
+     *   player pressed button T
      * then switch camera back onto player
      */
 
@@ -73,5 +79,6 @@ public class ChangeCameraPosition : MonoBehaviour
         
         Camera.main.transform.SetPositionAndRotation(_cameraOnPlayerTransform.position, _cameraOnPlayerTransform.rotation);
         _televisionCanvas.SetActive(false);
+        _player.GetComponent<MeshRenderer>().enabled = true;
     }
 }

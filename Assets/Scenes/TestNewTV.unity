@@ -1901,6 +1901,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7402202247417972406, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9094445694416326558, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
       propertyPath: crossHairs
       value: 
