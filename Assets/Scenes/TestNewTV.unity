@@ -3006,6 +3006,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Replay
       objectReference: {fileID: 0}
+    - target: {fileID: 6093954602811567595, guid: db3a8b662d6e84ac19c00501ca79b011, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6194791682929335046, guid: db3a8b662d6e84ac19c00501ca79b011, type: 3}
       propertyPath: m_fontSize
       value: 20
