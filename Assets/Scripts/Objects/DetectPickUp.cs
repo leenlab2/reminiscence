@@ -79,7 +79,11 @@ public class DetectPickUp : MonoBehaviour
 
     void RotateObject()
     {
-        heldObj.transform.rotation = holdArea.transform.rotation;
+        //heldObj.transform.rotation = holdArea.transform.rotation - heldObj.transform.rotation;
+        if(Quaternion.Angle(holdArea.transform.rotation, heldObj.transform.rotation) > 0.1f)
+        {
+            heldObj.transform.rotation = holdArea.transform.rotation * heldObj.transform.rotation;
+        }
     }
  
 

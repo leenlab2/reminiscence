@@ -76,18 +76,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""RotateToggle"",
                     ""type"": ""Value"",
                     ""id"": ""4b3cfd31-8751-4e33-8343-cb806e0e02c7"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""RotateToggle2"",
-                    ""type"": ""Value"",
-                    ""id"": ""74f60000-5406-4f77-909e-56e81a8d15a1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": true
                 }
             ],
@@ -309,28 +300,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""RotateToggle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0640d0a9-943c-4471-8cc7-c0dc3c73718c"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""RotateToggle2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3f27b40a-6b24-4f12-8cf5-ea366e6d9aec"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""RotateToggle2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1267,7 +1236,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
         m_Player_RotateToggle = m_Player.FindAction("RotateToggle", throwIfNotFound: true);
-        m_Player_RotateToggle2 = m_Player.FindAction("RotateToggle2", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1352,7 +1320,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Rotate;
     private readonly InputAction m_Player_RotateToggle;
-    private readonly InputAction m_Player_RotateToggle2;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1363,7 +1330,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
         public InputAction @RotateToggle => m_Wrapper.m_Player_RotateToggle;
-        public InputAction @RotateToggle2 => m_Wrapper.m_Player_RotateToggle2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1391,9 +1357,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @RotateToggle.started += instance.OnRotateToggle;
             @RotateToggle.performed += instance.OnRotateToggle;
             @RotateToggle.canceled += instance.OnRotateToggle;
-            @RotateToggle2.started += instance.OnRotateToggle2;
-            @RotateToggle2.performed += instance.OnRotateToggle2;
-            @RotateToggle2.canceled += instance.OnRotateToggle2;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1416,9 +1379,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @RotateToggle.started -= instance.OnRotateToggle;
             @RotateToggle.performed -= instance.OnRotateToggle;
             @RotateToggle.canceled -= instance.OnRotateToggle;
-            @RotateToggle2.started -= instance.OnRotateToggle2;
-            @RotateToggle2.performed -= instance.OnRotateToggle2;
-            @RotateToggle2.canceled -= instance.OnRotateToggle2;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1669,7 +1629,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnRotateToggle(InputAction.CallbackContext context);
-        void OnRotateToggle2(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

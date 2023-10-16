@@ -28,9 +28,10 @@ public class InputManager : MonoBehaviour
         playerInputActions.Television.CloseTV.performed += CloseTelevision;
 
         playerInputActions.Player.Interact.performed += ObjectInteract;
-        playerInputActions.Player.RotateToggle.performed += ObjectRotateOn;
-        playerInputActions.Player.RotateToggle2.Disable();
-        playerInputActions.Player.RotateToggle2.performed += ObjectRotateOff;
+        playerInputActions.Player.RotateToggle.performed += ctx => ObjectRotateToggle(ctx.ReadValue<float>()); ;
+
+        //playerInputActions.Player.RotateToggle2.Disable();
+        //playerInputActions.Player.RotateToggle.cancelled += ObjectRotateOff;
 
         playerInputActions.Player.Rotate.Disable();
     }
@@ -111,10 +112,10 @@ public class InputManager : MonoBehaviour
         heldObjectRotation.Rotate(rotationInput.y, rotationInput.x, 0);
     }
 
-    private void ObjectRotateOn(InputAction.CallbackContext context)
+   /* private void ObjectRotateOn(InputAction.CallbackContext context)
     {
 
-        /*bool pressedDown = context.ReadValueAsButton();
+        *//*bool pressedDown = context.ReadValueAsButton();
         if (pressedDown) // the key has been pressed
         {
             //dothething
@@ -128,13 +129,13 @@ public class InputManager : MonoBehaviour
             Debug.Log("Toggling Off Rotate");
             playerInputActions.Player.Look.Enable();
             playerInputActions.Player.Rotate.Disable();
-        }*/
+        }*//*
 
         Debug.Log("Toggling On Rotate");
         playerInputActions.Player.Look.Disable();
         playerInputActions.Player.Rotate.Enable();
-        playerInputActions.Player.RotateToggle.Disable();
-        playerInputActions.Player.RotateToggle2.Enable();
+        //playerInputActions.Player.RotateToggle.Disable();
+        //playerInputActions.Player.RotateToggle2.Enable();
     }
     private void ObjectRotateOff(InputAction.CallbackContext context)
     {
@@ -142,8 +143,26 @@ public class InputManager : MonoBehaviour
         Debug.Log("Toggling Off Rotate");
         playerInputActions.Player.Look.Enable();
         playerInputActions.Player.Rotate.Disable();
-        playerInputActions.Player.RotateToggle2.Disable();
-        playerInputActions.Player.RotateToggle.Enable();
+        //playerInputActions.Player.RotateToggle2.Disable();
+        //playerInputActions.Player.RotateToggle.Enable();
+    }*/
+
+    private void ObjectRotateToggle(float b)
+    {
+        if (b > 0)
+        {
+            //LMB = true;
+            Debug.Log("Toggling On Rotate");
+            playerInputActions.Player.Look.Disable();
+            playerInputActions.Player.Rotate.Enable();
+        }
+        else
+        {
+            //LMB = false;
+            Debug.Log("Toggling Off Rotate");
+            playerInputActions.Player.Look.Enable();
+            playerInputActions.Player.Rotate.Disable();
+        }
     }
 
     #endregion
