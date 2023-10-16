@@ -78,7 +78,14 @@ public class VideoControls : MonoBehaviour
 
     void Update()
     {
-        float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length); 
-        _progressBarImage.fillAmount = progressPercentage;
+        if (_videoPlayer.length > 0)
+        {
+            float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length); 
+            _progressBarImage.fillAmount = progressPercentage;
+        }
+        else
+        {
+            _progressBarImage.fillAmount = 0;
+        }
     }
 }
