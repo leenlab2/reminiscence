@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1788179963447776468
+--- !u!1001 &9037735526246219704
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,19 +10,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4405751790230163179, guid: 06c4a4633c3323e42aacf28d221552c6, type: 3}
       propertyPath: m_Name
-      value: Clutter Prop Variant
+      value: Couch Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952639333545535653, guid: 06c4a4633c3323e42aacf28d221552c6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.68
       objectReference: {fileID: 0}
     - target: {fileID: 5357083219078188783, guid: 06c4a4633c3323e42aacf28d221552c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.015937
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5357083219078188783, guid: 06c4a4633c3323e42aacf28d221552c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.378483
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5357083219078188783, guid: 06c4a4633c3323e42aacf28d221552c6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.5037203
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5357083219078188783, guid: 06c4a4633c3323e42aacf28d221552c6, type: 3}
       propertyPath: m_LocalRotation.w
