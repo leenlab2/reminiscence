@@ -1782,6 +1782,14 @@ PrefabInstance:
       propertyPath: _televisionCanvas
       value: 
       objectReference: {fileID: 1468367703}
+    - target: {fileID: 3908314717303870315, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
+      propertyPath: Priority
+      value: 197
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908314717303870315, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5965753160802908384, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.38
