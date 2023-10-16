@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class InsertAndRemoveTape : MonoBehaviour
+public class TapeManager : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
     private GameObject currentTapeInTv;
@@ -14,6 +14,8 @@ public class InsertAndRemoveTape : MonoBehaviour
     {
         videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
         _detectPickUp = FindObjectOfType<DetectPickUp>();
+        
+        videoPlayer.targetTexture.Release(); // ensure nothing is rendered on TV upon startup
     }
 
     private bool televisionHasTape()
@@ -38,6 +40,9 @@ public class InsertAndRemoveTape : MonoBehaviour
             print("INSERTING TAPE");
             TapeSO tapeSO = tapeGameObject.GetComponent<TapeInformation>().TapeSO;
             videoPlayer.clip = tapeSO.GetVideoClip();
+            videoPlayer.time = 0;
+            videoPlayer.Play();
+            videoPlayer.Pause();
             currentTapeInTv = tapeGameObject;
             tapeGameObject.active = false;
             _detectPickUp.DropObject();
@@ -57,6 +62,7 @@ public class InsertAndRemoveTape : MonoBehaviour
             // put obj back in hands of player and set video clip on TV to null
             // set clip on TV's player to null
             currentTapeInTv.active = true;
+            videoPlayer.targetTexture.Release();
             _detectPickUp.PickupObject(currentTapeInTv);
             videoPlayer.clip = null;
             currentTapeInTv = null;

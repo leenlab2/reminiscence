@@ -12,12 +12,12 @@ public class VideoControls : MonoBehaviour
     public GameObject _televisionCanvas;
     private AudioSource _televisionAudioSource;
     private ParticleSystem _televisionEffectsOnPuzzleComplete;
-    private InsertAndRemoveTape _insertAndRemoveTape;
+    private TapeManager _tapeManager;
 
 
     void Start()
     {
-        _insertAndRemoveTape = FindObjectOfType<InsertAndRemoveTape>();
+        _tapeManager = FindObjectOfType<TapeManager>();
         _videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
         _progressBarImage.fillAmount = 0;
         _televisionAudioSource = GameObject.Find("TV").GetComponent<AudioSource>();
@@ -70,7 +70,7 @@ public class VideoControls : MonoBehaviour
         _televisionEffectsOnPuzzleComplete.Play();
         
         // Set tape to fixed one and play from time the glitch was fixed
-        TapeSO tapeSOInTV = _insertAndRemoveTape.GetCurrentTapeInTV();
+        TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
         tapeSOInTV.SetTapeToFixed();
         _videoPlayer.clip = tapeSOInTV.GetVideoClip();
         _videoPlayer.time = tapeSOInTV.GetTimeGlitchFixedInFixedTape();

@@ -22,11 +22,11 @@ public class DetectPickUp : MonoBehaviour
     private RaycastHit? currentHit = null;
     
     private bool crosshairOnTelevision = false;
-    private InsertAndRemoveTape insertAndRemoveTape;
+    private TapeManager tapeManager;
 
     void Start()
     {
-        insertAndRemoveTape = FindObjectOfType<InsertAndRemoveTape>();
+        tapeManager = FindObjectOfType<TapeManager>();
     }
 
     // Update is called once per frame
@@ -79,12 +79,12 @@ public class DetectPickUp : MonoBehaviour
         else if (crosshairOnTelevision){ // if clicked on TV
             if (heldObj != null && heldObj.name == "VHS_Tape") // if holding VHS tape, insert tape into TV
             {
-                insertAndRemoveTape.insertTape(heldObj);
+                tapeManager.insertTape(heldObj);
                 
             }
             else if(heldObj == null) // if holding nothing, remove tape from TV if any
             {
-                insertAndRemoveTape.removeTape();
+                tapeManager.removeTape();
             }
         }
         else
