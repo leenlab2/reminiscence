@@ -10,6 +10,8 @@ public enum ClipToPlay
     OriginalCorrupted,
     BranchACorrupted,
     BranchBCorrupted, 
+    BranchASolution,
+    BranchBSolution
 }
 
 public class VideoControls : MonoBehaviour
@@ -68,7 +70,8 @@ public class VideoControls : MonoBehaviour
         _videoPlayer.Play();
     }
 
-    public void CompletePuzzle() // TODO: Only call this method if there exists a tape in the TV. Otherwise, we wouldn't know which tape's puzzle we are currently solving
+    // Pass in one of the solution clip ENUMs
+    public void CompletePuzzle(/*ClipToPlay clip*/) // TODO: Only call this method if there exists a tape in the TV. Otherwise, we wouldn't know which tape's puzzle we are currently solving
     {   
         // play confirmation noise from television
         _televisionAudioSource.Play();
@@ -77,7 +80,7 @@ public class VideoControls : MonoBehaviour
         
         // Set tape to fixed one and play from time the glitch was fixed
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
-        tapeSOInTV.SetTapeToFixed("A"); // TODO: Choose which solution branch is reached: A or B. Hard coded A for now.
+        tapeSOInTV.SetTapeToFixed(ClipToPlay.BranchASolution); // TODO: Pass clip parameter into here instead
         _videoPlayer.clip = tapeSOInTV.GetVideoClip();
         _videoPlayer.time = tapeSOInTV.GetTimeGlitchFixedInFixedTape();
     }
@@ -85,21 +88,23 @@ public class VideoControls : MonoBehaviour
     // Call this method to change the video when the tape is not yet completed
     public void ChangeCorruptedVideo(ClipToPlay clip)
     {
+        TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
+        
         _televisionAudioSource.Play(); // Play noise from TV. TODO: Different noise between this and OnPuzzleComplete
         _televisionEffectsOnPuzzleComplete.startColor = Color.white; // play particles from TV
         _televisionEffectsOnPuzzleComplete.Play();
         
         if (clip == ClipToPlay.OriginalCorrupted) // switch video on TV to original corrupted
         {
-            
+            _videoPlayer.clip = tapeSOInTV.originalCorruptedVideoClip;
         }
         else if (clip == ClipToPlay.BranchACorrupted) // switch video on TV to Branch A Corrupted
         {
-            
+            _videoPlayer.clip = tapeSOInTV.branchACorruptedVideoClip;
         }
         else if (clip == ClipToPlay.BranchBCorrupted) // switch video on TV to Branch B Corrupted
         {
-            
+            _videoPlayer.clip = tapeSOInTV.branchBCorruptedVideoClip;
         }
     }
 

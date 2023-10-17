@@ -7,16 +7,16 @@ using UnityEngine.Video;
 [CreateAssetMenu(menuName = "Tape Contents", fileName = "New Tape")]
 public class TapeSO : ScriptableObject
 {
-    [SerializeField] private VideoClip originalCorruptedVideoClip;
-    [SerializeField] private VideoClip branchACorruptedVideoClip;
-    [SerializeField] private VideoClip branchBCorruptedVideoClip;
+    public VideoClip originalCorruptedVideoClip;
+    public VideoClip branchACorruptedVideoClip;
+    public VideoClip branchBCorruptedVideoClip;
     [SerializeField] private VideoClip branchASolutionVideoClip;
     [SerializeField] private VideoClip branchBSolutionVideoClip;
     
     [SerializeField] private int timeGlitchFixedInFixedTape;
 
     private bool tapeIsFixed = false;
-    private string tapeSolutionBranch;
+    private ClipToPlay tapeSolutionBranch;
     
     public TapeSO(int timeGlitchFixedInFixedTape)
     {
@@ -27,11 +27,11 @@ public class TapeSO : ScriptableObject
     {
         if (tapeIsFixed)
         {
-            if (tapeSolutionBranch == "A")
+            if (tapeSolutionBranch == ClipToPlay.BranchASolution)
             {
                 return branchASolutionVideoClip;
             }
-            else if (tapeSolutionBranch == "B")
+            else if (tapeSolutionBranch == ClipToPlay.BranchBSolution)
             {
                 return branchBSolutionVideoClip;
             }
@@ -45,7 +45,7 @@ public class TapeSO : ScriptableObject
         return timeGlitchFixedInFixedTape;
     }
 
-    public void SetTapeToFixed(string solutionBranch)
+    public void SetTapeToFixed(ClipToPlay solutionBranch)
     {
         tapeIsFixed = true;
         tapeSolutionBranch = solutionBranch;
