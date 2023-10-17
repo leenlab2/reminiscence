@@ -157,8 +157,7 @@ public class InputManager : MonoBehaviour
             playerInputActions.Player.Look.Disable();
             playerInputActions.Player.Rotate.Enable();
             Vector3 centerPosition = GetComponentInChildren<Camera>().transform.GetChild(2).gameObject.transform.position;
-            //parentPosition.y -= 2;
-            //parentPosition.z += 2;
+            
             heldArea.transform.position = centerPosition;
         }
         else
@@ -168,9 +167,7 @@ public class InputManager : MonoBehaviour
             playerInputActions.Player.Look.Enable();
             playerInputActions.Player.Rotate.Disable();
             Vector3 sidePosition = GetComponentInChildren<Camera>().transform.GetChild(1).gameObject.transform.position;
-            //parentPosition.x += 2;
-            //parentPosition.y -= 2;
-            //parentPosition.z += 2;
+            
             heldArea.transform.position = sidePosition;
         }
     }
