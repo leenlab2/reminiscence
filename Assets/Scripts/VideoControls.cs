@@ -70,19 +70,16 @@ public class VideoControls : MonoBehaviour
 
     public void CompletePuzzle() // TODO: Only call this method if there exists a tape in the TV. Otherwise, we wouldn't know which tape's puzzle we are currently solving
     {   
-        print("Completed 1");
         // play confirmation noise from television
         _televisionAudioSource.Play();
         _televisionEffectsOnPuzzleComplete.startColor = Color.yellow; // play particles from TV
         _televisionEffectsOnPuzzleComplete.Play();
-        print("Completed 2");
         
         // Set tape to fixed one and play from time the glitch was fixed
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
         tapeSOInTV.SetTapeToFixed("A"); // TODO: Choose which solution branch is reached: A or B. Hard coded A for now.
         _videoPlayer.clip = tapeSOInTV.GetVideoClip();
         _videoPlayer.time = tapeSOInTV.GetTimeGlitchFixedInFixedTape();
-        print("Completed 3");
     }
     
     // Call this method to change the video when the tape is not yet completed
