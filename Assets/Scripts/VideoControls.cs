@@ -81,6 +81,7 @@ public class VideoControls : MonoBehaviour
         // Set tape to fixed one and play from time the glitch was fixed
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
         tapeSOInTV.SetTapeToFixed(ClipToPlay.BranchASolution); // TODO: Pass clip parameter into here instead
+        tapeSOInTV.tapeSolutionBranch = ClipToPlay.BranchASolution; // TODO: Change this to assign clip instead
         _videoPlayer.clip = tapeSOInTV.GetVideoClip();
         _videoPlayer.time = tapeSOInTV.GetTimeGlitchFixedInFixedTape();
     }
@@ -97,14 +98,17 @@ public class VideoControls : MonoBehaviour
         if (clip == ClipToPlay.OriginalCorrupted) // switch video on TV to original corrupted
         {
             _videoPlayer.clip = tapeSOInTV.originalCorruptedVideoClip;
+            tapeSOInTV.clipToPlay = ClipToPlay.OriginalCorrupted;
         }
         else if (clip == ClipToPlay.BranchACorrupted) // switch video on TV to Branch A Corrupted
         {
             _videoPlayer.clip = tapeSOInTV.branchACorruptedVideoClip;
+            tapeSOInTV.clipToPlay = ClipToPlay.BranchACorrupted;
         }
         else if (clip == ClipToPlay.BranchBCorrupted) // switch video on TV to Branch B Corrupted
         {
             _videoPlayer.clip = tapeSOInTV.branchBCorruptedVideoClip;
+            tapeSOInTV.clipToPlay = ClipToPlay.BranchBCorrupted;
         }
     }
 

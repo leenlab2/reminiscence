@@ -16,7 +16,8 @@ public class TapeSO : ScriptableObject
     [SerializeField] private int timeGlitchFixedInFixedTape;
 
     private bool tapeIsFixed = false;
-    private ClipToPlay tapeSolutionBranch;
+    public ClipToPlay tapeSolutionBranch;
+    public ClipToPlay clipToPlay;
     
     public TapeSO(int timeGlitchFixedInFixedTape)
     {
@@ -35,9 +36,16 @@ public class TapeSO : ScriptableObject
             {
                 return branchBSolutionVideoClip;
             }
-        } 
+        }
+        else if (clipToPlay == ClipToPlay.BranchACorrupted)
+        {
+            return branchACorruptedVideoClip;
+        }
+        else if (clipToPlay == ClipToPlay.BranchBCorrupted)
+        {
+            return branchBCorruptedVideoClip;
+        }
         return originalCorruptedVideoClip;
-        
     }
     
     public int GetTimeGlitchFixedInFixedTape()
