@@ -29,6 +29,19 @@ public class DetectPickUp : MonoBehaviour
         tapeManager = FindObjectOfType<TapeManager>();
     }
 
+    //Save State
+    private Quaternion rotationReset;
+    private Vector3 localScale;
+    private Transform parent;
+
+    //New State
+    private Vector3 newScale = new Vector3(0.005F, 0.005F, 0.005F);
+
+    void Start()
+    {
+        rotationReset = holdArea.transform.rotation;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -65,6 +78,7 @@ public class DetectPickUp : MonoBehaviour
         if (heldObj != null)
         {
             MoveObject();
+            RotateObject();
         }
 
     }
@@ -73,6 +87,8 @@ public class DetectPickUp : MonoBehaviour
     {
         if (heldObj == null && currentHit.HasValue)
         {
+            ResetHoldArea();
+
             PickupObject(currentHit.Value.transform.gameObject);
             Debug.Log(heldObj.name);
             Debug.Log("Picked up Object");
@@ -91,6 +107,7 @@ public class DetectPickUp : MonoBehaviour
         else
         {
             DropObject();
+            ResetHoldArea();
         }
     }
 
@@ -103,43 +120,85 @@ public class DetectPickUp : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     public void PickupObject(GameObject pickObj)
+=======
+    void RotateObject()
+    {
+        heldObjRB.isKinematic = false;
+        if (Quaternion.Angle(holdArea.transform.rotation, heldObj.transform.rotation) > 0.1f)
+        {
+            heldObj.transform.rotation = holdArea.transform.rotation * heldObj.transform.rotation;
+        }
+    }
+ 
+
+    void PickupObject(GameObject pickObj)
+>>>>>>> 08b41c5799cc90e4c88ba9a964febb9bbb91f7be
     {
         if (pickObj.GetComponent<Rigidbody>())
         {
+            parent = pickObj.transform.parent;
+
             heldObjRB = pickObj.GetComponent<Rigidbody>();
             heldObjRB.useGravity = false;
             heldObjRB.drag = 10;
             heldObjRB.constraints = RigidbodyConstraints.FreezeRotation;
+            heldObjRB.isKinematic = true;
 
             if (pickObj.GetComponent<ObjectDistance>()!=null)
             {
                 listener = pickObj.GetComponent<ObjectDistance>();
             }
 
+            pickObj.transform.rotation = holdArea.transform.rotation;
             heldObjRB.transform.parent = holdArea;
             heldObj = pickObj;
+            pickObj.transform.position = holdArea.transform.position;
+            MakeObjSmall(pickObj);
         }
     }
 
     public void DropObject()
     {
+        MakeObjBig();
+        heldObjRB.isKinematic = false;
         heldObjRB.useGravity = true;
         heldObjRB.drag = 1;
         heldObjRB.constraints = RigidbodyConstraints.None;
 
-        heldObjRB.transform.parent = null;
+        //heldObjRB.transform.parent = null;
+        heldObjRB.transform.parent = parent;
         heldObj = null;
         listener = null;
     }
 
     void Detected()
     {
+        //Debug.Log("I am looking at sth");
         crossHairs.sprite = objectDetected;
     }
 
     void NotDetected()
     {
+        //Debug.Log("I am NOT looking at sth");
         crossHairs.sprite = noObjectDetected;
     }
+
+    void ResetHoldArea()
+    {
+        holdArea.transform.rotation = rotationReset;
+    }
+
+    void MakeObjBig()
+    {
+        heldObj.transform.localScale = localScale;
+    }
+    void MakeObjSmall(GameObject pickObj)
+    {
+        localScale = pickObj.transform.localScale;
+        Debug.Log(localScale);
+        heldObj.transform.localScale = newScale;
+    }
+
 }

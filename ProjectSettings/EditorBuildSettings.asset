@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 5bba4585c43f5c84d94cd321703ca321
   - enabled: 0
-    path: Assets/Scenes/CollidersWorkspace.unity
+    path: Assets/Playground Scenes/CollidersWorkspace.unity
     guid: 493df8dc4cea342989e47e56ee478787
   - enabled: 1
-    path: Assets/Scenes/DemoOct11.unity
+    path: Assets/Playground Scenes/DemoOct11.unity
     guid: ac8b9cab669df4e3b85729f08d27bb15
   m_configObjects: {}
