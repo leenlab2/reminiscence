@@ -23,12 +23,7 @@ public class DetectPickUp : MonoBehaviour
     
     private bool crosshairOnTelevision = false;
     private TapeManager tapeManager;
-
-    void Start()
-    {
-        tapeManager = FindObjectOfType<TapeManager>();
-    }
-
+    
     //Save State
     private Quaternion rotationReset;
     private Vector3 localScale;
@@ -40,6 +35,7 @@ public class DetectPickUp : MonoBehaviour
     void Start()
     {
         rotationReset = holdArea.transform.rotation;
+        tapeManager = FindObjectOfType<TapeManager>();
     }
 
     // Update is called once per frame
@@ -73,7 +69,6 @@ public class DetectPickUp : MonoBehaviour
         {
             crosshairOnTelevision = true;
         }
-        print(hit.transform.name);
 
         if (heldObj != null)
         {
@@ -119,10 +114,7 @@ public class DetectPickUp : MonoBehaviour
             heldObjRB.AddForce(moveDirection * pickupForce);
         }
     }
-
-<<<<<<< HEAD
-    public void PickupObject(GameObject pickObj)
-=======
+    
     void RotateObject()
     {
         heldObjRB.isKinematic = false;
@@ -133,8 +125,7 @@ public class DetectPickUp : MonoBehaviour
     }
  
 
-    void PickupObject(GameObject pickObj)
->>>>>>> 08b41c5799cc90e4c88ba9a964febb9bbb91f7be
+    public void PickupObject(GameObject pickObj)
     {
         if (pickObj.GetComponent<Rigidbody>())
         {
