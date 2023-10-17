@@ -964,9 +964,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guitar
       objectReference: {fileID: 0}
+    - target: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.461
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 7593704697015776725, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 7593704697015776725, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -974,7 +994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7593704697015776725, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 9.27
       objectReference: {fileID: 0}
     - target: {fileID: 7593704697015776725, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalRotation.w
