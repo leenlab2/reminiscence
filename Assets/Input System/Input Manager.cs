@@ -149,12 +149,16 @@ public class InputManager : MonoBehaviour
 
     private void ObjectRotateToggle(float b)
     {
+        Transform heldArea = GetComponentInChildren<Camera>().transform.GetChild(0).gameObject.transform;
         if (b > 0)
         {
             //LMB = true;
             Debug.Log("Toggling On Rotate");
             playerInputActions.Player.Look.Disable();
             playerInputActions.Player.Rotate.Enable();
+            Vector3 centerPosition = GetComponentInChildren<Camera>().transform.GetChild(2).gameObject.transform.position;
+            
+            heldArea.transform.position = centerPosition;
         }
         else
         {
@@ -162,6 +166,9 @@ public class InputManager : MonoBehaviour
             Debug.Log("Toggling Off Rotate");
             playerInputActions.Player.Look.Enable();
             playerInputActions.Player.Rotate.Disable();
+            Vector3 sidePosition = GetComponentInChildren<Camera>().transform.GetChild(1).gameObject.transform.position;
+            
+            heldArea.transform.position = sidePosition;
         }
     }
 

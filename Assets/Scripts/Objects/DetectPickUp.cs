@@ -20,7 +20,14 @@ public class DetectPickUp : MonoBehaviour
     [SerializeField] private float pickupForce = 150.0f;
 
     private RaycastHit? currentHit = null;
+
+    //Save State
     private Quaternion rotationReset;
+    private Vector3 localScale;
+    private Transform parent;
+
+    //New State
+    private Vector3 newScale = new Vector3(0.005F, 0.005F, 0.005F);
 
     void Start()
     {
@@ -100,6 +107,8 @@ public class DetectPickUp : MonoBehaviour
     {
         if (pickObj.GetComponent<Rigidbody>())
         {
+            parent = pickObj.transform.parent;
+
             heldObjRB = pickObj.GetComponent<Rigidbody>();
             heldObjRB.useGravity = false;
             heldObjRB.drag = 10;
@@ -115,17 +124,20 @@ public class DetectPickUp : MonoBehaviour
             heldObjRB.transform.parent = holdArea;
             heldObj = pickObj;
             pickObj.transform.position = holdArea.transform.position;
+            MakeObjSmall(pickObj);
         }
     }
 
     void DropObject()
     {
+        MakeObjBig();
         heldObjRB.isKinematic = false;
         heldObjRB.useGravity = true;
         heldObjRB.drag = 1;
         heldObjRB.constraints = RigidbodyConstraints.None;
 
-        heldObjRB.transform.parent = null;
+        //heldObjRB.transform.parent = null;
+        heldObjRB.transform.parent = parent;
         heldObj = null;
         listener = null;
     }
@@ -145,6 +157,17 @@ public class DetectPickUp : MonoBehaviour
     void ResetHoldArea()
     {
         holdArea.transform.rotation = rotationReset;
+    }
+
+    void MakeObjBig()
+    {
+        heldObj.transform.localScale = localScale;
+    }
+    void MakeObjSmall(GameObject pickObj)
+    {
+        localScale = pickObj.transform.localScale;
+        Debug.Log(localScale);
+        heldObj.transform.localScale = newScale;
     }
 
 }
