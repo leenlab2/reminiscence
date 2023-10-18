@@ -2988,6 +2988,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6044348855276041909, guid: 76c1cb639af673e419dc83a0aafa0f08, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8890538437779119769, guid: 76c1cb639af673e419dc83a0aafa0f08, type: 3}
       propertyPath: m_Name
       value: Stool
@@ -4183,6 +4187,14 @@ PrefabInstance:
     - target: {fileID: 6895486123116526447, guid: ad17fcfa9c341ca43ac90346122d1e7d, type: 3}
       propertyPath: m_Name
       value: Vinyl Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457689420801748046, guid: ad17fcfa9c341ca43ac90346122d1e7d, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457689420801748046, guid: ad17fcfa9c341ca43ac90346122d1e7d, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
