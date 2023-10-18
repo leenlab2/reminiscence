@@ -125,10 +125,10 @@ public class DetectPickUp : MonoBehaviour
             heldObjRB.constraints = RigidbodyConstraints.FreezeRotation;
             heldObjRB.isKinematic = true;
 
-            if (pickObj.GetComponent<ObjectDistance>()!=null)
-            {
-                listener = pickObj.GetComponent<ObjectDistance>();
-            }
+            // if (pickObj.GetComponent<ObjectDistance>()!=null)
+            // {
+            //     listener = pickObj.GetComponent<ObjectDistance>();
+            // }
 
             MakeObjSmall(pickObj);
             pickObj.transform.rotation = holdArea.transform.rotation;
@@ -141,7 +141,7 @@ public class DetectPickUp : MonoBehaviour
 
     public void DropObject()
     {
-        if (heldObjRB.name == "PosterA" || heldObjRB.name == "PosterB") {
+        if (heldObjRB && (heldObjRB.name == "PosterA" || heldObjRB.name == "PosterB")) {
             RaycastHit dropHit;
             if (Physics.Raycast(camera.transform.position, camera.transform.TransformDirection(Vector3.forward), out dropHit, pickupRange)) {
                 Debug.Log("ray cast hit: " + dropHit.transform.gameObject.name);
@@ -165,7 +165,7 @@ public class DetectPickUp : MonoBehaviour
 
                     heldObjRB.transform.parent = null;
                     heldObj = null;
-                    listener = null;
+                    // listener = null;
                     heldObjRB.transform.position = GameObject.Find("PosterAnchor").transform.position;
                     heldObjRB.transform.rotation = Quaternion.Euler(0, 90, 0);
                     heldObjRB.transform.localScale = new Vector3(0.05236547f, 0.05236546f, 0.05236547f);
@@ -196,7 +196,7 @@ public class DetectPickUp : MonoBehaviour
 
         //heldObjRB.transform.parent = null;
         heldObjRB.transform.parent = parent;
-        listener = null;
+        // listener = null;
         MakeObjBig();
         heldObj = null;
     }
@@ -227,6 +227,15 @@ public class DetectPickUp : MonoBehaviour
         localScale = pickObj.transform.localScale;
         Debug.Log(localScale);
         pickObj.transform.localScale = pickObj.transform.localScale / 2;  //newScale;
+    }
+
+     public bool isInHand(GameObject obj)
+    {
+        if (heldObj)
+        {
+            return obj.name == heldObj.name;
+        }
+        return false;
     }
 
 }

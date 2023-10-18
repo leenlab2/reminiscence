@@ -1136,6 +1136,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5515485317308863121, guid: 1e8d4b88a753a414aabcb7206c3a475d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 00b2431fcf5c1c443bc337664eadfe8f, type: 2}
     - target: {fileID: 8453570223912366668, guid: 1e8d4b88a753a414aabcb7206c3a475d, type: 3}
       propertyPath: m_Name
       value: PictureFrame
