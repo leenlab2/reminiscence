@@ -14,6 +14,10 @@ public class TapeManager : MonoBehaviour
     {
         videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
         _detectPickUp = FindObjectOfType<DetectPickUp>();
+        TapeSO tapeSO = GameObject.Find("VHS_Tape").GetComponent<TapeInformation>().TapeSO;
+        tapeSO.tapeIsFixed = false;
+        tapeSO.clipToPlay = ClipToPlay.OriginalCorrupted;
+        tapeSO.tapeSolutionBranch = ClipToPlay.OriginalCorrupted;
         
         videoPlayer.targetTexture.Release(); // ensure nothing is rendered on TV upon startup
     }
