@@ -15,13 +15,6 @@ public class PuzzleManager : MonoBehaviour
     /// </summary>
     private int branch;
 
-    // private List<ObjectDistance> tutKeyItemsA;
-    // private List<ObjectDistance> tutKeyItemsB;
-    private List<ObjectDistance> firstKeyItemsA;
-    private List<ObjectDistance> firstKeyItemsB;
-    // private List<ObjectDistance> secondKeyItemsA;
-    // private List<ObjectDistance> secondKeyItemsB;
-
     // [SerializeField] private List<GameObject> tutKeyGameObjsA;
     // [SerializeField] private List<GameObject> tutKeyGameObjsB;
     [SerializeField] private List<GameObject> firstKeyGameObjsA;
@@ -46,6 +39,7 @@ public class PuzzleManager : MonoBehaviour
         _videoControls = FindObjectOfType<VideoControls>();
         level = 1;
         branch = 0;
+        _videoControls.ChangeCorruptedVideo(ClipToPlay.OriginalCorrupted);
     }
 
     private void Awake()
@@ -72,22 +66,16 @@ public class PuzzleManager : MonoBehaviour
         //     tutKeyItemsB.Add(objDist);
         // }
 
-        Debug.Log("puzzle manager");
-
-
         foreach (var obj in firstKeyGameObjsA)
         {
-            Debug.Log(obj.name);
             ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.OnKeyItemPlaced += HandleKeyItemPlaced;
-            // firstKeyItemsA.Add(objDist);
         }
 
         foreach (var obj in firstKeyGameObjsB)
         {
             ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.OnKeyItemPlaced += HandleKeyItemPlaced;
-            // firstKeyItemsB.Add(objDist);
         }
 
         // foreach (var obj in secondKeyGameObjsA)
@@ -118,7 +106,7 @@ public class PuzzleManager : MonoBehaviour
             if (firstKeyGameObjsA.Count == 0)
             {
                 Debug.Log("First level puzzle complete branch A!");
-                _videoControls.CompletePuzzle();
+                _videoControls.CompletePuzzle(ClipToPlay.BranchASolution);
 
                 level += 1;
                 
@@ -137,7 +125,7 @@ public class PuzzleManager : MonoBehaviour
             if (firstKeyGameObjsB.Count == 0)
             {
                 Debug.Log("First level puzzle complete branch B!");
-                _videoControls.CompletePuzzle();
+                _videoControls.CompletePuzzle(ClipToPlay.BranchBSolution);
 
                 level += 1;
                 
@@ -157,7 +145,7 @@ public class PuzzleManager : MonoBehaviour
                     if (firstKeyGameObjsA.Count == 0)
                     {
                         Debug.Log("First level puzzle complete branch A!");
-                        _videoControls.CompletePuzzle();
+                        _videoControls.CompletePuzzle(ClipToPlay.BranchASolution);
 
                         level += 1;
                         
@@ -173,7 +161,7 @@ public class PuzzleManager : MonoBehaviour
                     if (firstKeyGameObjsB.Count == 0)
                     {
                         Debug.Log("First level puzzle complete branch B!");
-                        _videoControls.CompletePuzzle();
+                        _videoControls.CompletePuzzle(ClipToPlay.BranchBSolution);
 
                         level += 1;
                         
