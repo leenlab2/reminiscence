@@ -13,7 +13,6 @@ public class DetectPickUp : MonoBehaviour
     [SerializeField] Sprite objectDetected;
     [SerializeField] Sprite noObjectDetected;
     [SerializeField] GameObject camera;
-    private ObjectDistance listener = null;
 
     [Header("Physics Parameters")]
     [SerializeField] private float pickupRange = 5.0f;
@@ -45,15 +44,6 @@ public class DetectPickUp : MonoBehaviour
         currentHit = null;
         RaycastHit hit;
         NotDetected();// Crosshairs function
-
-        if(listener != null)
-        {
-            if (listener.objectSolved == true)
-            {
-                ToggleHoldObject();
-                //listener = null;
-            }
-        }
     
         if (Physics.Raycast(camera.transform.position, camera.transform.TransformDirection(Vector3.forward), out hit, pickupRange) 
             && (hit.transform.gameObject.tag == "LightObj")) //Object must be tagged "LightObj" in order to be picked up
