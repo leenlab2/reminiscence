@@ -39,7 +39,7 @@ public class PuzzleManager : MonoBehaviour
         _videoControls = FindObjectOfType<VideoControls>();
         level = 1;
         branch = 0;
-        _videoControls.ChangeCorruptedVideo(ClipToPlay.OriginalCorrupted);
+        // _videoControls.ChangeCorruptedVideo(ClipToPlay.OriginalCorrupted);
     }
 
     private void Awake()
