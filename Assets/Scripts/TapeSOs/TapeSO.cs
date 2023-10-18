@@ -22,6 +22,7 @@ public class TapeSO : ScriptableObject
     public TapeSO(int timeGlitchFixedInFixedTape)
     {
         this.timeGlitchFixedInFixedTape = timeGlitchFixedInFixedTape;
+        clipToPlay = ClipToPlay.OriginalCorrupted;
     }
 
     public VideoClip GetVideoClip()
