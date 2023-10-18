@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviour
     private PlayerInput playerInput;
 
     private float _mouseSensitivity = 3f;
-    private float _speed = 3f;
+    private float _speed = 5f;
 
     private void Awake()
     {
