@@ -72,7 +72,7 @@ public class VideoControls : MonoBehaviour
     }
 
     // Pass in one of the solution clip ENUMs
-    public void CompletePuzzle(/*ClipToPlay clip*/) // TODO: Only call this method if there exists a tape in the TV. Otherwise, we wouldn't know which tape's puzzle we are currently solving
+    public void CompletePuzzle(ClipToPlay clip) // TODO: Only call this method if there exists a tape in the TV. Otherwise, we wouldn't know which tape's puzzle we are currently solving
     {   
         // play confirmation noise from television
         _televisionAudioSource.Play();
@@ -81,8 +81,9 @@ public class VideoControls : MonoBehaviour
         
         // Set tape to fixed one and play from time the glitch was fixed
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
-        tapeSOInTV.SetTapeToFixed(ClipToPlay.BranchASolution); // TODO: Pass clip parameter into here instead
-        tapeSOInTV.tapeSolutionBranch = ClipToPlay.BranchASolution; // TODO: Change this to assign clip instead
+        tapeSOInTV.SetTapeToFixed(clip); // TODO: Pass clip parameter into here instead
+        tapeSOInTV.tapeSolutionBranch = clip; // TODO: Change this to assign clip instead
+        tapeSOInTV.clipToPlay = clip;
         _videoPlayer.clip = tapeSOInTV.GetVideoClip();
         _videoPlayer.time = tapeSOInTV.GetTimeGlitchFixedInFixedTape();
     }

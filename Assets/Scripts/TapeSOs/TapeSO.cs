@@ -15,14 +15,13 @@ public class TapeSO : ScriptableObject
     
     [SerializeField] private int timeGlitchFixedInFixedTape;
 
-    private bool tapeIsFixed = false;
+    public bool tapeIsFixed = false;
     public ClipToPlay tapeSolutionBranch;
     public ClipToPlay clipToPlay;
     
     public TapeSO(int timeGlitchFixedInFixedTape)
     {
         this.timeGlitchFixedInFixedTape = timeGlitchFixedInFixedTape;
-        clipToPlay = ClipToPlay.OriginalCorrupted;
     }
 
     public VideoClip GetVideoClip()
