@@ -38,6 +38,8 @@ public class ChangeCameraPosition : MonoBehaviour
         _cameraOnTelevisionTransform.rotation = Quaternion.Euler(cameraRotationAtTelevision);
         
         _videoControls = FindObjectOfType<VideoControls>();
+        
+        _cameraOnPlayerTransform = new GameObject().transform;
     }
     
     /*
@@ -52,7 +54,6 @@ public class ChangeCameraPosition : MonoBehaviour
         Debug.Log("Switching to tape view");
 
         // Create copy of camera transform when on player
-        _cameraOnPlayerTransform = new GameObject().transform;
         _cameraOnPlayerTransform.position = _cameraTransform.position;
         _cameraOnPlayerTransform.rotation = _cameraTransform.rotation;
         print(_cameraOnPlayerTransform.position);
