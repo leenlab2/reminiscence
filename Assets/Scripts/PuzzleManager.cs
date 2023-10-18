@@ -126,9 +126,10 @@ public class PuzzleManager : MonoBehaviour
                 {
                     OnPuzzleComplete();
                 }
+            } else {
+                // _videoControls.ClipToPlay clip = _videoControls.ClipToPlay.BranchACorrupted;
+                _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchACorrupted);
             }
-            // VideoControls.ClipToPlay clip = VideoControls.ClipToPlay.BranchACorrupted;
-            // _videoControls.ChangeCorruptedVideo(clip);
         } else if (sender.name == firstBranchingObjB.name) {
             // branch B
             branch = 2;
@@ -145,9 +146,10 @@ public class PuzzleManager : MonoBehaviour
                 {
                     OnPuzzleComplete();
                 }
+            } else {
+                // VideoControls.ClipToPlay clip = VideoControls.ClipToPlay.BranchBCorrupted;
+                _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchBCorrupted);
             }
-            // VideoControls.ClipToPlay clip = VideoControls.ClipToPlay.BranchBCorrupted;
-            // _videoControls.ChangeCorruptedVideo(clip);
         } else {
             if (level == 1) {
                 if (firstKeyGameObjsA.Contains(sender)) {

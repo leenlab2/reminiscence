@@ -20,6 +20,23 @@ public class DetectPickUp : MonoBehaviour
     [SerializeField] private float pickupForce = 150.0f;
 
     private RaycastHit? currentHit = null;
+    
+    private bool crosshairOnTelevision = false;
+    private TapeManager tapeManager;
+    
+    //Save State
+    private Quaternion rotationReset;
+    private Vector3 localScale;
+    private Transform parent;
+
+    //New State
+    //private Vector3 newScale = new Vector3(0.5F, 0.5F, 0.5F);
+
+    void Start()
+    {
+        rotationReset = holdArea.transform.rotation;
+        tapeManager = FindObjectOfType<TapeManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -45,10 +62,18 @@ public class DetectPickUp : MonoBehaviour
             Detected();//Crosshairs function TODO: Fix crosshairs changing on listener == True objects
             currentHit = hit;
         }
+        
+        crosshairOnTelevision = false; // set to false before checking if crosshair on television
+        if (Physics.Raycast(camera.transform.position, camera.transform.TransformDirection(Vector3.forward), out hit, pickupRange) 
+            && (hit.transform.name == "TV" || hit.transform.parent?.name == "TV")) //If holding a tape and clicked TV
+        {
+            crosshairOnTelevision = true;
+        }
 
         if (heldObj != null)
         {
             MoveObject();
+            RotateObject();
         }
 
     }
@@ -57,13 +82,25 @@ public class DetectPickUp : MonoBehaviour
     {
         if (heldObj == null && currentHit.HasValue)
         {
+            ResetHoldArea();
+
             PickupObject(currentHit.Value.transform.gameObject);
-            Debug.Log(heldObj.name);
-            Debug.Log("Picked up Object");
+        }
+        else if (crosshairOnTelevision){ // if clicked on TV
+            if (heldObj != null && heldObj.name == "VHS_Tape") // if holding VHS tape, insert tape into TV
+            {
+                tapeManager.insertTape(heldObj);
+                
+            }
+            else if(heldObj == null) // if holding nothing, remove tape from TV if any
+            {
+                tapeManager.removeTape();
+            }
         }
         else
         {
             DropObject();
+            ResetHoldArea();
         }
     }
 
@@ -75,27 +112,44 @@ public class DetectPickUp : MonoBehaviour
             heldObjRB.AddForce(moveDirection * pickupForce);
         }
     }
+    
+    void RotateObject()
+    {
+        heldObjRB.isKinematic = false;
+        if (Quaternion.Angle(holdArea.transform.rotation, heldObj.transform.rotation) > 0.1f)
+        {
+            heldObj.transform.rotation = holdArea.transform.rotation * heldObj.transform.rotation;
+        }
+    }
+ 
 
-    void PickupObject(GameObject pickObj)
+    public void PickupObject(GameObject pickObj)
     {
         if (pickObj.GetComponent<Rigidbody>())
         {
+            parent = pickObj.transform.parent;
+
             heldObjRB = pickObj.GetComponent<Rigidbody>();
             heldObjRB.useGravity = false;
             heldObjRB.drag = 10;
             heldObjRB.constraints = RigidbodyConstraints.FreezeRotation;
+            heldObjRB.isKinematic = true;
 
             if (pickObj.GetComponent<ObjectDistance>()!=null)
             {
                 listener = pickObj.GetComponent<ObjectDistance>();
             }
 
+            MakeObjSmall(pickObj);
+            pickObj.transform.rotation = holdArea.transform.rotation;
             heldObjRB.transform.parent = holdArea;
             heldObj = pickObj;
+            pickObj.transform.position = holdArea.transform.position;
+            //MakeObjSmall(pickObj);
         }
     }
 
-    void DropObject()
+    public void DropObject()
     {
         if (heldObjRB.name == "PosterA" || heldObjRB.name == "PosterB") {
             RaycastHit dropHit;
@@ -131,36 +185,58 @@ public class DetectPickUp : MonoBehaviour
                         // PickupObject(GameObject.Find("PosterA"));
                         // Debug.Log("Picked up poster a");
                         GameObject posterA = GameObject.Find("PosterA");
-                        posterA.transform.position = new Vector3(-5.92f, 0.11f, 13.95f);
+                        posterA.transform.position = new Vector3(-11.57f, 2.07f, 13.95f);
                         posterA.transform.rotation = Quaternion.Euler(0, 90, 90);
                     } else if (branchState == 2) {
                         // poster B already placed
                         // PickupObject(GameObject.Find("PosterB"));
                         // Debug.Log("Picked up poster b");
                         GameObject posterB = GameObject.Find("PosterB");
-                        posterB.transform.position = new Vector3(-5.92f, 0.11f, 13.95f);
+                        posterB.transform.position = new Vector3(-11.57f, 2.07f, 13.95f);
                         posterB.transform.rotation = Quaternion.Euler(0, 90, 90);
                     }
                     return;
                 }
             }
         }
+        heldObjRB.isKinematic = false;
         heldObjRB.useGravity = true;
         heldObjRB.drag = 1;
         heldObjRB.constraints = RigidbodyConstraints.None;
 
-        heldObjRB.transform.parent = null;
-        heldObj = null;
+        //heldObjRB.transform.parent = null;
+        heldObjRB.transform.parent = parent;
         listener = null;
+        MakeObjBig();
+        heldObj = null;
     }
 
     void Detected()
     {
+        //Debug.Log("I am looking at sth");
         crossHairs.sprite = objectDetected;
     }
 
     void NotDetected()
     {
+        //Debug.Log("I am NOT looking at sth");
         crossHairs.sprite = noObjectDetected;
     }
+
+    void ResetHoldArea()
+    {
+        holdArea.transform.rotation = rotationReset;
+    }
+
+    void MakeObjBig()
+    {
+        heldObj.transform.localScale = localScale;
+    }
+    void MakeObjSmall(GameObject pickObj)
+    {
+        localScale = pickObj.transform.localScale;
+        Debug.Log(localScale);
+        pickObj.transform.localScale = pickObj.transform.localScale / 2;  //newScale;
+    }
+
 }
