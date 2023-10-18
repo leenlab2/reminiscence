@@ -83,6 +83,7 @@ public class VideoControls : MonoBehaviour
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
         tapeSOInTV.SetTapeToFixed(clip); // TODO: Pass clip parameter into here instead
         tapeSOInTV.tapeSolutionBranch = clip; // TODO: Change this to assign clip instead
+        tapeSOInTV.clipToPlay = clip;
         _videoPlayer.clip = tapeSOInTV.GetVideoClip();
         _videoPlayer.time = tapeSOInTV.GetTimeGlitchFixedInFixedTape();
     }
