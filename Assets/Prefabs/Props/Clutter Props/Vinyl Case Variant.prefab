@@ -118,6 +118,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vinyl_Case
       objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 8027347990dae184ea1c8b4faa611ce7, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
