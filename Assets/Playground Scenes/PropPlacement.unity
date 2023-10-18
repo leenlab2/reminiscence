@@ -1558,6 +1558,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guitar
       objectReference: {fileID: 0}
+    - target: {fileID: 8961596425003910397, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
+      propertyPath: m_TagString
+      value: LightObj
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2987,6 +2991,18 @@ PrefabInstance:
     - target: {fileID: 873127397668331165, guid: 76c1cb639af673e419dc83a0aafa0f08, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367408493000889846, guid: 76c1cb639af673e419dc83a0aafa0f08, type: 3}
+      propertyPath: m_TagString
+      value: LightObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 6612763611544487833, guid: 76c1cb639af673e419dc83a0aafa0f08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 6612763611544487833, guid: 76c1cb639af673e419dc83a0aafa0f08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.04
       objectReference: {fileID: 0}
     - target: {fileID: 6044348855276041909, guid: 76c1cb639af673e419dc83a0aafa0f08, type: 3}
       propertyPath: m_IsActive
