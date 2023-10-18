@@ -38,6 +38,7 @@ public class TapeManager : MonoBehaviour
         {
             // hide obj and put corresponding video clip on TV
             print("INSERTING TAPE");
+            print(tapeGameObject);
             TapeSO tapeSO = tapeGameObject.GetComponent<TapeInformation>().TapeSO;
             videoPlayer.clip = tapeSO.GetVideoClip();
             videoPlayer.time = 0;

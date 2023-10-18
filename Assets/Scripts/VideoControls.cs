@@ -25,6 +25,7 @@ public class VideoControls : MonoBehaviour
 
     void Start()
     {
+        print(GameObject.Find("TV"));
         _tapeManager = FindObjectOfType<TapeManager>();
         _videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
         _progressBarImage.fillAmount = 0;

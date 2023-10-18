@@ -31,7 +31,7 @@ public class PuzzleManager : MonoBehaviour
         Debug.Log(sender.name + " placed!");
 
         keyItems.Remove(sender.GetComponent<ObjectDistance>());
-        if (keyItems.Count == 2)
+        if (keyItems.Count == 0)
         {
             Debug.Log("Puzzle complete!");
             _videoControls.CompletePuzzle();

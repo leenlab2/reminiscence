@@ -30,7 +30,7 @@ public class DetectPickUp : MonoBehaviour
     private Transform parent;
 
     //New State
-    private Vector3 newScale = new Vector3(0.005F, 0.005F, 0.005F);
+    //private Vector3 newScale = new Vector3(0.5F, 0.5F, 0.5F);
 
     void Start()
     {
@@ -85,8 +85,6 @@ public class DetectPickUp : MonoBehaviour
             ResetHoldArea();
 
             PickupObject(currentHit.Value.transform.gameObject);
-            Debug.Log(heldObj.name);
-            Debug.Log("Picked up Object");
         }
         else if (crosshairOnTelevision){ // if clicked on TV
             if (heldObj != null && heldObj.name == "VHS_Tape") // if holding VHS tape, insert tape into TV
@@ -142,17 +140,17 @@ public class DetectPickUp : MonoBehaviour
                 listener = pickObj.GetComponent<ObjectDistance>();
             }
 
+            MakeObjSmall(pickObj);
             pickObj.transform.rotation = holdArea.transform.rotation;
             heldObjRB.transform.parent = holdArea;
             heldObj = pickObj;
             pickObj.transform.position = holdArea.transform.position;
-            MakeObjSmall(pickObj);
+            //MakeObjSmall(pickObj);
         }
     }
 
     public void DropObject()
     {
-        MakeObjBig();
         heldObjRB.isKinematic = false;
         heldObjRB.useGravity = true;
         heldObjRB.drag = 1;
@@ -160,8 +158,9 @@ public class DetectPickUp : MonoBehaviour
 
         //heldObjRB.transform.parent = null;
         heldObjRB.transform.parent = parent;
-        heldObj = null;
         listener = null;
+        MakeObjBig();
+        heldObj = null;
     }
 
     void Detected()
@@ -189,7 +188,7 @@ public class DetectPickUp : MonoBehaviour
     {
         localScale = pickObj.transform.localScale;
         Debug.Log(localScale);
-        heldObj.transform.localScale = newScale;
+        pickObj.transform.localScale = pickObj.transform.localScale / 2;  //newScale;
     }
 
 }
