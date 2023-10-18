@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: b9b94ad28ba54534a835a82c53fc26a5
+guid: f8be97c8c13dc9c449799a043d4f7e40
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects:
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Receipt1
-    second: {fileID: 2100000, guid: 00b2431fcf5c1c443bc337664eadfe8f, type: 2}
+      name: Recipt
+    second: {fileID: 2800000, guid: 7d7d9e1c9cdf38d4b9294861984efac6, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -42,7 +42,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 2
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
@@ -95,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.02
+    globalScale: 2
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
