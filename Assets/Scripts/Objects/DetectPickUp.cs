@@ -125,10 +125,6 @@ public class DetectPickUp : MonoBehaviour
             heldObjRB.constraints = RigidbodyConstraints.FreezeRotation;
             heldObjRB.isKinematic = true;
 
-            if (pickObj.GetComponent<ObjectDistance>()!=null)
-            {
-                listener = pickObj.GetComponent<ObjectDistance>();
-            }
 
             MakeObjSmall(pickObj);
             pickObj.transform.rotation = holdArea.transform.rotation;
