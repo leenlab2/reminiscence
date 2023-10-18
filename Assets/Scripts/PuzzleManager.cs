@@ -127,7 +127,6 @@ public class PuzzleManager : MonoBehaviour
                     OnPuzzleComplete();
                 }
             } else {
-                // _videoControls.ClipToPlay clip = _videoControls.ClipToPlay.BranchACorrupted;
                 _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchACorrupted);
             }
         } else if (sender.name == firstBranchingObjB.name) {
@@ -147,7 +146,6 @@ public class PuzzleManager : MonoBehaviour
                     OnPuzzleComplete();
                 }
             } else {
-                // VideoControls.ClipToPlay clip = VideoControls.ClipToPlay.BranchBCorrupted;
                 _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchBCorrupted);
             }
         } else {
