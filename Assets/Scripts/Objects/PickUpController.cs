@@ -28,8 +28,18 @@ public class PickUpController : MonoBehaviour
                 {
                     PickupObject(hit.transform.gameObject);
                     Debug.Log("Picked up Object");
-                    
+                    print(heldObj.name);
                 }
+            }
+            else if (heldObj.name == "VHS_Tape")
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange))
+                {
+                    PickupObject(hit.transform.gameObject);
+                    Debug.Log("Holding tape to TV");
+                }
+                
             }
             else
             {

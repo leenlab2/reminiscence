@@ -20,7 +20,10 @@ public class DetectPickUp : MonoBehaviour
     [SerializeField] private float pickupForce = 150.0f;
 
     private RaycastHit? currentHit = null;
-
+    
+    private bool crosshairOnTelevision = false;
+    private TapeManager tapeManager;
+    
     //Save State
     private Quaternion rotationReset;
     private Vector3 localScale;
@@ -32,6 +35,7 @@ public class DetectPickUp : MonoBehaviour
     void Start()
     {
         rotationReset = holdArea.transform.rotation;
+        tapeManager = FindObjectOfType<TapeManager>();
     }
 
     // Update is called once per frame
@@ -58,6 +62,13 @@ public class DetectPickUp : MonoBehaviour
             Detected();//Crosshairs function TODO: Fix crosshairs changing on listener == True objects
             currentHit = hit;
         }
+        
+        crosshairOnTelevision = false; // set to false before checking if crosshair on television
+        if (Physics.Raycast(camera.transform.position, camera.transform.TransformDirection(Vector3.forward), out hit, pickupRange) 
+            && (hit.transform.name == "TV" || hit.transform.parent?.name == "TV")) //If holding a tape and clicked TV
+        {
+            crosshairOnTelevision = true;
+        }
 
         if (heldObj != null)
         {
@@ -74,8 +85,17 @@ public class DetectPickUp : MonoBehaviour
             ResetHoldArea();
 
             PickupObject(currentHit.Value.transform.gameObject);
-            Debug.Log(heldObj.name);
-            Debug.Log("Picked up Object");
+        }
+        else if (crosshairOnTelevision){ // if clicked on TV
+            if (heldObj != null && heldObj.name == "VHS_Tape") // if holding VHS tape, insert tape into TV
+            {
+                tapeManager.insertTape(heldObj);
+                
+            }
+            else if(heldObj == null) // if holding nothing, remove tape from TV if any
+            {
+                tapeManager.removeTape();
+            }
         }
         else
         {
@@ -92,7 +112,7 @@ public class DetectPickUp : MonoBehaviour
             heldObjRB.AddForce(moveDirection * pickupForce);
         }
     }
-
+    
     void RotateObject()
     {
         heldObjRB.isKinematic = false;
@@ -103,7 +123,7 @@ public class DetectPickUp : MonoBehaviour
     }
  
 
-    void PickupObject(GameObject pickObj)
+    public void PickupObject(GameObject pickObj)
     {
         if (pickObj.GetComponent<Rigidbody>())
         {
@@ -129,7 +149,7 @@ public class DetectPickUp : MonoBehaviour
         }
     }
 
-    void DropObject()
+    public void DropObject()
     {
         heldObjRB.isKinematic = false;
         heldObjRB.useGravity = true;
