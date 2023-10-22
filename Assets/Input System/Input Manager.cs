@@ -110,9 +110,8 @@ public class InputManager : MonoBehaviour
     #region Object Interactions
     private void ObjectInteract(InputAction.CallbackContext context)
     {
-        // In the future if we want to use "Interact" for other things, we can add a check here
-        DetectPickUp detectPickUp = GetComponent<DetectPickUp>();
-        detectPickUp.ToggleHoldObject();
+        InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
+        interactableDetector.InteractWithObject();
     }
     #endregion
 

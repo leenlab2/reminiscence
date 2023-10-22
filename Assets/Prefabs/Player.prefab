@@ -166,7 +166,7 @@ Transform:
   m_GameObject: {fileID: 4672905100457313126}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.733, y: -0.281, z: 1.979}
+  m_LocalPosition: {x: 1.36, y: -0.3, z: 1.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -342,7 +342,8 @@ GameObject:
   - component: {fileID: 5965753160802908384}
   - component: {fileID: 488999747442930134}
   - component: {fileID: 7165676846656361597}
-  - component: {fileID: 9094445694416326558}
+  - component: {fileID: 4343487692431442849}
+  - component: {fileID: 2280167045166944507}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -407,7 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec4103906511ba40a2792e1b334879a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9094445694416326558
+--- !u!114 &4343487692431442849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -416,16 +417,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 7112840480135186097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7c5b2700a7fd44b870aa8035dae1cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 738a21b01cc02714db306bc4ebfad0c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPlayerReach: 10
+  _crossHairDisplay: {fileID: 0}
+  _defaultCrosshair: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  _objectDetected: {fileID: 21300000, guid: 7251bd8650d2a8d428edb29289952851, type: 3}
+--- !u!114 &2280167045166944507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112840480135186097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b27b6fa8fe987de45ad88860ef754632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   holdArea: {fileID: 6042271542983939819}
-  crossHairs: {fileID: 0}
-  objectDetected: {fileID: 21300000, guid: 7251bd8650d2a8d428edb29289952851, type: 3}
-  noObjectDetected: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  camera: {fileID: 3802703007843839458}
-  pickupRange: 5
-  pickupForce: 150
 --- !u!1 &9160489506493272260
 GameObject:
   m_ObjectHideFlags: 0
