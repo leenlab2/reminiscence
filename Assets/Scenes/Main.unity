@@ -1232,6 +1232,10 @@ PrefabInstance:
       propertyPath: _televisionCanvas
       value: 
       objectReference: {fileID: 1372507818}
+    - target: {fileID: 4343487692431442849, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
+      propertyPath: _crossHairDisplay
+      value: 
+      objectReference: {fileID: 104832872}
     - target: {fileID: 5965753160802908384, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.75
