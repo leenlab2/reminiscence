@@ -39,7 +39,7 @@ public class InteractableDetector : MonoBehaviour
             OnCursorHitChange?.Invoke(hit);
             Debug.Log("raycast hit: " + hit.transform.gameObject.name);
 
-            if (hit.transform.gameObject.tag == "LightObj")
+            if (hit.transform.name.Contains("Model") && hit.transform.GetComponent<Rigidbody>())
             {
                 Detected();
                 _currentHit = hit;

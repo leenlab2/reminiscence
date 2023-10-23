@@ -9,13 +9,11 @@ public class PickUpInteractor : MonoBehaviour
     [SerializeField] private Transform holdArea;
 
     public GameObject HeldObj { get; private set; }
+    private PickupInteractable pickupObj;
 
-    private Transform objOriginalParent;
     private Quaternion originalHoldAreaRotation;
-    private Vector3 originalObjScale;
 
-    private GameObject placementGuide = null;
-
+    #region IsHeld
     public bool IsHeld(GameObject? obj)
     {
         return ReferenceEquals(obj, HeldObj);
@@ -27,6 +25,7 @@ public class PickUpInteractor : MonoBehaviour
 
         return objectName == HeldObj.name;
     }
+    #endregion
 
     private void Start()
     {
@@ -49,56 +48,35 @@ public class PickUpInteractor : MonoBehaviour
 
     public void PickupObject(GameObject obj)
     {
-        Rigidbody objRB = obj.GetComponent<Rigidbody>();
-        if (objRB == null) return;
+        PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
+        if (pickObj == null) return;
 
         ResetHoldArea();
 
         // Fix rigid body settings of target object
-        objRB.useGravity = false;
-        objRB.isKinematic = true;
-        objRB.drag = 10;
-        objRB.constraints = RigidbodyConstraints.FreezeRotation;
-
-        MakeObjSmall(obj);
+        pickObj.ToggleFreezeBody(true);
+        pickObj.MakeObjSmall();
 
         // Move to hand
-        objOriginalParent = obj.transform.parent;
-        obj.transform.SetPositionAndRotation(holdArea.position, holdArea.rotation);
-        obj.transform.SetParent(holdArea);
+        pickObj.MoveToHand(holdArea);
         HeldObj = obj;
+        pickupObj = pickObj;
     }
 
     private void ResetHoldArea()
     {
+        HeldObj = null;
+        pickupObj = null;
         holdArea.transform.rotation = originalHoldAreaRotation;
     }
 
     #region Object Placement
     public void DropObject()
     {
-        // set position, rotation of held obj to placement guide's
-        if (placementGuide != null)
-        {
-            HeldObj.transform.SetPositionAndRotation(placementGuide.transform.position, placementGuide.transform.rotation);
-            placementGuide.SetActive(false);
-        }
+        pickupObj.MoveToPlacementGuide();
+        pickupObj.ToggleFreezeBody(false);
+        pickupObj.MakeObjBig();
 
-        Rigidbody objRB = HeldObj.GetComponent<Rigidbody>();
-
-        // Reset rigid body settings of held object
-        objRB.useGravity = true;
-        objRB.isKinematic = false;
-        objRB.drag = 1;
-        objRB.constraints = RigidbodyConstraints.None;
-
-        // Remove held object from hand
-        HeldObj.transform.parent = objOriginalParent;
-
-        MakeObjBig();
-
-        HeldObj = null;
-        placementGuide = null;
         ResetHoldArea();
     }
 
@@ -106,26 +84,7 @@ public class PickUpInteractor : MonoBehaviour
     {
         if (HeldObj == null) return;
 
-        if (placementGuide == null)
-        {
-            placementGuide = objOriginalParent.transform.Find("Placement Guide").gameObject;
-            placementGuide.SetActive(true);
-        }
-
-        placementGuide.transform.position = hit.point;
-        placementGuide.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-    }
-    #endregion
-
-    #region Object Size
-    void MakeObjBig()
-    {
-        HeldObj.transform.localScale = originalObjScale;
-    }
-    void MakeObjSmall(GameObject pickObj)
-    {
-        originalObjScale = pickObj.transform.localScale;
-        pickObj.transform.localScale = pickObj.transform.localScale / 2;
+        pickupObj.TransformPlacementGuide(hit);
     }
     #endregion
 }
