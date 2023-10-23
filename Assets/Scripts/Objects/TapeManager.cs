@@ -14,7 +14,7 @@ public class TapeManager : MonoBehaviour
     {
         videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
         pickUpInteractor = FindObjectOfType<PickUpInteractor>();
-        TapeSO tapeSO = GameObject.Find("VHS_Tape").GetComponent<TapeInformation>().TapeSO;
+        TapeSO tapeSO = GameObject.Find("Tape").GetComponentInChildren<TapeInformation>().TapeSO;
         tapeSO.tapeIsFixed = false;
         tapeSO.clipToPlay = ClipToPlay.OriginalCorrupted;
         tapeSO.tapeSolutionBranch = ClipToPlay.OriginalCorrupted;

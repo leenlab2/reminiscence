@@ -39,12 +39,13 @@ public class InteractableDetector : MonoBehaviour
             OnCursorHitChange?.Invoke(hit);
             Debug.Log("raycast hit: " + hit.transform.gameObject.name);
 
-            if (hit.transform.name.Contains("Model") && hit.transform.GetComponent<Rigidbody>())
+            if (hit.transform.GetComponent<PickupInteractable>())
             {
                 Detected();
                 _currentHit = hit;
-            } else if (hit.transform.gameObject.tag == "TV" || hit.transform.parent?.name == "TV")
+            } else if (hit.transform.parent?.name == "TV")
             {
+                Debug.Log("Detected TV Hit");
                 Detected();
                 _currentHit = hit;
                 _crosshairOnTelevision = true;
@@ -72,7 +73,7 @@ public class InteractableDetector : MonoBehaviour
         {
             TapeManager tapeManager = FindObjectOfType<TapeManager>();
 
-            if (pickUpInteractor.IsHeld("VHS_Tape"))
+            if (pickUpInteractor.IsHeld("Tape Model"))
             {
                 tapeManager.insertTape(pickUpInteractor.HeldObj);
             } else if (pickUpInteractor.HeldObj == null)
