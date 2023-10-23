@@ -14,6 +14,8 @@ public class InteractableDetector : MonoBehaviour
     [SerializeField] private Sprite _defaultCrosshair;
     [SerializeField] private Sprite _objectDetected;
 
+    public static Action<RaycastHit> OnCursorHitChange;
+
     // private fields
     private RaycastHit? _currentHit = null;
     private bool _crosshairOnTelevision = false;
@@ -28,9 +30,15 @@ public class InteractableDetector : MonoBehaviour
         // Define the ray we are using to detect objects
         Vector3 origin = Camera.main.transform.position;
         Vector3 direction = Camera.main.transform.TransformDirection(Vector3.forward);
+        Debug.DrawRay(origin, direction * maxPlayerReach, Color.red);
 
-        if (Physics.Raycast(origin, direction, out hit, maxPlayerReach))
+        int layerMask = ~LayerMask.GetMask("Ignore Raycast");
+
+        if (Physics.Raycast(origin, direction, out hit, maxPlayerReach, layerMask))
         {
+            OnCursorHitChange?.Invoke(hit);
+            Debug.Log("raycast hit: " + hit.transform.gameObject.name);
+
             if (hit.transform.gameObject.tag == "LightObj")
             {
                 Detected();

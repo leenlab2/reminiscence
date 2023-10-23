@@ -14,6 +14,8 @@ public class PickUpInteractor : MonoBehaviour
     private Quaternion originalHoldAreaRotation;
     private Vector3 originalObjScale;
 
+    private GameObject placementGuide = null;
+
     public bool IsHeld(GameObject? obj)
     {
         return ReferenceEquals(obj, HeldObj);
@@ -29,9 +31,9 @@ public class PickUpInteractor : MonoBehaviour
     private void Start()
     {
         originalHoldAreaRotation = holdArea.rotation;
+        InteractableDetector.OnCursorHitChange += DetermineNewPosition;
     }
 
-    #region Pickup and Drop
     public void ToggleHoldObject(RaycastHit? hit)
     {
         if (hit.HasValue && HeldObj == null)
@@ -67,7 +69,13 @@ public class PickUpInteractor : MonoBehaviour
         HeldObj = obj;
     }
 
-    public void DropObject() 
+    private void ResetHoldArea()
+    {
+        holdArea.transform.rotation = originalHoldAreaRotation;
+    }
+
+    #region Object Placement
+    public void DropObject()
     {
         Rigidbody objRB = HeldObj.GetComponent<Rigidbody>();
 
@@ -83,12 +91,22 @@ public class PickUpInteractor : MonoBehaviour
         MakeObjBig();
 
         HeldObj = null;
+        placementGuide = null;
         ResetHoldArea();
     }
 
-    private void ResetHoldArea()
+    private void DetermineNewPosition(RaycastHit hit)
     {
-        holdArea.transform.rotation = originalHoldAreaRotation;
+        if (HeldObj == null) return;
+
+        if (placementGuide == null)
+        {
+            placementGuide = objOriginalParent.transform.Find("Placement Guide").gameObject;
+            placementGuide.SetActive(true);
+        }
+
+        placementGuide.transform.position = hit.point;
+        placementGuide.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
     }
     #endregion
 
