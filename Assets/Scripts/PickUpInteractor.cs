@@ -77,6 +77,13 @@ public class PickUpInteractor : MonoBehaviour
     #region Object Placement
     public void DropObject()
     {
+        // set position, rotation of held obj to placement guide's
+        if (placementGuide != null)
+        {
+            HeldObj.transform.SetPositionAndRotation(placementGuide.transform.position, placementGuide.transform.rotation);
+            placementGuide.SetActive(false);
+        }
+
         Rigidbody objRB = HeldObj.GetComponent<Rigidbody>();
 
         // Reset rigid body settings of held object
