@@ -27,7 +27,8 @@ public class Inspection : MonoBehaviour
         {
             screenspaceCenter.z = CalcDistFromFace();
             Vector3 worldCamCenter = cam.ScreenToWorldPoint(screenspaceCenter);
-            newPosition = cam.transform.InverseTransformPoint(worldCamCenter);
+            Vector3 offset = holdArea.transform.position - heldObjBounds.center;
+            newPosition = cam.transform.InverseTransformPoint(worldCamCenter + offset);
         } else
         {
             newPosition = localSidePosition;
@@ -52,12 +53,6 @@ public class Inspection : MonoBehaviour
         heldObjBounds = bounds;
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(heldObjBounds.center, heldObjBounds.size);
-    }
-
     private float CalcDistFromFace()
     {
         GetObjectBounds();
@@ -66,6 +61,7 @@ public class Inspection : MonoBehaviour
 
         // calculate distance from face depending on object size such that it takes up most of the screen
         float distFromFace = largestDim / Mathf.Tan(cam.fieldOfView / 2 * Mathf.Deg2Rad);
+
         return distFromFace;
     }
 
