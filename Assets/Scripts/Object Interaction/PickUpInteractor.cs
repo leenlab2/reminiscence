@@ -42,11 +42,21 @@ public class PickUpInteractor : MonoBehaviour
         {
             GameObject obj = hit.Value.transform.gameObject;
             PickupObject(obj);
+            ToggleObjectColliders(obj, false);
         }
         else
         {
-            Debug.Log("Drop detected");
+            ToggleObjectColliders(HeldObj, true);
             DropObject();
+        }
+    }
+
+    private void ToggleObjectColliders(GameObject obj, bool on)
+    {        
+        Collider[] colliders = obj.GetComponentsInChildren<Collider>();
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = on;
         }
     }
 
