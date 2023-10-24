@@ -117,8 +117,8 @@ public class InputManager : MonoBehaviour
     private void ObjectRotation()
     {
         Vector2 rotationInput = playerInputActions.Player.Rotate.ReadValue<Vector2>();
-        Transform heldObjectRotation = GetComponentInChildren<Camera>().transform.GetChild(0).gameObject.transform;
-        heldObjectRotation.Rotate(rotationInput.y, rotationInput.x, 0);
+        Inspection inspection = GetComponentInChildren<Inspection>();
+        inspection.RotateObject(rotationInput);
     }
 
     private void ObjectInspectionToggle(float b)
