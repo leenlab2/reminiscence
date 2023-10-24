@@ -82,10 +82,14 @@ public class PuzzleManager : MonoBehaviour
                     OnPuzzleComplete();
                 }
             } else {
+                // ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
+                // objDistA.targetObj.SetActive(false);
+                // ObjectDistance objDistB = firstBranchingObjB.GetComponent<ObjectDistance>();
+                // objDistB.targetObj.SetActive(false);
                 foreach (var obj in firstKeyGameObjsB)
                 {
                     ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
-                    objDist.targetObj.transform.GetChild(0).gameObject.SetActive(false);
+                    objDist.targetObj.SetActive(false);
                 }
                 _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchACorrupted);
             }
@@ -106,10 +110,14 @@ public class PuzzleManager : MonoBehaviour
                     OnPuzzleComplete();
                 }
             } else {
+                // ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
+                // objDistA.targetObj.SetActive(false);
+                // ObjectDistance objDistB = firstBranchingObjB.GetComponent<ObjectDistance>();
+                // objDistB.targetObj.SetActive(false);
                 foreach (var obj in firstKeyGameObjsA)
                 {
                     ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
-                    objDist.targetObj.transform.GetChild(0).gameObject.SetActive(false);
+                    objDist.targetObj.SetActive(false);
                 }
                 _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchBCorrupted);
             }
@@ -163,23 +171,23 @@ public class PuzzleManager : MonoBehaviour
 
             if (branch == 0)
             {
-                ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
-                // objDistA.targetObj.transform.GetChild(0).gameObject.SetActive(true);
-                ObjectDistance objDistB = firstBranchingObjB.GetComponent<ObjectDistance>();
-                // objDistB.targetObj.transform.GetChild(0).gameObject.SetActive(true);
+                // ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
+                // objDistA.targetObj.SetActive(true);
+                // ObjectDistance objDistB = firstBranchingObjB.GetComponent<ObjectDistance>();
+                // objDistB.targetObj.SetActive(true);
             } else if (branch == 1)
             {
                 foreach (var obj in firstKeyGameObjsA)
                 {
                     ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
-                    objDist.targetObj.transform.GetChild(0).gameObject.SetActive(true);
+                    objDist.targetObj.SetActive(true);
                 }
             } else if (branch == 2)
             {
                 foreach (var obj in firstKeyGameObjsB)
                 {
                     ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
-                    objDist.targetObj.transform.GetChild(0).gameObject.SetActive(true);
+                    objDist.targetObj.SetActive(true);
                 }
             }
             noCue = false;

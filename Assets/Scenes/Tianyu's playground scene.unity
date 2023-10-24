@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45120388, g: 0.50094444, b: 0.57367134, a: 1}
+  m_IndirectSpecularColor: {r: 0.45120388, g: 0.50094444, b: 0.5736708, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -787,6 +787,10 @@ PrefabInstance:
     - target: {fileID: 2170228245570418129, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_Name
       value: Competition Photo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935703863922646525, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_Name
@@ -1708,6 +1712,10 @@ PrefabInstance:
     - target: {fileID: 8453570223912366668, guid: 1e8d4b88a753a414aabcb7206c3a475d, type: 3}
       propertyPath: m_Name
       value: PictureFrame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453570223912366668, guid: 1e8d4b88a753a414aabcb7206c3a475d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9086801667280464118, guid: 1e8d4b88a753a414aabcb7206c3a475d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2851,6 +2859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65bda79616f07641a80cb96ccd24008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cueTime: 3
   firstKeyGameObjsA:
   - {fileID: 1085501618}
   - {fileID: 2052941951}
@@ -5587,9 +5596,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6370101043015424415, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6873022605064703890, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
       propertyPath: m_Name
       value: Guitar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638396101325432766, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5980,6 +5997,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 445247270}
     m_Modifications:
+    - target: {fileID: 1654941214063174341, guid: bda09d5ae9939a3448d7979059dbec40, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2825320091317826281, guid: bda09d5ae9939a3448d7979059dbec40, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0
@@ -6040,6 +6061,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guitar String
       objectReference: {fileID: 0}
+    - target: {fileID: 8280604589794506495, guid: bda09d5ae9939a3448d7979059dbec40, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6097,6 +6122,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Receipt
       objectReference: {fileID: 0}
+    - target: {fileID: 6149680396916218746, guid: 5439730a97e0d30419109ec234d32451, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8711026291130383187, guid: 5439730a97e0d30419109ec234d32451, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6148,6 +6181,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 563048650492985291, guid: 5b808565b965f7546964b95a2373c447, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427685611435082373, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353583175441012707, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8118909190837960655, guid: 5b808565b965f7546964b95a2373c447, type: 3}
