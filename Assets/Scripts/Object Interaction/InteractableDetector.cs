@@ -67,12 +67,15 @@ public class InteractableDetector : MonoBehaviour
     /// </summary>
     private void CheckInteractableTypeHit(RaycastHit hit)
     {
-        if (hit.transform.GetComponent<PickupInteractable>())
-        {
-            interactionType = InteractionType.PickupPlace;
-        } else if (hit.transform.parent?.name == "TV")
+        PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
+
+        if (hit.transform.parent?.name == "TV")
         {
             interactionType = InteractionType.InsertRemoveTape;
+        }
+        else if (hit.transform.GetComponent<PickupInteractable>() || pickUpInteractor.HeldObj != null)
+        {
+            interactionType = InteractionType.PickupPlace;
         } else
         {
             interactionType = InteractionType.None;
@@ -114,6 +117,7 @@ public class InteractableDetector : MonoBehaviour
             }   
         } else if (interactionType == InteractionType.PickupPlace)
         {
+            Debug.Log("Interaction type: pickup/place");
             pickUpInteractor.ToggleHoldObject(_currentHit);
         }
     }

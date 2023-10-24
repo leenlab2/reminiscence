@@ -45,6 +45,7 @@ public class PickUpInteractor : MonoBehaviour
         }
         else
         {
+            Debug.Log("Drop detected");
             DropObject();
         }
     }
