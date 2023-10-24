@@ -37,7 +37,7 @@ public class InteractableDetector : MonoBehaviour
         if (Physics.Raycast(origin, direction, out hit, maxPlayerReach, layerMask))
         {
             OnCursorHitChange?.Invoke(hit);
-            Debug.Log("raycast hit: " + hit.transform.gameObject.name);
+            // Debug.Log("raycast hit: " + hit.transform.gameObject.name);
 
             if (hit.transform.GetComponent<PickupInteractable>())
             {
@@ -45,7 +45,7 @@ public class InteractableDetector : MonoBehaviour
                 _currentHit = hit;
             } else if (hit.transform.parent?.name == "TV")
             {
-                Debug.Log("Detected TV Hit");
+                // Debug.Log("Detected TV Hit");
                 Detected();
                 _currentHit = hit;
                 _crosshairOnTelevision = true;
