@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Handles the communication between the player and the object. Specifically manages what object is held (`HeldObj`)
@@ -15,6 +16,9 @@ public class PickUpInteractor : MonoBehaviour
     private PickupInteractable pickupObj;
 
     private Quaternion originalHoldAreaRotation;
+
+    private InputAction placementAction = null;
+    private bool placementMode = false;
 
     #region IsHeld
     public bool IsHeld(GameObject? obj)
@@ -46,6 +50,8 @@ public class PickUpInteractor : MonoBehaviour
         }
         else
         {
+            if (!placementMode) return;
+
             ToggleObjectColliders(HeldObj, true);
             DropObject();
         }
@@ -85,6 +91,20 @@ public class PickUpInteractor : MonoBehaviour
     }
 
     #region Object Placement
+    public void ListenForPlacement(InputAction action)
+    {
+        placementAction = action;
+    }
+
+    private void Update()
+    {
+        if (placementAction != null && HeldObj != null)
+        {
+            placementMode = placementAction.IsPressed();
+            pickupObj.TogglePlacementGuide(placementMode);
+        }
+    }
+
     public void DropObject()
     {
         pickupObj.MoveToPlacementGuide();

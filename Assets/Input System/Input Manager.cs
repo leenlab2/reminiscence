@@ -30,6 +30,7 @@ public class InputManager : MonoBehaviour
 
         playerInputActions.Player.Interact.performed += ObjectInteract;
         playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
+        playerInputActions.Player.Place.performed += ObjectPlacementMode;
 
         playerInputActions.Player.Rotate.Disable();
     }
@@ -111,6 +112,12 @@ public class InputManager : MonoBehaviour
         Debug.Log("Interaction button pressed");
         InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
         interactableDetector.InteractWithObject();
+    }
+
+    private void ObjectPlacementMode(InputAction.CallbackContext context)
+    {
+        PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
+        pickUpInteractor.ListenForPlacement(context.action);
     }
     #endregion
 

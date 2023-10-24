@@ -34,9 +34,13 @@ public class PickupInteractable : MonoBehaviour
         transform.SetParent(originalParent);
     }
 
+    public void TogglePlacementGuide(bool on)
+    {
+        placementGuide.SetActive(on);
+    }
+
     public void TransformPlacementGuide(RaycastHit hit)
     {
-        placementGuide.SetActive(true);
         placementGuide.transform.position = hit.point;
         placementGuide.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
     }
