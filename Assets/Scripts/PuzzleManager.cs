@@ -15,19 +15,15 @@ public class PuzzleManager : MonoBehaviour
     /// </summary>
     private int branch;
 
-    // [SerializeField] private List<GameObject> tutKeyGameObjsA;
-    // [SerializeField] private List<GameObject> tutKeyGameObjsB;
+    private float timeLeft;
+    private bool noCue;
+    [SerializeField] private float cueTime;
+
     [SerializeField] private List<GameObject> firstKeyGameObjsA;
     [SerializeField] private List<GameObject> firstKeyGameObjsB;
-    // [SerializeField] private List<GameObject> secondKeyGameObjsA;
-    // [SerializeField] private List<GameObject> secondKeyGameObjsB;
 
-    // [SerializeField] private GameObject tutBranchingObjA;
-    // [SerializeField] private GameObject tutBranchingObjB;
     [SerializeField] private GameObject firstBranchingObjA;
     [SerializeField] private GameObject firstBranchingObjB;
-    // [SerializeField] private GameObject secondBranchingObjA;
-    // [SerializeField] private GameObject secondBranchingObjB;
 
     public delegate void PuzzleComplete();
     public event PuzzleComplete OnPuzzleComplete;
@@ -39,32 +35,14 @@ public class PuzzleManager : MonoBehaviour
         _videoControls = FindObjectOfType<VideoControls>();
         level = 1;
         branch = 0;
-        // _videoControls.ChangeCorruptedVideo(ClipToPlay.OriginalCorrupted);
+        timeLeft = cueTime;
+        noCue = true;
     }
 
     private void Awake()
     {
-        // keyItems = FindObjectsOfType<ObjectDistance>().ToList();
-        // tutBranchingObjA.GetComponent<ObjectDistance>().OnKeyItemPlaced += HandleKeyItemPlaced;
-        // tutBranchingObjB.GetComponent<ObjectDistance>().OnKeyItemPlaced += HandleKeyItemPlaced;
         firstBranchingObjA.GetComponent<ObjectDistance>().OnKeyItemPlaced += HandleKeyItemPlaced;
         firstBranchingObjB.GetComponent<ObjectDistance>().OnKeyItemPlaced += HandleKeyItemPlaced;
-        // secondBranchingObjA.GetComponent<ObjectDistance>().OnKeyItemPlaced += HandleKeyItemPlaced;
-        // secondBranchingObjB.GetComponent<ObjectDistance>().OnKeyItemPlaced += HandleKeyItemPlaced;
-
-        // foreach (var obj in tutKeyGameObjsA)
-        // {
-        //     ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
-        //     objDist.OnKeyItemPlaced += HandleKeyItemPlaced;
-        //     tutKeyItemsA.Add(objDist);
-        // }
-
-        // foreach (var obj in tutKeyGameObjsB)
-        // {
-        //     ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
-        //     objDist.OnKeyItemPlaced += HandleKeyItemPlaced;
-        //     tutKeyItemsB.Add(objDist);
-        // }
 
         foreach (var obj in firstKeyGameObjsA)
         {
@@ -77,25 +55,14 @@ public class PuzzleManager : MonoBehaviour
             ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.OnKeyItemPlaced += HandleKeyItemPlaced;
         }
-
-        // foreach (var obj in secondKeyGameObjsA)
-        // {
-        //     ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
-        //     objDist.OnKeyItemPlaced += HandleKeyItemPlaced;
-        //     secondKeyItemsA.Add(objDist);
-        // }
-
-        // foreach (var obj in secondKeyGameObjsB)
-        // {
-        //     ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
-        //     objDist.OnKeyItemPlaced += HandleKeyItemPlaced;
-        //     secondKeyItemsB.Add(objDist);
-        // }
     }
 
     private void HandleKeyItemPlaced(GameObject sender)
     {
         Debug.Log(sender.name + " placed!");
+
+        noCue = true;
+        timeLeft = cueTime;
 
         // branching cases
         if (sender.name == firstBranchingObjA.name) {
@@ -115,6 +82,11 @@ public class PuzzleManager : MonoBehaviour
                     OnPuzzleComplete();
                 }
             } else {
+                foreach (var obj in firstKeyGameObjsB)
+                {
+                    ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
+                    objDist.targetObj.transform.GetChild(0).gameObject.SetActive(false);
+                }
                 _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchACorrupted);
             }
         } else if (sender.name == firstBranchingObjB.name) {
@@ -134,6 +106,11 @@ public class PuzzleManager : MonoBehaviour
                     OnPuzzleComplete();
                 }
             } else {
+                foreach (var obj in firstKeyGameObjsA)
+                {
+                    ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
+                    objDist.targetObj.transform.GetChild(0).gameObject.SetActive(false);
+                }
                 _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchBCorrupted);
             }
         } else {
@@ -174,7 +151,38 @@ public class PuzzleManager : MonoBehaviour
             }
         }
 
-        // keyItems.Remove(sender.GetComponent<ObjectDistance>());
+    }
 
+    void Update()
+    {
+        if (noCue) {
+            timeLeft -= Time.deltaTime;
+        }
+        if ( timeLeft < 0 ) {
+            // show cue
+
+            if (branch == 0)
+            {
+                ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
+                // objDistA.targetObj.transform.GetChild(0).gameObject.SetActive(true);
+                ObjectDistance objDistB = firstBranchingObjB.GetComponent<ObjectDistance>();
+                // objDistB.targetObj.transform.GetChild(0).gameObject.SetActive(true);
+            } else if (branch == 1)
+            {
+                foreach (var obj in firstKeyGameObjsA)
+                {
+                    ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
+                    objDist.targetObj.transform.GetChild(0).gameObject.SetActive(true);
+                }
+            } else if (branch == 2)
+            {
+                foreach (var obj in firstKeyGameObjsB)
+                {
+                    ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
+                    objDist.targetObj.transform.GetChild(0).gameObject.SetActive(true);
+                }
+            }
+            noCue = false;
+        }
     }
 }
