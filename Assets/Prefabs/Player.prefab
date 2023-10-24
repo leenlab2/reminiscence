@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 7165676846656361597}
   - component: {fileID: 4343487692431442849}
   - component: {fileID: 2280167045166944507}
+  - component: {fileID: 259123305166191292}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -488,24 +489,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdArea: {fileID: 6042271542983939819}
---- !u!1 &9160489506493272260
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6928086111706917893}
-  m_Layer: 0
-  m_Name: SideArea
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6928086111706917893
-Transform:
+--- !u!114 &259123305166191292
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

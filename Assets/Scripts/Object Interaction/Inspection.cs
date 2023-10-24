@@ -57,13 +57,13 @@ public class Inspection : MonoBehaviour
     {
         Transform heldObj = holdArea.transform.GetChild(0);
 
-        Collider[] colliders = heldObj.GetComponentsInChildren<Collider>();
-        Bounds bounds = colliders[0].bounds;
+        Renderer[] renderers = heldObj.GetComponentsInChildren<Renderer>();
+        Bounds bounds = renderers[0].bounds;
 
-        for (int i = 1; i < colliders.Length; ++i)
+        for (int i = 1; i < renderers.Length; ++i)
         {
-            bounds.Encapsulate(colliders[i].bounds.min);
-            bounds.Encapsulate(colliders[i].bounds.max);
+            bounds.Encapsulate(renderers[i].bounds.min);
+            bounds.Encapsulate(renderers[i].bounds.max);
         }
 
         heldObjBounds = bounds;
@@ -79,6 +79,12 @@ public class Inspection : MonoBehaviour
         float distFromFace = largestDim / Mathf.Tan(cam.fieldOfView / 2 * Mathf.Deg2Rad);
 
         return distFromFace;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(heldObjBounds.center, heldObjBounds.size);
     }
 
     public void RotateObject(Vector2 rotationInput)
