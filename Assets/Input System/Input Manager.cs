@@ -129,6 +129,7 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Toggling On Rotate");
             playerInputActions.Player.Look.Disable();
+            playerInputActions.Player.Move.Disable();
             playerInputActions.Player.Rotate.Enable();
 
             inspection.ToggleFocusObject(true);
@@ -137,6 +138,7 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Toggling Off Rotate");
             playerInputActions.Player.Look.Enable();
+            playerInputActions.Player.Move.Enable();
             playerInputActions.Player.Rotate.Disable();
             inspection.ToggleFocusObject(false);
         }
