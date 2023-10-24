@@ -22,6 +22,7 @@ public class Inspection : MonoBehaviour
     public void ToggleFocusObject(bool focus)
     {
         Vector3 newPosition;
+        string newLayer;
 
         if (focus)
         {
@@ -29,12 +30,27 @@ public class Inspection : MonoBehaviour
             Vector3 worldCamCenter = cam.ScreenToWorldPoint(screenspaceCenter);
             Vector3 offset = holdArea.transform.position - heldObjBounds.center;
             newPosition = cam.transform.InverseTransformPoint(worldCamCenter + offset);
+
+            newLayer = "Inspection";
         } else
         {
             newPosition = localSidePosition;
+
+            newLayer = "Default";
         }
 
         holdArea.transform.localPosition = newPosition;
+        ChangeObjectLayer(holdArea.transform.GetChild(0), newLayer);
+    }
+
+    public void ChangeObjectLayer(Transform obj, string layerName)
+    {
+        obj.gameObject.layer = LayerMask.NameToLayer(layerName);
+
+        foreach (Transform child in obj)
+        {
+            ChangeObjectLayer(child, layerName);
+        }
     }
 
     private void GetObjectBounds()
