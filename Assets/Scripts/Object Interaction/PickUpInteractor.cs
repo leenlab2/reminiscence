@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles the communication between the player and the object. Specifically manages what object is held (`HeldObj`)
+/// </summary>
 public class PickUpInteractor : MonoBehaviour
 {
     // Inspector settings

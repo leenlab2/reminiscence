@@ -4,6 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum InteractionType
+{
+    None,
+    PickupPlace,
+    InsertRemoveTape
+}
+
+/// <summary>
+/// Detects if the player is looking at an interactable object, and distributes input requests to relevant scripts
+/// </summary>
 public class InteractableDetector : MonoBehaviour
 {
     // Inspector fields
@@ -14,11 +24,13 @@ public class InteractableDetector : MonoBehaviour
     [SerializeField] private Sprite _defaultCrosshair;
     [SerializeField] private Sprite _objectDetected;
 
+    // Events
     public static Action<RaycastHit> OnCursorHitChange;
 
     // private fields
     private RaycastHit? _currentHit = null;
     private bool _crosshairOnTelevision = false;
+    private InteractionType interactionType;
 
     private void Update()
     {
@@ -34,25 +46,40 @@ public class InteractableDetector : MonoBehaviour
 
         int layerMask = ~LayerMask.GetMask("Ignore Raycast");
 
+        // Perform raycast
         if (Physics.Raycast(origin, direction, out hit, maxPlayerReach, layerMask))
         {
             OnCursorHitChange?.Invoke(hit);
             // Debug.Log("raycast hit: " + hit.transform.gameObject.name);
 
-            if (hit.transform.GetComponent<PickupInteractable>())
+            CheckInteractableTypeHit(hit);
+
+            if (interactionType != InteractionType.None)
             {
                 Detected();
                 _currentHit = hit;
-            } else if (hit.transform.parent?.name == "TV")
-            {
-                // Debug.Log("Detected TV Hit");
-                Detected();
-                _currentHit = hit;
-                _crosshairOnTelevision = true;
             }
         }
     }
 
+    /// <summary>
+    /// Determine type of interaction possible, if any, based on hit object
+    /// </summary>
+    private void CheckInteractableTypeHit(RaycastHit hit)
+    {
+        if (hit.transform.GetComponent<PickupInteractable>())
+        {
+            interactionType = InteractionType.PickupPlace;
+        } else if (hit.transform.parent?.name == "TV")
+        {
+            interactionType = InteractionType.InsertRemoveTape;
+        } else
+        {
+            interactionType = InteractionType.None;
+        }
+    }
+
+    #region Cursor Sprite
     private void Detected()
     {
         _crossHairDisplay.sprite = _objectDetected;
@@ -62,14 +89,19 @@ public class InteractableDetector : MonoBehaviour
     {
         _crossHairDisplay.sprite = _defaultCrosshair;
     }
+    #endregion
 
+    /// <summary>
+    /// This method handles listening to the input action for interaction with objects,
+    /// and delegates tasks to relevant scripts based on interaction type.
+    /// </summary>
     public void InteractWithObject()
     {
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
         if (!_currentHit.HasValue && pickUpInteractor.HeldObj == null) return;
 
-        // Interact with TV
-        if (_crosshairOnTelevision)
+        // Delegate tasks based on interaction type
+        if (interactionType == InteractionType.InsertRemoveTape)
         {
             TapeManager tapeManager = FindObjectOfType<TapeManager>();
 
@@ -80,7 +112,7 @@ public class InteractableDetector : MonoBehaviour
             {
                 tapeManager.removeTape();
             }   
-        } else // Pick up/Drop object
+        } else if (interactionType == InteractionType.PickupPlace)
         {
             pickUpInteractor.ToggleHoldObject(_currentHit);
         }

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Contains the functions for modifying the object as well as managing its placement guide
+/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class PickupInteractable : MonoBehaviour
 {
@@ -55,6 +58,7 @@ public class PickupInteractable : MonoBehaviour
     }
 
     #region Object Size
+    // These are used to make the object smaller in the HUD when it is held
     public void MakeObjBig()
     {
         transform.localScale = originalObjScale;
