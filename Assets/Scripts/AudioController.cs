@@ -27,7 +27,7 @@ public class AudioController : MonoBehaviour
 
     public void SwitchAndPlayAudio(AudioClip audioClip)
     {
-        Debug.Log("Playing audio: " + audioClip.name);
+        //Debug.Log("Playing audio: " + audioClip.name);
         playerAudioSource.clip = audioClip;
         playerAudioSource.Play();
     }

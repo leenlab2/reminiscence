@@ -7,14 +7,14 @@ public class TapeManager : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
     private GameObject currentTapeInTv;
-    private DetectPickUp _detectPickUp;
-    
+    private PickUpInteractor pickUpInteractor;
+
     // Start is called before the first frame update
     void Start()
     {
         videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
-        _detectPickUp = FindObjectOfType<DetectPickUp>();
-        TapeSO tapeSO = GameObject.Find("VHS_Tape").GetComponent<TapeInformation>().TapeSO;
+        pickUpInteractor = FindObjectOfType<PickUpInteractor>();
+        TapeSO tapeSO = GameObject.Find("Tape").GetComponentInChildren<TapeInformation>().TapeSO;
         tapeSO.tapeIsFixed = false;
         tapeSO.clipToPlay = ClipToPlay.OriginalCorrupted;
         tapeSO.tapeSolutionBranch = ClipToPlay.OriginalCorrupted;
@@ -50,7 +50,7 @@ public class TapeManager : MonoBehaviour
             videoPlayer.Pause();
             currentTapeInTv = tapeGameObject;
             tapeGameObject.active = false;
-            _detectPickUp.DropObject();
+            pickUpInteractor.DropObject();
         }
     }
 
@@ -68,7 +68,7 @@ public class TapeManager : MonoBehaviour
             // set clip on TV's player to null
             currentTapeInTv.active = true;
             videoPlayer.targetTexture.Release();
-            _detectPickUp.PickupObject(currentTapeInTv);
+            pickUpInteractor.PickupObject(currentTapeInTv);
             videoPlayer.clip = null;
             currentTapeInTv = null;
 

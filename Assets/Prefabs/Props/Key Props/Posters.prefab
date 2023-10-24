@@ -264,11 +264,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2170228245570418129, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_Name
-      value: Posters Variant
+      value: Posters
       objectReference: {fileID: 0}
     - target: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7593704697015776725, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.x
