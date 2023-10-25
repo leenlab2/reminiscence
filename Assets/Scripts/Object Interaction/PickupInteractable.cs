@@ -9,6 +9,7 @@ using UnityEngine;
 public class PickupInteractable : MonoBehaviour
 {
     [SerializeField] private GameObject placementGuide = null;
+    [SerializeField] private bool wallMountable = false;
 
     private Transform originalParent;
     private Vector3 originalObjScale;
@@ -41,6 +42,8 @@ public class PickupInteractable : MonoBehaviour
 
     public void TransformPlacementGuide(RaycastHit hit)
     {
+        if (!wallMountable && hit.normal.y <= 0.1) return;
+
         placementGuide.transform.position = hit.point;
         placementGuide.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
     }
