@@ -94,7 +94,7 @@ public class Inspection : MonoBehaviour
         GetObjectBounds();
         Transform heldObjectRotation = holdArea.transform;
         Vector3 objectCenter = heldObjBounds.center;
-        heldObjectRotation.RotateAround(objectCenter, Vector3.up, rotationInput.x);
-        heldObjectRotation.RotateAround(objectCenter, Vector3.right, rotationInput.y);
+        heldObjectRotation.RotateAround(objectCenter, transform.up, -rotationInput.x);
+        heldObjectRotation.RotateAround(objectCenter, transform.right, rotationInput.y);
     }
 }
