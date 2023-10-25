@@ -84,8 +84,10 @@ public class PuzzleManager : MonoBehaviour
                     OnPuzzleComplete();
                 }
             } else {
-                ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
-                objDistA.targetObj.transform.GetChild(0).gameObject.SetActive(false);
+                // TODO: Modify branching object code depending on new system
+
+                // ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
+                // objDistA.targetObj.transform.GetChild(0).gameObject.SetActive(false);
                 foreach (var obj in firstKeyGameObjsB)
                 {
                     ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
@@ -123,8 +125,10 @@ public class PuzzleManager : MonoBehaviour
                     OnPuzzleComplete();
                 }
             } else {
-                ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
-                objDistA.targetObj.transform.GetChild(0).gameObject.SetActive(false);
+                // TODO: Modify branching object code depending on new system
+                
+                // ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
+                // objDistA.targetObj.transform.GetChild(0).gameObject.SetActive(false);
                 foreach (var obj in firstKeyGameObjsA)
                 {
                     ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
@@ -193,11 +197,14 @@ public class PuzzleManager : MonoBehaviour
         if ( timeLeft < 0 ) {
             // show cue
 
-            if (branch == 0)
-            {
-                ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
-                objDistA.targetObj.transform.GetChild(0).gameObject.SetActive(true);
-            } else if (branch == 1)
+            // TODO: Modify branching object code depending on new system
+
+            // if (branch == 0)
+            // {
+            //     ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
+            //     objDistA.targetObj.transform.GetChild(0).gameObject.SetActive(true);
+            // }
+            if (branch == 1)
             {
                 foreach (var obj in firstKeyGameObjsA)
                 {
