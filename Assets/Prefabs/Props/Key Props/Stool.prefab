@@ -240,7 +240,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7093820009583693480, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 1767882061881862169, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 7264487956433946958, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 5361629580382998575, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: -7071904550497581397, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 6181513656259749526, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 4359293586290756096, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 3525347912545603782, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: -7053198114248254671, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: -2671334261833051009, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: -583560278750781735, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 3765862451794803029, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 835127941238171700, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: -4765086215909771368, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

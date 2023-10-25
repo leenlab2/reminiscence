@@ -312,7 +312,9 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5663594479265476332, guid: b1d004c87a8d2354595f681c434622ae, type: 3}
+    - {fileID: -6320407053942883670, guid: b1d004c87a8d2354595f681c434622ae, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
