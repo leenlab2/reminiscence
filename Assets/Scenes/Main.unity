@@ -5633,10 +5633,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PosterA
       objectReference: {fileID: 0}
-    - target: {fileID: 3393203201204321326, guid: a2777648e0225374ab93925f2e0653e2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7072557664140779030, guid: a2777648e0225374ab93925f2e0653e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.07
