@@ -9,10 +9,12 @@ using UnityEngine;
 public class PickupInteractable : MonoBehaviour
 {
     [SerializeField] private GameObject placementGuide = null;
+    [SerializeField] private bool wallMountable = false;
 
     private Transform originalParent;
     private Vector3 originalObjScale;
     private Rigidbody rigidbody;
+    private bool onWall;
 
     void Start()
     {
@@ -41,14 +43,32 @@ public class PickupInteractable : MonoBehaviour
 
     public void TransformPlacementGuide(RaycastHit hit)
     {
+        onWall = false;
+        bool hitIsWall = hit.normal.y <= 0.05f;
+        float distFromFlat = Vector3.Distance(hit.normal, new Vector3(0f, 1f, 0f));
+        bool hitIsFloor = distFromFlat <= 0.05f;
+
+        if (!wallMountable && hitIsWall || (!hitIsFloor && !hitIsWall)) { return; }
+
         placementGuide.transform.position = hit.point;
         placementGuide.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+
+        if (wallMountable && hitIsWall) { 
+            onWall = true;
+            placementGuide.transform.position += 0.1f * hit.normal;
+        }
     }
 
     public void ToggleFreezeBody(bool freeze)
     {
-        rigidbody.useGravity = !freeze;
-        rigidbody.isKinematic = freeze;
+        if (wallMountable && onWall) { 
+            rigidbody.useGravity = false;
+            rigidbody.isKinematic = true;
+        } 
+        else { 
+            rigidbody.useGravity = !freeze;
+            rigidbody.isKinematic = freeze;
+        }
 
         if (freeze)
         {

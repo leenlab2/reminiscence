@@ -11,11 +11,15 @@ public class InputManager : MonoBehaviour
     private PlayerInput playerInput;
 
     private float _mouseSensitivity = 3f;
-    private float _speed = 5f;
+    
+    private float _sprintSpeed = 9f;
+    private float _walkSpeed = 7f;
+    private float _speed;
     private bool inspectionMode = false;
 
     private void Awake()
     {
+        _speed = _walkSpeed;
         playerBody = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
 
@@ -56,7 +60,19 @@ public class InputManager : MonoBehaviour
         if (playerInputActions.Player.Move.phase == InputActionPhase.Started)
         {
             AudioController.instance.PlayFootsteps(playerBody.velocity.magnitude);
+            Invoke("SpeedUp", 1.5f);
+
         }
+
+        if (playerInputActions.Player.Move.phase != InputActionPhase.Started)
+        {
+            _speed = _walkSpeed;
+        }
+    }
+
+    private void SpeedUp()
+    {
+        _speed = _sprintSpeed;
     }
 
     private void MoveCamera()
