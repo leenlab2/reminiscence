@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
 
     private float _mouseSensitivity = 3f;
     private float _speed = 5f;
+    private bool inspectionMode = false;
 
     private void Awake()
     {
@@ -28,7 +29,8 @@ public class InputManager : MonoBehaviour
         playerInputActions.Television.CloseTV.performed += CloseTelevision;
 
         playerInputActions.Player.Interact.performed += ObjectInteract;
-        playerInputActions.Player.RotateToggle.performed += ctx => ObjectInspectionToggle(ctx.ReadValue<float>()); ;
+        playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
+        playerInputActions.Player.Place.performed += ObjectPlacementMode;
 
         playerInputActions.Player.Rotate.Disable();
     }
@@ -111,6 +113,12 @@ public class InputManager : MonoBehaviour
         InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
         interactableDetector.InteractWithObject();
     }
+
+    private void ObjectPlacementMode(InputAction.CallbackContext context)
+    {
+        PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
+        pickUpInteractor.ListenForPlacement(context.action);
+    }
     #endregion
 
     #region Object Rotation
@@ -121,13 +129,14 @@ public class InputManager : MonoBehaviour
         inspection.RotateObject(rotationInput);
     }
 
-    private void ObjectInspectionToggle(float b)
+    private void ObjectInspectionToggle(InputAction.CallbackContext ctx)
     {
         Inspection inspection = GetComponentInChildren<Inspection>();
+        inspectionMode = !inspectionMode;
 
-        if (b > 0)
+        if (inspectionMode)
         {
-            Debug.Log("Toggling On Rotate");
+            Debug.Log("Toggling On Inspect");
             playerInputActions.Player.Look.Disable();
             playerInputActions.Player.Move.Disable();
             playerInputActions.Player.Rotate.Enable();
@@ -136,7 +145,7 @@ public class InputManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Toggling Off Rotate");
+            Debug.Log("Toggling Off Inspect");
             playerInputActions.Player.Look.Enable();
             playerInputActions.Player.Move.Enable();
             playerInputActions.Player.Rotate.Disable();

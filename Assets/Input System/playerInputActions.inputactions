@@ -51,13 +51,22 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "RotateToggle",
-                    "type": "Value",
+                    "name": "InspectionToggle",
+                    "type": "Button",
                     "id": "4b3cfd31-8751-4e33-8343-cb806e0e02c7",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
-                    "initialStateCheck": true
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Place",
+                    "type": "Button",
+                    "id": "88a31ed2-7a56-4697-a789-3b5258b797a3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -284,22 +293,44 @@
                 {
                     "name": "",
                     "id": "e05ed639-bf11-4d30-8296-2bb25d1d5edd",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "RotateToggle",
+                    "action": "InspectionToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "23a16214-3341-40e6-b085-3e320a365b22",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "InspectionToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b0a2401c-f9b4-40e2-9899-71f5de589b71",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Place",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa47f568-fea4-4c68-8ea4-1b4d03ca3c33",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "RotateToggle",
+                    "action": "Place",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
