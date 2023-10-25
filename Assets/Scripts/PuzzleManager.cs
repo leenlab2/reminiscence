@@ -48,12 +48,14 @@ public class PuzzleManager : MonoBehaviour
         {
             ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.OnKeyItemPlaced += HandleKeyItemPlaced;
+            objDist.enabled = false;
         }
 
         foreach (var obj in firstKeyGameObjsB)
         {
             ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.OnKeyItemPlaced += HandleKeyItemPlaced;
+            objDist.enabled = false;
         }
     }
 
@@ -82,14 +84,25 @@ public class PuzzleManager : MonoBehaviour
                     OnPuzzleComplete();
                 }
             } else {
-                // ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
-                // objDistA.targetObj.SetActive(false);
-                // ObjectDistance objDistB = firstBranchingObjB.GetComponent<ObjectDistance>();
-                // objDistB.targetObj.SetActive(false);
+                ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
+                objDistA.targetObj.transform.GetChild(0).gameObject.SetActive(false);
                 foreach (var obj in firstKeyGameObjsB)
                 {
                     ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
                     objDist.targetObj.SetActive(false);
+                }
+                foreach (var obj in firstKeyGameObjsA)
+                {
+                    ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
+                    objDist.enabled = true;
+                    // Switch guitar target object
+                    if (obj.name == "Guitar Model")
+                    {
+                        GameObject guitar = obj.transform.parent.gameObject;
+                        GameObject guitarTarget = guitar.transform.GetChild(1).gameObject;
+                        objDist.targetObj = guitarTarget;
+                        objDist.targetObj.SetActive(false);
+                    }
                 }
                 _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchACorrupted);
             }
@@ -110,20 +123,31 @@ public class PuzzleManager : MonoBehaviour
                     OnPuzzleComplete();
                 }
             } else {
-                // ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
-                // objDistA.targetObj.SetActive(false);
-                // ObjectDistance objDistB = firstBranchingObjB.GetComponent<ObjectDistance>();
-                // objDistB.targetObj.SetActive(false);
+                ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
+                objDistA.targetObj.transform.GetChild(0).gameObject.SetActive(false);
                 foreach (var obj in firstKeyGameObjsA)
                 {
                     ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
                     objDist.targetObj.SetActive(false);
                 }
+                foreach (var obj in firstKeyGameObjsB)
+                {
+                    ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
+                    objDist.enabled = true;
+                    // Switch guitar target object
+                    if (obj.name == "Guitar Model")
+                    {
+                        GameObject guitar = obj.transform.parent.gameObject;
+                        GameObject guitarTarget = guitar.transform.GetChild(2).gameObject;
+                        objDist.targetObj = guitarTarget;
+                        objDist.targetObj.SetActive(false);
+                    }
+                }
                 _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchBCorrupted);
             }
         } else {
             if (level == 1) {
-                if (firstKeyGameObjsA.Contains(sender)) {
+                if (branch == 1 && firstKeyGameObjsA.Contains(sender)) {
                     firstKeyGameObjsA.Remove(sender);
 
                     // level complete
@@ -139,7 +163,7 @@ public class PuzzleManager : MonoBehaviour
                             OnPuzzleComplete();
                         }
                     }
-                } else if (firstKeyGameObjsB.Contains(sender)) {
+                } else if (branch == 2 && firstKeyGameObjsB.Contains(sender)) {
                     firstKeyGameObjsB.Remove(sender);
 
                     // level complete
@@ -171,10 +195,8 @@ public class PuzzleManager : MonoBehaviour
 
             if (branch == 0)
             {
-                // ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
-                // objDistA.targetObj.SetActive(true);
-                // ObjectDistance objDistB = firstBranchingObjB.GetComponent<ObjectDistance>();
-                // objDistB.targetObj.SetActive(true);
+                ObjectDistance objDistA = firstBranchingObjA.GetComponent<ObjectDistance>();
+                objDistA.targetObj.transform.GetChild(0).gameObject.SetActive(true);
             } else if (branch == 1)
             {
                 foreach (var obj in firstKeyGameObjsA)
