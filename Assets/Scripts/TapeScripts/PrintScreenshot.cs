@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,19 +10,11 @@ public class PrintScreenshot : MonoBehaviour
     [SerializeField] private GameObject PrefabPrintOut;
     private DetectPickUp _detectPickUp;
     
-    // Start is called before the first frame update
     void Start()
     {
         _detectPickUp = FindObjectOfType<DetectPickUp>();
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void PrintScreenshotPrintout()
     {
         Texture2D savedTexture = convertTo2DTexture();
@@ -34,9 +27,17 @@ public class PrintScreenshot : MonoBehaviour
         Material material = new Material(Shader.Find("Specular"));
         material.SetTexture("_MainTex", savedTexture);
         renderer.material = material;
-        GameObject printOut = Instantiate(PrefabPrintOut, new Vector3(0, 0, 0), Quaternion.identity);
-        printOut.name = "Print Out"; 
-        //_detectPickUp.DropObject();
+        GameObject printOut = Instantiate(PrefabPrintOut, new Vector3(5, 5, 5), Quaternion.identity);
+        printOut.name = "Print Out";
+        
+        try // Drop any object player is holding so it can hold the print out
+        {
+            _detectPickUp.DropObject();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Not holding any object");
+        }
         _detectPickUp.PickupObject(printOut.transform.GetChild(0).gameObject);
     }
 

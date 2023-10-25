@@ -3356,7 +3356,7 @@ PrefabInstance:
     - target: {fileID: 3615385193586525894, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: m_VideoClip
       value: 
-      objectReference: {fileID: 32900000, guid: b45f6932bec8647afb06d75b0c439ebb, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3806160072257930073, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: m_LocalScale.x
       value: 57.412296
