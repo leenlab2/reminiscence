@@ -18,23 +18,35 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     // the Object Distance and Puzzle Key Item scripts.
     [SerializeField] private List<GameObject> keyItemModels;
     
-    // List of the 3 key items' ObjectDistance scripts to enable/disable
-    private List<ObjectDistanceNew> keyItemsObjectDistanceScripts;
+    public bool timerUntilCueStarted;
+    private float timerUntilShowCue;
+    private const float WaitTimeUntilCue = 3f;
     
     void Start()
     {
         base.Start();
+        timeLeft = WaitTimeUntilCue;
     }
 
     // Update is called once per frame
     void Update()
     {
         base.Update();
+        if (objInPlace && timerUntilCueStarted)
+        {
+            timeLeft -= Time.deltaTime;
+        }
+
+        if (timeLeft <= 0 && timerUntilCueStarted)
+        {
+            showCueOfNonBranchingKeyItems();
+        }
     }
     
     // If this branching object is placed in the right location, enable Object Distance of this branch's key items
     public override void HandleKeyItemPlaced()
     {
+        Debug.Log("INNNNNN");
         // If object already in place, do nothing
         if (objInPlace) return;
         
@@ -56,6 +68,9 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
             }
         }
         puzzleManager.HandleBranchingItemPlaced(branch);
+        
+        // start timer countdown until cue should be shown
+        timerUntilCueStarted = true;
     }
     
     // If this branching object is removed, disable Object Distance of this branch's key items
@@ -80,5 +95,25 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
             nonBranchingKeyItem.HandleKeyItemRemoved();
         }
         puzzleManager.HandleBranchingItemRemoved();
+        hideCueOfNonBranchingKeyItems();
+        timerUntilCueStarted = false;
+    }
+
+    private void showCueOfNonBranchingKeyItems()
+    {
+        foreach (GameObject obj in keyItemModels)
+        {
+            ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
+            objDist.targetObj.SetActive(true);
+        }
+    }
+    
+    private void hideCueOfNonBranchingKeyItems()
+    {
+        foreach (GameObject obj in keyItemModels)
+        {
+            ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
+            objDist.targetObj.SetActive(false);
+        }
     }
 }

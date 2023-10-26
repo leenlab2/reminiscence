@@ -1775,6 +1775,7 @@ MonoBehaviour:
   - {fileID: 2052941951}
   - {fileID: 1085501618}
   - {fileID: 1463484892}
+  timerUntilCueStarted: 0
 --- !u!114 &868413624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4502,6 +4503,7 @@ MonoBehaviour:
   - {fileID: 639741076}
   - {fileID: 2052941951}
   - {fileID: 1393043144}
+  timerUntilCueStarted: 0
 --- !u!114 &1836085937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5190,10 +5192,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6416941309995348882, guid: a2777648e0225374ab93925f2e0653e2, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7139887445880390822, guid: a2777648e0225374ab93925f2e0653e2, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 771834480956111248, guid: a2777648e0225374ab93925f2e0653e2, type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 1131997228}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3920006674120889725, guid: a2777648e0225374ab93925f2e0653e2, type: 3}
@@ -5490,10 +5493,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4991151273062920943, guid: 0200db84def1dcc4d9c21569c2c0c54e, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3773129755552362690, guid: 0200db84def1dcc4d9c21569c2c0c54e, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1657242074864646381, guid: 0200db84def1dcc4d9c21569c2c0c54e, type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 723408664}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3039655906020742144, guid: 0200db84def1dcc4d9c21569c2c0c54e, type: 3}

@@ -9,16 +9,12 @@ using UnityEngine;
 /// </summary>
 public class ObjectDistanceNew : MonoBehaviour
 {
-    [SerializeField] protected GameObject targetObj;
+    public GameObject targetObj;
     public float distanceThreshold;
     private bool objectInPlace;
     private bool hasDestroyed;
     public bool isOnBothBranches = false;
     
-    // Define an event that gets triggered when the object is destroyed
-    public delegate void KeyItemPlaced(GameObject sender);
-    public event KeyItemPlaced OnKeyItemPlaced;
-
     private PickUpInteractor pickUpInteractor;
     private PuzzleKeyItem puzzleKeyItem;
 
