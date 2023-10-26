@@ -38,16 +38,7 @@
                     "id": "265dfe14-d44a-435a-be99-c9dee0b14ec1",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Placement Mode",
-                    "type": "Button",
-                    "id": "f26e3c25-3625-4444-bc98-4b8b66e5f3bd",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "Hold,Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
@@ -265,28 +256,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Place",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a5d3c69b-774d-47bf-97f7-efdabe7f25c6",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Placement Mode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "51ef3894-9cc7-49c7-b2b7-fb2109b229b3",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Placement Mode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -60,16 +60,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""265dfe14-d44a-435a-be99-c9dee0b14ec1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Placement Mode"",
-                    ""type"": ""Button"",
-                    ""id"": ""f26e3c25-3625-4444-bc98-4b8b66e5f3bd"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold,Press(behavior=2)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -287,28 +278,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Place"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a5d3c69b-774d-47bf-97f7-efdabe7f25c6"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Placement Mode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""51ef3894-9cc7-49c7-b2b7-fb2109b229b3"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Placement Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1313,7 +1282,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_OpenTV = m_Player.FindAction("OpenTV", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_PlacementMode = m_Player.FindAction("Placement Mode", throwIfNotFound: true);
         m_Player_InspectionToggle = m_Player.FindAction("InspectionToggle", throwIfNotFound: true);
         m_Player_Place = m_Player.FindAction("Place", throwIfNotFound: true);
         // UI
@@ -1402,7 +1370,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_OpenTV;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_PlacementMode;
     private readonly InputAction m_Player_InspectionToggle;
     private readonly InputAction m_Player_Place;
     public struct PlayerActions
@@ -1413,7 +1380,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @OpenTV => m_Wrapper.m_Player_OpenTV;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @PlacementMode => m_Wrapper.m_Player_PlacementMode;
         public InputAction @InspectionToggle => m_Wrapper.m_Player_InspectionToggle;
         public InputAction @Place => m_Wrapper.m_Player_Place;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -1437,9 +1403,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @PlacementMode.started += instance.OnPlacementMode;
-            @PlacementMode.performed += instance.OnPlacementMode;
-            @PlacementMode.canceled += instance.OnPlacementMode;
             @InspectionToggle.started += instance.OnInspectionToggle;
             @InspectionToggle.performed += instance.OnInspectionToggle;
             @InspectionToggle.canceled += instance.OnInspectionToggle;
@@ -1462,9 +1425,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @PlacementMode.started -= instance.OnPlacementMode;
-            @PlacementMode.performed -= instance.OnPlacementMode;
-            @PlacementMode.canceled -= instance.OnPlacementMode;
             @InspectionToggle.started -= instance.OnInspectionToggle;
             @InspectionToggle.performed -= instance.OnInspectionToggle;
             @InspectionToggle.canceled -= instance.OnInspectionToggle;
@@ -1773,7 +1733,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnOpenTV(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnPlacementMode(InputAction.CallbackContext context);
         void OnInspectionToggle(InputAction.CallbackContext context);
         void OnPlace(InputAction.CallbackContext context);
     }

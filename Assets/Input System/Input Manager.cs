@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
@@ -30,9 +31,14 @@ public class InputManager : MonoBehaviour
 
         // Player Input Map
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
-        playerInputActions.Player.Interact.performed += ObjectInteract;
+        playerInputActions.Player.Interact.performed += ctx =>
+        {
+            if (ctx.interaction is HoldInteraction)
+                ObjectPlacementMode(ctx);
+            else 
+                ObjectInteract(ctx);
+        };
         playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
-        playerInputActions.Player.PlacementMode.performed += ObjectPlacementMode;
         playerInputActions.Player.Place.performed += ObjectInteract;
 
 
@@ -138,9 +144,8 @@ public class InputManager : MonoBehaviour
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
         pickUpInteractor.ListenForPlacement(context.action);
     }
-    #endregion
 
-    #region Object Rotation
+    #region Object Inspection
     private void ObjectRotation()
     {
         Vector2 rotationInput = playerInputActions.Inspect.Rotate.ReadValue<Vector2>();
@@ -151,6 +156,8 @@ public class InputManager : MonoBehaviour
     private void ObjectInspectionToggle(InputAction.CallbackContext ctx)
     {
         Inspection inspection = GetComponentInChildren<Inspection>();
+        if (!inspection.InspectIsValid()) return;
+
         inspectionMode = !inspectionMode;
 
         if (inspectionMode)
@@ -169,5 +176,6 @@ public class InputManager : MonoBehaviour
             inspection.ToggleFocusObject(false);
         }
     }
+    #endregion
     #endregion
 }

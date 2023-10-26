@@ -19,10 +19,15 @@ public class Inspection : MonoBehaviour
         localSidePosition = holdArea.transform.localPosition;
     }
 
+    public bool InspectIsValid()
+    {
+        if (holdArea.transform.childCount == 0) { return false; }
+
+        return true;
+    }
+
     public void ToggleFocusObject(bool focus)
     {
-        if (holdArea.transform.childCount == 0) { return; }
-
         Vector3 newPosition;
         string newLayer;
 
