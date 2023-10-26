@@ -117,7 +117,7 @@ public class InteractableDetector : MonoBehaviour
             }   
         } else if (interactionType == InteractionType.PickupPlace)
         {
-            Debug.Log("Interaction type: pickup/place");
+            //Debug.Log("Interaction type: pickup/place");
             pickUpInteractor.ToggleHoldObject(_currentHit);
         }
     }
