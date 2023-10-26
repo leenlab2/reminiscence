@@ -57,13 +57,13 @@ public class Inspection : MonoBehaviour
     {
         Transform heldObj = holdArea.transform.GetChild(0);
 
-        Collider[] colliders = heldObj.GetComponentsInChildren<Collider>();
-        Bounds bounds = colliders[0].bounds;
+        Renderer[] renderers = heldObj.GetComponentsInChildren<Renderer>();
+        Bounds bounds = renderers[0].bounds;
 
-        for (int i = 1; i < colliders.Length; ++i)
+        for (int i = 1; i < renderers.Length; ++i)
         {
-            bounds.Encapsulate(colliders[i].bounds.min);
-            bounds.Encapsulate(colliders[i].bounds.max);
+            bounds.Encapsulate(renderers[i].bounds.min);
+            bounds.Encapsulate(renderers[i].bounds.max);
         }
 
         heldObjBounds = bounds;
@@ -81,6 +81,12 @@ public class Inspection : MonoBehaviour
         return distFromFace;
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(heldObjBounds.center, heldObjBounds.size);
+    }
+
     public void RotateObject(Vector2 rotationInput)
     {
         if (holdArea.transform.childCount == 0) return;
@@ -88,7 +94,7 @@ public class Inspection : MonoBehaviour
         GetObjectBounds();
         Transform heldObjectRotation = holdArea.transform;
         Vector3 objectCenter = heldObjBounds.center;
-        heldObjectRotation.RotateAround(objectCenter, Vector3.up, rotationInput.x);
-        heldObjectRotation.RotateAround(objectCenter, Vector3.right, rotationInput.y);
+        heldObjectRotation.RotateAround(objectCenter, transform.up, -rotationInput.x);
+        heldObjectRotation.RotateAround(objectCenter, transform.right, rotationInput.y);
     }
 }

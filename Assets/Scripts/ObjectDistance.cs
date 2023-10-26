@@ -15,20 +15,20 @@ public class ObjectDistance : MonoBehaviour
 
     float timeLeft = 3f;
 
-    private DetectPickUp _detectPickUp;
+    private PickUpInteractor pickUpInteractor;
 
     // Start is called before the first frame update
     void Start()
     {
         hasDestroyed = false;
         objectSolved = false;
-        _detectPickUp = FindObjectOfType<DetectPickUp>();
+        pickUpInteractor = FindObjectOfType<PickUpInteractor>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!_detectPickUp.isInHand(gameObject)) {
+        if (!pickUpInteractor.IsHeld(gameObject)) {
             if (!hasDestroyed) {
                 Vector3 targetXZ = new Vector3(targetObj.transform.position.x, 0f, targetObj.transform.position.z);
                 Vector3 objectXZ = new Vector3(transform.position.x, 0f, transform.position.z);

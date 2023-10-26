@@ -5694,6 +5694,7 @@ GameObject:
   - component: {fileID: 3615385193586525894}
   - component: {fileID: 5251801872577495073}
   - component: {fileID: 299153196807860427}
+  - component: {fileID: 2663737510782018887}
   m_Layer: 0
   m_Name: Video Player
   m_TagString: Untagged
@@ -5778,6 +5779,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c98beb0d8bf4afc948ee77bf0cccd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2663737510782018887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944282981366583310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7db3cab4ef874377847041afcd475f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderTexture: {fileID: 8400000, guid: 3b2649b1e88f74a55a6817be20002495, type: 2}
+  PrefabPrintOut: {fileID: 1578749053507349471, guid: 1e4f1896ecc434d30b0ea72e0666860b, type: 3}
 --- !u!1 &8033663152056734489
 GameObject:
   m_ObjectHideFlags: 0
