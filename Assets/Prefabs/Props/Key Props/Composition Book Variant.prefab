@@ -106,21 +106,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Composition Book Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3935703863922646525, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_Name
       value: Composition Book Model
       objectReference: {fileID: 0}
     - target: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.77
+      value: -7.23
       objectReference: {fileID: 0}
     - target: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.36
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.91
+      value: 11.74
       objectReference: {fileID: 0}
     - target: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -133,6 +137,10 @@ PrefabInstance:
     - target: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -15.129
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929280924604274769, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7593704697015776725, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -205,6 +213,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5767105640563877583}
     m_Modifications:
+    - target: {fileID: 887838370411780399, guid: 6c838eb91cb4d40688d0aacc4b076361, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4813727111890160062, guid: 6c838eb91cb4d40688d0aacc4b076361, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

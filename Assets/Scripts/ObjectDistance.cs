@@ -39,6 +39,7 @@ public class ObjectDistance : MonoBehaviour
                     OnKeyItemPlaced(gameObject);
 
                     // Destroy(targetObj);
+                    targetObj.SetActive(false);
                     hasDestroyed = true;
                     objectSolved = true;
                     var outline = gameObject.GetComponent<Outline>();
