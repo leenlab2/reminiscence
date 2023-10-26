@@ -26,28 +26,31 @@ public class InputManager : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
         playerInputActions.Television.Disable();
+        playerInputActions.Inspect.Disable();
 
-
-        playerInputActions.Player.OpenTV.Enable();
+        // Player Input Map
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
-        playerInputActions.Television.CloseTV.performed += CloseTelevision;
-
         playerInputActions.Player.Interact.performed += ObjectInteract;
         playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
-        playerInputActions.Player.Place.performed += ObjectPlacementMode;
+        playerInputActions.Player.PlacementMode.performed += ObjectPlacementMode;
+        playerInputActions.Player.Place.performed += ObjectInteract;
 
-        playerInputActions.Player.Rotate.Disable();
+
+        // Television Input Map
+        playerInputActions.Television.CloseTV.performed += CloseTelevision;
+
+        // Inspection Input Map
+        playerInputActions.Inspect.InspectionToggle.performed += ObjectInspectionToggle;
     }
-
-    #region Player Movement
     private void FixedUpdate()
     {
         MovePlayer();
         MoveCamera();
         ObjectRotation();
-        
+
     }
 
+    #region Player Movement
     private void MovePlayer()
     {
         Vector2 movementInput = playerInputActions.Player.Move.ReadValue<Vector2>();
@@ -140,7 +143,7 @@ public class InputManager : MonoBehaviour
     #region Object Rotation
     private void ObjectRotation()
     {
-        Vector2 rotationInput = playerInputActions.Player.Rotate.ReadValue<Vector2>();
+        Vector2 rotationInput = playerInputActions.Inspect.Rotate.ReadValue<Vector2>();
         Inspection inspection = GetComponentInChildren<Inspection>();
         inspection.RotateObject(rotationInput);
     }
@@ -153,18 +156,16 @@ public class InputManager : MonoBehaviour
         if (inspectionMode)
         {
             Debug.Log("Toggling On Inspect");
-            playerInputActions.Player.Look.Disable();
-            playerInputActions.Player.Move.Disable();
-            playerInputActions.Player.Rotate.Enable();
+            playerInputActions.Player.Disable();
+            playerInputActions.Inspect.Enable();
 
             inspection.ToggleFocusObject(true);
         }
         else
         {
             Debug.Log("Toggling Off Inspect");
-            playerInputActions.Player.Look.Enable();
-            playerInputActions.Player.Move.Enable();
-            playerInputActions.Player.Rotate.Disable();
+            playerInputActions.Player.Enable();
+            playerInputActions.Inspect.Disable();
             inspection.ToggleFocusObject(false);
         }
     }

@@ -21,6 +21,8 @@ public class Inspection : MonoBehaviour
 
     public void ToggleFocusObject(bool focus)
     {
+        if (holdArea.transform.childCount == 0) { return; }
+
         Vector3 newPosition;
         string newLayer;
 
