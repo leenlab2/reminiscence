@@ -63,7 +63,7 @@ public class ChangeCameraPosition : MonoBehaviour
 
         _televisionCanvas.SetActive(true);
         _videoControls = FindObjectOfType<VideoControls>();
-        _player.GetComponentInChildren<MeshRenderer>().enabled = false;
+        _player.transform.Find("Model").transform.Find("Vini").GetComponent<MeshRenderer>().enabled = false;
     }
     
     /*
@@ -81,6 +81,6 @@ public class ChangeCameraPosition : MonoBehaviour
         
         Camera.main.transform.SetPositionAndRotation(_cameraOnPlayerTransform.position, _cameraOnPlayerTransform.rotation);
         _televisionCanvas.SetActive(false);
-        _player.GetComponentInChildren<MeshRenderer>().enabled = true;
+        _player.transform.Find("Model").transform.Find("Vini").GetComponent<MeshRenderer>().enabled = true;
     }
 }
