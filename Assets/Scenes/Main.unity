@@ -1535,11 +1535,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1630903726954856628, guid: 06c8c346952e2384b9738933af1cd7dd, type: 3}
   m_PrefabInstance: {fileID: 643631159}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &744245141 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1538740813951573522, guid: a2777648e0225374ab93925f2e0653e2, type: 3}
-  m_PrefabInstance: {fileID: 2880285270631080969}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &758748497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,6 +1698,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5753544639764681280, guid: 85f68a9f62e2b684094a011e6017c6d8, type: 3}
   m_PrefabInstance: {fileID: 844840853}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &868413617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3920006674120889725, guid: a2777648e0225374ab93925f2e0653e2, type: 3}
+  m_PrefabInstance: {fileID: 2880285270631080969}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &873426268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1859,11 +1859,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7450243946353312315, guid: d29a2ca6594f6cb42a3faec1728e02ea, type: 3}
   m_PrefabInstance: {fileID: 899073280}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &907883828 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 653896204363538287, guid: 0200db84def1dcc4d9c21569c2c0c54e, type: 3}
-  m_PrefabInstance: {fileID: 7539666031924847211}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &998850963
 PrefabInstance:
@@ -4256,6 +4251,11 @@ Transform:
   - {fileID: 1455799446}
   m_Father: {fileID: 1805616176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1836085930 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3039655906020742144, guid: 0200db84def1dcc4d9c21569c2c0c54e, type: 3}
+  m_PrefabInstance: {fileID: 7539666031924847211}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1993608630
 GameObject:
   m_ObjectHideFlags: 0
@@ -5082,11 +5082,11 @@ PrefabInstance:
     - target: {fileID: 6504859751378464165, guid: d88c5b4686eb63242bb01bfe2db9a257, type: 3}
       propertyPath: firstBranchingObjA
       value: 
-      objectReference: {fileID: 744245141}
+      objectReference: {fileID: 868413617}
     - target: {fileID: 6504859751378464165, guid: d88c5b4686eb63242bb01bfe2db9a257, type: 3}
       propertyPath: firstBranchingObjB
       value: 
-      objectReference: {fileID: 907883828}
+      objectReference: {fileID: 1836085930}
     - target: {fileID: 6504859751378464165, guid: d88c5b4686eb63242bb01bfe2db9a257, type: 3}
       propertyPath: firstKeyGameObjsA.Array.data[0]
       value: 
