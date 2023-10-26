@@ -16,7 +16,7 @@ public class PickupInteractable : MonoBehaviour
     private Rigidbody rigidbody;
     private bool onWall;
 
-    void Start()
+    void Awake()
     {
         originalParent = transform.parent;
         originalObjScale = transform.localScale;
@@ -65,7 +65,9 @@ public class PickupInteractable : MonoBehaviour
             rigidbody.useGravity = false;
             rigidbody.isKinematic = true;
         } 
-        else { 
+        else {
+            Debug.Log("Rigid Body: " + rigidbody);
+            Debug.Log(freeze);
             rigidbody.useGravity = !freeze;
             rigidbody.isKinematic = freeze;
         }

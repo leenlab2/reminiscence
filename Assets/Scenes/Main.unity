@@ -2365,6 +2365,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3948723300364686140, guid: 2af3684d0f9fa404fa464ea98e130e72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2af3684d0f9fa404fa464ea98e130e72, type: 3}
       propertyPath: m_Name
       value: PR_Attic V3
@@ -2453,6 +2457,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc21654c4a2f64044acc1287b1d06091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1160039105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2663737510782018887, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+  m_PrefabInstance: {fileID: 1160039100}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7db3cab4ef874377847041afcd475f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1177036134
@@ -2916,34 +2931,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 873426269}
     m_Modifications:
-    - target: {fileID: 1725966474881949549, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 2210550ea6ddf4862bd595d539e28cee, type: 3}
     - target: {fileID: 1912980256021566587, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1160039101}
-    - target: {fileID: 1912980256021566587, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PauseOrPlay
-      objectReference: {fileID: 0}
+    - target: {fileID: 4425956764622474723, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1160039105}
     - target: {fileID: 5747357017407196535, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1160039101}
-    - target: {fileID: 5747357017407196535, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FastForward
-      objectReference: {fileID: 0}
     - target: {fileID: 6051894501712504379, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1160039101}
-    - target: {fileID: 6051894501712504379, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Replay
-      objectReference: {fileID: 0}
     - target: {fileID: 7472309541534341626, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
       propertyPath: m_Name
       value: CanvasTelevision
@@ -3032,10 +3035,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1160039101}
-    - target: {fileID: 7764375522285755147, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Rewind
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
