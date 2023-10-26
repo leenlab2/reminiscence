@@ -1000,14 +1000,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 9094445694416326558, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
-      propertyPath: crossHairs
-      value: 
-      objectReference: {fileID: 104832872}
-    - target: {fileID: 9094445694416326558, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
-      propertyPath: pickupRange
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

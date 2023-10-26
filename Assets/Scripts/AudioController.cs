@@ -35,7 +35,7 @@ public class AudioController : MonoBehaviour
     public void PlayFootsteps(float velocity)
     {
         // Determine whether to play a noise depending on speed
-        float timePerStep = 3 / velocity;
+        float timePerStep = 5 / velocity;
         if (Time.time - lastStepTime < timePerStep) { return; }
 
         // Set time for next step
