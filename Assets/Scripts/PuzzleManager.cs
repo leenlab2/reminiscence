@@ -101,7 +101,7 @@ public class PuzzleManager : MonoBehaviour
                     if (obj.name == "Guitar Model")
                     {
                         GameObject guitar = obj.transform.parent.gameObject;
-                        GameObject guitarTarget = guitar.transform.GetChild(1).gameObject;
+                        GameObject guitarTarget = guitar.transform.Find("Puzzle Target A").gameObject;
                         objDist.targetObj = guitarTarget;
                         objDist.targetObj.SetActive(false);
                     }
@@ -142,7 +142,7 @@ public class PuzzleManager : MonoBehaviour
                     if (obj.name == "Guitar Model")
                     {
                         GameObject guitar = obj.transform.parent.gameObject;
-                        GameObject guitarTarget = guitar.transform.GetChild(2).gameObject;
+                        GameObject guitarTarget = guitar.transform.Find("Puzzle Target B").gameObject;
                         objDist.targetObj = guitarTarget;
                         objDist.targetObj.SetActive(false);
                     }
