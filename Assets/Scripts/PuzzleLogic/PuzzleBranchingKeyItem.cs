@@ -2,18 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Branching Key Item Class. Called by ObjectDistanceNew class and decides whether to call PuzzleManagerNew
+/// if the branching object has been placed or removed to/from the right location
+/// </summary>
 public class PuzzleBranchingKeyItem : PuzzleKeyItem
 {
-    // Item is a branching object if set to true. Otherwise item is a key item only.
-    //private bool isBranchingItem;
-    
-    // Event triggered when this object is placed in correct location
-    public delegate void KeyItemPlaced();
-    public event KeyItemPlaced OnKeyItemPlaced;
-    
-    // Event triggered when this object is removed from correct location
-    public delegate void KeyItemRemoved();
-    public event KeyItemRemoved OnKeyItemRemoved;
+    // Which level this branching item is part of
+    public int level;
     
     // Which branch this branching item and its non branching items are part of
     public Branch branch;
@@ -28,8 +24,6 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     void Start()
     {
         base.Start();
-        OnKeyItemPlaced += HandleKeyItemPlaced;
-        OnKeyItemRemoved += HandleKeyItemRemoved;
     }
 
     // Update is called once per frame
@@ -55,8 +49,11 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
             ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
             objDist.enabled = true;
             
-            PuzzleNonBranchingKeyItem nonBranchingKeyItem = obj.GetComponent<PuzzleNonBranchingKeyItem>();
-            nonBranchingKeyItem.SwitchPuzzleTargetIfItemOnBothBranches(branch);
+            //PuzzleNonBranchingKeyItem nonBranchingKeyItem = obj.GetComponent<PuzzleNonBranchingKeyItem>();
+            if (objDist.isOnBothBranches)
+            {
+                objDist.SwitchPuzzleTarget(branch);
+            }
         }
         puzzleManager.HandleBranchingItemPlaced(branch);
     }

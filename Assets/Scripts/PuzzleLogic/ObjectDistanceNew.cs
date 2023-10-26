@@ -9,11 +9,12 @@ using UnityEngine;
 /// </summary>
 public class ObjectDistanceNew : MonoBehaviour
 {
-    public GameObject targetObj;
+    [SerializeField] protected GameObject targetObj;
     public float distanceThreshold;
     private bool objectInPlace;
     private bool hasDestroyed;
-
+    public bool isOnBothBranches = false;
+    
     // Define an event that gets triggered when the object is destroyed
     public delegate void KeyItemPlaced(GameObject sender);
     public event KeyItemPlaced OnKeyItemPlaced;
@@ -21,7 +22,7 @@ public class ObjectDistanceNew : MonoBehaviour
     private PickUpInteractor pickUpInteractor;
     private PuzzleKeyItem puzzleKeyItem;
 
-    void Start()
+    protected void Start()
     {
         pickUpInteractor = FindObjectOfType<PickUpInteractor>();
         puzzleKeyItem = GetComponent<PuzzleKeyItem>();
@@ -29,7 +30,7 @@ public class ObjectDistanceNew : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         // Check distance between object and target location
         float dist = CalculateDistanceToTarget();
@@ -67,4 +68,7 @@ public class ObjectDistanceNew : MonoBehaviour
         float dist = Vector3.Distance(targetXZ, objectXZ);
         return dist;
     }
+    
+    // Override this virtual method on subclass ObjectDistanceItemOnBothBranches
+    public virtual void SwitchPuzzleTarget(Branch branch) {}
 }

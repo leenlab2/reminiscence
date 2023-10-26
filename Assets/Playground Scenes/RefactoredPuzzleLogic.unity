@@ -1015,6 +1015,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
+--- !u!1 &464546928 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2855454717754047850, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
+  m_PrefabInstance: {fileID: 2052941949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &497996192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1211,7 +1216,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6197603123280877407, guid: d064b1a65f2da01418471e15a8eb4b16, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1516,6 +1522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObj: {fileID: 861705967}
   distanceThreshold: 2
+  isOnBothBranches: 0
 --- !u!1001 &643631159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1762,6 +1769,7 @@ MonoBehaviour:
   outline: {fileID: 0}
   timeLeft: 3
   puzzleManager: {fileID: 0}
+  level: 0
   branch: 0
   keyItemModels:
   - {fileID: 2052941951}
@@ -1774,13 +1782,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868413617}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5528b658834904b33a820fcdfa7f6885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetObj: {fileID: 1073210563}
   distanceThreshold: 1
+  isOnBothBranches: 0
 --- !u!1 &873426268
 GameObject:
   m_ObjectHideFlags: 0
@@ -2431,6 +2440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObj: {fileID: 1327265784}
   distanceThreshold: 2
+  isOnBothBranches: 0
 --- !u!1001 &1122986770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3382,6 +3392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObj: {fileID: 112610868}
   distanceThreshold: 1
+  isOnBothBranches: 0
 --- !u!1001 &1421363504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3666,6 +3677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObj: {fileID: 102188311}
   distanceThreshold: 1
+  isOnBothBranches: 0
 --- !u!1001 &1474253907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4484,6 +4496,7 @@ MonoBehaviour:
   outline: {fileID: 0}
   timeLeft: 3
   puzzleManager: {fileID: 0}
+  level: 0
   branch: 1
   keyItemModels:
   - {fileID: 639741076}
@@ -4496,13 +4509,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836085930}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5528b658834904b33a820fcdfa7f6885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetObj: {fileID: 678014395}
   distanceThreshold: 1
+  isOnBothBranches: 0
 --- !u!1 &1844275032 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8704303653242440373, guid: d88c5b4686eb63242bb01bfe2db9a257, type: 3}
@@ -4760,16 +4774,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guitar
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1384534890144031250, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8961596425003910397, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2052941958}
+      addedObject: {fileID: 2052941957}
     - targetCorrespondingSourceObject: {fileID: 8961596425003910397, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2052941957}
+      addedObject: {fileID: 2052941958}
   m_SourcePrefab: {fileID: 100100000, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
 --- !u!4 &2052941950 stripped
 Transform:
@@ -4807,11 +4822,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2052941951}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5528b658834904b33a820fcdfa7f6885, type: 3}
+  m_Script: {fileID: 11500000, guid: 1964fa25d8d1b4ec8bd203302c554094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObj: {fileID: 2065111158}
+  targetObj: {fileID: 0}
   distanceThreshold: 2
+  isOnBothBranches: 1
+  targetObjA: {fileID: 2065111158}
+  targetObjB: {fileID: 464546928}
 --- !u!1 &2065111158 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8638396101325432766, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
@@ -5098,7 +5116,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guitar String
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1602712305636733779, guid: bda09d5ae9939a3448d7979059dbec40, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -5169,7 +5188,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6416941309995348882, guid: a2777648e0225374ab93925f2e0653e2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 771834480956111248, guid: a2777648e0225374ab93925f2e0653e2, type: 3}
@@ -5235,7 +5255,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Receipt
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2032438567931641599, guid: 5439730a97e0d30419109ec234d32451, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -5298,7 +5319,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Composition Book
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4394126090553725519, guid: 5b808565b965f7546964b95a2373c447, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -5397,7 +5419,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6504859751378464165, guid: d88c5b4686eb63242bb01bfe2db9a257, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -5465,7 +5488,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4991151273062920943, guid: 0200db84def1dcc4d9c21569c2c0c54e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1657242074864646381, guid: 0200db84def1dcc4d9c21569c2c0c54e, type: 3}
@@ -5531,6 +5555,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8059658465602955140, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
+      propertyPath: branchingItemA
+      value: 
+      objectReference: {fileID: 868413617}
+    - target: {fileID: 8059658465602955140, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
+      propertyPath: branchingItemB
+      value: 
+      objectReference: {fileID: 1836085930}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

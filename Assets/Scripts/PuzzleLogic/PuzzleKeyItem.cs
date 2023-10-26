@@ -8,6 +8,9 @@ public enum Branch
     BranchB
 }
 
+/// <summary>
+/// Abstract superclass for branching items, and non branching key items
+/// </summary>
 public abstract class PuzzleKeyItem : MonoBehaviour
 {
     public bool objInPlace; // whether object is in correct location
