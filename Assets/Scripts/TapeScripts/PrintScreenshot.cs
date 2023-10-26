@@ -8,11 +8,11 @@ public class PrintScreenshot : MonoBehaviour
 
     public RenderTexture renderTexture;
     [SerializeField] private GameObject PrefabPrintOut;
-    private DetectPickUp _detectPickUp;
+    private PickUpInteractor _pickup;
     
     void Start()
     {
-        _detectPickUp = FindObjectOfType<DetectPickUp>();
+        _pickup = FindObjectOfType<PickUpInteractor>();
         
     }
     public void PrintScreenshotPrintout()
@@ -32,13 +32,13 @@ public class PrintScreenshot : MonoBehaviour
         
         try // Drop any object player is holding so it can hold the print out
         {
-            _detectPickUp.DropObject();
+            _pickup.DropObject();
         }
         catch (Exception e)
         {
             Debug.Log("Not holding any object");
         }
-        _detectPickUp.PickupObject(printOut.transform.GetChild(0).gameObject);
+        _pickup.PickupObject(printOut.transform.GetChild(0).gameObject);
     }
 
     private Texture2D convertTo2DTexture()
