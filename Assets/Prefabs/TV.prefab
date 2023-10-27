@@ -5766,8 +5766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc21654c4a2f64044acc1287b1d06091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _progressBarImage: {fileID: 0}
-  _televisionCanvas: {fileID: 0}
+  _progressBarImage: {fileID: 2017713800769317402}
+  _televisionCanvas: {fileID: 7800648725117463693}
 --- !u!114 &299153196807860427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6208,9 +6208,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
+--- !u!114 &2017713800769317402 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1725966474881949549, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
+  m_PrefabInstance: {fileID: 861174201813333367}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6955667546378465164 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7743094689423268603, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
+  m_PrefabInstance: {fileID: 861174201813333367}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7800648725117463693 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7472309541534341626, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
   m_PrefabInstance: {fileID: 861174201813333367}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4183679020163085010
