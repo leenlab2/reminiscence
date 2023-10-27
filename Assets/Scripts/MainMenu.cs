@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     {
         
         SceneManager.LoadScene(attic);
+        Cursor.visible = false;
     }
 
     public void QuitGame()

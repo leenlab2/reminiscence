@@ -62,6 +62,18 @@ public class InputManager : MonoBehaviour
 
     }
 
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.visible = true;
+        }
+    }
+
     #region Player Movement
     private void MovePlayer()
     {
