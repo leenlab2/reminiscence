@@ -11,6 +11,7 @@ public class ChangeCameraPosition : MonoBehaviour
     private Transform _cameraTransform;
     private Transform _cameraOnTelevisionTransform;
     private Transform _cameraOnPlayerTransform;
+    private Transform _playerOnPlayerTransform;
 
     public GameObject _televisionCanvas;
 
@@ -40,6 +41,7 @@ public class ChangeCameraPosition : MonoBehaviour
         _videoControls = FindObjectOfType<VideoControls>();
         
         _cameraOnPlayerTransform = new GameObject().transform;
+        _playerOnPlayerTransform = new GameObject().transform;
     }
     
     /*
@@ -53,13 +55,18 @@ public class ChangeCameraPosition : MonoBehaviour
     {
         Debug.Log("Switching to tape view");
 
-        // Create copy of camera transform when on player
-        _cameraOnPlayerTransform.position = _cameraTransform.position;
+        // Create copy of camera and player transform when on player
         _cameraOnPlayerTransform.rotation = _cameraTransform.rotation;
-        print(_cameraOnPlayerTransform.position);
-        print(_cameraOnTelevisionTransform.position);
-        
-        Camera.main.transform.SetPositionAndRotation(_cameraOnTelevisionTransform.position, _cameraOnTelevisionTransform.rotation);
+        _playerOnPlayerTransform.position = _player.transform.position;
+        _playerOnPlayerTransform.rotation = _player.transform.rotation;
+
+        _player.transform.Find("Model").transform.Find("Vini").GetComponent<MeshCollider>().enabled = false;
+
+        Vector3 pos = new Vector3(7.69864f, -4.38f, -10.02994f);
+        Quaternion rot = Quaternion.Euler(0f, -221.386f, 0f);
+
+        _player.transform.SetPositionAndRotation(pos, rot);
+        Camera.main.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
         _televisionCanvas.SetActive(true);
         _videoControls = FindObjectOfType<VideoControls>();
@@ -79,8 +86,10 @@ public class ChangeCameraPosition : MonoBehaviour
 
         _videoControls.Pause(); // pause video in case playing
         
-        Camera.main.transform.SetPositionAndRotation(_cameraOnPlayerTransform.position, _cameraOnPlayerTransform.rotation);
+        Camera.main.transform.rotation = _cameraOnPlayerTransform.rotation;
+        _player.transform.SetPositionAndRotation(_playerOnPlayerTransform.position, _playerOnPlayerTransform.rotation);
         _televisionCanvas.SetActive(false);
         _player.transform.Find("Model").transform.Find("Vini").GetComponent<MeshRenderer>().enabled = true;
+        _player.transform.Find("Model").transform.Find("Vini").GetComponent<MeshCollider>().enabled = true;
     }
 }
