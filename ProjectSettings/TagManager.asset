@@ -4,13 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - LightObj
-  - HeavyObj
+  - IsTape
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Inspection
   - Water
   - UI
   - 

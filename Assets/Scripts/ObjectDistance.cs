@@ -15,37 +15,44 @@ public class ObjectDistance : MonoBehaviour
 
     float timeLeft = 3f;
 
+    private PickUpInteractor pickUpInteractor;
+
     // Start is called before the first frame update
     void Start()
     {
         hasDestroyed = false;
         objectSolved = false;
+        pickUpInteractor = FindObjectOfType<PickUpInteractor>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!hasDestroyed) {
-            Vector3 targetXZ = new Vector3(targetObj.transform.position.x, 0f, targetObj.transform.position.z);
-            Vector3 objectXZ = new Vector3(transform.position.x, 0f, transform.position.z);
-            float dist = Vector3.Distance(targetXZ, objectXZ);
-            if (dist <= distanceThreshold) {
-                Debug.Log("Correct!");
-                OnKeyItemPlaced(gameObject);
+        if (!pickUpInteractor.IsHeld(gameObject)) {
+            if (!hasDestroyed) {
+                Vector3 targetXZ = new Vector3(targetObj.transform.position.x, 0f, targetObj.transform.position.z);
+                Vector3 objectXZ = new Vector3(transform.position.x, 0f, transform.position.z);
+                float dist = Vector3.Distance(targetXZ, objectXZ);
+                if (dist <= distanceThreshold) {
+                    Debug.Log("Correct: " + gameObject.name);
+                    targetObj.transform.localScale = new Vector3(0, 0, 0);
+                    OnKeyItemPlaced(gameObject);
 
-                Destroy(targetObj);
-                hasDestroyed = true;
-                objectSolved = true;
-                var outline = gameObject.GetComponent<Outline>();
-                outline.OutlineWidth = 5f;
+                    // Destroy(targetObj);
+                    targetObj.SetActive(false);
+                    hasDestroyed = true;
+                    objectSolved = true;
+                    var outline = gameObject.GetComponent<Outline>();
+                    outline.OutlineWidth = 5f;
+                }
             }
-        }
-        if (hasDestroyed) {
-            timeLeft -= Time.deltaTime;
-        }
-        if ( timeLeft < 0 ) {
-            var outline = gameObject.GetComponent<Outline>();
-            outline.OutlineWidth = 0f;
+            if (hasDestroyed) {
+                timeLeft -= Time.deltaTime;
+            }
+            if ( timeLeft < 0 ) {
+                var outline = gameObject.GetComponent<Outline>();
+                outline.OutlineWidth = 0f;
+            }
         }
     }
 }
