@@ -20,14 +20,15 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     
     public bool timerUntilCueStarted;
     private float timerUntilShowCue;
+    private float timeLeftUntilCue;
     
     // How long to wait until non branching key item cues shows up, from when this branching item is placed
-    private const float WaitTimeUntilCue = 3f; 
+    private const float WaitTimeUntilCue = 45f; 
     
     void Start()
     {
         base.Start();
-        timeLeft = WaitTimeUntilCue;
+        timeLeftUntilCue = WaitTimeUntilCue;
     }
 
     // Update is called once per frame
@@ -36,10 +37,10 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         base.Update();
         if (objInPlace && timerUntilCueStarted)
         {
-            timeLeft -= Time.deltaTime;
+            timeLeftUntilCue -= Time.deltaTime;
         }
 
-        if (timeLeft <= 0 && timerUntilCueStarted)
+        if (timeLeftUntilCue <= 0 && timerUntilCueStarted)
         {
             showCueOfNonBranchingKeyItems();
         }
@@ -106,6 +107,7 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         {
             ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
             objDist.targetObj.SetActive(true);
+            objDist.targetObj.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
     
@@ -114,7 +116,9 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         foreach (GameObject obj in keyItemModels)
         {
             ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
+            objDist.targetObj.transform.GetChild(0).gameObject.SetActive(false);
             objDist.targetObj.SetActive(false);
+            
         }
     }
 }
