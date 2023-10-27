@@ -39,6 +39,17 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Rotate.Disable();
     }
 
+    private void OnApplicationFocus(bool focus) {
+        if (focus)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
     #region Player Movement
     private void FixedUpdate()
     {
@@ -80,7 +91,7 @@ public class InputManager : MonoBehaviour
         Vector2 cameraInput = playerInputActions.Player.Look.ReadValue<Vector2>();
 
         // Move the player to look around left/right when mouse pans left/right
-        transform.Rotate(0, cameraInput.x * _mouseSensitivity, 0);
+        transform.Rotate(0, cameraInput.x * _mouseSensitivity * 1.2f, 0);
 
         // Move the camera to look around up/down when mouse pans up/down
         Transform playerCamera = GetComponentInChildren<Camera>().transform;
