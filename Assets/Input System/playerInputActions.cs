@@ -60,7 +60,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""265dfe14-d44a-435a-be99-c9dee0b14ec1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold,Press(behavior=2)"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -73,12 +73,21 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Placement Mode"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f8455fc-e820-4ebc-afaa-fdb06b6288c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Place"",
                     ""type"": ""Button"",
                     ""id"": ""88a31ed2-7a56-4697-a789-3b5258b797a3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -273,11 +282,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""aa47f568-fea4-4c68-8ea4-1b4d03ca3c33"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""807dec79-6972-4591-b9f9-8b71ed2c2b14"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Placement Mode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de56fbb0-3bd7-4cb4-9be6-2de73a8696c0"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Placement Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1169,7 +1200,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ab969a3c-87cd-4f70-8eb3-054e5bbc210c"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -1283,6 +1314,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_OpenTV = m_Player.FindAction("OpenTV", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_InspectionToggle = m_Player.FindAction("InspectionToggle", throwIfNotFound: true);
+        m_Player_PlacementMode = m_Player.FindAction("Placement Mode", throwIfNotFound: true);
         m_Player_Place = m_Player.FindAction("Place", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1371,6 +1403,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_OpenTV;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_InspectionToggle;
+    private readonly InputAction m_Player_PlacementMode;
     private readonly InputAction m_Player_Place;
     public struct PlayerActions
     {
@@ -1381,6 +1414,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @OpenTV => m_Wrapper.m_Player_OpenTV;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @InspectionToggle => m_Wrapper.m_Player_InspectionToggle;
+        public InputAction @PlacementMode => m_Wrapper.m_Player_PlacementMode;
         public InputAction @Place => m_Wrapper.m_Player_Place;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1406,6 +1440,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @InspectionToggle.started += instance.OnInspectionToggle;
             @InspectionToggle.performed += instance.OnInspectionToggle;
             @InspectionToggle.canceled += instance.OnInspectionToggle;
+            @PlacementMode.started += instance.OnPlacementMode;
+            @PlacementMode.performed += instance.OnPlacementMode;
+            @PlacementMode.canceled += instance.OnPlacementMode;
             @Place.started += instance.OnPlace;
             @Place.performed += instance.OnPlace;
             @Place.canceled += instance.OnPlace;
@@ -1428,6 +1465,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @InspectionToggle.started -= instance.OnInspectionToggle;
             @InspectionToggle.performed -= instance.OnInspectionToggle;
             @InspectionToggle.canceled -= instance.OnInspectionToggle;
+            @PlacementMode.started -= instance.OnPlacementMode;
+            @PlacementMode.performed -= instance.OnPlacementMode;
+            @PlacementMode.canceled -= instance.OnPlacementMode;
             @Place.started -= instance.OnPlace;
             @Place.performed -= instance.OnPlace;
             @Place.canceled -= instance.OnPlace;
@@ -1734,6 +1774,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnOpenTV(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnInspectionToggle(InputAction.CallbackContext context);
+        void OnPlacementMode(InputAction.CallbackContext context);
         void OnPlace(InputAction.CallbackContext context);
     }
     public interface IUIActions

@@ -31,15 +31,10 @@ public class InputManager : MonoBehaviour
 
         // Player Input Map
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
-        playerInputActions.Player.Interact.performed += ctx =>
-        {
-            if (ctx.interaction is HoldInteraction)
-                ObjectPlacementMode(ctx);
-            else 
-                ObjectInteract(ctx);
-        };
+        playerInputActions.Player.Interact.performed += ObjectInteract;
         playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
         playerInputActions.Player.Place.performed += ObjectPlace;
+        playerInputActions.Player.PlacementMode.performed += ObjectPlacementMode;
 
 
         // Television Input Map

@@ -38,7 +38,7 @@
                     "id": "265dfe14-d44a-435a-be99-c9dee0b14ec1",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold,Press(behavior=2)",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
@@ -51,12 +51,21 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Placement Mode",
+                    "type": "Button",
+                    "id": "5f8455fc-e820-4ebc-afaa-fdb06b6288c8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Place",
                     "type": "Button",
                     "id": "88a31ed2-7a56-4697-a789-3b5258b797a3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 }
             ],
@@ -251,11 +260,33 @@
                 {
                     "name": "",
                     "id": "aa47f568-fea4-4c68-8ea4-1b4d03ca3c33",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Place",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "807dec79-6972-4591-b9f9-8b71ed2c2b14",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Placement Mode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de56fbb0-3bd7-4cb4-9be6-2de73a8696c0",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Placement Mode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1147,7 +1178,7 @@
                 {
                     "name": "",
                     "id": "ab969a3c-87cd-4f70-8eb3-054e5bbc210c",
-                    "path": "<Gamepad>/rightStick",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",

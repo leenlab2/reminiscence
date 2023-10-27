@@ -114,6 +114,7 @@ public class InteractableDetector : MonoBehaviour
         // Delegate tasks based on interaction type
         if (interactionType == InteractionType.InsertRemoveTape)
         {
+            Debug.Log("Interaction type: tape");
             TapeManager tapeManager = FindObjectOfType<TapeManager>();
 
             if (pickUpInteractor.IsHeld("Tape Model"))
