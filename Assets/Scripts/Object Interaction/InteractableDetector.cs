@@ -101,10 +101,15 @@ public class InteractableDetector : MonoBehaviour
     /// This method handles listening to the input action for interaction with objects,
     /// and delegates tasks to relevant scripts based on interaction type.
     /// </summary>
-    public void InteractWithObject()
+    public void InteractWithObject(InteractionType request = InteractionType.None)
     {
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
         if (!_currentHit.HasValue && !pickUpInteractor.isHoldingObj()) return;
+
+        if (request != InteractionType.None)
+        {
+            interactionType = request;
+        }
 
         // Delegate tasks based on interaction type
         if (interactionType == InteractionType.InsertRemoveTape)
@@ -125,8 +130,11 @@ public class InteractableDetector : MonoBehaviour
             pickUpInteractor.PickupObject(obj);
         } else if (interactionType == InteractionType.Place)
         {
-            Debug.Log("Interaction type: place");
-            pickUpInteractor.DropObject();
+            if (pickUpInteractor.isHoldingObj() && pickUpInteractor.placementMode)
+            {
+                Debug.Log("Interaction type: place");
+                pickUpInteractor.DropObject();
+            }
         }
     }
 }

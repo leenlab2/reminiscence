@@ -39,7 +39,7 @@ public class InputManager : MonoBehaviour
                 ObjectInteract(ctx);
         };
         playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
-        playerInputActions.Player.Place.performed += ObjectInteract;
+        playerInputActions.Player.Place.performed += ObjectPlace;
 
 
         // Television Input Map
@@ -141,8 +141,16 @@ public class InputManager : MonoBehaviour
 
     private void ObjectPlacementMode(InputAction.CallbackContext context)
     {
+        Debug.Log("Activating Placement Mode");
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
         pickUpInteractor.ListenForPlacement(context.action);
+    }
+
+    private void ObjectPlace(InputAction.CallbackContext context)
+    {
+        Debug.Log("Place button pressed");
+        InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
+        interactableDetector.InteractWithObject(InteractionType.Place);
     }
 
     #region Object Inspection
