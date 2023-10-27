@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
+using TMPro;
 
 public enum InteractionType
 {
@@ -31,6 +32,13 @@ public class InteractableDetector : MonoBehaviour
     // private fields
     private RaycastHit? _currentHit = null;
     private InteractionType interactionType;
+
+    private TMP_Text _interactText;
+
+    private void Start()
+    {
+        _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
+    }
 
     private void Update()
     {
@@ -70,10 +78,12 @@ public class InteractableDetector : MonoBehaviour
 
         if (hit.transform.parent?.name == "TV")
         {
+            _interactText.text = "Press T to interact";
             interactionType = InteractionType.InsertRemoveTape;
         }
         else if (hit.transform.GetComponent<PickupInteractable>() && !pickUpInteractor.isHoldingObj())
         {
+            _interactText.text = "Left click to interact";
             interactionType = InteractionType.Pickup;
         } else
         {
@@ -89,6 +99,7 @@ public class InteractableDetector : MonoBehaviour
 
     private void NotDetected()
     {
+        _interactText.text = "";
         _crossHairDisplay.sprite = _defaultCrosshair;
     }
     #endregion
