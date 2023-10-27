@@ -10,8 +10,9 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        
         SceneManager.LoadScene(attic);
+        Cursor.visible = false;
     }
 
     public void QuitGame()

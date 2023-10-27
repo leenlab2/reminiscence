@@ -54,26 +54,24 @@ public class InputManager : MonoBehaviour
         // Placement Input Map
         playerInputActions.Placement.Place.performed += ObjectPlace;
     }
-
-    private void OnApplicationFocus(bool focus) {
-        if (focus)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
-
-    #region Player Movement
-
     private void FixedUpdate()
     {
         MovePlayer();
         MoveCamera();
         ObjectRotation();
 
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.visible = true;
+        }
     }
 
     #region Player Movement
@@ -114,22 +112,13 @@ public class InputManager : MonoBehaviour
         // Move the camera to look around up/down when mouse pans up/down
         Transform playerCamera = GetComponentInChildren<Camera>().transform;
 
-        /*if ( (playerCamera.localRotation.x > 0.296681613) && (cameraInput.y > 0)) // Center -> Quaternion(0.112553328,0,0,0.993645728) Up -> Quaternion(-0.178272739,0,0,0.983981133)  Down -> Quaternion(0.296681613,0,0,0.954976499)
-        {
-            cameraInput.y = 0;
-        }
-        else if((playerCamera.localRotation.x < -0.3) && (cameraInput.y < 0)) //Quaternion(0.647919357,0,0,0.761708915)
-        {
-            cameraInput.y = 0;
-        }*/
+        
         float x_rotation = Mathf.Clamp(playerCamera.localRotation.eulerAngles.x - cameraInput.y * _mouseSensitivity, -60f, 360f);
         playerCamera.localRotation = Quaternion.Euler(x_rotation, playerCamera.localRotation.y, playerCamera.localRotation.z);
 
         //playerCamera.Rotate(-cameraInput.y * _mouseSensitivity, 0, 0);
     }
     #endregion
-    #endregion
-    
 
     #region Television Toggle
     private void OpenTelevision(InputAction.CallbackContext obj)
