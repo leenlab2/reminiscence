@@ -81,11 +81,15 @@ public class VideoControls : MonoBehaviour
         
         // Set tape to fixed one and play from time the glitch was fixed
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
-        tapeSOInTV.SetTapeToFixed(clip); // TODO: Pass clip parameter into here instead
-        tapeSOInTV.tapeSolutionBranch = clip; // TODO: Change this to assign clip instead
+        tapeSOInTV.SetTapeToFixed(clip);
+        tapeSOInTV.tapeSolutionBranch = clip;
         tapeSOInTV.clipToPlay = clip;
         _videoPlayer.clip = tapeSOInTV.GetVideoClip();
         _videoPlayer.time = tapeSOInTV.GetTimeGlitchFixedInFixedTape();
+        
+        // play for one frame to update render texture
+        _videoPlayer.Play();
+        _videoPlayer.Pause();
     }
     
     // Call this method to change the video when the tape is not yet completed
@@ -112,6 +116,9 @@ public class VideoControls : MonoBehaviour
             _videoPlayer.clip = tapeSOInTV.branchBCorruptedVideoClip;
             tapeSOInTV.clipToPlay = ClipToPlay.BranchBCorrupted;
         }
+        // play for one frame to update render texture
+        _videoPlayer.Play();
+        _videoPlayer.Pause();
     }
 
     void Update()

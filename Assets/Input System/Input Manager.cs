@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class InputManager : MonoBehaviour
     private float _walkSpeed = 7f;
     private float _speed;
     private bool inspectionMode = false;
+    private bool placementMode = false;
 
     private void Awake()
     {
@@ -26,17 +28,31 @@ public class InputManager : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
         playerInputActions.Television.Disable();
+        playerInputActions.Inspect.Disable();
+        playerInputActions.Placement.Disable();
 
-
-        playerInputActions.Player.OpenTV.Enable();
+        // Player Input Map
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
+        playerInputActions.Player.Interact.performed += ctx =>
+        {
+            if (ctx.interaction is not HoldInteraction) ObjectInteract(ctx);
+        };
+        playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
+        playerInputActions.Player.PlacementMode.performed += ctx =>
+        {
+            if (ctx.interaction is HoldInteraction) ActivatePlacementMode(ctx);
+        };
+        playerInputActions.Player.PlacementMode.canceled += CancelPlacementMode;
+
+
+        // Television Input Map
         playerInputActions.Television.CloseTV.performed += CloseTelevision;
 
-        playerInputActions.Player.Interact.performed += ObjectInteract;
-        playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
-        playerInputActions.Player.Place.performed += ObjectPlacementMode;
+        // Inspection Input Map
+        playerInputActions.Inspect.InspectionToggle.performed += ObjectInspectionToggle;
 
-        playerInputActions.Player.Rotate.Disable();
+        // Placement Input Map
+        playerInputActions.Placement.Place.performed += ObjectPlace;
     }
 
     private void OnApplicationFocus(bool focus) {
@@ -51,14 +67,16 @@ public class InputManager : MonoBehaviour
     }
 
     #region Player Movement
+
     private void FixedUpdate()
     {
         MovePlayer();
         MoveCamera();
         ObjectRotation();
-        
+
     }
 
+    #region Player Movement
     private void MovePlayer()
     {
         Vector2 movementInput = playerInputActions.Player.Move.ReadValue<Vector2>();
@@ -136,22 +154,47 @@ public class InputManager : MonoBehaviour
     #region Object Interactions
     private void ObjectInteract(InputAction.CallbackContext context)
     {
-        Debug.Log("Interaction button pressed");
+        //Debug.Log("Interaction button pressed");
         InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
         interactableDetector.InteractWithObject();
     }
 
-    private void ObjectPlacementMode(InputAction.CallbackContext context)
+    private void ActivatePlacementMode(InputAction.CallbackContext context)
     {
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
-        pickUpInteractor.ListenForPlacement(context.action);
+        if (pickUpInteractor.isHoldingObj())
+        {
+            Debug.Log("Activating Placement Mode");
+            pickUpInteractor.ActivatePlacementGuide();
+            playerInputActions.Placement.Enable();
+            placementMode = true;
+        }
     }
-    #endregion
 
-    #region Object Rotation
+    private void CancelPlacementMode(InputAction.CallbackContext context)
+    {
+        playerInputActions.Placement.Disable();
+        placementMode = false;
+    }
+
+    private void ObjectPlace(InputAction.CallbackContext context)
+    {
+        Debug.Log("Place button pressed");
+        PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
+        if (pickUpInteractor.isHoldingObj())
+        {
+            Debug.Log("Interaction type: place");
+            pickUpInteractor.DropObject();
+        }
+
+        playerInputActions.Placement.Disable();
+        placementMode = false;
+    }
+
+    #region Object Inspection
     private void ObjectRotation()
     {
-        Vector2 rotationInput = playerInputActions.Player.Rotate.ReadValue<Vector2>();
+        Vector2 rotationInput = playerInputActions.Inspect.Rotate.ReadValue<Vector2>();
         Inspection inspection = GetComponentInChildren<Inspection>();
         inspection.RotateObject(rotationInput);
     }
@@ -159,25 +202,26 @@ public class InputManager : MonoBehaviour
     private void ObjectInspectionToggle(InputAction.CallbackContext ctx)
     {
         Inspection inspection = GetComponentInChildren<Inspection>();
+        if (!inspection.InspectIsValid()) return;
+
         inspectionMode = !inspectionMode;
 
         if (inspectionMode)
         {
             Debug.Log("Toggling On Inspect");
-            playerInputActions.Player.Look.Disable();
-            playerInputActions.Player.Move.Disable();
-            playerInputActions.Player.Rotate.Enable();
+            playerInputActions.Player.Disable();
+            playerInputActions.Inspect.Enable();
 
             inspection.ToggleFocusObject(true);
         }
         else
         {
             Debug.Log("Toggling Off Inspect");
-            playerInputActions.Player.Look.Enable();
-            playerInputActions.Player.Move.Enable();
-            playerInputActions.Player.Rotate.Disable();
+            playerInputActions.Player.Enable();
+            playerInputActions.Inspect.Disable();
             inspection.ToggleFocusObject(false);
         }
     }
+    #endregion
     #endregion
 }
