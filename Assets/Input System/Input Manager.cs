@@ -107,19 +107,12 @@ public class InputManager : MonoBehaviour
         Vector2 cameraInput = playerInputActions.Player.Look.ReadValue<Vector2>();
 
         // Move the player to look around left/right when mouse pans left/right
-        transform.Rotate(0, cameraInput.x * _mouseSensitivity, 0);
+        transform.Rotate(0, cameraInput.x * _mouseSensitivity * 1.2f, 0);
 
         // Move the camera to look around up/down when mouse pans up/down
         Transform playerCamera = GetComponentInChildren<Camera>().transform;
 
-        /*if ( (playerCamera.localRotation.x > 0.296681613) && (cameraInput.y > 0)) // Center -> Quaternion(0.112553328,0,0,0.993645728) Up -> Quaternion(-0.178272739,0,0,0.983981133)  Down -> Quaternion(0.296681613,0,0,0.954976499)
-        {
-            cameraInput.y = 0;
-        }
-        else if((playerCamera.localRotation.x < -0.3) && (cameraInput.y < 0)) //Quaternion(0.647919357,0,0,0.761708915)
-        {
-            cameraInput.y = 0;
-        }*/
+        
         float x_rotation = Mathf.Clamp(playerCamera.localRotation.eulerAngles.x - cameraInput.y * _mouseSensitivity, -60f, 360f);
         playerCamera.localRotation = Quaternion.Euler(x_rotation, playerCamera.localRotation.y, playerCamera.localRotation.z);
 
