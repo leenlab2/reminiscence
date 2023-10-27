@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9211370734253348177}
-  - component: {fileID: 6504859751378464165}
+  - component: {fileID: 845513360825957052}
   m_Layer: 0
   m_Name: Puzzle Manager
   m_TagString: Untagged
@@ -25,14 +25,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8704303653242440373}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.6737187, y: 2.2185965, z: -4.8253922}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6504859751378464165
+--- !u!114 &845513360825957052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,17 +41,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8704303653242440373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65bda79616f07641a80cb96ccd24008, type: 3}
+  m_Script: {fileID: 11500000, guid: a663d7a4b86e745c5b4aeed29af04e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cueTime: 0
-  firstKeyGameObjsA:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  firstKeyGameObjsB:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  firstBranchingObjA: {fileID: 0}
-  firstBranchingObjB: {fileID: 0}
+  level: 0
+  branch: 0

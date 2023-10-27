@@ -17,4 +17,8 @@ MonoBehaviour:
   branchBCorruptedVideoClip: {fileID: 32900000, guid: b5394e95cd25b40679d9467dd41aa24c, type: 3}
   branchASolutionVideoClip: {fileID: 32900000, guid: 1afcd5133d42f4331beab3838fbcf7b8, type: 3}
   branchBSolutionVideoClip: {fileID: 32900000, guid: b31de4387aad3416a8cb5a75a9c8ea91, type: 3}
-  timeGlitchFixedInFixedTape: 60
+  timeGlitchFixedInFixedTape: 0
+  tapeIsFixed: 0
+  tapeSolutionBranch: 0
+  clipToPlay: 0
+  level: 1

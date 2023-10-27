@@ -140,7 +140,7 @@ public class InputManager : MonoBehaviour
     #region Object Interactions
     private void ObjectInteract(InputAction.CallbackContext context)
     {
-        Debug.Log("Interaction button pressed");
+        //Debug.Log("Interaction button pressed");
         InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
         interactableDetector.InteractWithObject();
     }

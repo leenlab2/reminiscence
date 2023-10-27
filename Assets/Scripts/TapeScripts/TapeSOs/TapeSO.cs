@@ -18,6 +18,8 @@ public class TapeSO : ScriptableObject
     public bool tapeIsFixed = false;
     public ClipToPlay tapeSolutionBranch;
     public ClipToPlay clipToPlay;
+
+    public int level;
     
     public TapeSO(int timeGlitchFixedInFixedTape)
     {

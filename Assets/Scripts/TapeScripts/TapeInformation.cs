@@ -5,4 +5,6 @@ using UnityEngine;
 public class TapeInformation : MonoBehaviour
 {
     public TapeSO TapeSO;
+    public GameObject branchingItemA;
+    public GameObject branchingItemB;
 }

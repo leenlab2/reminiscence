@@ -66,8 +66,8 @@ public class PickupInteractable : MonoBehaviour
             rigidbody.isKinematic = true;
         } 
         else {
-            Debug.Log("Rigid Body: " + rigidbody);
-            Debug.Log(freeze);
+            //Debug.Log("Rigid Body: " + rigidbody);
+            //Debug.Log(freeze);
             rigidbody.useGravity = !freeze;
             rigidbody.isKinematic = freeze;
         }
