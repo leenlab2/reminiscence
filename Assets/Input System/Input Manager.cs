@@ -129,6 +129,7 @@ public class InputManager : MonoBehaviour
     }
     #endregion
     #endregion
+    
 
     #region Television Toggle
     private void OpenTelevision(InputAction.CallbackContext obj)
