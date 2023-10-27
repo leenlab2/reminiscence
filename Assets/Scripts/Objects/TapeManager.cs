@@ -9,7 +9,13 @@ public class TapeManager : MonoBehaviour
     private GameObject currentTapeInTv;
     private PickUpInteractor pickUpInteractor;
 
-    // Start is called before the first frame update
+    public bool timerUntilCueStarted;
+    private float timerUntilShowCue;
+    private float timeLeft;
+    
+    // How long to wait until non branching key item cues shows up, from when this branching item is placed
+    private const float WaitTimeUntilCue = 3f; 
+    
     void Start()
     {
         videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
@@ -20,6 +26,13 @@ public class TapeManager : MonoBehaviour
         tapeSO.tapeSolutionBranch = ClipToPlay.OriginalCorrupted;
         
         videoPlayer.targetTexture.Release(); // ensure nothing is rendered on TV upon startup
+
+        timeLeft = WaitTimeUntilCue;
+    }
+
+    void Update()
+    {
+        HandleBranchCues();
     }
 
     private bool televisionHasTape()
@@ -53,12 +66,13 @@ public class TapeManager : MonoBehaviour
             
             // activate branching items of this tape
             TapeInformation tapeInfo = tapeGameObject.GetComponent<TapeInformation>();
-            Debug.Log("TAPE");
-            Debug.Log(tapeInfo);
+
             // TODO: Only activate branching items of this tape if PuzzleManager says we are on this tape's level
             int level = tapeInfo.TapeSO.level;
             tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>().enabled = true;
             tapeInfo.branchingItemB.GetComponent<ObjectDistanceNew>().enabled = true;
+
+            timerUntilCueStarted = true;
         }
     }
 
@@ -86,11 +100,32 @@ public class TapeManager : MonoBehaviour
             pickUpInteractor.PickupObject(currentTapeInTv);
             videoPlayer.clip = null;
             currentTapeInTv = null;
+            
+            timerUntilCueStarted = false;
+            timeLeft = WaitTimeUntilCue;
+            ObjectDistanceNew objDist = tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>();
+            objDist.targetObj.SetActive(false);
         }
     }
     
     public TapeSO GetCurrentTapeInTV()
     {
         return currentTapeInTv.GetComponent<TapeInformation>().TapeSO;
+    }
+
+    private void HandleBranchCues()
+    {
+        if (televisionHasTape() && timerUntilCueStarted)
+        {
+            timeLeft -= Time.deltaTime;
+        }
+
+        if (timeLeft <= 0 && timerUntilCueStarted)
+        {
+            // Show cue of branching object
+            TapeInformation tapeInfo = currentTapeInTv.GetComponent<TapeInformation>();
+            ObjectDistanceNew objDist = tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>();
+            objDist.targetObj.SetActive(true);
+        }
     }
 }

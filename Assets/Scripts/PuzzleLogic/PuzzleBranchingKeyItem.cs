@@ -20,7 +20,9 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     
     public bool timerUntilCueStarted;
     private float timerUntilShowCue;
-    private const float WaitTimeUntilCue = 3f;
+    
+    // How long to wait until non branching key item cues shows up, from when this branching item is placed
+    private const float WaitTimeUntilCue = 3f; 
     
     void Start()
     {
@@ -46,7 +48,6 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     // If this branching object is placed in the right location, enable Object Distance of this branch's key items
     public override void HandleKeyItemPlaced()
     {
-        Debug.Log("INNNNNN");
         // If object already in place, do nothing
         if (objInPlace) return;
         
