@@ -128,6 +128,8 @@ public class InputManager : MonoBehaviour
         //playerCamera.Rotate(-cameraInput.y * _mouseSensitivity, 0, 0);
     }
     #endregion
+    #endregion
+    
 
     #region Television Toggle
     private void OpenTelevision(InputAction.CallbackContext obj)
