@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 
 public enum InteractionType
 {
     None,
-    PickupPlace,
+    Pickup,
     InsertRemoveTape
 }
 
@@ -29,14 +30,12 @@ public class InteractableDetector : MonoBehaviour
 
     // private fields
     private RaycastHit? _currentHit = null;
-    private bool _crosshairOnTelevision = false;
     private InteractionType interactionType;
 
     private void Update()
     {
         _currentHit = null;
         RaycastHit hit;
-        _crosshairOnTelevision = false;
         NotDetected();
 
         // Define the ray we are using to detect objects
@@ -73,9 +72,9 @@ public class InteractableDetector : MonoBehaviour
         {
             interactionType = InteractionType.InsertRemoveTape;
         }
-        else if (hit.transform.GetComponent<PickupInteractable>() || pickUpInteractor.HeldObj != null)
+        else if (hit.transform.GetComponent<PickupInteractable>() && !pickUpInteractor.isHoldingObj())
         {
-            interactionType = InteractionType.PickupPlace;
+            interactionType = InteractionType.Pickup;
         } else
         {
             interactionType = InteractionType.None;
@@ -101,24 +100,26 @@ public class InteractableDetector : MonoBehaviour
     public void InteractWithObject()
     {
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
-        if (!_currentHit.HasValue && pickUpInteractor.HeldObj == null) return;
+        if (!_currentHit.HasValue && !pickUpInteractor.isHoldingObj()) return;
 
         // Delegate tasks based on interaction type
         if (interactionType == InteractionType.InsertRemoveTape)
         {
+            Debug.Log("Interaction type: tape");
             TapeManager tapeManager = FindObjectOfType<TapeManager>();
 
             if (pickUpInteractor.IsHeld("Tape Model"))
             {
                 tapeManager.insertTape(pickUpInteractor.HeldObj);
-            } else if (pickUpInteractor.HeldObj == null)
+            } else if (!pickUpInteractor.isHoldingObj())
             {
                 tapeManager.removeTape();
             }   
-        } else if (interactionType == InteractionType.PickupPlace)
+        } else if (interactionType == InteractionType.Pickup)
         {
-            Debug.Log("Interaction type: pickup/place");
-            pickUpInteractor.ToggleHoldObject(_currentHit);
+            Debug.Log("Interaction type: pickup");
+            GameObject obj = _currentHit.Value.transform.gameObject;
+            pickUpInteractor.PickupObject(obj);
         }
     }
 }

@@ -474,8 +474,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxPlayerReach: 10
   _crossHairDisplay: {fileID: 0}
-  _defaultCrosshair: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  _objectDetected: {fileID: 21300000, guid: 7251bd8650d2a8d428edb29289952851, type: 3}
+  _defaultCrosshair: {fileID: 21300000, guid: 7251bd8650d2a8d428edb29289952851, type: 3}
+  _objectDetected: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &2280167045166944507
 MonoBehaviour:
   m_ObjectHideFlags: 0

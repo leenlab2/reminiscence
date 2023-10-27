@@ -17,10 +17,12 @@ public class PickUpInteractor : MonoBehaviour
 
     private Quaternion originalHoldAreaRotation;
 
-    private InputAction placementAction = null;
-    private bool placementMode = false;
+#region IsHeld
+public bool isHoldingObj()
+    {
+        return HeldObj != null;
+    }
 
-    #region IsHeld
     public bool IsHeld(GameObject? obj)
     {
         return ReferenceEquals(obj, HeldObj);
@@ -28,7 +30,7 @@ public class PickUpInteractor : MonoBehaviour
 
     public bool IsHeld(String objectName)
     {
-        if (HeldObj == null) return false;
+        if (!isHoldingObj()) return false;
 
         return objectName == HeldObj.name;
     }
@@ -38,23 +40,6 @@ public class PickUpInteractor : MonoBehaviour
     {
         originalHoldAreaRotation = holdArea.rotation;
         InteractableDetector.OnCursorHitChange += DetermineNewPosition;
-    }
-
-    public void ToggleHoldObject(RaycastHit? hit)
-    {
-        if (hit.HasValue && HeldObj == null)
-        {
-            GameObject obj = hit.Value.transform.gameObject;
-            PickupObject(obj);
-            ToggleObjectColliders(obj, false);
-        }
-        else
-        {
-            if (!placementMode) return;
-
-            ToggleObjectColliders(HeldObj, true);
-            DropObject();
-        }
     }
 
     private void ToggleObjectColliders(GameObject obj, bool on)
@@ -81,6 +66,8 @@ public class PickUpInteractor : MonoBehaviour
         pickObj.MoveToHand(holdArea);
         HeldObj = obj;
         pickupObj = pickObj;
+
+        ToggleObjectColliders(obj, false);
     }
 
     private void ResetHoldArea()
@@ -91,22 +78,18 @@ public class PickUpInteractor : MonoBehaviour
     }
 
     #region Object Placement
-    public void ListenForPlacement(InputAction action)
+    public void ActivatePlacementGuide()
     {
-        placementAction = action;
-    }
-
-    private void Update()
-    {
-        if (placementAction != null && HeldObj != null)
+        if (isHoldingObj())
         {
-            placementMode = placementAction.IsPressed();
-            pickupObj.TogglePlacementGuide(placementMode);
+            pickupObj.TogglePlacementGuide(true);
         }
     }
 
     public void DropObject()
     {
+        ToggleObjectColliders(HeldObj, true);
+
         pickupObj.MoveToPlacementGuide();
         pickupObj.ToggleFreezeBody(false);
         pickupObj.MakeObjBig();
@@ -116,7 +99,7 @@ public class PickUpInteractor : MonoBehaviour
 
     private void DetermineNewPosition(RaycastHit hit)
     {
-        if (HeldObj == null) return;
+        if (!isHoldingObj()) return;
 
         pickupObj.TransformPlacementGuide(hit);
     }
