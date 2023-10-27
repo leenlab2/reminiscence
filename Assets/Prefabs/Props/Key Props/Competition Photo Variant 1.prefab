@@ -423,9 +423,37 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5689148468934132828, guid: 6f75145a4cf995449a7c4ed59722ee2c, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5161123478224407820, guid: 6f75145a4cf995449a7c4ed59722ee2c, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 423144471960478181, guid: 6f75145a4cf995449a7c4ed59722ee2c, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6f75145a4cf995449a7c4ed59722ee2c, type: 3}
       propertyPath: m_Name
       value: Picture_frame_textures
+      objectReference: {fileID: 0}
+    - target: {fileID: 2390968118795756768, guid: 6f75145a4cf995449a7c4ed59722ee2c, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853773005751419327, guid: 6f75145a4cf995449a7c4ed59722ee2c, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119357084933166448, guid: 6f75145a4cf995449a7c4ed59722ee2c, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426419570346336316, guid: 6f75145a4cf995449a7c4ed59722ee2c, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
