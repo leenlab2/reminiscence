@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        
         SceneManager.LoadScene(attic);
     }
 
