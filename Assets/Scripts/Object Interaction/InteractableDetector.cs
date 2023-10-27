@@ -9,7 +9,6 @@ public enum InteractionType
 {
     None,
     Pickup,
-    Place,
     InsertRemoveTape
 }
 
@@ -76,9 +75,6 @@ public class InteractableDetector : MonoBehaviour
         else if (hit.transform.GetComponent<PickupInteractable>() && !pickUpInteractor.isHoldingObj())
         {
             interactionType = InteractionType.Pickup;
-        } else if (pickUpInteractor.isHoldingObj() && pickUpInteractor.placementMode)
-        {
-            interactionType = InteractionType.Place;
         } else
         {
             interactionType = InteractionType.None;
@@ -101,15 +97,10 @@ public class InteractableDetector : MonoBehaviour
     /// This method handles listening to the input action for interaction with objects,
     /// and delegates tasks to relevant scripts based on interaction type.
     /// </summary>
-    public void InteractWithObject(InteractionType request = InteractionType.None)
+    public void InteractWithObject()
     {
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
         if (!_currentHit.HasValue && !pickUpInteractor.isHoldingObj()) return;
-
-        if (request != InteractionType.None)
-        {
-            interactionType = request;
-        }
 
         // Delegate tasks based on interaction type
         if (interactionType == InteractionType.InsertRemoveTape)
@@ -129,13 +120,6 @@ public class InteractableDetector : MonoBehaviour
             Debug.Log("Interaction type: pickup");
             GameObject obj = _currentHit.Value.transform.gameObject;
             pickUpInteractor.PickupObject(obj);
-        } else if (interactionType == InteractionType.Place)
-        {
-            if (pickUpInteractor.isHoldingObj() && pickUpInteractor.placementMode)
-            {
-                Debug.Log("Interaction type: place");
-                pickUpInteractor.DropObject();
-            }
         }
     }
 }

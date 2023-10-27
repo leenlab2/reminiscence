@@ -17,9 +17,6 @@ public class PickUpInteractor : MonoBehaviour
 
     private Quaternion originalHoldAreaRotation;
 
-    private InputAction placementAction = null;
-    public bool placementMode {get; private set;} = false;
-
 #region IsHeld
 public bool isHoldingObj()
     {
@@ -81,17 +78,11 @@ public bool isHoldingObj()
     }
 
     #region Object Placement
-    public void ListenForPlacement(InputAction action)
+    public void ActivatePlacementGuide()
     {
-        placementAction = action;
-    }
-
-    private void Update()
-    {
-        if (placementAction != null && isHoldingObj())
+        if (isHoldingObj())
         {
-            placementMode = placementAction.IsPressed();
-            pickupObj.TogglePlacementGuide(placementMode);
+            pickupObj.TogglePlacementGuide(true);
         }
     }
 

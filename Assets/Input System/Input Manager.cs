@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     private float _walkSpeed = 7f;
     private float _speed;
     private bool inspectionMode = false;
+    private bool placementMode = false;
 
     private void Awake()
     {
@@ -28,19 +29,20 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Enable();
         playerInputActions.Television.Disable();
         playerInputActions.Inspect.Disable();
+        playerInputActions.Placement.Disable();
 
         // Player Input Map
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
         playerInputActions.Player.Interact.performed += ctx =>
         {
-            if (ctx.interaction is PressInteraction) ObjectInteract(ctx);
+            if (ctx.interaction is not HoldInteraction) ObjectInteract(ctx);
         };
         playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
-        playerInputActions.Player.Place.performed += ObjectPlace;
         playerInputActions.Player.PlacementMode.performed += ctx =>
         {
-            if (ctx.interaction is HoldInteraction) ObjectPlacementMode(ctx);
+            if (ctx.interaction is HoldInteraction) ActivatePlacementMode(ctx);
         };
+        playerInputActions.Player.PlacementMode.canceled += CancelPlacementMode;
 
 
         // Television Input Map
@@ -48,6 +50,9 @@ public class InputManager : MonoBehaviour
 
         // Inspection Input Map
         playerInputActions.Inspect.InspectionToggle.performed += ObjectInspectionToggle;
+
+        // Placement Input Map
+        playerInputActions.Placement.Place.performed += ObjectPlace;
     }
     private void FixedUpdate()
     {
@@ -140,18 +145,36 @@ public class InputManager : MonoBehaviour
         interactableDetector.InteractWithObject();
     }
 
-    private void ObjectPlacementMode(InputAction.CallbackContext context)
+    private void ActivatePlacementMode(InputAction.CallbackContext context)
     {
-        Debug.Log("Activating Placement Mode");
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
-        pickUpInteractor.ListenForPlacement(context.action);
+        if (pickUpInteractor.isHoldingObj())
+        {
+            Debug.Log("Activating Placement Mode");
+            pickUpInteractor.ActivatePlacementGuide();
+            playerInputActions.Placement.Enable();
+            placementMode = true;
+        }
+    }
+
+    private void CancelPlacementMode(InputAction.CallbackContext context)
+    {
+        playerInputActions.Placement.Disable();
+        placementMode = false;
     }
 
     private void ObjectPlace(InputAction.CallbackContext context)
     {
         Debug.Log("Place button pressed");
-        InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
-        interactableDetector.InteractWithObject(InteractionType.Place);
+        PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
+        if (pickUpInteractor.isHoldingObj())
+        {
+            Debug.Log("Interaction type: place");
+            pickUpInteractor.DropObject();
+        }
+
+        playerInputActions.Placement.Disable();
+        placementMode = false;
     }
 
     #region Object Inspection

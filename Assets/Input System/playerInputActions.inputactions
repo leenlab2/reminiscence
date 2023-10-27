@@ -58,15 +58,6 @@
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Place",
-                    "type": "Button",
-                    "id": "88a31ed2-7a56-4697-a789-3b5258b797a3",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -243,28 +234,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "InspectionToggle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b0a2401c-f9b4-40e2-9899-71f5de589b71",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Place",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "aa47f568-fea4-4c68-8ea4-1b4d03ca3c33",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Place",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1216,6 +1185,45 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "InspectionToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Placement",
+            "id": "5f6241b3-b0e5-453b-9b49-5c831cc480a2",
+            "actions": [
+                {
+                    "name": "Place",
+                    "type": "Button",
+                    "id": "76506406-6258-4f28-8de9-07245b3d1b30",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f6f9caa1-1f4c-4800-ae74-600581a8b386",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Place",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2505e120-2998-4525-bfee-951c49f1d828",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Place",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
