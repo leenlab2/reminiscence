@@ -6,6 +6,7 @@ TagManager:
   tags:
   - IsTape
   - LightObj
+  - HeavyObj
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Inspection
   - Water
   - UI
-  - Camera Effect
+  - 
   - 
   - 
   - 
