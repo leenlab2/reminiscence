@@ -7,6 +7,7 @@ using UnityEngine.InputSystem.Interactions;
 public class InputManager : MonoBehaviour
 {
     public PlayerInputActions playerInputActions;
+    public GameObject UI;
 
     private Rigidbody playerBody;
     private PlayerInput playerInput;
@@ -18,6 +19,7 @@ public class InputManager : MonoBehaviour
     private float _speed;
     private bool inspectionMode = false;
     private bool placementMode = false;
+    private bool pauseMode = false;
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Television.Disable();
         playerInputActions.Inspect.Disable();
         playerInputActions.Placement.Disable();
+        playerInputActions.Player.Navigate.Disable();
 
         // Player Input Map
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
@@ -43,6 +46,9 @@ public class InputManager : MonoBehaviour
             if (ctx.interaction is HoldInteraction) ActivatePlacementMode(ctx);
         };
         playerInputActions.Player.PlacementMode.canceled += CancelPlacementMode;
+
+        // Pause Menu Input Map
+        playerInputActions.Player.PauseMenuToggle.performed += PauseMenuToggle;
 
 
         // Television Input Map
@@ -117,6 +123,32 @@ public class InputManager : MonoBehaviour
         playerCamera.localRotation = Quaternion.Euler(x_rotation, playerCamera.localRotation.y, playerCamera.localRotation.z);
 
         //playerCamera.Rotate(-cameraInput.y * _mouseSensitivity, 0, 0);
+    }
+    #endregion
+
+    #region PauseMenu
+    private void PauseMenuToggle(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("Toggling Pause Menu");
+        pauseMode = !pauseMode;
+
+        if (pauseMode)
+        {
+            playerInputActions.Player.Navigate.Enable();
+            playerInputActions.Television.Disable();
+            playerInputActions.Player.Move.Disable();
+            playerInputActions.Player.Look.Disable();
+        }
+        else
+        {
+            playerInputActions.Player.Navigate.Disable();
+            playerInputActions.Television.Enable();
+            playerInputActions.Player.Move.Enable();
+            playerInputActions.Player.Look.Enable();
+        }
+        //get ui component
+        UI.GetComponent<PauseMenu>().TogglePauseMenu();
+
     }
     #endregion
 
