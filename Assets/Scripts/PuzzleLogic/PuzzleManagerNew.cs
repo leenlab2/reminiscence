@@ -10,7 +10,6 @@ public class PuzzleManagerNew : MonoBehaviour
     private VideoControls _videoControls;
     public GameObject currentBranchingItemModel;
     
-    // Start is called before the first frame update
     void Start()
     {
         _videoControls = FindObjectOfType<VideoControls>();

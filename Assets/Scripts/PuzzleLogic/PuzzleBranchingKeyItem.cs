@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,8 +23,7 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     // to otherBranchingItem to disable their ObjectDistance script
     [SerializeField] private GameObject otherBranchingItem;
     
-    // How long to wait until non branching key item cues shows up, from when this branching item is placed
-    private const float WaitTimeUntilCue = 45f; 
+    public event Action OnBranchingKeyItemPlaced;
     
     void Start()
     {
@@ -35,9 +35,19 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     {
         base.Update();
     }
-    
+
+    private void OnEnable()
+    {
+        OnBranchingKeyItemPlaced += KeyItemPlacedPuzzleItemLogic;
+    }
+
     // If this branching object is placed in the right location, enable Object Distance of this branch's key items
     public override void HandleKeyItemPlaced()
+    {
+        OnBranchingKeyItemPlaced?.Invoke();
+    }
+
+    private void KeyItemPlacedPuzzleItemLogic()
     {
         // Show outline around item
         outline.OutlineWidth = 5f;

@@ -16,6 +16,7 @@ public class ObjectDistanceNew : MonoBehaviour
     
     private PickUpInteractor pickUpInteractor;
     private PuzzleKeyItem puzzleKeyItem;
+    
 
     protected void Start()
     {

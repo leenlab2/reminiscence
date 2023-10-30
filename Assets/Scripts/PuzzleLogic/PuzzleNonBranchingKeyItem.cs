@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ using UnityEngine;
 public class PuzzleNonBranchingKeyItem : PuzzleKeyItem
 {
     public bool appearsOnBothBranches;
+    
+    public event Action OnNonBranchingKeyItemPlaced;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +24,17 @@ public class PuzzleNonBranchingKeyItem : PuzzleKeyItem
         base.Update();
         
     }
+    private void OnEnable()
+    {
+        OnNonBranchingKeyItemPlaced += KeyItemPlacedPuzzleItemLogic;
+    }
     
     public override void HandleKeyItemPlaced()
+    {
+        OnNonBranchingKeyItemPlaced?.Invoke();
+    }
+
+    private void KeyItemPlacedPuzzleItemLogic()
     {
         outline.OutlineWidth = 5f;
         timeLeft = timeLengthOutline;
