@@ -8,8 +8,8 @@ public class PuzzleManagerNew : MonoBehaviour
     public Branch branch;
     private int countKeyItemsLeft;
     private VideoControls _videoControls;
+    public GameObject currentBranchingItemModel;
     
-    // Start is called before the first frame update
     void Start()
     {
         _videoControls = FindObjectOfType<VideoControls>();
@@ -19,14 +19,9 @@ public class PuzzleManagerNew : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void HandleBranchingItemPlaced(Branch branch, GameObject placedBranchingItemModel)
     {
-        
-    }
-
-    public void HandleBranchingItemPlaced(Branch branch)
-    {
+        currentBranchingItemModel = placedBranchingItemModel;
         if (branch == Branch.BranchA)
         {
             _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchACorrupted);
@@ -35,12 +30,6 @@ public class PuzzleManagerNew : MonoBehaviour
         {
             _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchBCorrupted);
         }
-    }
-
-    public void HandleBranchingItemRemoved()
-    {
-        _videoControls.ChangeCorruptedVideo(ClipToPlay.OriginalCorrupted);
-        countKeyItemsLeft = 3;
     }
     
     public void HandleNonBranchingKeyItemPlaced()
@@ -62,13 +51,10 @@ public class PuzzleManagerNew : MonoBehaviour
             // TODO: Activate next level's branching items and non branching key items
         }
     }
-    
-    public void HandleNonBranchingKeyItemRemoved()
+
+    // Call this when the player has exited the memory scene after placing a branching object in the right place
+    public void ShowNonBranchingItemsShadowCues()
     {
-        if (countKeyItemsLeft < 3)
-        {
-            countKeyItemsLeft++;
-        }
-        Debug.Log("Key items left: " + countKeyItemsLeft);
+        currentBranchingItemModel.GetComponent<PuzzleBranchingKeyItem>().ShowCuesOfNonBranchingKeyItems();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,90 +19,65 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     // the Object Distance and Puzzle Key Item scripts.
     [SerializeField] private List<GameObject> keyItemModels;
     
-    public bool timerUntilCueStarted;
-    private float timerUntilShowCue;
-    private float timeLeftUntilCue;
+    // The other branching item that could have been placed instead. We need a reference
+    // to otherBranchingItem to disable their ObjectDistance script
+    [SerializeField] private GameObject otherBranchingItem;
     
-    // How long to wait until non branching key item cues shows up, from when this branching item is placed
-    private const float WaitTimeUntilCue = 45f; 
+    public event Action OnBranchingKeyItemPlaced;
     
     void Start()
     {
         base.Start();
-        timeLeftUntilCue = WaitTimeUntilCue;
     }
 
     // Update is called once per frame
     void Update()
     {
         base.Update();
-        if (objInPlace && timerUntilCueStarted)
-        {
-            timeLeftUntilCue -= Time.deltaTime;
-        }
-
-        if (timeLeftUntilCue <= 0 && timerUntilCueStarted)
-        {
-            showCueOfNonBranchingKeyItems();
-        }
     }
-    
-    // If this branching object is placed in the right location, enable Object Distance of this branch's key items
-    public override void HandleKeyItemPlaced()
+
+    private void OnEnable()
     {
-        // If object already in place, do nothing
-        if (objInPlace) return;
-        
-        // If object was just put into place
-        objInPlace = true;
+        OnBranchingKeyItemPlaced += KeyItemPlacedPuzzleItemLogic;
+    }
+
+      public override void HandleKeyItemPlaced()
+    {
+        OnBranchingKeyItemPlaced?.Invoke();
+    }
+
+    // If this branching object is placed in the right location, enable Object Distance of this branch's key items
+    private void KeyItemPlacedPuzzleItemLogic()
+    {
+        // Show outline around item
         outline.OutlineWidth = 5f;
         timeLeft = timeLengthOutline;
         
+        // Turn off branching item's cue
+        
+        
+        // Enable ObjectDistance scripts of three key items on this branch
         foreach (GameObject obj in keyItemModels)
         {
             Debug.Log(obj.name);
             ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
             objDist.enabled = true;
             
-            //PuzzleNonBranchingKeyItem nonBranchingKeyItem = obj.GetComponent<PuzzleNonBranchingKeyItem>();
             if (objDist.isOnBothBranches)
             {
                 objDist.SwitchPuzzleTarget(branch);
             }
         }
-        puzzleManager.HandleBranchingItemPlaced(branch);
         
-        // start timer countdown until cue should be shown
-        timerUntilCueStarted = true;
-    }
-    
-    // If this branching object is removed, disable Object Distance of this branch's key items
-    public override void HandleKeyItemRemoved()
-    {
-        // If object already not in place, do nothing
-        if (!objInPlace) return;
+        // Disable other branching item's ObjectDistance script and Puzzle Target
+        otherBranchingItem.GetComponent<ObjectDistanceNew>().enabled = false;
+        otherBranchingItem.GetComponent<PickupInteractable>().DisableWallMountable();
+        otherBranchingItem.GetComponent<ObjectDistanceNew>().targetObj.SetActive(false);
         
-        // If object was just removed from correct location
-        objInPlace = false;
-        outline.OutlineWidth = 0f;
-        
-        foreach (GameObject obj in keyItemModels)
-        {
-            // Disable Object Distance of key items of this branch
-            Debug.Log(obj.name);
-            ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
-            objDist.enabled = false;
-            
-            // Set each key item of this branch to no longer in correct location
-            PuzzleNonBranchingKeyItem nonBranchingKeyItem = obj.GetComponent<PuzzleNonBranchingKeyItem>();
-            nonBranchingKeyItem.HandleKeyItemRemoved();
-        }
-        puzzleManager.HandleBranchingItemRemoved();
-        hideCueOfNonBranchingKeyItems();
-        timerUntilCueStarted = false;
+        puzzleManager.HandleBranchingItemPlaced(branch, gameObject);
     }
 
-    private void showCueOfNonBranchingKeyItems()
+    public void ShowCuesOfNonBranchingKeyItems()
     {
         foreach (GameObject obj in keyItemModels)
         {
@@ -111,14 +87,13 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         }
     }
     
-    private void hideCueOfNonBranchingKeyItems()
+    public void HideCuesOfNonBranchingKeyItems()
     {
         foreach (GameObject obj in keyItemModels)
         {
             ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
             objDist.targetObj.transform.GetChild(0).gameObject.SetActive(false);
             objDist.targetObj.SetActive(false);
-            
         }
     }
 }

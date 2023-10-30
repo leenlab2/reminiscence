@@ -5,7 +5,6 @@ using UnityEngine;
 /// <summary>
 /// Constantly calculates distance between this object and its target object.
 /// If object is in correct location, trigger PuzzleItem <KeyItemPlaced> event.
-/// If object is not in correct location, trigger PuzzleItem <KeyItemRemoved> event.
 /// </summary>
 public class ObjectDistanceNew : MonoBehaviour
 {
@@ -17,6 +16,7 @@ public class ObjectDistanceNew : MonoBehaviour
     
     private PickUpInteractor pickUpInteractor;
     private PuzzleKeyItem puzzleKeyItem;
+    
 
     protected void Start()
     {
@@ -25,7 +25,6 @@ public class ObjectDistanceNew : MonoBehaviour
         objectInPlace = false;
     }
 
-    // Update is called once per frame
     protected void Update()
     {
         // Check distance between object and target location
@@ -33,26 +32,19 @@ public class ObjectDistanceNew : MonoBehaviour
         
         // If this object is not in the player's hand
         if (!pickUpInteractor.IsHeld(gameObject)) {
-            // If distance is close enough to target object and object was not yet in correct location
-            // i.e. if obj placed in right location
+            
+            // If object is placed in right location
             if (dist <= distanceThreshold) {
+                Debug.Log("HERE");
                 targetObj.transform.localScale = new Vector3(0, 0, 0);
                 puzzleKeyItem.HandleKeyItemPlaced();
                 objectInPlace = true;
                 targetObj.SetActive(false);
-            }
-        }
-        else // if object is in player's hand
-        {
-            targetObj.SetActive(true);
             
-            // If distance is too far from target object and object was just in correct location
-            // i.e. if obj was removed from right location
-            if (dist > distanceThreshold)  {
-                puzzleKeyItem.HandleKeyItemRemoved();
-                objectInPlace = false;
+                // Disable this script, prevent item from being interactable
+                Destroy(GetComponent<PickupInteractable>());
+                enabled = false;
             }
-            
         }
     }
     
