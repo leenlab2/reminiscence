@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using TMPro;
 
 public class InputManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class InputManager : MonoBehaviour
     private float _speed;
     private bool inspectionMode = false;
     private bool placementMode = false;
+
+    private TMP_Text _interactText;
 
     private void Awake()
     {
@@ -54,6 +57,12 @@ public class InputManager : MonoBehaviour
         // Placement Input Map
         playerInputActions.Placement.Place.performed += ObjectPlace;
     }
+
+    private void Start()
+    {
+        _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
+    }
+
     private void FixedUpdate()
     {
         MovePlayer();
@@ -195,6 +204,7 @@ public class InputManager : MonoBehaviour
         if (inspectionMode)
         {
             Debug.Log("Toggling On Inspect");
+            _interactText.text = "Use mouse to rotate object. Press E to exit inspection.";
             playerInputActions.Player.Disable();
             playerInputActions.Inspect.Enable();
 
@@ -203,10 +213,16 @@ public class InputManager : MonoBehaviour
         else
         {
             Debug.Log("Toggling Off Inspect");
+            _interactText.text = "Hold left to aim and click right to place. Press E to inspect.";
             playerInputActions.Player.Enable();
             playerInputActions.Inspect.Disable();
             inspection.ToggleFocusObject(false);
         }
+    }
+
+    public bool InInspection()
+    {
+        return inspectionMode;
     }
     #endregion
     #endregion

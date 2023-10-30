@@ -78,12 +78,21 @@ public class InteractableDetector : MonoBehaviour
 
         if (hit.transform.parent?.name == "TV")
         {
-            _interactText.text = "Press T to interact";
+            if (pickUpInteractor.IsHeld("Tape Model"))
+            {
+                _interactText.text = "Left click to insert tape";
+            }
+            
+            TapeManager tapeManager = FindObjectOfType<TapeManager>();
+            if (tapeManager.televisionHasTape())
+            {
+                _interactText.text = "Left click to remove tape";
+            }
             interactionType = InteractionType.InsertRemoveTape;
         }
         else if (hit.transform.GetComponent<PickupInteractable>() && !pickUpInteractor.isHoldingObj())
         {
-            _interactText.text = "Left click to interact";
+            _interactText.text = "Left click to pick up";
             interactionType = InteractionType.Pickup;
         } else
         {
@@ -99,7 +108,19 @@ public class InteractableDetector : MonoBehaviour
 
     private void NotDetected()
     {
-        _interactText.text = "";
+        PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
+        if (!pickUpInteractor.isHoldingObj())
+        {
+            _interactText.text = "";
+        }
+        if (pickUpInteractor.IsHeld("Tape Model"))
+        {
+            InputManager inputManager = FindObjectOfType<InputManager>();
+            if (!inputManager.InInspection())
+            {
+                _interactText.text = "Hold left to aim and click right to place. Press E to inspect.";
+            }
+        }
         _crossHairDisplay.sprite = _defaultCrosshair;
     }
     #endregion
@@ -129,6 +150,7 @@ public class InteractableDetector : MonoBehaviour
         } else if (interactionType == InteractionType.Pickup)
         {
             Debug.Log("Interaction type: pickup");
+            _interactText.text = "Hold left to aim and click right to place";
             GameObject obj = _currentHit.Value.transform.gameObject;
             pickUpInteractor.PickupObject(obj);
         }

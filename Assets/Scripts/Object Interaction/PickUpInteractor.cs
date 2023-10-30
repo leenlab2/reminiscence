@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 /// <summary>
 /// Handles the communication between the player and the object. Specifically manages what object is held (`HeldObj`)
@@ -16,6 +17,8 @@ public class PickUpInteractor : MonoBehaviour
     private PickupInteractable pickupObj;
 
     private Quaternion originalHoldAreaRotation;
+
+    private TMP_Text _interactText;
 
 #region IsHeld
 public bool isHoldingObj()
@@ -40,6 +43,8 @@ public bool isHoldingObj()
     {
         originalHoldAreaRotation = holdArea.rotation;
         InteractableDetector.OnCursorHitChange += DetermineNewPosition;
+
+        _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
     }
 
     private void ToggleObjectColliders(GameObject obj, bool on)
@@ -57,6 +62,8 @@ public bool isHoldingObj()
         if (pickObj == null) return;
 
         ResetHoldArea();
+
+        // _interactText.text = "Hold left to aim and click right to place. Press E to inspect.";
 
         // Fix rigid body settings of target object
         pickObj.ToggleFreezeBody(true);
