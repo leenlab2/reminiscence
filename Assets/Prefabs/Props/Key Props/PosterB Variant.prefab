@@ -180,7 +180,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  timerUntilCueStarted: 0
+  otherBranchingItem: {fileID: 0}
 --- !u!4 &8073921175096007282 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7422350813914525900, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}

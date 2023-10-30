@@ -85,7 +85,6 @@ public class VideoControls : MonoBehaviour
         tapeSOInTV.tapeSolutionBranch = clip;
         tapeSOInTV.clipToPlay = clip;
         _videoPlayer.clip = tapeSOInTV.GetVideoClip();
-        _videoPlayer.time = tapeSOInTV.GetTimeGlitchFixedInFixedTape();
         
         // play for one frame to update render texture
         _videoPlayer.Play();

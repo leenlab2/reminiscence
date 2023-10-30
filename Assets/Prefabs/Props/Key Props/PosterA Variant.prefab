@@ -195,7 +195,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  timerUntilCueStarted: 0
+  otherBranchingItem: {fileID: 0}
 --- !u!1 &4457132370632980030 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3935703863922646525, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}

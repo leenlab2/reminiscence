@@ -83,6 +83,11 @@ public class PickupInteractable : MonoBehaviour
         }
     }
 
+    public void DisableWallMountable()
+    {
+        wallMountable = false;
+    }
+
     #region Object Size
     // These are used to make the object smaller in the HUD when it is held
     public void MakeObjBig()
