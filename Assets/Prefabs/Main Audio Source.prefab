@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 738764746396975150}
   - component: {fileID: 6435359707947890125}
   - component: {fileID: 8944915732866438509}
+  - component: {fileID: 8039753086054777744}
   m_Layer: 0
   m_Name: Main Audio Source
   m_TagString: Untagged
@@ -149,3 +150,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d69ef2e1d28ffc44e9794124479d2dd2, type: 3}
   - {fileID: 8300000, guid: 8bcc640bb27af1d46b01bd20c7fbdd41, type: 3}
   - {fileID: 8300000, guid: 91098b38aaa48854f82b8e9e368c1599, type: 3}
+--- !u!168 &8039753086054777744
+AudioEchoFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6992450636416142980}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Delay: 500
+  m_DecayRatio: 0.5
+  m_WetMix: 1
+  m_DryMix: 1
