@@ -35,6 +35,7 @@ public class ObjectDistanceNew : MonoBehaviour
             
             // If object is placed in right location
             if (dist <= distanceThreshold) {
+                Debug.Log("HERE");
                 targetObj.transform.localScale = new Vector3(0, 0, 0);
                 puzzleKeyItem.HandleKeyItemPlaced();
                 objectInPlace = true;

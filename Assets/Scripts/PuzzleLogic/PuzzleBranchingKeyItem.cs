@@ -41,17 +41,20 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         OnBranchingKeyItemPlaced += KeyItemPlacedPuzzleItemLogic;
     }
 
-    // If this branching object is placed in the right location, enable Object Distance of this branch's key items
-    public override void HandleKeyItemPlaced()
+      public override void HandleKeyItemPlaced()
     {
         OnBranchingKeyItemPlaced?.Invoke();
     }
 
+    // If this branching object is placed in the right location, enable Object Distance of this branch's key items
     private void KeyItemPlacedPuzzleItemLogic()
     {
         // Show outline around item
         outline.OutlineWidth = 5f;
         timeLeft = timeLengthOutline;
+        
+        // Turn off branching item's cue
+        
         
         // Enable ObjectDistance scripts of three key items on this branch
         foreach (GameObject obj in keyItemModels)
@@ -66,9 +69,10 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
             }
         }
         
-        // Disable other branching item's ObjectDistance script
+        // Disable other branching item's ObjectDistance script and Puzzle Target
         otherBranchingItem.GetComponent<ObjectDistanceNew>().enabled = false;
         otherBranchingItem.GetComponent<PickupInteractable>().DisableWallMountable();
+        otherBranchingItem.GetComponent<ObjectDistanceNew>().targetObj.SetActive(false);
         
         puzzleManager.HandleBranchingItemPlaced(branch, gameObject);
     }
