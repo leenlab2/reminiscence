@@ -32,7 +32,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Television.Disable();
         playerInputActions.Inspect.Disable();
         playerInputActions.Placement.Disable();
-        playerInputActions.Player.Navigate.Disable();
+        //playerInputActions.Player.Navigate.Disable();
 
         // Player Input Map
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
@@ -134,14 +134,14 @@ public class InputManager : MonoBehaviour
 
         if (pauseMode)
         {
-            playerInputActions.Player.Navigate.Enable();
+            //playerInputActions.Player.Navigate.Enable();
             playerInputActions.Television.Disable();
             playerInputActions.Player.Move.Disable();
             playerInputActions.Player.Look.Disable();
         }
         else
         {
-            playerInputActions.Player.Navigate.Disable();
+            //playerInputActions.Player.Navigate.Disable();
             playerInputActions.Television.Enable();
             playerInputActions.Player.Move.Enable();
             playerInputActions.Player.Look.Enable();

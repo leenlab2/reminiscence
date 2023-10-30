@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -27,12 +28,12 @@ public class PauseMenu : MonoBehaviour
 
     public void ClosePauseMenu()
     {
-        transform.FindChild("PauseMenuUI").gameObject.SetActive(false);
+        transform.Find("PauseMenuUI").gameObject.SetActive(false);
         GameIsPaused = false;
     }
     public void OpenPauseMenu()
     {
-        transform.FindChild("PauseMenuUI").gameObject.SetActive(true);
+        transform.Find("PauseMenuUI").gameObject.SetActive(true);
         GameIsPaused = true;
     }
 
