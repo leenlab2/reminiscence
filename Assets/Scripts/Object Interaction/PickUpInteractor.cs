@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Scripting.APIUpdating;
 
 /// <summary>
 /// Handles the communication between the player and the object. Specifically manages what object is held (`HeldObj`)
@@ -12,13 +14,19 @@ public class PickUpInteractor : MonoBehaviour
     // Inspector settings
     [SerializeField] private Transform holdArea;
 
+    [Header("Branching Item Held Position")]
+    [SerializeField] private Transform rightHand;
+    [SerializeField] private Transform leftHand;
+
     public GameObject HeldObj { get; private set; }
+    private GameObject righthandObj;
+    private GameObject lefthandObj;
     private PickupInteractable pickupObj;
 
     private Quaternion originalHoldAreaRotation;
 
 #region IsHeld
-public bool isHoldingObj()
+    public bool isHoldingObj()
     {
         return HeldObj != null;
     }
@@ -56,18 +64,57 @@ public bool isHoldingObj()
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
         if (pickObj == null) return;
 
+        if (pickObj.GetComponent<PuzzleBranchingKeyItem>() != null)
+        {
+            BranchingObjPickup(pickObj.gameObject);
+        } else
+        {
+            NormalObjPickup(pickObj, holdArea);
+        }
+
+        HeldObj = obj;
+        pickupObj = pickObj;
+    }
+
+    private void NormalObjPickup(PickupInteractable obj, Transform newPos)
+    {
         ResetHoldArea();
 
         // Fix rigid body settings of target object
-        pickObj.ToggleFreezeBody(true);
-        pickObj.MakeObjSmall();
+        obj.ToggleFreezeBody(true);
+        obj.MakeObjSmall();
 
         // Move to hand
-        pickObj.MoveToHand(holdArea);
-        HeldObj = obj;
-        pickupObj = pickObj;
+        obj.MoveToHand(newPos);
 
-        ToggleObjectColliders(obj, false);
+        ToggleObjectColliders(obj.gameObject, false);
+    }
+
+    private void BranchingObjPickup(GameObject obj)
+    {
+        int level = obj.GetComponent<PuzzleBranchingKeyItem>().level;
+        GameObject otherBranching = FindOtherBranchingItem(level);
+
+        NormalObjPickup(obj.GetComponent<PickupInteractable>(), rightHand);
+        NormalObjPickup(otherBranching.GetComponent<PickupInteractable>(), leftHand);
+
+        righthandObj = obj;
+        lefthandObj = otherBranching;
+    }
+
+    private GameObject FindOtherBranchingItem(int level)
+    {
+        PuzzleBranchingKeyItem[] branchingItems = FindObjectsOfType<PuzzleBranchingKeyItem>();
+
+        foreach (PuzzleBranchingKeyItem item in branchingItems)
+        {
+            if (item.level == level && item.gameObject != HeldObj)
+            {
+                return item.gameObject;
+            }
+        }
+
+        return null;
     }
 
     private void ResetHoldArea()
