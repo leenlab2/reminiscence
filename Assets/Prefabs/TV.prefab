@@ -5508,8 +5508,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.34183973, z: 0, w: 0.93975824}
   m_LocalPosition: {x: 0.052291, y: 0.07500076, z: -3.4348}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4433178769765586233}
   - {fileID: 7431210825288299987}
@@ -5833,7 +5833,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4944282981366583310}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: a9cfde68b1ae34c4b949307aab5de0cf, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: d170ec5830ccd7c479cca19580761123, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -5850,7 +5850,7 @@ VideoPlayer:
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 1
+  - 0.516
   m_Url: https://www.youtube.com/watch?v=oigva-8SgYo
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
@@ -5887,7 +5887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c98beb0d8bf4afc948ee77bf0cccd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerUntilCueStarted: 0
 --- !u!114 &2663737510782018887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5912,6 +5911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 495849430499852918}
   - component: {fileID: 2550217470181327819}
+  - component: {fileID: 2941337296268849460}
   m_Layer: 0
   m_Name: Area Light
   m_TagString: Untagged
@@ -5996,6 +5996,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &2941337296268849460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796014170311355500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &8033663152056734489
 GameObject:
   m_ObjectHideFlags: 0
