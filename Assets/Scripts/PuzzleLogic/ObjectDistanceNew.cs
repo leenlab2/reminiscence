@@ -44,10 +44,6 @@ public class ObjectDistanceNew : MonoBehaviour
                 enabled = false;
             }
         }
-        else // if object is in player's hand
-        {
-            targetObj.SetActive(true);
-        }
     }
     
     // Calculates the distance between this object and its target location
