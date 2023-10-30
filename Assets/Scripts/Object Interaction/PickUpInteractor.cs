@@ -92,29 +92,14 @@ public class PickUpInteractor : MonoBehaviour
 
     private void BranchingObjPickup(GameObject obj)
     {
-        int level = obj.GetComponent<PuzzleBranchingKeyItem>().level;
-        GameObject otherBranching = FindOtherBranchingItem(level);
+        PuzzleBranchingKeyItem puzzleItem = obj.GetComponent<PuzzleBranchingKeyItem>();
+        GameObject otherBranching = puzzleItem.otherBranchingItem;
 
         NormalObjPickup(obj.GetComponent<PickupInteractable>(), rightHand);
         NormalObjPickup(otherBranching.GetComponent<PickupInteractable>(), leftHand);
 
         righthandObj = obj;
         lefthandObj = otherBranching;
-    }
-
-    private GameObject FindOtherBranchingItem(int level)
-    {
-        PuzzleBranchingKeyItem[] branchingItems = FindObjectsOfType<PuzzleBranchingKeyItem>();
-
-        foreach (PuzzleBranchingKeyItem item in branchingItems)
-        {
-            if (item.level == level && item.gameObject != HeldObj)
-            {
-                return item.gameObject;
-            }
-        }
-
-        return null;
     }
 
     private void ResetHoldArea()
