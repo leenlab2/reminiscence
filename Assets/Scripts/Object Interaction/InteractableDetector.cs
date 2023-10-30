@@ -68,9 +68,6 @@ public class InteractableDetector : MonoBehaviour
     {
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
 
-        Debug.Log("----------");
-        Debug.Log(hit.transform.name);
-        Debug.Log(hit.transform.parent?.name);
         if (hit.transform.parent?.name == "TV" || hit.transform.parent?.name == "TV_textures")
         {
             interactionType = InteractionType.InsertRemoveTape;
