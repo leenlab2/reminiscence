@@ -68,7 +68,7 @@ public class PickUpInteractor : MonoBehaviour
         if (pickObj == null) return;
 
         // TODO: once a more robust map switching system is in place, change this
-        if (pickObj.GetComponent<PuzzleBranchingKeyItem>() != null && transform.position.y < 50)
+        if (pickObj.GetComponent<PuzzleBranchingKeyItem>() != null && transform.position.y < 40)
         {
             BranchingObjPickup(pickObj.gameObject);
         } else
