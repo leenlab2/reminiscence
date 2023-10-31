@@ -4290,7 +4290,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 873127397668331165, guid: 76c1cb639af673e419dc83a0aafa0f08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.74
+      value: 12.65
       objectReference: {fileID: 0}
     - target: {fileID: 873127397668331165, guid: 76c1cb639af673e419dc83a0aafa0f08, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4298,7 +4298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 873127397668331165, guid: 76c1cb639af673e419dc83a0aafa0f08, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.96
+      value: -11.6
       objectReference: {fileID: 0}
     - target: {fileID: 873127397668331165, guid: 76c1cb639af673e419dc83a0aafa0f08, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6143,6 +6143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effects: {fileID: 542954244}
   player: {fileID: 124944080}
+  camera: {fileID: 0}
 --- !u!1001 &1664661217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7299,15 +7300,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5697886127082847408, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.562
+      value: 11.09
       objectReference: {fileID: 0}
     - target: {fileID: 5697886127082847408, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.17
+      value: 1.95
       objectReference: {fileID: 0}
     - target: {fileID: 5697886127082847408, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.56
+      value: -14.94
       objectReference: {fileID: 0}
     - target: {fileID: 5697886127082847408, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
       propertyPath: m_LocalRotation.w
