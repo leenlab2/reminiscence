@@ -146,6 +146,13 @@ public class InputManager : MonoBehaviour
 
         ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
         cameraCtrl.SwitchToTapeView();
+        
+        SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
+        if (sceneManagement.automaticallyEnterMemorySceneOnOpenTV)
+        {
+            sceneManagement.EnterMemoryScene();
+            sceneManagement.DisableAutomaticEnterMemoryScene();
+        }
     }
 
     public void CloseTelevision(InputAction.CallbackContext obj)
@@ -280,6 +287,9 @@ public class InputManager : MonoBehaviour
 
         playerInputActions.Branching.Disable();
         playerInputActions.Player.Enable();
+        
+        SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
+        sceneManagement.EnableAutomaticEnterMemoryScene();
     }
     #endregion
 }

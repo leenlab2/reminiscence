@@ -8,19 +8,27 @@ public class SceneManagement : MonoBehaviour
 {
     private InputManager inputManager;
     private TapeManager tapeManager;
+
+    private VideoControls videoControls;
     private PuzzleManagerNew puzzleManager;
+    
     public GameObject effects;
     public GameObject player;
 
     private GameObject camera;
+
+    public bool automaticallyEnterMemorySceneOnOpenTV;
 
     // Start is called before the first frame update
     void Start()
     {
         inputManager = FindObjectOfType<InputManager>();
         tapeManager = FindObjectOfType<TapeManager>();
+        tapeManager = FindObjectOfType<TapeManager>();
+        videoControls = FindObjectOfType<VideoControls>();
         puzzleManager = FindObjectOfType<PuzzleManagerNew>();
         camera = Camera.main.gameObject;
+        automaticallyEnterMemorySceneOnOpenTV = false;
     }
 
     public void EnterMemoryScene()
@@ -60,4 +68,24 @@ public class SceneManagement : MonoBehaviour
         Vector3 cameraRotationAtTelevision = new Vector3(0, 160, 0);
         player.transform.rotation = Quaternion.Euler(cameraRotationAtTelevision);
     }
+
+    public void EnableAutomaticEnterMemoryScene()
+    {
+        // if first time player enters memory scene, automatically teleport them in when they open TV
+        if (puzzleManager.level == 1 && tapeManager.televisionHasTape())
+        {
+            automaticallyEnterMemorySceneOnOpenTV = true;
+            
+            // draw player's attention to TV for the first time after selecting branching object
+            videoControls.televisionParticleEffects.startColor = Color.white;
+            videoControls.televisionParticleEffects.Play();
+            videoControls.televisionAudioSource.Play();
+        }
+    }
+
+    public void DisableAutomaticEnterMemoryScene()
+    {
+        automaticallyEnterMemorySceneOnOpenTV = false;
+    }
+    
 }
