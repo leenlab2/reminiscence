@@ -929,7 +929,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cd027e2d46b4d7bb57fc6ed6bafda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showNonBranchingKeyItemCues: 0
 --- !u!1 &160800216
 GameObject:
   m_ObjectHideFlags: 0
