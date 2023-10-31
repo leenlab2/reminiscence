@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 // Subclass of ObjectDistanceNew class, placed on an object if the object appears in both branches
 /// </summary>
-public class ObjectDistanceItemOnBothBranches : ObjectDistanceNew
+public class ObjectDistanceItemOnBothBranches : ObjectDistance
 {
     public GameObject targetObjA; // target object if this object appears on Branch A
     public GameObject targetObjB; // target object if this object also appears on Branch B

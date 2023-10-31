@@ -134,6 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5929280924604274769, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+    - {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7839345734118803749, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
     - {fileID: 5003668651631620905, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
@@ -148,9 +149,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6509117356245422364}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 72888871886693321}
     - targetCorrespondingSourceObject: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4236892712614416043}
@@ -170,21 +168,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
   m_PrefabInstance: {fileID: 811922857096702915}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &72888871886693321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3920006674120889725}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5528b658834904b33a820fcdfa7f6885, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetObj: {fileID: 4457132370632980030}
-  distanceThreshold: 1
-  isOnBothBranches: 0
 --- !u!114 &4236892712614416043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,9 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ddb1cf1c1404d6094ee6b5c13dfbfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline: {fileID: 0}
-  timeLeft: 3
-  puzzleManager: {fileID: 0}
   level: 0
   branch: 0
   keyItemModels:
@@ -207,11 +187,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   otherBranchingItem: {fileID: 0}
---- !u!1 &4457132370632980030 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3935703863922646525, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
-  m_PrefabInstance: {fileID: 811922857096702915}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7801918130379299599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7422350813914525900, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}

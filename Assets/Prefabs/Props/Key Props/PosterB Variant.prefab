@@ -134,6 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5929280924604274769, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+    - {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7839345734118803749, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
     - {fileID: 5003668651631620905, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
@@ -150,19 +151,11 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2425047963053950989}
-    - targetCorrespondingSourceObject: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5829734924419995759}
   m_SourcePrefab: {fileID: 100100000, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
 --- !u!4 &1657242074864646381 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140346988126114387, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
-  m_PrefabInstance: {fileID: 1661028047541693118}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2419354367851444035 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3935703863922646525, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
   m_PrefabInstance: {fileID: 1661028047541693118}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &3006104101125244527 stripped
@@ -175,21 +168,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
   m_PrefabInstance: {fileID: 1661028047541693118}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2425047963053950989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3039655906020742144}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5528b658834904b33a820fcdfa7f6885, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetObj: {fileID: 2419354367851444035}
-  distanceThreshold: 1
-  isOnBothBranches: 0
 --- !u!114 &5829734924419995759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,9 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ddb1cf1c1404d6094ee6b5c13dfbfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline: {fileID: 0}
-  timeLeft: 3
-  puzzleManager: {fileID: 0}
   level: 0
   branch: 1
   keyItemModels:

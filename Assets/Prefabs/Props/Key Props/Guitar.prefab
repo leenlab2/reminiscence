@@ -536,6 +536,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: appearsOnBothBranches
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2170228245570418129, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_Name
       value: Guitar
@@ -630,6 +634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5929280924604274769, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+    - {fileID: 6006811398805241733, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7839345734118803749, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
     - {fileID: 5003668651631620905, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
@@ -647,9 +652,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5993435174610125605}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4967050060828931901}
     - targetCorrespondingSourceObject: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1480194420436574362}
@@ -679,22 +681,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
   m_PrefabInstance: {fileID: 4719722603812682307}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4967050060828931901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8961596425003910397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e72b18b5d11243e0a9a9828277cfa0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outline: {fileID: 0}
-  timeLeft: 3
-  puzzleManager: {fileID: 0}
-  appearsOnBothBranches: 1
 --- !u!114 &1480194420436574362
 MonoBehaviour:
   m_ObjectHideFlags: 0

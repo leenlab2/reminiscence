@@ -60,7 +60,7 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         foreach (GameObject obj in keyItemModels)
         {
             Debug.Log(obj.name);
-            ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
+            ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.enabled = true;
             
             if (objDist.isOnBothBranches)
@@ -70,9 +70,9 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         }
         
         // Disable other branching item's ObjectDistance script and Puzzle Target
-        otherBranchingItem.GetComponent<ObjectDistanceNew>().enabled = false;
+        otherBranchingItem.GetComponent<ObjectDistance>().enabled = false;
         otherBranchingItem.GetComponent<PickupInteractable>().DisableWallMountable();
-        otherBranchingItem.GetComponent<ObjectDistanceNew>().targetObj.SetActive(false);
+        otherBranchingItem.GetComponent<ObjectDistance>().targetObj.SetActive(false);
         
         puzzleManager.HandleBranchingItemPlaced(branch, gameObject);
     }
@@ -81,7 +81,7 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     {
         foreach (GameObject obj in keyItemModels)
         {
-            ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
+            ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.targetObj.SetActive(true);
             objDist.targetObj.transform.GetChild(0).gameObject.SetActive(true);
         }
@@ -91,7 +91,7 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     {
         foreach (GameObject obj in keyItemModels)
         {
-            ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
+            ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.targetObj.transform.GetChild(0).gameObject.SetActive(false);
             objDist.targetObj.SetActive(false);
         }
