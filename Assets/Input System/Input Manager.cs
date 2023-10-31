@@ -148,8 +148,8 @@ public class InputManager : MonoBehaviour
 
     private void ExitMemoryScene(InputAction.CallbackContext obj)
     {
-        SceneManagement printScreenShot = GetComponent<SceneManagement>();
-        printScreenShot.ExitMemoryScene();
+        SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
+        sceneManagement.ExitMemoryScene();
     }
 
 
