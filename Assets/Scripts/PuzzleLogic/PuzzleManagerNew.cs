@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PuzzleManagerNew : MonoBehaviour
 {
@@ -9,13 +10,18 @@ public class PuzzleManagerNew : MonoBehaviour
     private int countKeyItemsLeft;
     private VideoControls _videoControls;
     public GameObject currentBranchingItemModel;
+
+    public GameObject memorySceneCanvas;
+    private SceneManagement sceneManagement;
     
     void Start()
     {
         _videoControls = FindObjectOfType<VideoControls>();
+        sceneManagement = FindObjectOfType<SceneManagement>();
         level = 1;
         countKeyItemsLeft = 3;
         currentBranch = Branch.None;
+        
         // TODO: Activate only level 1's branching items and non branching key items upon startup
 
     }
@@ -32,6 +38,9 @@ public class PuzzleManagerNew : MonoBehaviour
         {
             _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchBCorrupted);
         }
+        memorySceneCanvas.SetActive(true);
+        StartCoroutine(waiter());
+
     }
     
     public void HandleNonBranchingKeyItemPlaced()
@@ -48,6 +57,8 @@ public class PuzzleManagerNew : MonoBehaviour
             {
                 _videoControls.CompletePuzzle(ClipToPlay.BranchBSolution);
             }
+            memorySceneCanvas.SetActive(true);
+            StartCoroutine(waiter());
             level++;
             // TODO: Deactivate current level's branching items and non branching key items
             // TODO: Activate next level's branching items and non branching key items
@@ -58,5 +69,12 @@ public class PuzzleManagerNew : MonoBehaviour
     public void ShowNonBranchingItemsShadowCues()
     {
         currentBranchingItemModel.GetComponent<PuzzleBranchingKeyItem>().ShowCuesOfNonBranchingKeyItems();
+    }
+    
+    IEnumerator waiter()
+    {
+        //Wait for 4 seconds
+        yield return new WaitForSeconds(4);
+        sceneManagement.ExitMemoryScene();
     }
 }

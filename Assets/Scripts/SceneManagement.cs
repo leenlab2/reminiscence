@@ -27,6 +27,7 @@ public class SceneManagement : MonoBehaviour
             gameObject.transform.position = new Vector3(-5.03f, 50f, 4f);
             gameObject.transform.rotation = new Quaternion(0,0,0, 0);
 
+            // if a branching item is placed, show the shadow cues of the 3 key items
             if (puzzleManager.currentBranch != Branch.None)
             {
                 puzzleManager.ShowNonBranchingItemsShadowCues();
@@ -40,6 +41,8 @@ public class SceneManagement : MonoBehaviour
         inputManager.playerInputActions.FindAction("ExitMemoryScene").Disable();
         gameObject.transform.position = new Vector3(6.5f, -0.00115942955f, -9.0f);
         gameObject.transform.rotation = new Quaternion(-1.7f,-0.95f,8.96f, 0);
+        
+        puzzleManager.memorySceneCanvas.SetActive(false);
 
         Vector3 cameraRotationAtTelevision = new Vector3(0, 160, 0);
         gameObject.transform.rotation = Quaternion.Euler(cameraRotationAtTelevision);
