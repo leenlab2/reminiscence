@@ -5,7 +5,7 @@ using UnityEngine;
 public class PuzzleManagerNew : MonoBehaviour
 {
     public int level;
-    public Branch branch;
+    public Branch currentBranch;
     private int countKeyItemsLeft;
     private VideoControls _videoControls;
     public GameObject currentBranchingItemModel;
@@ -15,6 +15,7 @@ public class PuzzleManagerNew : MonoBehaviour
         _videoControls = FindObjectOfType<VideoControls>();
         level = 1;
         countKeyItemsLeft = 3;
+        currentBranch = Branch.None;
         // TODO: Activate only level 1's branching items and non branching key items upon startup
 
     }
@@ -22,6 +23,7 @@ public class PuzzleManagerNew : MonoBehaviour
     public void HandleBranchingItemPlaced(Branch branch, GameObject placedBranchingItemModel)
     {
         currentBranchingItemModel = placedBranchingItemModel;
+        currentBranch = branch;
         if (branch == Branch.BranchA)
         {
             _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchACorrupted);
@@ -38,11 +40,11 @@ public class PuzzleManagerNew : MonoBehaviour
         Debug.Log("Key items left: " + countKeyItemsLeft);
         if (countKeyItemsLeft == 0)
         {
-            if (branch == Branch.BranchA)
+            if (currentBranch == Branch.BranchA)
             {
                 _videoControls.CompletePuzzle(ClipToPlay.BranchASolution);
             }
-            else if (branch == Branch.BranchB)
+            else if (currentBranch == Branch.BranchB)
             {
                 _videoControls.CompletePuzzle(ClipToPlay.BranchBSolution);
             }

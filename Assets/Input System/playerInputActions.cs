@@ -80,6 +80,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ExitMemoryScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb2eae1f-8938-42db-a62d-66fa6013534d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -278,6 +287,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Placement Mode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""707587f1-b795-45b2-92e7-34240e17a31a"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitMemoryScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3fa64247-4f42-4034-986e-ad3e3d9aacc6"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitMemoryScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1334,6 +1365,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_InspectionToggle = m_Player.FindAction("InspectionToggle", throwIfNotFound: true);
         m_Player_PlacementMode = m_Player.FindAction("Placement Mode", throwIfNotFound: true);
+        m_Player_ExitMemoryScene = m_Player.FindAction("ExitMemoryScene", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1425,6 +1457,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_InspectionToggle;
     private readonly InputAction m_Player_PlacementMode;
+    private readonly InputAction m_Player_ExitMemoryScene;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1435,6 +1468,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @InspectionToggle => m_Wrapper.m_Player_InspectionToggle;
         public InputAction @PlacementMode => m_Wrapper.m_Player_PlacementMode;
+        public InputAction @ExitMemoryScene => m_Wrapper.m_Player_ExitMemoryScene;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1462,6 +1496,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @PlacementMode.started += instance.OnPlacementMode;
             @PlacementMode.performed += instance.OnPlacementMode;
             @PlacementMode.canceled += instance.OnPlacementMode;
+            @ExitMemoryScene.started += instance.OnExitMemoryScene;
+            @ExitMemoryScene.performed += instance.OnExitMemoryScene;
+            @ExitMemoryScene.canceled += instance.OnExitMemoryScene;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1484,6 +1521,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @PlacementMode.started -= instance.OnPlacementMode;
             @PlacementMode.performed -= instance.OnPlacementMode;
             @PlacementMode.canceled -= instance.OnPlacementMode;
+            @ExitMemoryScene.started -= instance.OnExitMemoryScene;
+            @ExitMemoryScene.performed -= instance.OnExitMemoryScene;
+            @ExitMemoryScene.canceled -= instance.OnExitMemoryScene;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1834,6 +1874,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnInspectionToggle(InputAction.CallbackContext context);
         void OnPlacementMode(InputAction.CallbackContext context);
+        void OnExitMemoryScene(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -21,7 +21,7 @@ public class TapeManager : MonoBehaviour
         videoPlayer.targetTexture.Release(); // ensure nothing is rendered on TV upon startup
     }
 
-    private bool televisionHasTape()
+    public bool televisionHasTape()
     {
         if (currentTapeInTv != null)
         {

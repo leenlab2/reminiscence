@@ -43,7 +43,9 @@ public class InputManager : MonoBehaviour
             if (ctx.interaction is HoldInteraction) ActivatePlacementMode(ctx);
         };
         playerInputActions.Player.PlacementMode.canceled += CancelPlacementMode;
-
+        
+        playerInputActions.FindAction("ExitMemoryScene").Disable();
+        playerInputActions.Player.ExitMemoryScene.performed += ExitMemoryScene;
 
         // Television Input Map
         playerInputActions.Television.CloseTV.performed += CloseTelevision;
@@ -131,7 +133,7 @@ public class InputManager : MonoBehaviour
         cameraCtrl.SwitchToTapeView();
     }
 
-    private void CloseTelevision(InputAction.CallbackContext obj)
+    public void CloseTelevision(InputAction.CallbackContext obj)
     {
         playerInputActions.Television.Disable();
         playerInputActions.Player.Enable();
@@ -139,6 +141,17 @@ public class InputManager : MonoBehaviour
         ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
         cameraCtrl.SwitchToPlayerView();
     }
+
+    #endregion
+
+    #region SceneManagement
+
+    private void ExitMemoryScene(InputAction.CallbackContext obj)
+    {
+        SceneManagement printScreenShot = GetComponent<SceneManagement>();
+        printScreenShot.ExitMemoryScene();
+    }
+
 
     #endregion
 

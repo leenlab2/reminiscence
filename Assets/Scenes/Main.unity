@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45120388, g: 0.50094444, b: 0.57367134, a: 1}
+  m_IndirectSpecularColor: {r: 0.45120293, g: 0.50094366, b: 0.57367015, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -912,6 +912,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5610417141333324897, guid: d5965abad657f484da8512edfb376375, type: 3}
   m_PrefabInstance: {fileID: 108749234}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &124944080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7112840480135186097, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
+  m_PrefabInstance: {fileID: 450421505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &124944087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124944080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10cd027e2d46b4d7bb57fc6ed6bafda9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showNonBranchingKeyItemCues: 0
 --- !u!1 &160800216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,7 +1923,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7112840480135186097, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 124944087}
   m_SourcePrefab: {fileID: 100100000, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
 --- !u!20 &450421515 stripped
 Camera:
@@ -3042,6 +3063,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 3511730877639383871, guid: d29a2ca6594f6cb42a3faec1728e02ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7450243946353312315, guid: d29a2ca6594f6cb42a3faec1728e02ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.96
@@ -3912,6 +3937,12 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 450421515}
+    - target: {fileID: 2161561282066356935, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: m_text
+      value: 'Enter
+
+        Memory'
+      objectReference: {fileID: 0}
     - target: {fileID: 2585250944250562811, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: m_Name
       value: TV
@@ -3963,6 +3994,18 @@ PrefabInstance:
     - target: {fileID: 3615385193586525894, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: m_DirectAudioVolumes.Array.data[0]
       value: 0.516
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936050854869547156, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 124944087}
+    - target: {fileID: 3936050854869547156, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnterMemoryScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936050854869547156, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneManagement, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5735,7 +5778,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3977894933457138007, guid: bbf84d56cafdb774f9e90e21c2d98086, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.62
+      value: 4.64
       objectReference: {fileID: 0}
     - target: {fileID: 3977894933457138007, guid: bbf84d56cafdb774f9e90e21c2d98086, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5743,7 +5786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3977894933457138007, guid: bbf84d56cafdb774f9e90e21c2d98086, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.6
+      value: -6.58
       objectReference: {fileID: 0}
     - target: {fileID: 3977894933457138007, guid: bbf84d56cafdb774f9e90e21c2d98086, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6261,10 +6304,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4967050060828931901, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: appearsOnBothBranches
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6873022605064703890, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
       propertyPath: m_Name
       value: Guitar
@@ -6765,6 +6804,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1993608631}
     m_Modifications:
+    - target: {fileID: 845513360825957052, guid: d88c5b4686eb63242bb01bfe2db9a257, type: 3}
+      propertyPath: branch
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6504859751378464165, guid: d88c5b4686eb63242bb01bfe2db9a257, type: 3}
       propertyPath: firstBranchingObjA
       value: 
