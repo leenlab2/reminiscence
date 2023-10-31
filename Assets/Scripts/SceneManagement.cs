@@ -11,7 +11,8 @@ public class SceneManagement : MonoBehaviour
     private PuzzleManagerNew puzzleManager;
     public GameObject effects;
     public GameObject player;
-    public GameObject camera;
+
+    private GameObject camera;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class SceneManagement : MonoBehaviour
         inputManager = FindObjectOfType<InputManager>();
         tapeManager = FindObjectOfType<TapeManager>();
         puzzleManager = FindObjectOfType<PuzzleManagerNew>();
+        camera = Camera.main.gameObject;
     }
 
     public void EnterMemoryScene()
