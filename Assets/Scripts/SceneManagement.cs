@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public class SceneManagement : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class SceneManagement : MonoBehaviour
     private PuzzleManagerNew puzzleManager;
     public GameObject effects;
     public GameObject player;
+    public GameObject camera;
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +25,15 @@ public class SceneManagement : MonoBehaviour
     {
         if (tapeManager.televisionHasTape()) // Enter memory scene if TV has tape inserted
         {
+            effects.SetActive(true);
+            camera.GetComponent<UniversalAdditionalCameraData>().renderPostProcessing = true;
+            
             inputManager.CloseTelevision(new InputAction.CallbackContext());
             inputManager.playerInputActions.FindAction("ExitMemoryScene").Enable();
             
             player.transform.position = new Vector3(-5.03f, 50f, 4f);
             player.transform.rotation = new Quaternion(0,0,0, 0);
             
-            effects.SetActive(true);
-
             // if a branching item is placed, show the shadow cues of the 3 key items
             if (puzzleManager.currentBranch != Branch.None)
             {
@@ -48,6 +51,7 @@ public class SceneManagement : MonoBehaviour
         
         puzzleManager.memorySceneCanvas.SetActive(false);
         effects.SetActive(false);
+        camera.GetComponent<UniversalAdditionalCameraData>().renderPostProcessing = false;
 
         Vector3 cameraRotationAtTelevision = new Vector3(0, 160, 0);
         player.transform.rotation = Quaternion.Euler(cameraRotationAtTelevision);
