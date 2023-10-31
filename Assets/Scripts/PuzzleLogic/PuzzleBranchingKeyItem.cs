@@ -21,7 +21,7 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     
     // The other branching item that could have been placed instead. We need a reference
     // to otherBranchingItem to disable their ObjectDistance script
-    [SerializeField] private GameObject otherBranchingItem;
+    [SerializeField] public GameObject otherBranchingItem;
     
     public event Action OnBranchingKeyItemPlaced;
     
@@ -52,10 +52,10 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         // Show outline around item
         outline.OutlineWidth = 5f;
         timeLeft = timeLengthOutline;
-        
+
         // Turn off branching item's cue
-        
-        
+
+
         // Enable ObjectDistance scripts of three key items on this branch
         foreach (GameObject obj in keyItemModels)
         {

@@ -11,7 +11,7 @@ public class PickupInteractable : MonoBehaviour
     [SerializeField] private GameObject placementGuide = null;
     [SerializeField] private bool wallMountable = false;
 
-    private Transform originalParent;
+    public Transform originalParent;
     private Vector3 originalObjScale;
     private Rigidbody rigidbody;
     private bool onWall;
@@ -27,12 +27,13 @@ public class PickupInteractable : MonoBehaviour
     {
         transform.SetPositionAndRotation(holdArea.position, holdArea.rotation);
         transform.SetParent(holdArea);
+        onWall = false;
     }
 
     public void MoveToPlacementGuide()
     {
         transform.SetPositionAndRotation(placementGuide.transform.position, placementGuide.transform.rotation);
-        placementGuide.SetActive(false);
+        TogglePlacementGuide(false);
         transform.SetParent(originalParent);
     }
 
@@ -43,6 +44,8 @@ public class PickupInteractable : MonoBehaviour
 
     public void TransformPlacementGuide(RaycastHit hit)
     {
+        if (!placementGuide.activeSelf) return;
+
         onWall = false;
         bool hitIsWall = hit.normal.y <= 0.05f;
         float distFromFlat = Vector3.Distance(hit.normal, new Vector3(0f, 1f, 0f));
@@ -61,7 +64,8 @@ public class PickupInteractable : MonoBehaviour
 
     public void ToggleFreezeBody(bool freeze)
     {
-        if (wallMountable && onWall) { 
+        if (wallMountable && onWall) {
+            Debug.Log("We are here for some reason");
             rigidbody.useGravity = false;
             rigidbody.isKinematic = true;
         } 

@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.UI;
 
 /// <summary>
 /// Handles the communication between the player and the object. Specifically manages what object is held (`HeldObj`)
@@ -12,13 +15,21 @@ public class PickUpInteractor : MonoBehaviour
     // Inspector settings
     [SerializeField] private Transform holdArea;
 
+    [Header("Branching Item Held Position")]
+    [SerializeField] private Transform rightHand;
+    [SerializeField] private Transform leftHand;
+
     public GameObject HeldObj { get; private set; }
+    private GameObject righthandObj;
+    private GameObject lefthandObj;
     private PickupInteractable pickupObj;
 
     private Quaternion originalHoldAreaRotation;
 
+    public static Action<GameObject> OnBranchingPickup;
+
 #region IsHeld
-public bool isHoldingObj()
+    public bool isHoldingObj()
     {
         return HeldObj != null;
     }
@@ -56,18 +67,75 @@ public bool isHoldingObj()
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
         if (pickObj == null) return;
 
+        // TODO: once a more robust map switching system is in place, change this
+        if (pickObj.GetComponent<PuzzleBranchingKeyItem>() != null && transform.position.y < 50)
+        {
+            BranchingObjPickup(pickObj.gameObject);
+        } else
+        {
+            NormalObjPickup(pickObj, holdArea);
+        }
+
+        HeldObj = obj;
+        pickupObj = pickObj;
+    }
+
+    private void NormalObjPickup(PickupInteractable obj, Transform newPos)
+    {
         ResetHoldArea();
 
         // Fix rigid body settings of target object
-        pickObj.ToggleFreezeBody(true);
-        pickObj.MakeObjSmall();
+        obj.ToggleFreezeBody(true);
+        obj.MakeObjSmall();
 
         // Move to hand
-        pickObj.MoveToHand(holdArea);
-        HeldObj = obj;
-        pickupObj = pickObj;
+        obj.MoveToHand(newPos);
 
-        ToggleObjectColliders(obj, false);
+        ToggleObjectColliders(obj.gameObject, false);
+    }
+
+    private void BranchingObjPickup(GameObject obj)
+    {
+        PuzzleBranchingKeyItem puzzleItem = obj.GetComponent<PuzzleBranchingKeyItem>();
+        GameObject otherBranching = puzzleItem.otherBranchingItem;
+
+        NormalObjPickup(obj.GetComponent<PickupInteractable>(), rightHand);
+        NormalObjPickup(otherBranching.GetComponent<PickupInteractable>(), leftHand);
+
+        righthandObj = obj;
+        lefthandObj = otherBranching;
+
+        obj.GetComponent<Outline>().OutlineWidth = 5f;
+        OnBranchingPickup?.Invoke(obj);
+    }
+
+    public void SelectBranchingItem(GameObject obj)
+    {
+        obj.GetComponent<PickupInteractable>().MakeObjBig();
+        NormalObjPickup(obj.GetComponent<PickupInteractable>(), holdArea);
+        HeldObj = obj;
+        pickupObj = obj.GetComponent<PickupInteractable>();
+
+        // figure out whether obj is righthandobj or lefthandobj
+        GameObject otherObj;
+        if (obj == righthandObj)
+        {
+            otherObj = lefthandObj;
+        } else
+        {
+            otherObj = righthandObj;
+        }
+
+
+        // TODO: when drop no longer relies on placement mode, change this
+        PickupInteractable otherPickUpObj = otherObj.GetComponent<PickupInteractable>();
+        ToggleObjectColliders(otherObj, true);
+        otherPickUpObj.transform.SetParent(otherPickUpObj.originalParent);
+        otherPickUpObj.ToggleFreezeBody(false);
+        otherPickUpObj.MakeObjBig();
+
+        righthandObj = null;
+        lefthandObj = null;
     }
 
     private void ResetHoldArea()
