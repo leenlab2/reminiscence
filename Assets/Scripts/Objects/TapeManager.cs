@@ -8,8 +8,7 @@ public class TapeManager : MonoBehaviour
     private VideoPlayer videoPlayer;
     private GameObject currentTapeInTv;
     private PickUpInteractor pickUpInteractor;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
@@ -35,22 +34,31 @@ public class TapeManager : MonoBehaviour
     {
         if (televisionHasTape()) // if television already has tape in it, do nothing
         {
-            print("HAD TAPE");
             return;
         }
         else // if television does not have tape, insert tape
         {
             // hide obj and put corresponding video clip on TV
-            print("INSERTING TAPE");
-            print(tapeGameObject);
             TapeSO tapeSO = tapeGameObject.GetComponent<TapeInformation>().TapeSO;
             videoPlayer.clip = tapeSO.GetVideoClip();
             videoPlayer.time = 0;
+            
+            // play first frame to update render text
             videoPlayer.Play();
             videoPlayer.Pause();
             currentTapeInTv = tapeGameObject;
             tapeGameObject.active = false;
             pickUpInteractor.DropObject();
+            
+            // activate branching items of this tape
+            TapeInformation tapeInfo = tapeGameObject.GetComponent<TapeInformation>();
+
+            // TODO: Only activate branching items of this tape if PuzzleManager says we are on this tape's level
+            int level = tapeInfo.TapeSO.level;
+            tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>().enabled = true;
+            tapeInfo.branchingItemB.GetComponent<ObjectDistanceNew>().enabled = true;
+            ShowBranchCues();
+
         }
     }
 
@@ -58,12 +66,18 @@ public class TapeManager : MonoBehaviour
     {
         if (!televisionHasTape()) // if television does not have tape, do nothing
         {
-            print("DO NOTHING");
             return;
         }
         else // if television has tape in it, remove it
         {
-            print("REMOVING");
+            // Deactivate branching items of this tape
+            TapeInformation tapeInfo = currentTapeInTv.GetComponent<TapeInformation>();
+            HideBranchCues();
+            // TODO: Only activate branching items of this tape if PuzzleManager says we are on this tape's level
+            int level = tapeInfo.TapeSO.level;
+            tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>().enabled = false;
+            tapeInfo.branchingItemB.GetComponent<ObjectDistanceNew>().enabled = false;
+            
             // put obj back in hands of player and set video clip on TV to null
             // set clip on TV's player to null
             currentTapeInTv.active = true;
@@ -71,12 +85,27 @@ public class TapeManager : MonoBehaviour
             pickUpInteractor.PickupObject(currentTapeInTv);
             videoPlayer.clip = null;
             currentTapeInTv = null;
-
         }
     }
     
     public TapeSO GetCurrentTapeInTV()
     {
         return currentTapeInTv.GetComponent<TapeInformation>().TapeSO;
+    }
+
+    // Show cue of branching object for whatever tape is in the TV
+    private void ShowBranchCues()
+    {
+        TapeInformation tapeInfo = currentTapeInTv.GetComponent<TapeInformation>();
+        ObjectDistanceNew objDist = tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>();
+        objDist.targetObj.SetActive(true);
+    }
+
+    // Hide cue of branching object for whatever tape is in the TV
+    private void HideBranchCues()
+    {
+        TapeInformation tapeInfo = currentTapeInTv.GetComponent<TapeInformation>();
+        ObjectDistanceNew objDist = tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>();
+        objDist.targetObj.SetActive(false);
     }
 }

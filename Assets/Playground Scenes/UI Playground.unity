@@ -339,6 +339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 108644629}
   - component: {fileID: 108644630}
+  - component: {fileID: 108644631}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -423,6 +424,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &108644631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108644628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1001 &108749234
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1745,7 +1769,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4728355300391140902, guid: d29a2ca6594f6cb42a3faec1728e02ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1082109373}
   m_SourcePrefab: {fileID: 100100000, guid: d29a2ca6594f6cb42a3faec1728e02ea, type: 3}
 --- !u!4 &899073281 stripped
 Transform:
@@ -2204,6 +2231,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3795316772592565209, guid: 1575209439608624d80ff1cb46aee144, type: 3}
   m_PrefabInstance: {fileID: 1064423291}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1082109370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4728355300391140902, guid: d29a2ca6594f6cb42a3faec1728e02ea, type: 3}
+  m_PrefabInstance: {fileID: 899073280}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1082109373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082109370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!4 &1085501615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 563048650492985291, guid: 5b808565b965f7546964b95a2373c447, type: 3}
@@ -2539,6 +2594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1230188811}
   - component: {fileID: 1230188812}
+  - component: {fileID: 1230188813}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -2623,6 +2679,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1230188813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230188810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &1270722731
 GameObject:
   m_ObjectHideFlags: 0
@@ -4877,14 +4956,6 @@ PrefabInstance:
     - target: {fileID: 443894620657861292, guid: 245c9e2852a19405084a91783b9f475b, type: 3}
       propertyPath: m_Name
       value: HUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 7568270136680320936, guid: 245c9e2852a19405084a91783b9f475b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 312
-      objectReference: {fileID: 0}
-    - target: {fileID: 7684348945717490196, guid: 245c9e2852a19405084a91783b9f475b, type: 3}
-      propertyPath: m_text
-      value: '[T] TV mode'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - IsTape
+  - LightObj
+  - HeavyObj
   layers:
   - Default
   - TransparentFX

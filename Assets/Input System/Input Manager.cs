@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
     private bool placementMode = false;
 
     private InteractionCue _interactionCue;
+    private GameObject currSelectedBranching = null;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Television.Disable();
         playerInputActions.Inspect.Disable();
         playerInputActions.Placement.Disable();
+        playerInputActions.Branching.Disable();
 
         // Player Input Map
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
@@ -55,6 +57,11 @@ public class InputManager : MonoBehaviour
 
         // Placement Input Map
         playerInputActions.Placement.Place.performed += ObjectPlace;
+
+        // Branching Input Map
+        PickUpInteractor.OnBranchingPickup += BranchingItemPickedUp;
+        playerInputActions.Branching.Navigate.performed += SwitchBranchingItem;
+        playerInputActions.Branching.Submit.performed += SubmitBranchingItem;
     }
 
     private void Start()
@@ -68,6 +75,18 @@ public class InputManager : MonoBehaviour
         MoveCamera();
         ObjectRotation();
 
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.visible = true;
+        }
     }
 
     #region Player Movement
@@ -103,19 +122,12 @@ public class InputManager : MonoBehaviour
         Vector2 cameraInput = playerInputActions.Player.Look.ReadValue<Vector2>();
 
         // Move the player to look around left/right when mouse pans left/right
-        transform.Rotate(0, cameraInput.x * _mouseSensitivity, 0);
+        transform.Rotate(0, cameraInput.x * _mouseSensitivity * 1.2f, 0);
 
         // Move the camera to look around up/down when mouse pans up/down
         Transform playerCamera = GetComponentInChildren<Camera>().transform;
 
-        /*if ( (playerCamera.localRotation.x > 0.296681613) && (cameraInput.y > 0)) // Center -> Quaternion(0.112553328,0,0,0.993645728) Up -> Quaternion(-0.178272739,0,0,0.983981133)  Down -> Quaternion(0.296681613,0,0,0.954976499)
-        {
-            cameraInput.y = 0;
-        }
-        else if((playerCamera.localRotation.x < -0.3) && (cameraInput.y < 0)) //Quaternion(0.647919357,0,0,0.761708915)
-        {
-            cameraInput.y = 0;
-        }*/
+        
         float x_rotation = Mathf.Clamp(playerCamera.localRotation.eulerAngles.x - cameraInput.y * _mouseSensitivity, -60f, 360f);
         playerCamera.localRotation = Quaternion.Euler(x_rotation, playerCamera.localRotation.y, playerCamera.localRotation.z);
 
@@ -148,7 +160,7 @@ public class InputManager : MonoBehaviour
     #region Object Interactions
     private void ObjectInteract(InputAction.CallbackContext context)
     {
-        Debug.Log("Interaction button pressed");
+        //Debug.Log("Interaction button pressed");
         InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
         interactableDetector.InteractWithObject();
     }
@@ -226,5 +238,35 @@ public class InputManager : MonoBehaviour
         return inspectionMode;
     }
     #endregion
+    #endregion
+
+    #region Branching Item
+    void BranchingItemPickedUp(GameObject obj)
+    {
+        currSelectedBranching = obj;
+        playerInputActions.Player.Disable();
+        playerInputActions.Branching.Enable();
+    }
+
+    void SwitchBranchingItem(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("Switching branching item");
+        currSelectedBranching.GetComponent<Outline>().OutlineWidth = 0f;
+        GameObject otherBranching = currSelectedBranching.GetComponent<PuzzleBranchingKeyItem>().otherBranchingItem;
+        otherBranching.GetComponent<Outline>().OutlineWidth = 5f;
+
+        currSelectedBranching = otherBranching;
+    }
+
+    void SubmitBranchingItem(InputAction.CallbackContext ctx)
+    {
+        currSelectedBranching.GetComponent<Outline>().OutlineWidth = 0f;
+
+        PickUpInteractor pickupInteractor = GetComponent<PickUpInteractor>();
+        pickupInteractor.SelectBranchingItem(currSelectedBranching);
+
+        playerInputActions.Branching.Disable();
+        playerInputActions.Player.Enable();
+    }
     #endregion
 }
