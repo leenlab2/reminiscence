@@ -133,8 +133,8 @@ public class PickUpInteractor : MonoBehaviour
         otherPickUpObj.ToggleFreezeBody(false);
         otherPickUpObj.MakeObjBig();
 
-        rightHand = null;
-        leftHand = null;
+        righthandObj = null;
+        lefthandObj = null;
     }
 
     private void ResetHoldArea()

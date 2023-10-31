@@ -27,12 +27,13 @@ public class PickupInteractable : MonoBehaviour
     {
         transform.SetPositionAndRotation(holdArea.position, holdArea.rotation);
         transform.SetParent(holdArea);
+        onWall = false;
     }
 
     public void MoveToPlacementGuide()
     {
         transform.SetPositionAndRotation(placementGuide.transform.position, placementGuide.transform.rotation);
-        placementGuide.SetActive(false);
+        TogglePlacementGuide(false);
         transform.SetParent(originalParent);
     }
 
