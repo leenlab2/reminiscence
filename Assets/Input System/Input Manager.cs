@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     private bool inspectionMode = false;
     private bool placementMode = false;
 
+    private InteractionCue _interactionCue;
     private GameObject currSelectedBranching = null;
 
     private void Awake()
@@ -62,6 +63,12 @@ public class InputManager : MonoBehaviour
         playerInputActions.Branching.Navigate.performed += SwitchBranchingItem;
         playerInputActions.Branching.Submit.performed += SubmitBranchingItem;
     }
+
+    private void Start()
+    {
+        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
+    }
+
     private void FixedUpdate()
     {
         MovePlayer();
@@ -205,9 +212,12 @@ public class InputManager : MonoBehaviour
 
         inspectionMode = !inspectionMode;
 
+        InteractionCue interactionCue = GetComponent<InteractionCue>();
+
         if (inspectionMode)
         {
             Debug.Log("Toggling On Inspect");
+            _interactionCue.SetInteractionCue(InteractionCueType.Inspection);
             playerInputActions.Player.Disable();
             playerInputActions.Inspect.Enable();
 
@@ -216,10 +226,16 @@ public class InputManager : MonoBehaviour
         else
         {
             Debug.Log("Toggling Off Inspect");
+            _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             playerInputActions.Player.Enable();
             playerInputActions.Inspect.Disable();
             inspection.ToggleFocusObject(false);
         }
+    }
+
+    public bool InInspection()
+    {
+        return inspectionMode;
     }
     #endregion
     #endregion

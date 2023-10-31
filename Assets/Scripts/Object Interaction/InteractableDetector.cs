@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
+using TMPro;
 
 public enum InteractionType
 {
@@ -31,6 +32,13 @@ public class InteractableDetector : MonoBehaviour
     // private fields
     private RaycastHit? _currentHit = null;
     private InteractionType interactionType;
+
+    private InteractionCue _interactionCue;
+
+    private void Start()
+    {
+        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
+    }
 
     private void Update()
     {
@@ -70,10 +78,21 @@ public class InteractableDetector : MonoBehaviour
 
         if (hit.transform.parent?.name == "TV" || hit.transform.parent?.name == "TV_textures")
         {
+            if (pickUpInteractor.IsHeld("Tape Model"))
+            {
+                _interactionCue.SetInteractionCue(InteractionCueType.InsertTape);
+            }
+            
+            TapeManager tapeManager = FindObjectOfType<TapeManager>();
+            if (tapeManager.televisionHasTape())
+            {
+                _interactionCue.SetInteractionCue(InteractionCueType.RemoveTape);
+            }
             interactionType = InteractionType.InsertRemoveTape;
         }
         else if (hit.transform.GetComponent<PickupInteractable>() && !pickUpInteractor.isHoldingObj())
         {
+            _interactionCue.SetInteractionCue(InteractionCueType.Pickup);
             interactionType = InteractionType.Pickup;
         } else
         {
@@ -89,6 +108,19 @@ public class InteractableDetector : MonoBehaviour
 
     private void NotDetected()
     {
+        PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
+        if (!pickUpInteractor.isHoldingObj())
+        {
+            _interactionCue.SetInteractionCue(InteractionCueType.Empty);
+        }
+        if (pickUpInteractor.IsHeld("Tape Model"))
+        {
+            InputManager inputManager = FindObjectOfType<InputManager>();
+            if (!inputManager.InInspection())
+            {
+                _interactionCue.SetInteractionCue(InteractionCueType.Hold);
+            }
+        }
         _crossHairDisplay.sprite = _defaultCrosshair;
     }
     #endregion
@@ -118,6 +150,7 @@ public class InteractableDetector : MonoBehaviour
         } else if (interactionType == InteractionType.Pickup)
         {
             Debug.Log("Interaction type: pickup");
+            _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             GameObject obj = _currentHit.Value.transform.gameObject;
             pickUpInteractor.PickupObject(obj);
         }

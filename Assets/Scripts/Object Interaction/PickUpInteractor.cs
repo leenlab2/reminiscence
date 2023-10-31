@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 using UnityEngine.Scripting.APIUpdating;
 using UnityEngine.UI;
 
@@ -26,6 +27,7 @@ public class PickUpInteractor : MonoBehaviour
 
     private Quaternion originalHoldAreaRotation;
 
+    private TMP_Text _interactText;
     public static Action<GameObject> OnBranchingPickup;
 
 #region IsHeld
@@ -51,6 +53,8 @@ public class PickUpInteractor : MonoBehaviour
     {
         originalHoldAreaRotation = holdArea.rotation;
         InteractableDetector.OnCursorHitChange += DetermineNewPosition;
+
+        _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
     }
 
     private void ToggleObjectColliders(GameObject obj, bool on)
@@ -83,6 +87,8 @@ public class PickUpInteractor : MonoBehaviour
     private void NormalObjPickup(PickupInteractable obj, Transform newPos)
     {
         ResetHoldArea();
+
+        // _interactText.text = "Hold left to aim and click right to place. Press E to inspect.";
 
         // Fix rigid body settings of target object
         obj.ToggleFreezeBody(true);
