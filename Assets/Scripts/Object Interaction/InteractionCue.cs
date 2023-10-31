@@ -20,11 +20,11 @@ public class InteractionCue : MonoBehaviour
     private TMP_Text _pickupText;
 
     private string pickUp = "[LeftClick] Pickup";
-    private string insertTape = "[LeftClick] insert tape";
-    private string removeTape = "[LeftClick to remove";
-    private string putDown = "[E] to inspect";
+    private string insertTape = "[LeftClick] Insert tape";
+    private string removeTape = "[LeftClick] Remove tape";
+    private string putDown = "[E] Inspect";
     private string holdText = "[Hold LeftClick + RightClick] Put down";
-    private string inspectionText = "[Mouse] to rotate              [E] to exit";
+    private string inspectionText = "[Mouse] Rotate              [E] Exit";
     private string empty = "";
 
     // Start is called before the first frame update
