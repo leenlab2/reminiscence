@@ -99,6 +99,8 @@ public class TapeManager : MonoBehaviour
         TapeInformation tapeInfo = currentTapeInTv.GetComponent<TapeInformation>();
         ObjectDistanceNew objDist = tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>();
         objDist.targetObj.SetActive(true);
+        ObjectDistanceNew objDistB = tapeInfo.branchingItemB.GetComponent<ObjectDistanceNew>();
+        objDistB.targetObj.SetActive(true);
     }
 
     // Hide cue of branching object for whatever tape is in the TV
@@ -107,5 +109,7 @@ public class TapeManager : MonoBehaviour
         TapeInformation tapeInfo = currentTapeInTv.GetComponent<TapeInformation>();
         ObjectDistanceNew objDist = tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>();
         objDist.targetObj.SetActive(false);
+        ObjectDistanceNew objDistB = tapeInfo.branchingItemB.GetComponent<ObjectDistanceNew>();
+        objDistB.targetObj.SetActive(false);
     }
 }

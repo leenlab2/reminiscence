@@ -31,7 +31,7 @@ public class ChangeCameraPosition : MonoBehaviour
         // Calculate position of camera when it is on television
         _cameraOnTelevisionTransform = new GameObject().transform;
         print(_televisionTransform.position);
-        _cameraOnTelevisionTransform.position = _televisionTransform.position + new Vector3(-1.0f, 1.50f, 3.80f);
+        _cameraOnTelevisionTransform.position = _televisionTransform.position + new Vector3(-1.0f, 2.50f, 3.80f);
         
         // Calculate rotation of camera when it is on television
         Vector3 televisionRotation = _televisionTransform.rotation.eulerAngles;
