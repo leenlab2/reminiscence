@@ -33,11 +33,11 @@ public class InteractableDetector : MonoBehaviour
     private RaycastHit? _currentHit = null;
     private InteractionType interactionType;
 
-    private TMP_Text _interactText;
+    private InteractionCue _interactionCue;
 
     private void Start()
     {
-        _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
+        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
     }
 
     private void Update()
@@ -80,19 +80,19 @@ public class InteractableDetector : MonoBehaviour
         {
             if (pickUpInteractor.IsHeld("Tape Model"))
             {
-                _interactText.text = "Left click to insert tape";
+                _interactionCue.SetInteractionCue(InteractionCueType.InsertTape);
             }
             
             TapeManager tapeManager = FindObjectOfType<TapeManager>();
             if (tapeManager.televisionHasTape())
             {
-                _interactText.text = "Left click to remove tape";
+                _interactionCue.SetInteractionCue(InteractionCueType.RemoveTape);
             }
             interactionType = InteractionType.InsertRemoveTape;
         }
         else if (hit.transform.GetComponent<PickupInteractable>() && !pickUpInteractor.isHoldingObj())
         {
-            _interactText.text = "Left click to pick up";
+            _interactionCue.SetInteractionCue(InteractionCueType.Pickup);
             interactionType = InteractionType.Pickup;
         } else
         {
@@ -111,14 +111,14 @@ public class InteractableDetector : MonoBehaviour
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
         if (!pickUpInteractor.isHoldingObj())
         {
-            _interactText.text = "";
+            _interactionCue.SetInteractionCue(InteractionCueType.Empty);
         }
         if (pickUpInteractor.IsHeld("Tape Model"))
         {
             InputManager inputManager = FindObjectOfType<InputManager>();
             if (!inputManager.InInspection())
             {
-                _interactText.text = "Hold left to aim and click right to place. Press E to inspect.";
+                _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             }
         }
         _crossHairDisplay.sprite = _defaultCrosshair;
@@ -150,7 +150,7 @@ public class InteractableDetector : MonoBehaviour
         } else if (interactionType == InteractionType.Pickup)
         {
             Debug.Log("Interaction type: pickup");
-            _interactText.text = "Hold left to aim and click right to place";
+            _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             GameObject obj = _currentHit.Value.transform.gameObject;
             pickUpInteractor.PickupObject(obj);
         }

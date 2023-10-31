@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
-using TMPro;
 
 public class InputManager : MonoBehaviour
 {
@@ -20,7 +19,7 @@ public class InputManager : MonoBehaviour
     private bool inspectionMode = false;
     private bool placementMode = false;
 
-    private TMP_Text _interactText;
+    private InteractionCue _interactionCue;
 
     private void Awake()
     {
@@ -60,7 +59,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
+        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
     }
 
     private void FixedUpdate()
@@ -201,10 +200,12 @@ public class InputManager : MonoBehaviour
 
         inspectionMode = !inspectionMode;
 
+        InteractionCue interactionCue = GetComponent<InteractionCue>();
+
         if (inspectionMode)
         {
             Debug.Log("Toggling On Inspect");
-            _interactText.text = "Use mouse to rotate object. Press E to exit inspection.";
+            _interactionCue.SetInteractionCue(InteractionCueType.Inspection);
             playerInputActions.Player.Disable();
             playerInputActions.Inspect.Enable();
 
@@ -213,7 +214,7 @@ public class InputManager : MonoBehaviour
         else
         {
             Debug.Log("Toggling Off Inspect");
-            _interactText.text = "Hold left to aim and click right to place. Press E to inspect.";
+            _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             playerInputActions.Player.Enable();
             playerInputActions.Inspect.Disable();
             inspection.ToggleFocusObject(false);
