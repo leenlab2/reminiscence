@@ -73,15 +73,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Placement Mode"",
-                    ""type"": ""Button"",
-                    ""id"": ""5f8455fc-e820-4ebc-afaa-fdb06b6288c8"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""ExitMemoryScene"",
                     ""type"": ""Button"",
                     ""id"": ""fb2eae1f-8938-42db-a62d-66fa6013534d"",
@@ -265,28 +256,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""InspectionToggle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""807dec79-6972-4591-b9f9-8b71ed2c2b14"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Placement Mode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""de56fbb0-3bd7-4cb4-9be6-2de73a8696c0"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Placement Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1255,45 +1224,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Placement"",
-            ""id"": ""5f6241b3-b0e5-453b-9b49-5c831cc480a2"",
-            ""actions"": [
-                {
-                    ""name"": ""Place"",
-                    ""type"": ""Button"",
-                    ""id"": ""76506406-6258-4f28-8de9-07245b3d1b30"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""f6f9caa1-1f4c-4800-ae74-600581a8b386"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Place"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2505e120-2998-4525-bfee-951c49f1d828"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Place"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""Branching"",
             ""id"": ""262a23cf-d3c2-4685-bf8b-388144b6a13f"",
             ""actions"": [
@@ -1531,7 +1461,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_OpenTV = m_Player.FindAction("OpenTV", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_InspectionToggle = m_Player.FindAction("InspectionToggle", throwIfNotFound: true);
-        m_Player_PlacementMode = m_Player.FindAction("Placement Mode", throwIfNotFound: true);
         m_Player_ExitMemoryScene = m_Player.FindAction("ExitMemoryScene", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1554,9 +1483,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Inspect = asset.FindActionMap("Inspect", throwIfNotFound: true);
         m_Inspect_InspectionToggle = m_Inspect.FindAction("InspectionToggle", throwIfNotFound: true);
         m_Inspect_Rotate = m_Inspect.FindAction("Rotate", throwIfNotFound: true);
-        // Placement
-        m_Placement = asset.FindActionMap("Placement", throwIfNotFound: true);
-        m_Placement_Place = m_Placement.FindAction("Place", throwIfNotFound: true);
         // Branching
         m_Branching = asset.FindActionMap("Branching", throwIfNotFound: true);
         m_Branching_Cancel = m_Branching.FindAction("Cancel", throwIfNotFound: true);
@@ -1628,7 +1554,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_OpenTV;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_InspectionToggle;
-    private readonly InputAction m_Player_PlacementMode;
     private readonly InputAction m_Player_ExitMemoryScene;
     public struct PlayerActions
     {
@@ -1639,7 +1564,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @OpenTV => m_Wrapper.m_Player_OpenTV;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @InspectionToggle => m_Wrapper.m_Player_InspectionToggle;
-        public InputAction @PlacementMode => m_Wrapper.m_Player_PlacementMode;
         public InputAction @ExitMemoryScene => m_Wrapper.m_Player_ExitMemoryScene;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1665,9 +1589,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @InspectionToggle.started += instance.OnInspectionToggle;
             @InspectionToggle.performed += instance.OnInspectionToggle;
             @InspectionToggle.canceled += instance.OnInspectionToggle;
-            @PlacementMode.started += instance.OnPlacementMode;
-            @PlacementMode.performed += instance.OnPlacementMode;
-            @PlacementMode.canceled += instance.OnPlacementMode;
             @ExitMemoryScene.started += instance.OnExitMemoryScene;
             @ExitMemoryScene.performed += instance.OnExitMemoryScene;
             @ExitMemoryScene.canceled += instance.OnExitMemoryScene;
@@ -1690,9 +1611,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @InspectionToggle.started -= instance.OnInspectionToggle;
             @InspectionToggle.performed -= instance.OnInspectionToggle;
             @InspectionToggle.canceled -= instance.OnInspectionToggle;
-            @PlacementMode.started -= instance.OnPlacementMode;
-            @PlacementMode.performed -= instance.OnPlacementMode;
-            @PlacementMode.canceled -= instance.OnPlacementMode;
             @ExitMemoryScene.started -= instance.OnExitMemoryScene;
             @ExitMemoryScene.performed -= instance.OnExitMemoryScene;
             @ExitMemoryScene.canceled -= instance.OnExitMemoryScene;
@@ -1948,52 +1866,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     }
     public InspectActions @Inspect => new InspectActions(this);
 
-    // Placement
-    private readonly InputActionMap m_Placement;
-    private List<IPlacementActions> m_PlacementActionsCallbackInterfaces = new List<IPlacementActions>();
-    private readonly InputAction m_Placement_Place;
-    public struct PlacementActions
-    {
-        private @PlayerInputActions m_Wrapper;
-        public PlacementActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Place => m_Wrapper.m_Placement_Place;
-        public InputActionMap Get() { return m_Wrapper.m_Placement; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlacementActions set) { return set.Get(); }
-        public void AddCallbacks(IPlacementActions instance)
-        {
-            if (instance == null || m_Wrapper.m_PlacementActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlacementActionsCallbackInterfaces.Add(instance);
-            @Place.started += instance.OnPlace;
-            @Place.performed += instance.OnPlace;
-            @Place.canceled += instance.OnPlace;
-        }
-
-        private void UnregisterCallbacks(IPlacementActions instance)
-        {
-            @Place.started -= instance.OnPlace;
-            @Place.performed -= instance.OnPlace;
-            @Place.canceled -= instance.OnPlace;
-        }
-
-        public void RemoveCallbacks(IPlacementActions instance)
-        {
-            if (m_Wrapper.m_PlacementActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IPlacementActions instance)
-        {
-            foreach (var item in m_Wrapper.m_PlacementActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_PlacementActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public PlacementActions @Placement => new PlacementActions(this);
-
     // Branching
     private readonly InputActionMap m_Branching;
     private List<IBranchingActions> m_BranchingActionsCallbackInterfaces = new List<IBranchingActions>();
@@ -2107,7 +1979,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnOpenTV(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnInspectionToggle(InputAction.CallbackContext context);
-        void OnPlacementMode(InputAction.CallbackContext context);
         void OnExitMemoryScene(InputAction.CallbackContext context);
     }
     public interface IUIActions
@@ -2133,10 +2004,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnInspectionToggle(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
-    }
-    public interface IPlacementActions
-    {
-        void OnPlace(InputAction.CallbackContext context);
     }
     public interface IBranchingActions
     {

@@ -30,16 +30,11 @@ public class PickupInteractable : MonoBehaviour
         onWall = false;
     }
 
+    #region Placement Guide
     public void MoveToPlacementGuide()
     {
         transform.SetPositionAndRotation(placementGuide.transform.position, placementGuide.transform.rotation);
-        TogglePlacementGuide(false);
         transform.SetParent(originalParent);
-    }
-
-    public void TogglePlacementGuide(bool on)
-    {
-        placementGuide.SetActive(on);
     }
 
     public void TransformPlacementGuide(RaycastHit hit)
@@ -65,7 +60,6 @@ public class PickupInteractable : MonoBehaviour
     public void ToggleFreezeBody(bool freeze)
     {
         if (wallMountable && onWall) {
-            Debug.Log("We are here for some reason");
             rigidbody.useGravity = false;
             rigidbody.isKinematic = true;
         } 
@@ -86,6 +80,7 @@ public class PickupInteractable : MonoBehaviour
             rigidbody.constraints = RigidbodyConstraints.None;
         }
     }
+    #endregion
 
     public void DisableWallMountable()
     {

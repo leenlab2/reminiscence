@@ -10,6 +10,7 @@ public enum InteractionType
 {
     None,
     Pickup,
+    Place,
     InsertRemoveTape
 }
 
@@ -61,7 +62,8 @@ public class InteractableDetector : MonoBehaviour
 
             CheckInteractableTypeHit(hit);
 
-            if (interactionType != InteractionType.None)
+            if (interactionType != InteractionType.None 
+                && interactionType != InteractionType.Place)
             {
                 Detected();
                 _currentHit = hit;
@@ -94,7 +96,11 @@ public class InteractableDetector : MonoBehaviour
         {
             _interactionCue.SetInteractionCue(InteractionCueType.Pickup);
             interactionType = InteractionType.Pickup;
-        } else
+        } else if (pickUpInteractor.isHoldingObj())
+        {
+            interactionType = InteractionType.Place;
+        }
+        else
         {
             interactionType = InteractionType.None;
         }
@@ -153,6 +159,10 @@ public class InteractableDetector : MonoBehaviour
             _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             GameObject obj = _currentHit.Value.transform.gameObject;
             pickUpInteractor.PickupObject(obj);
+        } else if (interactionType == InteractionType.Place)
+        {
+            Debug.Log("Interaction type: place");
+            pickUpInteractor.DropObject();
         }
     }
 }

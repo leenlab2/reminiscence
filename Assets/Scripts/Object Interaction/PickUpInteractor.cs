@@ -66,6 +66,7 @@ public class PickUpInteractor : MonoBehaviour
         }
     }
 
+    #region Pickup
     public void PickupObject(GameObject obj)
     {
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
@@ -99,7 +100,9 @@ public class PickUpInteractor : MonoBehaviour
 
         ToggleObjectColliders(obj.gameObject, false);
     }
+    #endregion
 
+    #region Branching Item Choice
     private void BranchingObjPickup(GameObject obj)
     {
         PuzzleBranchingKeyItem puzzleItem = obj.GetComponent<PuzzleBranchingKeyItem>();
@@ -143,7 +146,7 @@ public class PickUpInteractor : MonoBehaviour
         righthandObj = null;
         lefthandObj = null;
     }
-
+    #endregion
     private void ResetHoldArea()
     {
         HeldObj = null;
@@ -152,14 +155,6 @@ public class PickUpInteractor : MonoBehaviour
     }
 
     #region Object Placement
-    public void ActivatePlacementGuide()
-    {
-        if (isHoldingObj())
-        {
-            pickupObj.TogglePlacementGuide(true);
-        }
-    }
-
     public void DropObject()
     {
         ToggleObjectColliders(HeldObj, true);
