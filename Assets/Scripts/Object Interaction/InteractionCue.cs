@@ -45,6 +45,7 @@ public class InteractionCue : MonoBehaviour
     {
         if (type == InteractionCueType.Empty)
         {
+            _pickupText.text = empty;
             _interactText.text = empty;
         } else if (type == InteractionCueType.Pickup)
         {
