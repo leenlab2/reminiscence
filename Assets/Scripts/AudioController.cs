@@ -23,6 +23,8 @@ public class AudioController : MonoBehaviour
         }
 
         playerAudioSource = GameObject.Find("Player").GetComponentInChildren<AudioSource>();
+
+        PuzzleNonBranchingKeyItem.OnKeyItemPlaced += PlayBGMStem;
     }
 
     public void SwitchAndPlayAudio(AudioClip audioClip)
@@ -61,5 +63,12 @@ public class AudioController : MonoBehaviour
         AudioClip randomFootstep = footsteps[randomIndex];
 
         SwitchAndPlayAudio(randomFootstep);
+    }
+
+    public void PlayBGMStem(GameObject obj)
+    {
+        // todo: write code here :)
+        // This obj is the parent root, so if you make a Audio child object, you can do obj.GetComponentInChildren<AudioSource>()
+        // If you aren't sure, look at how the footstep code works
     }
 }

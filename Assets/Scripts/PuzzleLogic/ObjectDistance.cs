@@ -11,20 +11,15 @@ public class ObjectDistance : MonoBehaviour
 {
     public GameObject targetObj;
     public float distanceThreshold;
-    private bool objectInPlace;
-    private bool hasDestroyed;
     public bool isOnBothBranches = false;
     
     private PickUpInteractor pickUpInteractor;
     private PuzzleKeyItem puzzleKeyItem;
-
-    public static event Action<GameObject> OnCorrectPosition;
     
     protected void Start()
     {
         pickUpInteractor = FindObjectOfType<PickUpInteractor>();
         puzzleKeyItem = GetComponent<PuzzleKeyItem>();
-        objectInPlace = false;
     }
 
     protected void Update()
@@ -38,15 +33,8 @@ public class ObjectDistance : MonoBehaviour
             // If object is placed in right location
             if (dist <= distanceThreshold) {
                 Debug.Log("HERE");
-                OnCorrectPosition?.Invoke(gameObject);
-                //targetObj.transform.localScale = new Vector3(0, 0, 0);
-                //puzzleKeyItem.HandleKeyItemPlaced();
-                //objectInPlace = true;
-                //targetObj.SetActive(false);
-            
-                //// Disable this script, prevent item from being interactable
-                //Destroy(GetComponent<PickupInteractable>());
-                //enabled = false;
+                targetObj.SetActive(false);
+                puzzleKeyItem.HandleCorrectPosition();
             }
         }
     }

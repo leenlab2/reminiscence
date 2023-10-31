@@ -25,7 +25,6 @@ public abstract class PuzzleKeyItem : MonoBehaviour
     {
         outline = GetComponent<Outline>();
         puzzleManager = GameObject.Find("Puzzle Manager").GetComponent<PuzzleManagerNew>();
-        timeLeft = -1f;  // TODO figure out why this needs to be here
     }
 
     // Update is called once per frame
@@ -42,5 +41,12 @@ public abstract class PuzzleKeyItem : MonoBehaviour
         }
     }
 
-    public abstract void HandleKeyItemPlaced();
+    public virtual void HandleCorrectPosition()
+    {
+        // Disable this script, prevent item from being interactable
+        Destroy(GetComponent<PickupInteractable>());
+        GetComponent<ObjectDistance>().enabled = false; 
+    }
+
+    protected abstract void CorrectPuzzleLogic();
 }
