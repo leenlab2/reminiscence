@@ -30,6 +30,7 @@ public class SceneManagement : MonoBehaviour
             
             inputManager.CloseTelevision(new InputAction.CallbackContext());
             inputManager.playerInputActions.FindAction("ExitMemoryScene").Enable();
+            inputManager.playerInputActions.FindAction("OpenTV").Disable();
             
             player.transform.position = new Vector3(-5.03f, 50f, 4f);
             player.transform.rotation = new Quaternion(0,0,0, 0);
@@ -46,6 +47,7 @@ public class SceneManagement : MonoBehaviour
     public void ExitMemoryScene()
     {
         inputManager.playerInputActions.FindAction("ExitMemoryScene").Disable();
+        inputManager.playerInputActions.FindAction("OpenTV").Enable();
         player.transform.position = new Vector3(6.5f, -0.00115942955f, -9.0f);
         player.transform.rotation = new Quaternion(-1.7f,-0.95f,8.96f, 0);
         
