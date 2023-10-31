@@ -5,7 +5,8 @@ using UnityEngine;
 public enum Branch
 {
     BranchA,
-    BranchB
+    BranchB,
+    None
 }
 
 /// <summary>
