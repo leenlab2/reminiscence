@@ -4878,9 +4878,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 7568270136680320936, guid: 245c9e2852a19405084a91783b9f475b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 312
+      objectReference: {fileID: 0}
     - target: {fileID: 7684348945717490196, guid: 245c9e2852a19405084a91783b9f475b, type: 3}
       propertyPath: m_text
-      value: '[T] Enter/exit TV mode'
+      value: '[T] TV mode'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
