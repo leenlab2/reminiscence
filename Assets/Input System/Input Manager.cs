@@ -19,6 +19,8 @@ public class InputManager : MonoBehaviour
     private bool inspectionMode = false;
     private bool placementMode = false;
 
+    private GameObject currSelectedBranching = null;
+
     private void Awake()
     {
         _speed = _walkSpeed;
@@ -30,6 +32,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Television.Disable();
         playerInputActions.Inspect.Disable();
         playerInputActions.Placement.Disable();
+        playerInputActions.Branching.Disable();
 
         // Player Input Map
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
@@ -53,6 +56,11 @@ public class InputManager : MonoBehaviour
 
         // Placement Input Map
         playerInputActions.Placement.Place.performed += ObjectPlace;
+
+        // Branching Input Map
+        PickUpInteractor.OnBranchingPickup += BranchingItemPickedUp;
+        playerInputActions.Branching.Navigate.performed += SwitchBranchingItem;
+        playerInputActions.Branching.Submit.performed += SubmitBranchingItem;
     }
     private void FixedUpdate()
     {
@@ -214,5 +222,35 @@ public class InputManager : MonoBehaviour
         }
     }
     #endregion
+    #endregion
+
+    #region Branching Item
+    void BranchingItemPickedUp(GameObject obj)
+    {
+        currSelectedBranching = obj;
+        playerInputActions.Player.Disable();
+        playerInputActions.Branching.Enable();
+    }
+
+    void SwitchBranchingItem(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("Switching branching item");
+        currSelectedBranching.GetComponent<Outline>().OutlineWidth = 0f;
+        GameObject otherBranching = currSelectedBranching.GetComponent<PuzzleBranchingKeyItem>().otherBranchingItem;
+        otherBranching.GetComponent<Outline>().OutlineWidth = 5f;
+
+        currSelectedBranching = otherBranching;
+    }
+
+    void SubmitBranchingItem(InputAction.CallbackContext ctx)
+    {
+        currSelectedBranching.GetComponent<Outline>().OutlineWidth = 0f;
+
+        PickUpInteractor pickupInteractor = GetComponent<PickUpInteractor>();
+        pickupInteractor.SelectBranchingItem(currSelectedBranching);
+
+        playerInputActions.Branching.Disable();
+        playerInputActions.Player.Enable();
+    }
     #endregion
 }

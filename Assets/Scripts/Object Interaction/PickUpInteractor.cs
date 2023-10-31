@@ -5,6 +5,7 @@ using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.UI;
 
 /// <summary>
 /// Handles the communication between the player and the object. Specifically manages what object is held (`HeldObj`)
@@ -24,6 +25,8 @@ public class PickUpInteractor : MonoBehaviour
     private PickupInteractable pickupObj;
 
     private Quaternion originalHoldAreaRotation;
+
+    public static Action<GameObject> OnBranchingPickup;
 
 #region IsHeld
     public bool isHoldingObj()
@@ -100,6 +103,38 @@ public class PickUpInteractor : MonoBehaviour
 
         righthandObj = obj;
         lefthandObj = otherBranching;
+
+        obj.GetComponent<Outline>().OutlineWidth = 5f;
+        OnBranchingPickup?.Invoke(obj);
+    }
+
+    public void SelectBranchingItem(GameObject obj)
+    {
+        obj.GetComponent<PickupInteractable>().MakeObjBig();
+        NormalObjPickup(obj.GetComponent<PickupInteractable>(), holdArea);
+        HeldObj = obj;
+        pickupObj = obj.GetComponent<PickupInteractable>();
+
+        // figure out whether obj is righthandobj or lefthandobj
+        GameObject otherObj;
+        if (obj == righthandObj)
+        {
+            otherObj = lefthandObj;
+        } else
+        {
+            otherObj = righthandObj;
+        }
+
+
+        // TODO: when drop no longer relies on placement mode, change this
+        PickupInteractable otherPickUpObj = otherObj.GetComponent<PickupInteractable>();
+        ToggleObjectColliders(otherObj, true);
+        otherPickUpObj.transform.SetParent(otherPickUpObj.originalParent);
+        otherPickUpObj.ToggleFreezeBody(false);
+        otherPickUpObj.MakeObjBig();
+
+        rightHand = null;
+        leftHand = null;
     }
 
     private void ResetHoldArea()

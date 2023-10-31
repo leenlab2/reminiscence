@@ -52,10 +52,10 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         // Show outline around item
         outline.OutlineWidth = 5f;
         timeLeft = timeLengthOutline;
-        
+
         // Turn off branching item's cue
-        
-        
+
+
         // Enable ObjectDistance scripts of three key items on this branch
         foreach (GameObject obj in keyItemModels)
         {
