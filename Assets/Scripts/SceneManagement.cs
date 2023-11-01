@@ -16,8 +16,11 @@ public class SceneManagement : MonoBehaviour
     public GameObject player;
 
     private GameObject camera;
+    private bool firstExit = true;
 
     public bool automaticallyEnterMemorySceneOnOpenTV;
+
+    private InteractionCue _interactionCue;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,7 @@ public class SceneManagement : MonoBehaviour
         tapeManager = FindObjectOfType<TapeManager>();
         videoControls = FindObjectOfType<VideoControls>();
         puzzleManager = FindObjectOfType<PuzzleManagerNew>();
+        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
         camera = Camera.main.gameObject;
         automaticallyEnterMemorySceneOnOpenTV = false;
     }
@@ -41,16 +45,11 @@ public class SceneManagement : MonoBehaviour
             inputManager.CloseTelevision(new InputAction.CallbackContext());
             inputManager.playerInputActions.FindAction("ExitMemoryScene").Enable();
             inputManager.playerInputActions.FindAction("OpenTV").Disable();
+
+            _interactionCue.SetInteractionCue(InteractionCueType.EnterMemory);
             
             player.transform.position = new Vector3(-5.03f, 50f, 4f);
             player.transform.rotation = new Quaternion(0,0,0, 0);
-            
-            // if a branching item is placed, show the shadow cues of the 3 key items
-            if (puzzleManager.currentBranch != Branch.None)
-            {
-                puzzleManager.ShowNonBranchingItemsShadowCues();
-            }
-
         }
     }
     
@@ -60,6 +59,8 @@ public class SceneManagement : MonoBehaviour
         inputManager.playerInputActions.FindAction("OpenTV").Enable();
         player.transform.position = new Vector3(6.5f, -0.00115942955f, -9.0f);
         player.transform.rotation = new Quaternion(-1.7f,-0.95f,8.96f, 0);
+
+        _interactionCue.SetInteractionCue(InteractionCueType.ExitMemory);
         
         puzzleManager.memorySceneCanvas.SetActive(false);
         effects.SetActive(false);
@@ -67,6 +68,13 @@ public class SceneManagement : MonoBehaviour
 
         Vector3 cameraRotationAtTelevision = new Vector3(0, 160, 0);
         player.transform.rotation = Quaternion.Euler(cameraRotationAtTelevision);
+
+        // if a branching item is placed, show the shadow cues of the 3 key items
+        if (firstExit && puzzleManager.currentBranch != Branch.None)
+        {
+            firstExit = false;
+            puzzleManager.ShowNonBranchingItemsShadowCues();
+        }
     }
 
     public void EnableAutomaticEnterMemoryScene()

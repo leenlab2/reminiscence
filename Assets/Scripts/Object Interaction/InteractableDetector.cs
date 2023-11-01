@@ -134,7 +134,10 @@ public class InteractableDetector : MonoBehaviour
             TapeManager tapeManager = FindObjectOfType<TapeManager>();
             if (tapeManager.televisionHasTape())
             {
-                _interactionCue.SetInteractionCue(InteractionCueType.RemoveTape);
+                if (!pickUpInteractor.isHoldingObj())
+                {
+                    _interactionCue.SetInteractionCue(InteractionCueType.RemoveTape);
+                }
             }
             interactionType = InteractionType.InsertRemoveTape;
         }
