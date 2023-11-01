@@ -39,7 +39,6 @@ public class InteractableDetector : MonoBehaviour
     
     private float sphereRadius = 0.2f;
     private GameObject currentObj = null;
-    private bool cursorOnObject = false;
     
     private void Start()
     {
@@ -89,23 +88,24 @@ public class InteractableDetector : MonoBehaviour
 
             CheckInteractableTypeHit(hit);
 
-            if (interactionType != InteractionType.None)
+            if (interactionType != InteractionType.None && hit.transform.parent.name != "TV" && hit.transform.parent.name != "TV_textures")
             {
                 Detected();
                 _currentHit = hit;
                 if (currentObj) // if cursor on interactable object immediately after being on another interactable object
                 {
+                    Debug.Log(currentObj.name);
                     currentObj.GetComponent<Outline>().OutlineWidth = 0f;
                     currentObj = null;
                 }
                 currentObj = _currentHit.Value.transform.gameObject;
                 currentObj.GetComponent<Outline>().OutlineWidth = 5f;
                 currentObj.GetComponent<Outline>().OutlineColor = Color.yellow;
-                cursorOnObject = true;
                 Debug.Log(currentObj.name);
             }
             else if (currentObj)
             {
+                Debug.Log(currentObj.name);
                 currentObj.GetComponent<Outline>().OutlineWidth = 0f;
                 currentObj = null;
             }
