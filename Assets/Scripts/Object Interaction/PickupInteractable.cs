@@ -47,11 +47,8 @@ public class PickupInteractable : MonoBehaviour
         if (!placementGuide.activeSelf) return;
 
         onWall = false;
-        bool hitIsWall = hit.normal.y <= 0.05f;
-        float distFromFlat = Vector3.Distance(hit.normal, new Vector3(0f, 1f, 0f));
-        bool hitIsFloor = distFromFlat <= 0.05f;
-
-        if (!wallMountable && hitIsWall || (!hitIsFloor && !hitIsWall)) { return; }
+        bool hitIsWall;
+        if(!IsValidSurface(hit, out hitIsWall)) return;
 
         placementGuide.transform.position = hit.point;
         placementGuide.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
@@ -60,6 +57,19 @@ public class PickupInteractable : MonoBehaviour
             onWall = true;
             placementGuide.transform.position += 0.1f * hit.normal;
         }
+    }
+
+    private bool IsValidSurface(RaycastHit hit, out bool hitIsWall)
+    {
+        hitIsWall = hit.normal.y <= 0.05f;
+        float distFromFlat = Vector3.Distance(hit.normal, new Vector3(0f, 1f, 0f));
+        bool hitIsFloor = distFromFlat <= 0.05f;
+
+        if (!wallMountable && hitIsWall || (!hitIsFloor && !hitIsWall)) { 
+            return false; 
+        }
+
+        return true;
     }
 
     public void ToggleFreezeBody(bool freeze)
