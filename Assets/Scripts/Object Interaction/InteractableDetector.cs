@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
+using Unity.VisualScripting;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public enum InteractionType
 {
@@ -26,6 +29,7 @@ public class InteractableDetector : MonoBehaviour
     [SerializeField] private Image _crossHairDisplay;
     [SerializeField] private Sprite _defaultCrosshair;
     [SerializeField] private Sprite _objectDetected;
+    [SerializeField] private Material highlightMaterial;
 
     // Events
     public static Action<RaycastHit> OnCursorHitChange;
@@ -56,10 +60,9 @@ public class InteractableDetector : MonoBehaviour
         Debug.Log("IN");
     }*/
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 origin = Camera.main.transform.position;
-        _currentHit = null;
 
         NotDetected();
 
@@ -92,7 +95,7 @@ public class InteractableDetector : MonoBehaviour
             // if cursor on interactable object immediately after being on another interactable object
             if (currentObj)
             {
-                Debug.Log(currentObj.name);
+                //Debug.Log(currentObj.name);
                 unhighlightObject(currentObj);
                 currentObj = null;
             }
@@ -162,8 +165,11 @@ public class InteractableDetector : MonoBehaviour
         _crossHairDisplay.sprite = _objectDetected;
         _crossHairDisplay.rectTransform.sizeDelta = new Vector2(20, 20);
 
-        currentObj = _currentHit.Value.transform.gameObject;
-        highlightObject(currentObj);
+        if (currentObj ==null )
+        {
+            currentObj = _currentHit.Value.transform.gameObject;
+            highlightObject(currentObj);
+        }
     }
 
     private void NotDetected()
@@ -224,15 +230,44 @@ public class InteractableDetector : MonoBehaviour
         }
     }
 
-    public static void highlightObject(GameObject obj)
+    public void highlightObject(GameObject obj)
     {
         obj.GetComponent<Outline>().OutlineWidth = 5f;
         obj.GetComponent<Outline>().OutlineColor = Color.yellow;
+        AddMaterial(obj);
     }
 
-    public static void unhighlightObject(GameObject obj)
+    public void unhighlightObject(GameObject obj)
     {
         obj.GetComponent<Outline>().OutlineWidth = 0f;
+        RemoveMaterial(obj);
+    }
+
+    private void AddMaterial(GameObject obj)
+    {
+        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            // get a list of the materials assigned to renderer
+            List<Material> myMaterials = renderer.sharedMaterials.ToList();
+            // if highlight material is not in myMaterials
+            if (renderer.sharedMaterial != highlightMaterial)
+            {
+                myMaterials.Add(highlightMaterial);
+                renderer.materials = myMaterials.ToArray();
+            }
+        }
+    }
+
+    private void RemoveMaterial(GameObject obj)
+    {
+        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            List<Material> myMaterials = renderer.sharedMaterials.ToList();
+            myMaterials.Remove(highlightMaterial);
+            renderer.materials = myMaterials.ToArray();
+        }
     }
 }
     

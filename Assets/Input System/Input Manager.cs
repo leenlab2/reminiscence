@@ -248,16 +248,18 @@ public class InputManager : MonoBehaviour
     void SwitchBranchingItem(InputAction.CallbackContext ctx)
     {
         Debug.Log("Switching branching item");
-        InteractableDetector.unhighlightObject(currSelectedBranching);
+        InteractableDetector interactableDetect = GetComponent<InteractableDetector>();
+        interactableDetect.unhighlightObject(currSelectedBranching);
         GameObject otherBranching = currSelectedBranching.GetComponent<PuzzleBranchingKeyItem>().otherBranchingItem;
-        InteractableDetector.highlightObject(otherBranching);
+        interactableDetect.highlightObject(otherBranching);
 
         currSelectedBranching = otherBranching;
     }
 
     void SubmitBranchingItem(InputAction.CallbackContext ctx)
     {
-        InteractableDetector.unhighlightObject(currSelectedBranching);
+        InteractableDetector interactableDetect = GetComponent<InteractableDetector>();
+        interactableDetect.unhighlightObject(currSelectedBranching);
 
         PickUpInteractor pickupInteractor = GetComponent<PickUpInteractor>();
         pickupInteractor.SelectBranchingItem(currSelectedBranching);
