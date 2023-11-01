@@ -4424,7 +4424,7 @@ PrefabInstance:
       objectReference: {fileID: 32900000, guid: d170ec5830ccd7c479cca19580761123, type: 3}
     - target: {fileID: 3615385193586525894, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: m_DirectAudioVolumes.Array.data[0]
-      value: 0.516
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 3936050854869547156, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -68,6 +68,10 @@ public class AudioController : MonoBehaviour
     public void PlayBGMStem(GameObject obj)
     {
         AudioSource bgm_stem = obj.GetComponentInChildren<AudioSource>();
-        bgm_stem.mute = false;
+
+        if (bgm_stem != null)
+        {
+            bgm_stem.mute = false;
+        }
     }
 }
