@@ -57,10 +57,8 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
             }
         }
         
-        // Disable other branching item's ObjectDistance script and Puzzle Target
-        otherBranchingItem.GetComponent<ObjectDistance>().enabled = false;
-        otherBranchingItem.GetComponent<PickupInteractable>().DisableWallMountable();
-        otherBranchingItem.GetComponent<ObjectDistance>().targetObj.SetActive(false);
+        // Disable other branching item
+        otherBranchingItem.transform.parent.gameObject.SetActive(false);
     }
 
     public void ShowCuesOfNonBranchingKeyItems()

@@ -68,7 +68,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.26
+    m_Value: 0.3
   xMultiplier:
     m_OverrideState: 0
     m_Value: 1
@@ -130,7 +130,7 @@ MonoBehaviour:
   active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 0.336
+    m_Value: 0.35
   cropToFit:
     m_OverrideState: 0
     m_Value: 1

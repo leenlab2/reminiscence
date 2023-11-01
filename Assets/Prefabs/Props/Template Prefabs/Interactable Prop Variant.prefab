@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6537206880551773397
 Transform:
   m_ObjectHideFlags: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placementGuide: {fileID: 839126950360818611}
   wallMountable: 0
+  originalParent: {fileID: 0}
 --- !u!4 &6114742089837502924 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5357083219078188783, guid: 06c4a4633c3323e42aacf28d221552c6, type: 3}

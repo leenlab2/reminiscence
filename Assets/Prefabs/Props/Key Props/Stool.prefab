@@ -255,6 +255,20 @@ PrefabInstance:
     - {fileID: 3765862451794803029, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
     - {fileID: 835127941238171700, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
     - {fileID: -4765086215909771368, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 4660454050467247922, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: -6243209194237147306, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: -1976068709450980520, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 2034737128442043156, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 4300102875638832561, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 7204140420364278918, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 2827937138436653852, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: -2006760898385429681, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: -7444227738855157360, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: -5045453190159508897, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 2272025025579355881, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: -519893847449852239, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: -4024337098936750133, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
+    - {fileID: 5363362070476258301, guid: 090e1575dd682a74fbcf72f8cbb5f70c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -636,7 +650,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5929280924604274769, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5003668651631620905, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
     - {fileID: 7839345734118803749, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}

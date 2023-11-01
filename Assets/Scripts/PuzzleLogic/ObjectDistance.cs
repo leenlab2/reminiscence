@@ -33,10 +33,18 @@ public class ObjectDistance : MonoBehaviour
             // If object is placed in right location
             if (dist <= distanceThreshold) {
                 Debug.Log("HERE");
+
+                SnapToTarget();
                 targetObj.SetActive(false);
                 puzzleKeyItem.HandleCorrectPosition();
             }
         }
+    }
+
+    private void SnapToTarget()
+    {
+        transform.position = targetObj.transform.position;
+        transform.rotation = targetObj.transform.rotation;
     }
     
     // Calculates the distance between this object and its target location

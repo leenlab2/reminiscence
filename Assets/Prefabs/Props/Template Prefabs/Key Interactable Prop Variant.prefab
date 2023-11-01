@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObj: {fileID: 3935703863922646525}
-  distanceThreshold: 1
+  distanceThreshold: 1.5
   isOnBothBranches: 0
 --- !u!114 &1732874911824678292
 MonoBehaviour:
