@@ -67,8 +67,7 @@ public class AudioController : MonoBehaviour
 
     public void PlayBGMStem(GameObject obj)
     {
-        // todo: write code here :)
-        // This obj is the parent root, so if you make a Audio child object, you can do obj.GetComponentInChildren<AudioSource>()
-        // If you aren't sure, look at how the footstep code works
+        AudioSource bgm_stem = obj.GetComponentInChildren<AudioSource>();
+        bgm_stem.mute = false;
     }
 }
