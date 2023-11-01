@@ -89,27 +89,19 @@ public class InteractableDetector : MonoBehaviour
 
             CheckInteractableTypeHit(hit);
 
-            if (interactionType != InteractionType.None 
-                && interactionType != InteractionType.Place)
-            {
-                Detected();
-                _currentHit = hit;
-                if (currentObj) // if cursor on interactable object immediately after being on another interactable object
-                {
-                    Debug.Log(currentObj.name);
-                    currentObj.GetComponent<Outline>().OutlineWidth = 0f;
-                    currentObj = null;
-                }
-                currentObj = _currentHit.Value.transform.gameObject;
-                currentObj.GetComponent<Outline>().OutlineWidth = 5f;
-                currentObj.GetComponent<Outline>().OutlineColor = Color.yellow;
-                Debug.Log(currentObj.name);
-            }
-            else if (currentObj)
+            // if cursor on interactable object immediately after being on another interactable object
+            if (currentObj)
             {
                 Debug.Log(currentObj.name);
                 currentObj.GetComponent<Outline>().OutlineWidth = 0f;
                 currentObj = null;
+            }
+
+            if (interactionType != InteractionType.None 
+                && interactionType != InteractionType.Place)
+            {
+                _currentHit = hit;
+                Detected();
             }
         }
     }
@@ -121,7 +113,7 @@ public class InteractableDetector : MonoBehaviour
     {
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
 
-        if (hit.transform.parent?.name == "TV" || hit.transform.parent?.name == "TV_textures")
+        if (hit.transform.name == "VHS")
         {
             if (pickUpInteractor.IsHeld("Tape Model"))
             {
@@ -154,6 +146,11 @@ public class InteractableDetector : MonoBehaviour
     {
         _crossHairDisplay.sprite = _objectDetected;
         _crossHairDisplay.rectTransform.sizeDelta = new Vector2(20, 20);
+
+        currentObj = _currentHit.Value.transform.gameObject;
+        currentObj.GetComponent<Outline>().OutlineWidth = 5f;
+        currentObj.GetComponent<Outline>().OutlineColor = Color.yellow;
+        Debug.Log(currentObj.name);
     }
 
     private void NotDetected()
