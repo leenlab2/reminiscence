@@ -37,14 +37,14 @@ public class InteractableDetector : MonoBehaviour
     private InteractionCue _interactionCue;
 
     RaycastHit hit;
-    
+
     private float sphereRadius = 0.2f;
     private GameObject currentObj = null;
-    
+
     private void Start()
     {
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
-        
+
     }
 
 
@@ -60,22 +60,22 @@ public class InteractableDetector : MonoBehaviour
     {
         Vector3 origin = Camera.main.transform.position;
         _currentHit = null;
-            
+
         NotDetected();
 
         // Define the ray we are using to detect objects
         origin = Camera.main.transform.position;
         Vector3 direction = Camera.main.transform.TransformDirection(Vector3.forward);
         Ray originRay = new Ray(origin, direction);
-        
-        
+
+
         Debug.DrawRay(origin, direction * maxPlayerReach, Color.red);
 
         int layerMask = ~LayerMask.GetMask("Ignore Raycast");
-        
+
         // Perform raycast
         if (Physics.SphereCast(originRay, sphereRadius, out hit, maxPlayerReach, layerMask))
-           //if (Physics.Raycast(origin, direction, out hit, maxPlayerReach, layerMask))
+        //if (Physics.Raycast(origin, direction, out hit, maxPlayerReach, layerMask))
         {
             // Draw the ray
             Debug.DrawRay(origin, direction * hit.distance, Color.yellow);
@@ -83,7 +83,7 @@ public class InteractableDetector : MonoBehaviour
             // Draw the sphere at the hit point
             // Draw a yellow sphere at the transform's position
             //OnDrawGizmosSelected();
-            
+
             OnCursorHitChange?.Invoke(hit);
             // Debug.Log("raycast hit: " + hit.transform.gameObject.name);
 
@@ -93,11 +93,11 @@ public class InteractableDetector : MonoBehaviour
             if (currentObj)
             {
                 Debug.Log(currentObj.name);
-                currentObj.GetComponent<Outline>().OutlineWidth = 0f;
+                unhighlightObject(currentObj);
                 currentObj = null;
             }
 
-            if (interactionType != InteractionType.None 
+            if (interactionType != InteractionType.None
                 && interactionType != InteractionType.Place)
             {
                 _currentHit = hit;
@@ -130,7 +130,7 @@ public class InteractableDetector : MonoBehaviour
                 InputManager inputManager = FindObjectOfType<InputManager>();
                 _interactionCue.SetInteractionCue(InteractionCueType.InsertTape);
             }
-            
+
             TapeManager tapeManager = FindObjectOfType<TapeManager>();
             if (tapeManager.televisionHasTape())
             {
@@ -145,7 +145,8 @@ public class InteractableDetector : MonoBehaviour
         {
             _interactionCue.SetInteractionCue(InteractionCueType.Pickup);
             interactionType = InteractionType.Pickup;
-        } else if (pickUpInteractor.isHoldingObj())
+        }
+        else if (pickUpInteractor.isHoldingObj())
         {
             interactionType = InteractionType.Place;
         }
@@ -162,9 +163,7 @@ public class InteractableDetector : MonoBehaviour
         _crossHairDisplay.rectTransform.sizeDelta = new Vector2(20, 20);
 
         currentObj = _currentHit.Value.transform.gameObject;
-        currentObj.GetComponent<Outline>().OutlineWidth = 5f;
-        currentObj.GetComponent<Outline>().OutlineColor = Color.yellow;
-        Debug.Log(currentObj.name);
+        highlightObject(currentObj);
     }
 
     private void NotDetected()
@@ -205,20 +204,35 @@ public class InteractableDetector : MonoBehaviour
             if (pickUpInteractor.IsHeld("Tape Model"))
             {
                 tapeManager.insertTape(pickUpInteractor.HeldObj);
-            } else if (!pickUpInteractor.isHoldingObj())
+            }
+            else if (!pickUpInteractor.isHoldingObj())
             {
                 tapeManager.removeTape();
-            }   
-        } else if (interactionType == InteractionType.Pickup)
+            }
+        }
+        else if (interactionType == InteractionType.Pickup)
         {
             Debug.Log("Interaction type: pickup");
             // _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             GameObject obj = _currentHit.Value.transform.gameObject;
             pickUpInteractor.PickupObject(obj);
-        } else if (interactionType == InteractionType.Place)
+        }
+        else if (interactionType == InteractionType.Place)
         {
             Debug.Log("Interaction type: place");
             pickUpInteractor.DropHeldObject();
         }
     }
+
+    public static void highlightObject(GameObject obj)
+    {
+        obj.GetComponent<Outline>().OutlineWidth = 5f;
+        obj.GetComponent<Outline>().OutlineColor = Color.yellow;
+    }
+
+    public static void unhighlightObject(GameObject obj)
+    {
+        obj.GetComponent<Outline>().OutlineWidth = 0f;
+    }
 }
+    
