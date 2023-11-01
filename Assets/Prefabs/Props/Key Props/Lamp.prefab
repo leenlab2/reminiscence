@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8639991984944494913}
   - component: {fileID: 3894040815628920468}
+  - component: {fileID: 2648836120021771541}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -94,6 +95,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &2648836120021771541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4728355300391140902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1001 &1010731927448319982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3899134568024078250, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3935703863922646525, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_IsActive
@@ -125,6 +149,10 @@ PrefabInstance:
     - target: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.z
