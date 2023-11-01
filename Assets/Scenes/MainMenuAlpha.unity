@@ -819,7 +819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae52b7f3a1ca1e241b0b8fb228a867bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attic: Main
+  attic: StoryIntro
 --- !u!1 &1022586676
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,28 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class Start : MonoBehaviour
 {
-    public string attic;
+    [SerializeField] public string attic;
 
-
-    public void StartGame()
+    // Update is called once per frame
+    void OnEnable()
     {
+        StartCoroutine(LoadYourAsyncScene());
 
-        //SceneManager.LoadSceneAsync(attic);
-        // Use a coroutine to load the Scene in the background
-        //StartCoroutine(LoadYourAsyncScene());
-        SceneManager.LoadScene(attic);
-        Cursor.visible = false;
     }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-        Debug.Log("Quitting");
-    }
-
-    /*IEnumerator LoadYourAsyncScene()
+    IEnumerator LoadYourAsyncScene()
     {
         // The Application loads the Scene in the background as the current Scene runs.
         // This is particularly good for creating loading screens.
@@ -38,5 +28,5 @@ public class MainMenu : MonoBehaviour
         {
             yield return null;
         }
-    }*/
+    }
 }
