@@ -30,6 +30,8 @@ public class PickUpInteractor : MonoBehaviour
     private TMP_Text _interactText;
     public static Action<GameObject> OnBranchingPickup;
 
+    private InteractionCue _interactionCue;
+
 #region IsHeld
     public bool isHoldingObj()
     {
@@ -55,6 +57,7 @@ public class PickUpInteractor : MonoBehaviour
         InteractableDetector.OnCursorHitChange += DetermineNewPosition;
 
         _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
+        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
     }
 
     private void ToggleObjectColliders(GameObject obj, bool on)
@@ -88,6 +91,8 @@ public class PickUpInteractor : MonoBehaviour
     {
         ResetHoldArea();
 
+        _interactionCue.SetInteractionCue(InteractionCueType.Hold);
+
         // _interactText.text = "Hold left to aim and click right to place. Press E to inspect.";
 
         // Fix rigid body settings of target object
@@ -101,12 +106,14 @@ public class PickUpInteractor : MonoBehaviour
     }
 
     private void BranchingObjPickup(GameObject obj)
-    {
+    {    
         PuzzleBranchingKeyItem puzzleItem = obj.GetComponent<PuzzleBranchingKeyItem>();
         GameObject otherBranching = puzzleItem.otherBranchingItem;
 
         NormalObjPickup(obj.GetComponent<PickupInteractable>(), rightHand);
         NormalObjPickup(otherBranching.GetComponent<PickupInteractable>(), leftHand);
+
+        _interactionCue.SetInteractionCue(InteractionCueType.Branching);
 
         righthandObj = obj;
         lefthandObj = otherBranching;

@@ -11,7 +11,7 @@ public enum InteractionCueType
     RemoveTape,
     Hold,
     Inspection,
-
+    Branching
 }
 
 public class InteractionCue : MonoBehaviour
@@ -25,18 +25,20 @@ public class InteractionCue : MonoBehaviour
     private string xboxPickUp = "<sprite=4> Pickup";
     private string xboxInsertTape = "<sprite=4> Insert tape";
     private string xboxRemoveTape = "<sprite=4> Remove tape";
-    private string xboxPutDown = "<sprite=5> Inspect";
-    private string xboxHoldText = "Hold <sprite=14> + <sprite=4> Put down";
-    private string xboxInspectionText = "<sprite=42> Rotate             <sprite=5> Exit";
+    // private string xboxPutDown = "<sprite=5> Inspect";
+    private string xboxHoldText = "Hold <sprite=14> + <sprite=4> Put down                        <sprite=5> Inspect";
+    private string xboxInspectionText = "<sprite=42> Rotate                        <sprite=5> Exit";
+    private string xboxBranching = "<sprite=27><sprite=31> <sprite=25> Switch                         <sprite=4> Select                        <sprite=5> Cancel";
 
     // keyboard/mouse controls
     private string kmTV = "[T] TV mode";
     private string kmPickUp = "[LeftClick] Pickup";
     private string kmInsertTape = "[LeftClick] Insert tape";
     private string kmRemoveTape = "[LeftClick] Remove tape";
-    private string kmPutDown = "[E] Inspect";
-    private string kmHoldText = "Hold [LeftClick] + [RightClick] Put down";
-    private string kmInspectionText = "[Mouse] Rotate             [E] Exit";
+    // private string kmPutDown = "[E] Inspect";
+    private string kmHoldText = "Hold [LeftClick] + [RightClick] Put down                        [E] Inspect";
+    private string kmInspectionText = "[Mouse] Rotate                        [E] Exit";
+    private string kmBranching = "[A] / [D] Switch                         [LeftClick] Select                        [esc] Cancel";
 
     private string empty = "";
 
@@ -106,14 +108,15 @@ public class InteractionCue : MonoBehaviour
             }
         } else if (type == InteractionCueType.Hold)
         {
+            Debug.Log("xbox hold");
             if (input == 0)
             {
-                _pickupText.text = xboxPutDown;
+                _pickupText.text = "";
                 _interactText.text = xboxHoldText;
             }
             else
             {
-                _pickupText.text = kmPutDown;
+                _pickupText.text = "";
                 _interactText.text = kmHoldText;
             }
         } else if (type == InteractionCueType.Inspection)
@@ -125,6 +128,18 @@ public class InteractionCue : MonoBehaviour
             else
             {
                 _interactText.text = kmInspectionText;
+            }
+            _pickupText.text = empty;
+        }  else if (type == InteractionCueType.Branching)
+        {
+            if (input == 0)
+            {
+                Debug.Log("xbox branching");
+                _interactText.text = xboxBranching;
+            }
+            else
+            {
+                _interactText.text = kmBranching;
             }
             _pickupText.text = empty;
         }

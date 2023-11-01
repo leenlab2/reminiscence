@@ -739,8 +739,8 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 9
       m_Height: 22
-      m_HorizontalBearingX: -4.5
-      m_HorizontalBearingY: 11
+      m_HorizontalBearingX: -12.9
+      m_HorizontalBearingY: 22.19
       m_HorizontalAdvance: 9
     m_GlyphRect:
       m_X: 1015
@@ -771,8 +771,8 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 9
       m_Height: 22
-      m_HorizontalBearingX: -4.5
-      m_HorizontalBearingY: 11
+      m_HorizontalBearingX: -11.4
+      m_HorizontalBearingY: 22.3
       m_HorizontalAdvance: 9
     m_GlyphRect:
       m_X: 1139
@@ -835,15 +835,15 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 36
       m_Height: 37
-      m_HorizontalBearingX: -18
-      m_HorizontalBearingY: 18.5
+      m_HorizontalBearingX: -9.29
+      m_HorizontalBearingY: 31.6
       m_HorizontalAdvance: 36
     m_GlyphRect:
       m_X: 504
       m_Y: 344
       m_Width: 36
       m_Height: 37
-    m_Scale: 1
+    m_Scale: 1.5
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: -1122897722, guid: 6e8e9281c5b7c45b181a3b461a86c42f, type: 3}
@@ -851,34 +851,18 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 36
       m_Height: 37
-      m_HorizontalBearingX: -18
-      m_HorizontalBearingY: 18.5
+      m_HorizontalBearingX: -0.2
+      m_HorizontalBearingY: 31.6
       m_HorizontalAdvance: 36
     m_GlyphRect:
       m_X: 584
       m_Y: 344
       m_Width: 36
       m_Height: 37
-    m_Scale: 1
+    m_Scale: 1.5
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: -648150102, guid: 6e8e9281c5b7c45b181a3b461a86c42f, type: 3}
-  - m_Index: 33
-    m_Metrics:
-      m_Width: 37
-      m_Height: 37
-      m_HorizontalBearingX: -18.5
-      m_HorizontalBearingY: 18.5
-      m_HorizontalAdvance: 37
-    m_GlyphRect:
-      m_X: 979
-      m_Y: 344
-      m_Width: 37
-      m_Height: 37
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-    sprite: {fileID: 354350654, guid: 6e8e9281c5b7c45b181a3b461a86c42f, type: 3}
   - m_Index: 34
     m_Metrics:
       m_Width: 37
@@ -895,6 +879,22 @@ MonoBehaviour:
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: 1719652789, guid: 6e8e9281c5b7c45b181a3b461a86c42f, type: 3}
+  - m_Index: 33
+    m_Metrics:
+      m_Width: 37
+      m_Height: 37
+      m_HorizontalBearingX: -18.5
+      m_HorizontalBearingY: 18.5
+      m_HorizontalAdvance: 37
+    m_GlyphRect:
+      m_X: 979
+      m_Y: 344
+      m_Width: 37
+      m_Height: 37
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: 354350654, guid: 6e8e9281c5b7c45b181a3b461a86c42f, type: 3}
   - m_Index: 35
     m_Metrics:
       m_Width: 37
