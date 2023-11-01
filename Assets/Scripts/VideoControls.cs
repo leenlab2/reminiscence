@@ -94,13 +94,13 @@ public class VideoControls : MonoBehaviour
     // Call this method to change the video when the tape is not yet completed
     public void ChangeCorruptedVideo(ClipToPlay clip)
     {
-        StartCoroutine(waiter());
+        //StartCoroutine(waiter(clip));
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
-        
+
         televisionAudioSource.Play(); // Play noise from TV. TODO: Different noise between this and OnPuzzleComplete
         televisionParticleEffects.startColor = Color.white; // play particles from TV
         televisionParticleEffects.Play();
-        
+
         if (clip == ClipToPlay.OriginalCorrupted) // switch video on TV to original corrupted
         {
             _videoPlayer.clip = tapeSOInTV.originalCorruptedVideoClip;
@@ -134,10 +134,34 @@ public class VideoControls : MonoBehaviour
         }
     }
     
-    IEnumerator waiter()
-    {
+    //IEnumerator waiter(ClipToPlay clip)
+    //{
         //Wait for 4 seconds
-        yield return new WaitForSeconds(1);
-    }
+        //yield return new WaitForSeconds(2);
+        /*TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
+        
+        televisionAudioSource.Play(); // Play noise from TV. TODO: Different noise between this and OnPuzzleComplete
+        televisionParticleEffects.startColor = Color.white; // play particles from TV
+        televisionParticleEffects.Play();
+        
+        if (clip == ClipToPlay.OriginalCorrupted) // switch video on TV to original corrupted
+        {
+            _videoPlayer.clip = tapeSOInTV.originalCorruptedVideoClip;
+            tapeSOInTV.clipToPlay = ClipToPlay.OriginalCorrupted;
+        }
+        else if (clip == ClipToPlay.BranchACorrupted) // switch video on TV to Branch A Corrupted
+        {
+            _videoPlayer.clip = tapeSOInTV.branchACorruptedVideoClip;
+            tapeSOInTV.clipToPlay = ClipToPlay.BranchACorrupted;
+        }
+        else if (clip == ClipToPlay.BranchBCorrupted) // switch video on TV to Branch B Corrupted
+        {
+            _videoPlayer.clip = tapeSOInTV.branchBCorruptedVideoClip;
+            tapeSOInTV.clipToPlay = ClipToPlay.BranchBCorrupted;
+        }
+        // play for one frame to update render texture
+        _videoPlayer.Play();
+        _videoPlayer.Pause();
+    }*/
 }
 

@@ -1256,9 +1256,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Navigate"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""0b5bea28-6dd1-4f2b-b5b8-9d4c80eb1ae5"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
