@@ -110,6 +110,16 @@ public class InteractableDetector : MonoBehaviour
                 currentObj = null;
             }
         }
+
+        InputManager inputManager = FindObjectOfType<InputManager>();
+        if (inputManager.InTVMode())
+        {
+            _interactionCue.SetInteractionCue(InteractionCueType.Empty);
+        }
+        if (inputManager.InInspection())
+        {
+            _interactionCue.SetInteractionCue(InteractionCueType.Inspection);
+        }
     }
 
     /// <summary>
@@ -123,6 +133,7 @@ public class InteractableDetector : MonoBehaviour
         {
             if (pickUpInteractor.IsHeld("Tape Model"))
             {
+                InputManager inputManager = FindObjectOfType<InputManager>();
                 _interactionCue.SetInteractionCue(InteractionCueType.InsertTape);
             }
             
@@ -195,7 +206,7 @@ public class InteractableDetector : MonoBehaviour
         } else if (interactionType == InteractionType.Pickup)
         {
             Debug.Log("Interaction type: pickup");
-            _interactionCue.SetInteractionCue(InteractionCueType.Hold);
+            // _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             GameObject obj = _currentHit.Value.transform.gameObject;
             pickUpInteractor.PickupObject(obj);
         }
