@@ -104,6 +104,7 @@ public class InteractableDetector : MonoBehaviour
     private void Detected()
     {
         _crossHairDisplay.sprite = _objectDetected;
+        _crossHairDisplay.rectTransform.sizeDelta = new Vector2(20, 20);
     }
 
     private void NotDetected()
@@ -122,6 +123,7 @@ public class InteractableDetector : MonoBehaviour
             }
         }
         _crossHairDisplay.sprite = _defaultCrosshair;
+        _crossHairDisplay.rectTransform.sizeDelta = new Vector2(15, 15);
     }
     #endregion
 
