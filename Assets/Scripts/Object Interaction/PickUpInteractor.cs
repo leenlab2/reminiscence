@@ -23,7 +23,6 @@ public class PickUpInteractor : MonoBehaviour
     public GameObject HeldObj { get; private set; }
     private GameObject righthandObj;
     private GameObject lefthandObj;
-    private PickupInteractable pickupObj;
 
     private Quaternion originalHoldAreaRotation;
 
@@ -34,6 +33,11 @@ public class PickUpInteractor : MonoBehaviour
     public bool isHoldingObj()
     {
         return HeldObj != null;
+    }
+
+    private bool isHoldingAnything()
+    {
+        return isHoldingObj() || righthandObj != null || lefthandObj != null;
     }
 
     public bool IsHeld(GameObject? obj)
@@ -78,11 +82,14 @@ public class PickUpInteractor : MonoBehaviour
             BranchingObjPickup(pickObj.gameObject);
         } else
         {
-            NormalObjPickup(pickObj, holdArea);
+            PickupObject(pickObj);
         }
+    }
 
-        HeldObj = obj;
-        pickupObj = pickObj;
+    public void PickupObject(PickupInteractable obj)
+    {
+        NormalObjPickup(obj, holdArea);
+        HeldObj = obj.gameObject;
     }
 
     private void NormalObjPickup(PickupInteractable obj, Transform newPos)
@@ -92,6 +99,7 @@ public class PickUpInteractor : MonoBehaviour
         // _interactText.text = "Hold left to aim and click right to place. Press E to inspect.";
 
         // Fix rigid body settings of target object
+        obj.TogglePlacementGuide(true);
         obj.ToggleFreezeBody(true);
         obj.MakeObjSmall();
 
@@ -100,7 +108,6 @@ public class PickUpInteractor : MonoBehaviour
 
         ToggleObjectColliders(obj.gameObject, false);
     }
-    #endregion
 
     #region Branching Item Choice
     private void BranchingObjPickup(GameObject obj)
@@ -120,57 +127,55 @@ public class PickUpInteractor : MonoBehaviour
 
     public void SelectBranchingItem(GameObject obj)
     {
-        obj.GetComponent<PickupInteractable>().MakeObjBig();
-        NormalObjPickup(obj.GetComponent<PickupInteractable>(), holdArea);
-        HeldObj = obj;
-        pickupObj = obj.GetComponent<PickupInteractable>();
+        DropObject(righthandObj);
+        DropObject(lefthandObj);
 
-        // figure out whether obj is righthandobj or lefthandobj
-        GameObject otherObj;
-        if (obj == righthandObj)
-        {
-            otherObj = lefthandObj;
-        } else
-        {
-            otherObj = righthandObj;
-        }
-
-
-        // TODO: when drop no longer relies on placement mode, change this
-        PickupInteractable otherPickUpObj = otherObj.GetComponent<PickupInteractable>();
-        ToggleObjectColliders(otherObj, true);
-        otherPickUpObj.transform.SetParent(otherPickUpObj.originalParent);
-        otherPickUpObj.ToggleFreezeBody(false);
-        otherPickUpObj.MakeObjBig();
+        PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
+        PickupObject(pickObj);
 
         righthandObj = null;
         lefthandObj = null;
     }
     #endregion
+    #endregion
+
     private void ResetHoldArea()
     {
         HeldObj = null;
-        pickupObj = null;
         holdArea.transform.rotation = originalHoldAreaRotation;
     }
 
-    #region Object Placement
-    public void DropObject()
+    #region Object Drop
+    public void DropHeldObject()
     {
-        ToggleObjectColliders(HeldObj, true);
-
-        pickupObj.MoveToPlacementGuide();
-        pickupObj.ToggleFreezeBody(false);
-        pickupObj.MakeObjBig();
+        DropObject(HeldObj);
 
         ResetHoldArea();
     }
 
+    void DropObject(GameObject obj)
+    {
+        ToggleObjectColliders(obj, true);
+
+        PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
+        pickObj.MoveToPlacementGuide();
+        pickObj.TogglePlacementGuide(false);
+        pickObj.ToggleFreezeBody(false);
+        pickObj.MakeObjBig();
+    }
+
     private void DetermineNewPosition(RaycastHit hit)
     {
-        if (!isHoldingObj()) return;
+        if (!isHoldingAnything()) return;
 
-        pickupObj.TransformPlacementGuide(hit);
+        if (HeldObj != null)
+        {
+            HeldObj.GetComponent<PickupInteractable>().TransformPlacementGuide(hit);
+        } else
+        {
+            righthandObj.GetComponent<PickupInteractable>().TransformPlacementGuide(hit);
+            lefthandObj.GetComponent<PickupInteractable>().TransformPlacementGuide(hit);
+        }
     }
     #endregion
 }

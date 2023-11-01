@@ -162,7 +162,7 @@ public class InteractableDetector : MonoBehaviour
         } else if (interactionType == InteractionType.Place)
         {
             Debug.Log("Interaction type: place");
-            pickUpInteractor.DropObject();
+            pickUpInteractor.DropHeldObject();
         }
     }
 }

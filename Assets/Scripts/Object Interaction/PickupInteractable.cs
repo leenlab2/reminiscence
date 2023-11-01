@@ -31,6 +31,11 @@ public class PickupInteractable : MonoBehaviour
     }
 
     #region Placement Guide
+    public void TogglePlacementGuide(bool on)
+    {
+        placementGuide.SetActive(on);
+    }
+
     public void MoveToPlacementGuide()
     {
         transform.SetPositionAndRotation(placementGuide.transform.position, placementGuide.transform.rotation);

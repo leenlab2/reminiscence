@@ -48,7 +48,7 @@ public class TapeManager : MonoBehaviour
             videoPlayer.Pause();
             currentTapeInTv = tapeGameObject;
             tapeGameObject.active = false;
-            pickUpInteractor.DropObject();
+            pickUpInteractor.DropHeldObject();
             
             // activate branching items of this tape
             TapeInformation tapeInfo = tapeGameObject.GetComponent<TapeInformation>();

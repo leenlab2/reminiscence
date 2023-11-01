@@ -1215,6 +1215,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "7640a630-4a5f-43db-a8de-c9d77b91ae7f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Submit",
                     "type": "Button",
                     "id": "cbf93547-dcab-4082-a53b-a880717eeaa5",
@@ -1363,6 +1372,39 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f60d5c6b-c823-4914-842c-f4e0c06fd0f2",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "76585d6d-2e83-476b-a2f7-8d0cbb754376",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "Keyboard&Mouse;Touch",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aeabfa77-d937-4306-8a62-1291da9eb37e",
+                    "path": "<Joystick>/{Hatswitch}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

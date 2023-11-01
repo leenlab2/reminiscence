@@ -32,7 +32,7 @@ public class PrintScreenshot : MonoBehaviour
         
         try // Drop any object player is holding so it can hold the print out
         {
-            _pickup.DropObject();
+            _pickup.DropHeldObject();
         }
         catch (Exception e)
         {
