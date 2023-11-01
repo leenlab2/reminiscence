@@ -28,7 +28,7 @@ public class InteractionCue : MonoBehaviour
     // private string xboxPutDown = "<sprite=5> Inspect";
     private string xboxHoldText = "Hold <sprite=14> + <sprite=4> Put down                        <sprite=5> Inspect";
     private string xboxInspectionText = "<sprite=42> Rotate                        <sprite=5> Exit";
-    private string xboxBranching = "<sprite=27><sprite=31> <sprite=25> Switch                         <sprite=4> Select                        <sprite=5> Cancel";
+    private string xboxBranching = "<sprite=27><sprite=31> <sprite=25> Switch                         <sprite=4> Select";
 
     // keyboard/mouse controls
     private string kmTV = "[T] TV mode";
@@ -38,7 +38,7 @@ public class InteractionCue : MonoBehaviour
     // private string kmPutDown = "[E] Inspect";
     private string kmHoldText = "Hold [LeftClick] + [RightClick] Put down                        [E] Inspect";
     private string kmInspectionText = "[Mouse] Rotate                        [E] Exit";
-    private string kmBranching = "[A] / [D] Switch                         [LeftClick] Select                        [esc] Cancel";
+    private string kmBranching = "[A] / [D] Switch                         [LeftClick] Select";
 
     private string empty = "";
 
