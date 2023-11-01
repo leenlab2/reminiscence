@@ -62,7 +62,8 @@ public class ChangeCameraPosition : MonoBehaviour
 
         _player.transform.Find("Model").transform.Find("Vini").GetComponent<MeshCollider>().enabled = false;
 
-        Vector3 pos = new Vector3(7.69864f, -4.38f, -10.02994f);
+        //Vector3 pos = new Vector3(7.69864f, -4.38f, -10.02994f);
+        Vector3 pos = new Vector3(7.69864f, -3.5f, -11.52994f);
         Quaternion rot = Quaternion.Euler(0f, -221.386f, 0f);
 
         _player.transform.SetPositionAndRotation(pos, rot);

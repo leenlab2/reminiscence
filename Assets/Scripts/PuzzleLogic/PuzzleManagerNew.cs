@@ -10,7 +10,7 @@ public class PuzzleManagerNew : MonoBehaviour
     private int countKeyItemsLeft;
     private VideoControls _videoControls;
     public GameObject currentBranchingItemModel;
-
+    public GameObject enterMemoryButton;
     public GameObject memorySceneCanvas;
     private SceneManagement sceneManagement;
     
@@ -42,6 +42,14 @@ public class PuzzleManagerNew : MonoBehaviour
             _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchBCorrupted);
         }
         memorySceneCanvas.SetActive(true);
+
+        // if first time player placed branching item, show enter memory scene button on TV for future entrances
+        if (level == 1)
+        {
+            sceneManagement.DisableAutomaticEnterMemoryScene();
+            enterMemoryButton.SetActive(true);
+        }
+
         StartCoroutine(waiter());
 
     }

@@ -55,8 +55,8 @@ public class TapeManager : MonoBehaviour
 
             // TODO: Only activate branching items of this tape if PuzzleManager says we are on this tape's level
             int level = tapeInfo.TapeSO.level;
-            tapeInfo.branchingItemA.GetComponent<ObjectDistance>().enabled = true;
-            tapeInfo.branchingItemB.GetComponent<ObjectDistance>().enabled = true;
+            //tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>().enabled = true;
+            //tapeInfo.branchingItemB.GetComponent<ObjectDistanceNew>().enabled = true;
             ShowBranchCues();
 
         }

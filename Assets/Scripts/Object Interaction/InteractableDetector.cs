@@ -36,27 +36,54 @@ public class InteractableDetector : MonoBehaviour
 
     private InteractionCue _interactionCue;
 
+    RaycastHit hit;
+    
+    private float sphereRadius = 0.2f;
+    private GameObject currentObj = null;
+    
     private void Start()
     {
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
+        
     }
+
+
+    /*void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawSphere(hit.point, sphereRadius);
+        Debug.Log("IN");
+    }*/
 
     private void Update()
     {
+        Vector3 origin = Camera.main.transform.position;
         _currentHit = null;
-        RaycastHit hit;
+            
         NotDetected();
 
         // Define the ray we are using to detect objects
-        Vector3 origin = Camera.main.transform.position;
+        origin = Camera.main.transform.position;
         Vector3 direction = Camera.main.transform.TransformDirection(Vector3.forward);
+        Ray originRay = new Ray(origin, direction);
+        
+        
         Debug.DrawRay(origin, direction * maxPlayerReach, Color.red);
 
         int layerMask = ~LayerMask.GetMask("Ignore Raycast");
-
+        
         // Perform raycast
-        if (Physics.Raycast(origin, direction, out hit, maxPlayerReach, layerMask))
+        if (Physics.SphereCast(originRay, sphereRadius, out hit, maxPlayerReach, layerMask))
+           //if (Physics.Raycast(origin, direction, out hit, maxPlayerReach, layerMask))
         {
+            // Draw the ray
+            Debug.DrawRay(origin, direction * hit.distance, Color.yellow);
+
+            // Draw the sphere at the hit point
+            // Draw a yellow sphere at the transform's position
+            //OnDrawGizmosSelected();
+            
             OnCursorHitChange?.Invoke(hit);
             // Debug.Log("raycast hit: " + hit.transform.gameObject.name);
 
@@ -67,6 +94,22 @@ public class InteractableDetector : MonoBehaviour
             {
                 Detected();
                 _currentHit = hit;
+                if (currentObj) // if cursor on interactable object immediately after being on another interactable object
+                {
+                    Debug.Log(currentObj.name);
+                    currentObj.GetComponent<Outline>().OutlineWidth = 0f;
+                    currentObj = null;
+                }
+                currentObj = _currentHit.Value.transform.gameObject;
+                currentObj.GetComponent<Outline>().OutlineWidth = 5f;
+                currentObj.GetComponent<Outline>().OutlineColor = Color.yellow;
+                Debug.Log(currentObj.name);
+            }
+            else if (currentObj)
+            {
+                Debug.Log(currentObj.name);
+                currentObj.GetComponent<Outline>().OutlineWidth = 0f;
+                currentObj = null;
             }
         }
     }
@@ -110,6 +153,7 @@ public class InteractableDetector : MonoBehaviour
     private void Detected()
     {
         _crossHairDisplay.sprite = _objectDetected;
+        _crossHairDisplay.rectTransform.sizeDelta = new Vector2(20, 20);
     }
 
     private void NotDetected()
@@ -128,6 +172,7 @@ public class InteractableDetector : MonoBehaviour
             }
         }
         _crossHairDisplay.sprite = _defaultCrosshair;
+        _crossHairDisplay.rectTransform.sizeDelta = new Vector2(15, 15);
     }
     #endregion
 
