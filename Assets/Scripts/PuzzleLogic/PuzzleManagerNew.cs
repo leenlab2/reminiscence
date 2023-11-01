@@ -21,20 +21,23 @@ public class PuzzleManagerNew : MonoBehaviour
         level = 1;
         countKeyItemsLeft = 3;
         currentBranch = Branch.None;
-        
+
+        PuzzleNonBranchingKeyItem.OnKeyItemPlaced += HandleNonBranchingKeyItemPlaced;
+        PuzzleBranchingKeyItem.OnBranchingKeyItemPlaced += HandleBranchingItemPlaced;
         // TODO: Activate only level 1's branching items and non branching key items upon startup
 
     }
 
-    public void HandleBranchingItemPlaced(Branch branch, GameObject placedBranchingItemModel)
+    public void HandleBranchingItemPlaced(GameObject placedBranchingItemModel)
     {
         currentBranchingItemModel = placedBranchingItemModel;
-        currentBranch = branch;
-        if (branch == Branch.BranchA)
+        currentBranch = placedBranchingItemModel.GetComponent<PuzzleBranchingKeyItem>().branch;
+
+        if (currentBranch == Branch.BranchA)
         {
             _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchACorrupted);
         }
-        else if (branch == Branch.BranchB)
+        else if (currentBranch == Branch.BranchB)
         {
             _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchBCorrupted);
         }
@@ -51,7 +54,7 @@ public class PuzzleManagerNew : MonoBehaviour
 
     }
     
-    public void HandleNonBranchingKeyItemPlaced()
+    public void HandleNonBranchingKeyItemPlaced(GameObject obj)
     {
         countKeyItemsLeft--;
         Debug.Log("Key items left: " + countKeyItemsLeft);

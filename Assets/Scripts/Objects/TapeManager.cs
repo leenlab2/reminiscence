@@ -48,7 +48,7 @@ public class TapeManager : MonoBehaviour
             videoPlayer.Pause();
             currentTapeInTv = tapeGameObject;
             tapeGameObject.active = false;
-            pickUpInteractor.DropObject();
+            pickUpInteractor.DropHeldObject();
             
             // activate branching items of this tape
             TapeInformation tapeInfo = tapeGameObject.GetComponent<TapeInformation>();
@@ -75,8 +75,8 @@ public class TapeManager : MonoBehaviour
             HideBranchCues();
             // TODO: Only activate branching items of this tape if PuzzleManager says we are on this tape's level
             int level = tapeInfo.TapeSO.level;
-            tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>().enabled = false;
-            tapeInfo.branchingItemB.GetComponent<ObjectDistanceNew>().enabled = false;
+            tapeInfo.branchingItemA.GetComponent<ObjectDistance>().enabled = false;
+            tapeInfo.branchingItemB.GetComponent<ObjectDistance>().enabled = false;
             
             // put obj back in hands of player and set video clip on TV to null
             // set clip on TV's player to null
@@ -97,9 +97,9 @@ public class TapeManager : MonoBehaviour
     private void ShowBranchCues()
     {
         TapeInformation tapeInfo = currentTapeInTv.GetComponent<TapeInformation>();
-        ObjectDistanceNew objDist = tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>();
+        ObjectDistance objDist = tapeInfo.branchingItemA.GetComponent<ObjectDistance>();
         objDist.targetObj.SetActive(true);
-        ObjectDistanceNew objDistB = tapeInfo.branchingItemB.GetComponent<ObjectDistanceNew>();
+        ObjectDistance objDistB = tapeInfo.branchingItemB.GetComponent<ObjectDistance>();
         objDistB.targetObj.SetActive(true);
     }
 
@@ -107,9 +107,9 @@ public class TapeManager : MonoBehaviour
     private void HideBranchCues()
     {
         TapeInformation tapeInfo = currentTapeInTv.GetComponent<TapeInformation>();
-        ObjectDistanceNew objDist = tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>();
+        ObjectDistance objDist = tapeInfo.branchingItemA.GetComponent<ObjectDistance>();
         objDist.targetObj.SetActive(false);
-        ObjectDistanceNew objDistB = tapeInfo.branchingItemB.GetComponent<ObjectDistanceNew>();
+        ObjectDistance objDistB = tapeInfo.branchingItemB.GetComponent<ObjectDistance>();
         objDistB.targetObj.SetActive(false);
     }
 }

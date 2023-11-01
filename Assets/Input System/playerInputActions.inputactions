@@ -51,15 +51,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Placement Mode",
-                    "type": "Button",
-                    "id": "5f8455fc-e820-4ebc-afaa-fdb06b6288c8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ExitMemoryScene",
                     "type": "Button",
                     "id": "fb2eae1f-8938-42db-a62d-66fa6013534d",
@@ -238,33 +229,11 @@
                 {
                     "name": "",
                     "id": "23a16214-3341-40e6-b085-3e320a365b22",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "InspectionToggle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "807dec79-6972-4591-b9f9-8b71ed2c2b14",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Placement Mode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "de56fbb0-3bd7-4cb4-9be6-2de73a8696c0",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Placement Mode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1141,7 +1110,7 @@
                 {
                     "name": "",
                     "id": "330e6861-92ba-48cd-95c5-5ba21c7795da",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -1233,45 +1202,6 @@
             ]
         },
         {
-            "name": "Placement",
-            "id": "5f6241b3-b0e5-453b-9b49-5c831cc480a2",
-            "actions": [
-                {
-                    "name": "Place",
-                    "type": "Button",
-                    "id": "76506406-6258-4f28-8de9-07245b3d1b30",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "f6f9caa1-1f4c-4800-ae74-600581a8b386",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Place",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2505e120-2998-4525-bfee-951c49f1d828",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Place",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
             "name": "Branching",
             "id": "262a23cf-d3c2-4685-bf8b-388144b6a13f",
             "actions": [
@@ -1283,6 +1213,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "7640a630-4a5f-43db-a8de-c9d77b91ae7f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Submit",
@@ -1433,6 +1372,39 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f60d5c6b-c823-4914-842c-f4e0c06fd0f2",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "76585d6d-2e83-476b-a2f7-8d0cbb754376",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "Keyboard&Mouse;Touch",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aeabfa77-d937-4306-8a62-1291da9eb37e",
+                    "path": "<Joystick>/{Hatswitch}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

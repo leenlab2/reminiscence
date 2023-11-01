@@ -10,35 +10,23 @@ public class PuzzleNonBranchingKeyItem : PuzzleKeyItem
 {
     public bool appearsOnBothBranches;
     
-    public event Action OnNonBranchingKeyItemPlaced;
+    // Note: this takes in parent root object
+    public static event Action<GameObject> OnKeyItemPlaced;
     
-    // Start is called before the first frame update
-    void Start()
+    public override void HandleCorrectPosition()
     {
-        base.Start();
+        base.HandleCorrectPosition();
+
+        Debug.Log("Key Item Placed:" + name);
+
+        OnKeyItemPlaced?.Invoke(transform.parent.gameObject);
+
+        CorrectPuzzleLogic();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        base.Update();
-        
-    }
-    private void OnEnable()
-    {
-        OnNonBranchingKeyItemPlaced += KeyItemPlacedPuzzleItemLogic;
-    }
-    
-    public override void HandleKeyItemPlaced()
-    {
-        OnNonBranchingKeyItemPlaced?.Invoke();
-    }
-
-    private void KeyItemPlacedPuzzleItemLogic()
+    protected override void CorrectPuzzleLogic()
     {
         outline.OutlineWidth = 5f;
         timeLeft = timeLengthOutline;
-        Debug.Log("Key Item Placed:" + name);
-        puzzleManager.HandleNonBranchingKeyItemPlaced();
     }
 }
