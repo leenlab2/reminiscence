@@ -94,7 +94,26 @@ public class VideoControls : MonoBehaviour
     // Call this method to change the video when the tape is not yet completed
     public void ChangeCorruptedVideo(ClipToPlay clip)
     {
-        StartCoroutine(waiter());
+        StartCoroutine(waiter(clip));
+    }
+
+    void Update()
+    {
+        if (_videoPlayer.length > 0)
+        {
+            float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length); 
+            _progressBarImage.fillAmount = progressPercentage;
+        }
+        else
+        {
+            _progressBarImage.fillAmount = 0;
+        }
+    }
+    
+    IEnumerator waiter(ClipToPlay clip)
+    {
+        //Wait for 4 seconds
+        yield return new WaitForSeconds(2);
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
         
         televisionAudioSource.Play(); // Play noise from TV. TODO: Different noise between this and OnPuzzleComplete
@@ -119,25 +138,6 @@ public class VideoControls : MonoBehaviour
         // play for one frame to update render texture
         _videoPlayer.Play();
         _videoPlayer.Pause();
-    }
-
-    void Update()
-    {
-        if (_videoPlayer.length > 0)
-        {
-            float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length); 
-            _progressBarImage.fillAmount = progressPercentage;
-        }
-        else
-        {
-            _progressBarImage.fillAmount = 0;
-        }
-    }
-    
-    IEnumerator waiter()
-    {
-        //Wait for 4 seconds
-        yield return new WaitForSeconds(1);
     }
 }
 
