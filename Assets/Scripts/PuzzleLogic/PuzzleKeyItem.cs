@@ -14,18 +14,17 @@ public enum Branch
 /// </summary>
 public abstract class PuzzleKeyItem : MonoBehaviour
 {
-    public Outline outline; // points to Outline script
-    
-    public const float timeLengthOutline = 3f; // how long the outline should stay when object placed in right location
-    public float timeLeft = -1f; // amount of time left for the outline to stay.
+    protected Outline outline; // points to Outline script
 
-    public PuzzleManagerNew puzzleManager;
+    public const float timeLengthOutline = 3f; // how long the outline should stay when object placed in right location
+    protected float timeLeft = -1f; // amount of time left for the outline to stay.
+
+    protected PuzzleManagerNew puzzleManager;
 
     public void Start()
     {
         outline = GetComponent<Outline>();
         puzzleManager = GameObject.Find("Puzzle Manager").GetComponent<PuzzleManagerNew>();
-        timeLeft = -1f;  // TODO figure out why this needs to be here
     }
 
     // Update is called once per frame
@@ -42,5 +41,12 @@ public abstract class PuzzleKeyItem : MonoBehaviour
         }
     }
 
-    public abstract void HandleKeyItemPlaced();
+    public virtual void HandleCorrectPosition()
+    {
+        // Disable this script, prevent item from being interactable
+        Destroy(GetComponent<PickupInteractable>());
+        GetComponent<ObjectDistance>().enabled = false; 
+    }
+
+    protected abstract void CorrectPuzzleLogic();
 }

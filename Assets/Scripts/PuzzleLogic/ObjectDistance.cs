@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,23 +7,19 @@ using UnityEngine;
 /// Constantly calculates distance between this object and its target object.
 /// If object is in correct location, trigger PuzzleItem <KeyItemPlaced> event.
 /// </summary>
-public class ObjectDistanceNew : MonoBehaviour
+public class ObjectDistance : MonoBehaviour
 {
     public GameObject targetObj;
     public float distanceThreshold;
-    private bool objectInPlace;
-    private bool hasDestroyed;
     public bool isOnBothBranches = false;
     
     private PickUpInteractor pickUpInteractor;
     private PuzzleKeyItem puzzleKeyItem;
     
-
     protected void Start()
     {
         pickUpInteractor = FindObjectOfType<PickUpInteractor>();
         puzzleKeyItem = GetComponent<PuzzleKeyItem>();
-        objectInPlace = false;
     }
 
     protected void Update()
@@ -36,14 +33,8 @@ public class ObjectDistanceNew : MonoBehaviour
             // If object is placed in right location
             if (dist <= distanceThreshold) {
                 Debug.Log("HERE");
-                targetObj.transform.localScale = new Vector3(0, 0, 0);
-                puzzleKeyItem.HandleKeyItemPlaced();
-                objectInPlace = true;
                 targetObj.SetActive(false);
-            
-                // Disable this script, prevent item from being interactable
-                Destroy(GetComponent<PickupInteractable>());
-                enabled = false;
+                puzzleKeyItem.HandleCorrectPosition();
             }
         }
     }

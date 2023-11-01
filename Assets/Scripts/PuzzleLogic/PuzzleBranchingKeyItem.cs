@@ -23,31 +23,19 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     // to otherBranchingItem to disable their ObjectDistance script
     [SerializeField] public GameObject otherBranchingItem;
     
-    public event Action OnBranchingKeyItemPlaced;
-    
-    void Start()
-    {
-        base.Start();
-    }
+    // Note: this takes in 'Model' child object
+    public static event Action<GameObject> OnBranchingKeyItemPlaced;
 
-    // Update is called once per frame
-    void Update()
+    public override void HandleCorrectPosition()
     {
-        base.Update();
-    }
-
-    private void OnEnable()
-    {
-        OnBranchingKeyItemPlaced += KeyItemPlacedPuzzleItemLogic;
-    }
-
-      public override void HandleKeyItemPlaced()
-    {
-        OnBranchingKeyItemPlaced?.Invoke();
+        base.HandleCorrectPosition();
+        Debug.Log("Branchin Item Placed:" + transform.parent.name);
+        OnBranchingKeyItemPlaced?.Invoke(gameObject);
+        CorrectPuzzleLogic();
     }
 
     // If this branching object is placed in the right location, enable Object Distance of this branch's key items
-    private void KeyItemPlacedPuzzleItemLogic()
+    protected override void CorrectPuzzleLogic()
     {
         // Show outline around item
         outline.OutlineWidth = 5f;
@@ -60,7 +48,7 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         foreach (GameObject obj in keyItemModels)
         {
             Debug.Log(obj.name);
-            ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
+            ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.enabled = true;
             
             if (objDist.isOnBothBranches)
@@ -70,18 +58,16 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         }
         
         // Disable other branching item's ObjectDistance script and Puzzle Target
-        otherBranchingItem.GetComponent<ObjectDistanceNew>().enabled = false;
+        otherBranchingItem.GetComponent<ObjectDistance>().enabled = false;
         otherBranchingItem.GetComponent<PickupInteractable>().DisableWallMountable();
-        otherBranchingItem.GetComponent<ObjectDistanceNew>().targetObj.SetActive(false);
-        
-        puzzleManager.HandleBranchingItemPlaced(branch, gameObject);
+        otherBranchingItem.GetComponent<ObjectDistance>().targetObj.SetActive(false);
     }
 
     public void ShowCuesOfNonBranchingKeyItems()
     {
         foreach (GameObject obj in keyItemModels)
         {
-            ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
+            ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.targetObj.SetActive(true);
             objDist.targetObj.transform.GetChild(0).gameObject.SetActive(true);
         }
@@ -91,7 +77,7 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
     {
         foreach (GameObject obj in keyItemModels)
         {
-            ObjectDistanceNew objDist = obj.GetComponent<ObjectDistanceNew>();
+            ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.targetObj.transform.GetChild(0).gameObject.SetActive(false);
             objDist.targetObj.SetActive(false);
         }
