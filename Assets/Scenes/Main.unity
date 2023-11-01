@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45120293, g: 0.50094366, b: 0.57367015, a: 1}
+  m_IndirectSpecularColor: {r: 0.45120388, g: 0.50094444, b: 0.57367134, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -553,6 +553,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 873426269}
     m_Modifications:
+    - target: {fileID: 405965102751579524, guid: 35b21464df4e4ff4cbb0293589ed9cf8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9339623
+      objectReference: {fileID: 0}
+    - target: {fileID: 405965102751579524, guid: 35b21464df4e4ff4cbb0293589ed9cf8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.93239063
+      objectReference: {fileID: 0}
+    - target: {fileID: 405965102751579524, guid: 35b21464df4e4ff4cbb0293589ed9cf8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9286757
+      objectReference: {fileID: 0}
     - target: {fileID: 2283491677057629748, guid: 35b21464df4e4ff4cbb0293589ed9cf8, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
@@ -636,6 +648,14 @@ PrefabInstance:
     - target: {fileID: 2584057550649307520, guid: 35b21464df4e4ff4cbb0293589ed9cf8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3830577877011681211, guid: 35b21464df4e4ff4cbb0293589ed9cf8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3830577877011681211, guid: 35b21464df4e4ff4cbb0293589ed9cf8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7081777278368111397, guid: 35b21464df4e4ff4cbb0293589ed9cf8, type: 3}
       propertyPath: m_Name
