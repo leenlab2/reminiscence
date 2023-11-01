@@ -1891,6 +1891,10 @@ PrefabInstance:
       propertyPath: _defaultCrosshair
       value: 
       objectReference: {fileID: 21300000, guid: caa749efeba804f428f6745c380f84bc, type: 3}
+    - target: {fileID: 4343487692431442849, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
+      propertyPath: highlightMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 83f0475a33400fb4db92f44292ae567d, type: 2}
     - target: {fileID: 5965753160802908384, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.75
@@ -7881,6 +7885,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tape
       objectReference: {fileID: 0}
+    - target: {fileID: 5528697945879799515, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5528697945879799515, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 83f0475a33400fb4db92f44292ae567d, type: 2}
     - target: {fileID: 5697886127082847408, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.285

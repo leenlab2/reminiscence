@@ -128,7 +128,8 @@ public class PickUpInteractor : MonoBehaviour
         righthandObj = obj;
         lefthandObj = otherBranching;
 
-        obj.GetComponent<Outline>().OutlineWidth = 5f;
+        InteractableDetector interactableDetect = GetComponent<InteractableDetector>();
+        interactableDetect.highlightObject(obj);
         OnBranchingPickup?.Invoke(obj);
     }
 
