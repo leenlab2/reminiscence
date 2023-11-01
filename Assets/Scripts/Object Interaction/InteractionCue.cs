@@ -11,7 +11,9 @@ public enum InteractionCueType
     RemoveTape,
     Hold,
     Inspection,
-    Branching
+    Branching,
+    ExitMemory,
+    EnterMemory
 }
 
 public class InteractionCue : MonoBehaviour
@@ -26,9 +28,10 @@ public class InteractionCue : MonoBehaviour
     private string xboxInsertTape = "<sprite=4> Insert tape";
     private string xboxRemoveTape = "<sprite=4> Remove tape";
     // private string xboxPutDown = "<sprite=5> Inspect";
-    private string xboxHoldText = "Hold <sprite=14> + <sprite=4> Put down                        <sprite=5> Inspect";
-    private string xboxInspectionText = "<sprite=42> Rotate                        <sprite=5> Exit";
+    private string xboxHoldText = "<sprite=4> Put down                        <sprite=6> Inspect";
+    private string xboxInspectionText = "<sprite=42> Rotate                        <sprite=6> Exit";
     private string xboxBranching = "<sprite=27><sprite=31> <sprite=25> Switch                         <sprite=4> Select";
+    private string xboxExitMemoryText = "<sprite=5> Exit Memory";
 
     // keyboard/mouse controls
     private string kmTV = "[T] TV mode";
@@ -39,6 +42,7 @@ public class InteractionCue : MonoBehaviour
     private string kmHoldText = "Hold [LeftClick] + [RightClick] Put down                        [E] Inspect";
     private string kmInspectionText = "[Mouse] Rotate                        [E] Exit";
     private string kmBranching = "[A] / [D] Switch                         [LeftClick] Select";
+    private string kmExitMemoryText = "[Tab] Exit Memory";
 
     private string empty = "";
 
@@ -130,11 +134,10 @@ public class InteractionCue : MonoBehaviour
                 _interactText.text = kmInspectionText;
             }
             _pickupText.text = empty;
-        }  else if (type == InteractionCueType.Branching)
+        } else if (type == InteractionCueType.Branching)
         {
             if (input == 0)
             {
-                Debug.Log("xbox branching");
                 _interactText.text = xboxBranching;
             }
             else
@@ -142,6 +145,26 @@ public class InteractionCue : MonoBehaviour
                 _interactText.text = kmBranching;
             }
             _pickupText.text = empty;
+        } else if (type == InteractionCueType.ExitMemory)
+        {
+            if (input == 0)
+            {
+                _TVText.text = xboxTV;
+            }
+            else
+            {
+                _TVText.text = kmTV;
+            }
+        } else if (type == InteractionCueType.EnterMemory)
+        {
+            if (input == 0)
+            {
+                _TVText.text = xboxExitMemoryText;
+            }
+            else
+            {
+                _TVText.text = kmExitMemoryText;
+            }
         }
     }
 }
