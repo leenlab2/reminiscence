@@ -22,6 +22,8 @@ public class InputManager : MonoBehaviour
     private InteractionCue _interactionCue;
     private GameObject currSelectedBranching = null;
 
+    private bool inTVMode;
+
     private void Awake()
     {
         _speed = _walkSpeed;
@@ -69,6 +71,7 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
+        inTVMode = false;
     }
 
     private void FixedUpdate()
@@ -144,6 +147,8 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Disable();
         playerInputActions.Television.Enable();
 
+        inTVMode = true;
+
         ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
         cameraCtrl.SwitchToTapeView();
     }
@@ -153,8 +158,15 @@ public class InputManager : MonoBehaviour
         playerInputActions.Television.Disable();
         playerInputActions.Player.Enable();
 
+        inTVMode = false;
+
         ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
         cameraCtrl.SwitchToPlayerView();
+    }
+
+    public bool InTVMode()
+    {
+        return inTVMode;
     }
 
     #endregion

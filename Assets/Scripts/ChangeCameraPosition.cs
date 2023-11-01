@@ -19,6 +19,8 @@ public class ChangeCameraPosition : MonoBehaviour
 
     private GameObject _player;
 
+    private InteractionCue _interactionCue;
+
     void Start()
     {        
         // Get Player
@@ -42,6 +44,8 @@ public class ChangeCameraPosition : MonoBehaviour
         
         _cameraOnPlayerTransform = new GameObject().transform;
         _playerOnPlayerTransform = new GameObject().transform;
+
+        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
     }
     
     /*

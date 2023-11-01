@@ -67,6 +67,16 @@ public class InteractableDetector : MonoBehaviour
                 _currentHit = hit;
             }
         }
+
+        InputManager inputManager = FindObjectOfType<InputManager>();
+        if (inputManager.InTVMode())
+        {
+            _interactionCue.SetInteractionCue(InteractionCueType.Empty);
+        }
+        if (inputManager.InInspection())
+        {
+            _interactionCue.SetInteractionCue(InteractionCueType.Inspection);
+        }
     }
 
     /// <summary>
@@ -80,6 +90,7 @@ public class InteractableDetector : MonoBehaviour
         {
             if (pickUpInteractor.IsHeld("Tape Model"))
             {
+                InputManager inputManager = FindObjectOfType<InputManager>();
                 _interactionCue.SetInteractionCue(InteractionCueType.InsertTape);
             }
             
