@@ -209,9 +209,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3907325908872206399}
-<<<<<<< Updated upstream
-    m_AddedComponents: []
-=======
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2170228245570418129, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       insertIndex: -1
@@ -222,7 +219,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4405134806923755198, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2965447914699812456}
->>>>>>> Stashed changes
   m_SourcePrefab: {fileID: 100100000, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
 --- !u!4 &699015954235292370 stripped
 Transform:
