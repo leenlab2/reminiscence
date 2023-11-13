@@ -21,7 +21,6 @@ public abstract class PuzzleKeyItem : MonoBehaviour
 
     protected PuzzleManagerNew puzzleManager;
     
-    
     // Objects that will appear in the memory scene when this branching item is placed
     [SerializeField] private List<GameObject> appearingObjects;
 
