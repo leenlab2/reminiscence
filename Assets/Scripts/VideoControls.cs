@@ -19,8 +19,8 @@ public class VideoControls : MonoBehaviour
     private VideoPlayer _videoPlayer;
     public Image _progressBarImage;
     public GameObject _televisionCanvas;
-    private AudioSource _televisionAudioSource;
-    private ParticleSystem _televisionEffectsOnPuzzleComplete;
+    public AudioSource televisionAudioSource;
+    public ParticleSystem televisionParticleEffects;
     private TapeManager _tapeManager;
 
     void Start()
@@ -29,8 +29,8 @@ public class VideoControls : MonoBehaviour
         _tapeManager = FindObjectOfType<TapeManager>();
         _videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
         _progressBarImage.fillAmount = 0;
-        _televisionAudioSource = GameObject.Find("TV").GetComponent<AudioSource>();
-        _televisionEffectsOnPuzzleComplete = GameObject.Find("TVEffectsPuzzleComplete").GetComponent<ParticleSystem>();
+        televisionAudioSource = GameObject.Find("TV").GetComponent<AudioSource>();
+        televisionParticleEffects = GameObject.Find("TVEffectsPuzzleComplete").GetComponent<ParticleSystem>();
     }
 
     public void PauseOrPlay()
@@ -75,9 +75,9 @@ public class VideoControls : MonoBehaviour
     public void CompletePuzzle(ClipToPlay clip) // TODO: Only call this method if there exists a tape in the TV. Otherwise, we wouldn't know which tape's puzzle we are currently solving
     {   
         // play confirmation noise from television
-        _televisionAudioSource.Play();
-        _televisionEffectsOnPuzzleComplete.startColor = Color.yellow; // play particles from TV
-        _televisionEffectsOnPuzzleComplete.Play();
+        televisionAudioSource.Play();
+        televisionParticleEffects.startColor = Color.yellow; // play particles from TV
+        televisionParticleEffects.Play();
         
         // Set tape to fixed one and play from time the glitch was fixed
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
@@ -85,7 +85,6 @@ public class VideoControls : MonoBehaviour
         tapeSOInTV.tapeSolutionBranch = clip;
         tapeSOInTV.clipToPlay = clip;
         _videoPlayer.clip = tapeSOInTV.GetVideoClip();
-        _videoPlayer.time = tapeSOInTV.GetTimeGlitchFixedInFixedTape();
         
         // play for one frame to update render texture
         _videoPlayer.Play();
@@ -95,12 +94,13 @@ public class VideoControls : MonoBehaviour
     // Call this method to change the video when the tape is not yet completed
     public void ChangeCorruptedVideo(ClipToPlay clip)
     {
+        //StartCoroutine(waiter(clip));
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
-        
-        _televisionAudioSource.Play(); // Play noise from TV. TODO: Different noise between this and OnPuzzleComplete
-        _televisionEffectsOnPuzzleComplete.startColor = Color.white; // play particles from TV
-        _televisionEffectsOnPuzzleComplete.Play();
-        
+
+        televisionAudioSource.Play(); // Play noise from TV. TODO: Different noise between this and OnPuzzleComplete
+        televisionParticleEffects.startColor = Color.white; // play particles from TV
+        televisionParticleEffects.Play();
+
         if (clip == ClipToPlay.OriginalCorrupted) // switch video on TV to original corrupted
         {
             _videoPlayer.clip = tapeSOInTV.originalCorruptedVideoClip;
@@ -133,4 +133,35 @@ public class VideoControls : MonoBehaviour
             _progressBarImage.fillAmount = 0;
         }
     }
+    
+    //IEnumerator waiter(ClipToPlay clip)
+    //{
+        //Wait for 4 seconds
+        //yield return new WaitForSeconds(2);
+        /*TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
+        
+        televisionAudioSource.Play(); // Play noise from TV. TODO: Different noise between this and OnPuzzleComplete
+        televisionParticleEffects.startColor = Color.white; // play particles from TV
+        televisionParticleEffects.Play();
+        
+        if (clip == ClipToPlay.OriginalCorrupted) // switch video on TV to original corrupted
+        {
+            _videoPlayer.clip = tapeSOInTV.originalCorruptedVideoClip;
+            tapeSOInTV.clipToPlay = ClipToPlay.OriginalCorrupted;
+        }
+        else if (clip == ClipToPlay.BranchACorrupted) // switch video on TV to Branch A Corrupted
+        {
+            _videoPlayer.clip = tapeSOInTV.branchACorruptedVideoClip;
+            tapeSOInTV.clipToPlay = ClipToPlay.BranchACorrupted;
+        }
+        else if (clip == ClipToPlay.BranchBCorrupted) // switch video on TV to Branch B Corrupted
+        {
+            _videoPlayer.clip = tapeSOInTV.branchBCorruptedVideoClip;
+            tapeSOInTV.clipToPlay = ClipToPlay.BranchBCorrupted;
+        }
+        // play for one frame to update render texture
+        _videoPlayer.Play();
+        _videoPlayer.Pause();
+    }*/
 }
+

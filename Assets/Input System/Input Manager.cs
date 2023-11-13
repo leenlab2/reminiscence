@@ -17,7 +17,11 @@ public class InputManager : MonoBehaviour
     private float _walkSpeed = 7f;
     private float _speed;
     private bool inspectionMode = false;
-    private bool placementMode = false;
+
+    private InteractionCue _interactionCue;
+    private GameObject currSelectedBranching = null;
+
+    private bool inTVMode;
 
     private void Awake()
     {
@@ -29,7 +33,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Enable();
         playerInputActions.Television.Disable();
         playerInputActions.Inspect.Disable();
-        playerInputActions.Placement.Disable();
+        playerInputActions.Branching.Disable();
 
         // Player Input Map
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
@@ -38,12 +42,9 @@ public class InputManager : MonoBehaviour
             if (ctx.interaction is not HoldInteraction) ObjectInteract(ctx);
         };
         playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
-        playerInputActions.Player.PlacementMode.performed += ctx =>
-        {
-            if (ctx.interaction is HoldInteraction) ActivatePlacementMode(ctx);
-        };
-        playerInputActions.Player.PlacementMode.canceled += CancelPlacementMode;
-
+        
+        playerInputActions.FindAction("ExitMemoryScene").Disable();
+        playerInputActions.Player.ExitMemoryScene.performed += ExitMemoryScene;
 
         // Television Input Map
         playerInputActions.Television.CloseTV.performed += CloseTelevision;
@@ -51,9 +52,18 @@ public class InputManager : MonoBehaviour
         // Inspection Input Map
         playerInputActions.Inspect.InspectionToggle.performed += ObjectInspectionToggle;
 
-        // Placement Input Map
-        playerInputActions.Placement.Place.performed += ObjectPlace;
+        // Branching Input Map
+        PickUpInteractor.OnBranchingPickup += BranchingItemPickedUp;
+        playerInputActions.Branching.Navigate.performed += SwitchBranchingItem;
+        playerInputActions.Branching.Submit.performed += SubmitBranchingItem;
     }
+
+    private void Start()
+    {
+        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
+        inTVMode = false;
+    }
+
     private void FixedUpdate()
     {
         MovePlayer();
@@ -104,7 +114,14 @@ public class InputManager : MonoBehaviour
 
     private void MoveCamera()
     {
-        Vector2 cameraInput = playerInputActions.Player.Look.ReadValue<Vector2>();
+        Vector2 cameraInput;
+        if (playerInputActions.Player.enabled)
+        {
+            cameraInput = playerInputActions.Player.Look.ReadValue<Vector2>();
+        } else
+        {
+            cameraInput = playerInputActions.Branching.Look.ReadValue<Vector2>();
+        }
 
         // Move the player to look around left/right when mouse pans left/right
         transform.Rotate(0, cameraInput.x * _mouseSensitivity * 1.2f, 0);
@@ -127,18 +144,45 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Disable();
         playerInputActions.Television.Enable();
 
+        inTVMode = true;
+
         ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
         cameraCtrl.SwitchToTapeView();
+        
+        SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
+        if (sceneManagement.automaticallyEnterMemorySceneOnOpenTV)
+        {
+            sceneManagement.EnterMemoryScene();
+            sceneManagement.DisableAutomaticEnterMemoryScene();
+        }
     }
 
-    private void CloseTelevision(InputAction.CallbackContext obj)
+    public void CloseTelevision(InputAction.CallbackContext obj)
     {
         playerInputActions.Television.Disable();
         playerInputActions.Player.Enable();
 
+        inTVMode = false;
+
         ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
         cameraCtrl.SwitchToPlayerView();
     }
+
+    public bool InTVMode()
+    {
+        return inTVMode;
+    }
+
+    #endregion
+
+    #region SceneManagement
+
+    private void ExitMemoryScene(InputAction.CallbackContext obj)
+    {
+        SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
+        sceneManagement.ExitMemoryScene();
+    }
+
 
     #endregion
 
@@ -148,38 +192,6 @@ public class InputManager : MonoBehaviour
         //Debug.Log("Interaction button pressed");
         InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
         interactableDetector.InteractWithObject();
-    }
-
-    private void ActivatePlacementMode(InputAction.CallbackContext context)
-    {
-        PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
-        if (pickUpInteractor.isHoldingObj())
-        {
-            Debug.Log("Activating Placement Mode");
-            pickUpInteractor.ActivatePlacementGuide();
-            playerInputActions.Placement.Enable();
-            placementMode = true;
-        }
-    }
-
-    private void CancelPlacementMode(InputAction.CallbackContext context)
-    {
-        playerInputActions.Placement.Disable();
-        placementMode = false;
-    }
-
-    private void ObjectPlace(InputAction.CallbackContext context)
-    {
-        Debug.Log("Place button pressed");
-        PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
-        if (pickUpInteractor.isHoldingObj())
-        {
-            Debug.Log("Interaction type: place");
-            pickUpInteractor.DropObject();
-        }
-
-        playerInputActions.Placement.Disable();
-        placementMode = false;
     }
 
     #region Object Inspection
@@ -197,9 +209,12 @@ public class InputManager : MonoBehaviour
 
         inspectionMode = !inspectionMode;
 
+        InteractionCue interactionCue = GetComponent<InteractionCue>();
+
         if (inspectionMode)
         {
             Debug.Log("Toggling On Inspect");
+            _interactionCue.SetInteractionCue(InteractionCueType.Inspection);
             playerInputActions.Player.Disable();
             playerInputActions.Inspect.Enable();
 
@@ -208,11 +223,52 @@ public class InputManager : MonoBehaviour
         else
         {
             Debug.Log("Toggling Off Inspect");
+            _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             playerInputActions.Player.Enable();
             playerInputActions.Inspect.Disable();
             inspection.ToggleFocusObject(false);
         }
     }
+
+    public bool InInspection()
+    {
+        return inspectionMode;
+    }
     #endregion
+    #endregion
+
+    #region Branching Item
+    void BranchingItemPickedUp(GameObject obj)
+    {
+        currSelectedBranching = obj;
+        playerInputActions.Player.Disable();
+        playerInputActions.Branching.Enable();
+    }
+
+    void SwitchBranchingItem(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("Switching branching item");
+        InteractableDetector interactableDetect = GetComponent<InteractableDetector>();
+        interactableDetect.unhighlightObject(currSelectedBranching);
+        GameObject otherBranching = currSelectedBranching.GetComponent<PuzzleBranchingKeyItem>().otherBranchingItem;
+        interactableDetect.highlightObject(otherBranching);
+
+        currSelectedBranching = otherBranching;
+    }
+
+    void SubmitBranchingItem(InputAction.CallbackContext ctx)
+    {
+        InteractableDetector interactableDetect = GetComponent<InteractableDetector>();
+        interactableDetect.unhighlightObject(currSelectedBranching);
+
+        PickUpInteractor pickupInteractor = GetComponent<PickUpInteractor>();
+        pickupInteractor.SelectBranchingItem(currSelectedBranching);
+
+        playerInputActions.Branching.Disable();
+        playerInputActions.Player.Enable();
+        
+        SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
+        sceneManagement.EnableAutomaticEnterMemoryScene();
+    }
     #endregion
 }

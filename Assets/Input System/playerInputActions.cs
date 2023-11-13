@@ -73,12 +73,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Placement Mode"",
+                    ""name"": ""ExitMemoryScene"",
                     ""type"": ""Button"",
-                    ""id"": ""5f8455fc-e820-4ebc-afaa-fdb06b6288c8"",
+                    ""id"": ""fb2eae1f-8938-42db-a62d-66fa6013534d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -251,7 +251,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""23a16214-3341-40e6-b085-3e320a365b22"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -261,23 +261,23 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""807dec79-6972-4591-b9f9-8b71ed2c2b14"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""707587f1-b795-45b2-92e7-34240e17a31a"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Placement Mode"",
+                    ""groups"": """",
+                    ""action"": ""ExitMemoryScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""de56fbb0-3bd7-4cb4-9be6-2de73a8696c0"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""id"": ""3fa64247-4f42-4034-986e-ad3e3d9aacc6"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Placement Mode"",
+                    ""groups"": """",
+                    ""action"": ""ExitMemoryScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1132,7 +1132,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""330e6861-92ba-48cd-95c5-5ba21c7795da"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -1224,39 +1224,209 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Placement"",
-            ""id"": ""5f6241b3-b0e5-453b-9b49-5c831cc480a2"",
+            ""name"": ""Branching"",
+            ""id"": ""262a23cf-d3c2-4685-bf8b-388144b6a13f"",
             ""actions"": [
                 {
-                    ""name"": ""Place"",
+                    ""name"": ""Cancel"",
                     ""type"": ""Button"",
-                    ""id"": ""76506406-6258-4f28-8de9-07245b3d1b30"",
+                    ""id"": ""b80b0352-d1bd-402f-a644-7a4c5164ca03"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""7640a630-4a5f-43db-a8de-c9d77b91ae7f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""cbf93547-dcab-4082-a53b-a880717eeaa5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Navigate"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b5bea28-6dd1-4f2b-b5b8-9d4c80eb1ae5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""f6f9caa1-1f4c-4800-ae74-600581a8b386"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""name"": ""Gamepad"",
+                    ""id"": ""286da4d4-bea4-4948-9e1d-19ffb8506158"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f31917be-8f0c-4806-8e0c-07311d1f1495"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""17d8e22f-77d2-46c8-a6d4-65e047c622d8"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""3d6013c0-45f3-4ed6-bc55-b8ad6704416f"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""83f8c045-318e-421d-8234-74c79554480d"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""fa4c2f51-3d41-400a-bdb2-e533b3de4a9d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""cd55a8ab-23f1-474c-9656-4d349bef2dc4"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Place"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""9a7461ba-4567-4492-87b2-427a4423906e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15d395c1-8235-4a69-ac9e-f0dae1a2deca"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2505e120-2998-4525-bfee-951c49f1d828"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""id"": ""c2a7a6f5-795e-4ee7-9555-2bc46d612fae"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0284c80a-aae9-41c1-8d47-4964388825bd"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Place"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ce0df4d-a39a-4321-a387-735d208d8095"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f60d5c6b-c823-4914-842c-f4e0c06fd0f2"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76585d6d-2e83-476b-a2f7-8d0cbb754376"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": ""NormalizeVector2"",
+                    ""groups"": ""Keyboard&Mouse;Touch"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aeabfa77-d937-4306-8a62-1291da9eb37e"",
+                    ""path"": ""<Joystick>/{Hatswitch}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1333,7 +1503,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_OpenTV = m_Player.FindAction("OpenTV", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_InspectionToggle = m_Player.FindAction("InspectionToggle", throwIfNotFound: true);
-        m_Player_PlacementMode = m_Player.FindAction("Placement Mode", throwIfNotFound: true);
+        m_Player_ExitMemoryScene = m_Player.FindAction("ExitMemoryScene", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1355,9 +1525,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Inspect = asset.FindActionMap("Inspect", throwIfNotFound: true);
         m_Inspect_InspectionToggle = m_Inspect.FindAction("InspectionToggle", throwIfNotFound: true);
         m_Inspect_Rotate = m_Inspect.FindAction("Rotate", throwIfNotFound: true);
-        // Placement
-        m_Placement = asset.FindActionMap("Placement", throwIfNotFound: true);
-        m_Placement_Place = m_Placement.FindAction("Place", throwIfNotFound: true);
+        // Branching
+        m_Branching = asset.FindActionMap("Branching", throwIfNotFound: true);
+        m_Branching_Cancel = m_Branching.FindAction("Cancel", throwIfNotFound: true);
+        m_Branching_Look = m_Branching.FindAction("Look", throwIfNotFound: true);
+        m_Branching_Submit = m_Branching.FindAction("Submit", throwIfNotFound: true);
+        m_Branching_Navigate = m_Branching.FindAction("Navigate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1424,7 +1597,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_OpenTV;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_InspectionToggle;
-    private readonly InputAction m_Player_PlacementMode;
+    private readonly InputAction m_Player_ExitMemoryScene;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1434,7 +1607,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @OpenTV => m_Wrapper.m_Player_OpenTV;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @InspectionToggle => m_Wrapper.m_Player_InspectionToggle;
-        public InputAction @PlacementMode => m_Wrapper.m_Player_PlacementMode;
+        public InputAction @ExitMemoryScene => m_Wrapper.m_Player_ExitMemoryScene;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1459,9 +1632,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @InspectionToggle.started += instance.OnInspectionToggle;
             @InspectionToggle.performed += instance.OnInspectionToggle;
             @InspectionToggle.canceled += instance.OnInspectionToggle;
-            @PlacementMode.started += instance.OnPlacementMode;
-            @PlacementMode.performed += instance.OnPlacementMode;
-            @PlacementMode.canceled += instance.OnPlacementMode;
+            @ExitMemoryScene.started += instance.OnExitMemoryScene;
+            @ExitMemoryScene.performed += instance.OnExitMemoryScene;
+            @ExitMemoryScene.canceled += instance.OnExitMemoryScene;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1481,9 +1654,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @InspectionToggle.started -= instance.OnInspectionToggle;
             @InspectionToggle.performed -= instance.OnInspectionToggle;
             @InspectionToggle.canceled -= instance.OnInspectionToggle;
-            @PlacementMode.started -= instance.OnPlacementMode;
-            @PlacementMode.performed -= instance.OnPlacementMode;
-            @PlacementMode.canceled -= instance.OnPlacementMode;
+            @ExitMemoryScene.started -= instance.OnExitMemoryScene;
+            @ExitMemoryScene.performed -= instance.OnExitMemoryScene;
+            @ExitMemoryScene.canceled -= instance.OnExitMemoryScene;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1736,51 +1909,75 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     }
     public InspectActions @Inspect => new InspectActions(this);
 
-    // Placement
-    private readonly InputActionMap m_Placement;
-    private List<IPlacementActions> m_PlacementActionsCallbackInterfaces = new List<IPlacementActions>();
-    private readonly InputAction m_Placement_Place;
-    public struct PlacementActions
+    // Branching
+    private readonly InputActionMap m_Branching;
+    private List<IBranchingActions> m_BranchingActionsCallbackInterfaces = new List<IBranchingActions>();
+    private readonly InputAction m_Branching_Cancel;
+    private readonly InputAction m_Branching_Look;
+    private readonly InputAction m_Branching_Submit;
+    private readonly InputAction m_Branching_Navigate;
+    public struct BranchingActions
     {
         private @PlayerInputActions m_Wrapper;
-        public PlacementActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Place => m_Wrapper.m_Placement_Place;
-        public InputActionMap Get() { return m_Wrapper.m_Placement; }
+        public BranchingActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Cancel => m_Wrapper.m_Branching_Cancel;
+        public InputAction @Look => m_Wrapper.m_Branching_Look;
+        public InputAction @Submit => m_Wrapper.m_Branching_Submit;
+        public InputAction @Navigate => m_Wrapper.m_Branching_Navigate;
+        public InputActionMap Get() { return m_Wrapper.m_Branching; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlacementActions set) { return set.Get(); }
-        public void AddCallbacks(IPlacementActions instance)
+        public static implicit operator InputActionMap(BranchingActions set) { return set.Get(); }
+        public void AddCallbacks(IBranchingActions instance)
         {
-            if (instance == null || m_Wrapper.m_PlacementActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlacementActionsCallbackInterfaces.Add(instance);
-            @Place.started += instance.OnPlace;
-            @Place.performed += instance.OnPlace;
-            @Place.canceled += instance.OnPlace;
+            if (instance == null || m_Wrapper.m_BranchingActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_BranchingActionsCallbackInterfaces.Add(instance);
+            @Cancel.started += instance.OnCancel;
+            @Cancel.performed += instance.OnCancel;
+            @Cancel.canceled += instance.OnCancel;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+            @Submit.started += instance.OnSubmit;
+            @Submit.performed += instance.OnSubmit;
+            @Submit.canceled += instance.OnSubmit;
+            @Navigate.started += instance.OnNavigate;
+            @Navigate.performed += instance.OnNavigate;
+            @Navigate.canceled += instance.OnNavigate;
         }
 
-        private void UnregisterCallbacks(IPlacementActions instance)
+        private void UnregisterCallbacks(IBranchingActions instance)
         {
-            @Place.started -= instance.OnPlace;
-            @Place.performed -= instance.OnPlace;
-            @Place.canceled -= instance.OnPlace;
+            @Cancel.started -= instance.OnCancel;
+            @Cancel.performed -= instance.OnCancel;
+            @Cancel.canceled -= instance.OnCancel;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+            @Submit.started -= instance.OnSubmit;
+            @Submit.performed -= instance.OnSubmit;
+            @Submit.canceled -= instance.OnSubmit;
+            @Navigate.started -= instance.OnNavigate;
+            @Navigate.performed -= instance.OnNavigate;
+            @Navigate.canceled -= instance.OnNavigate;
         }
 
-        public void RemoveCallbacks(IPlacementActions instance)
+        public void RemoveCallbacks(IBranchingActions instance)
         {
-            if (m_Wrapper.m_PlacementActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_BranchingActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IPlacementActions instance)
+        public void SetCallbacks(IBranchingActions instance)
         {
-            foreach (var item in m_Wrapper.m_PlacementActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_BranchingActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_PlacementActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_BranchingActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public PlacementActions @Placement => new PlacementActions(this);
+    public BranchingActions @Branching => new BranchingActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1833,7 +2030,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnOpenTV(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnInspectionToggle(InputAction.CallbackContext context);
-        void OnPlacementMode(InputAction.CallbackContext context);
+        void OnExitMemoryScene(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1859,8 +2056,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnInspectionToggle(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
     }
-    public interface IPlacementActions
+    public interface IBranchingActions
     {
-        void OnPlace(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
+        void OnNavigate(InputAction.CallbackContext context);
     }
 }

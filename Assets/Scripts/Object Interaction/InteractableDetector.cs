@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
+using TMPro;
+using System.Linq;
+using Unity.VisualScripting;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public enum InteractionType
 {
     None,
     Pickup,
+    Place,
     InsertRemoveTape
 }
 
@@ -24,6 +29,7 @@ public class InteractableDetector : MonoBehaviour
     [SerializeField] private Image _crossHairDisplay;
     [SerializeField] private Sprite _defaultCrosshair;
     [SerializeField] private Sprite _objectDetected;
+    [SerializeField] private Material highlightMaterial;
 
     // Events
     public static Action<RaycastHit> OnCursorHitChange;
@@ -32,32 +38,84 @@ public class InteractableDetector : MonoBehaviour
     private RaycastHit? _currentHit = null;
     private InteractionType interactionType;
 
-    private void Update()
+    private InteractionCue _interactionCue;
+
+    RaycastHit hit;
+
+    private float sphereRadius = 0.2f;
+    private GameObject currentObj = null;
+
+    private void Start()
     {
-        _currentHit = null;
-        RaycastHit hit;
+        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
+
+    }
+
+
+    /*void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawSphere(hit.point, sphereRadius);
+        Debug.Log("IN");
+    }*/
+
+    private void FixedUpdate()
+    {
+        Vector3 origin = Camera.main.transform.position;
+
         NotDetected();
 
         // Define the ray we are using to detect objects
-        Vector3 origin = Camera.main.transform.position;
+        origin = Camera.main.transform.position;
         Vector3 direction = Camera.main.transform.TransformDirection(Vector3.forward);
+        Ray originRay = new Ray(origin, direction);
+
+
         Debug.DrawRay(origin, direction * maxPlayerReach, Color.red);
 
         int layerMask = ~LayerMask.GetMask("Ignore Raycast");
 
         // Perform raycast
-        if (Physics.Raycast(origin, direction, out hit, maxPlayerReach, layerMask))
+        if (Physics.SphereCast(originRay, sphereRadius, out hit, maxPlayerReach, layerMask))
+        //if (Physics.Raycast(origin, direction, out hit, maxPlayerReach, layerMask))
         {
+            // Draw the ray
+            Debug.DrawRay(origin, direction * hit.distance, Color.yellow);
+
+            // Draw the sphere at the hit point
+            // Draw a yellow sphere at the transform's position
+            //OnDrawGizmosSelected();
+
             OnCursorHitChange?.Invoke(hit);
             // Debug.Log("raycast hit: " + hit.transform.gameObject.name);
 
             CheckInteractableTypeHit(hit);
 
-            if (interactionType != InteractionType.None)
+            // if cursor on interactable object immediately after being on another interactable object
+            if (currentObj)
             {
-                Detected();
-                _currentHit = hit;
+                //Debug.Log(currentObj.name);
+                unhighlightObject(currentObj);
+                currentObj = null;
             }
+
+            if (interactionType != InteractionType.None
+                && interactionType != InteractionType.Place)
+            {
+                _currentHit = hit;
+                Detected();
+            }
+        }
+
+        InputManager inputManager = FindObjectOfType<InputManager>();
+        if (inputManager.InTVMode())
+        {
+            _interactionCue.SetInteractionCue(InteractionCueType.Empty);
+        }
+        if (inputManager.InInspection())
+        {
+            _interactionCue.SetInteractionCue(InteractionCueType.Inspection);
         }
     }
 
@@ -68,14 +126,34 @@ public class InteractableDetector : MonoBehaviour
     {
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
 
-        if (hit.transform.parent?.name == "TV")
+        if (hit.transform.name == "VHS")
         {
+            if (pickUpInteractor.IsHeld("Tape Model"))
+            {
+                InputManager inputManager = FindObjectOfType<InputManager>();
+                _interactionCue.SetInteractionCue(InteractionCueType.InsertTape);
+            }
+
+            TapeManager tapeManager = FindObjectOfType<TapeManager>();
+            if (tapeManager.televisionHasTape())
+            {
+                if (!pickUpInteractor.isHoldingObj())
+                {
+                    _interactionCue.SetInteractionCue(InteractionCueType.RemoveTape);
+                }
+            }
             interactionType = InteractionType.InsertRemoveTape;
         }
         else if (hit.transform.GetComponent<PickupInteractable>() && !pickUpInteractor.isHoldingObj())
         {
+            _interactionCue.SetInteractionCue(InteractionCueType.Pickup);
             interactionType = InteractionType.Pickup;
-        } else
+        }
+        else if (pickUpInteractor.isHoldingObj())
+        {
+            interactionType = InteractionType.Place;
+        }
+        else
         {
             interactionType = InteractionType.None;
         }
@@ -85,11 +163,32 @@ public class InteractableDetector : MonoBehaviour
     private void Detected()
     {
         _crossHairDisplay.sprite = _objectDetected;
+        _crossHairDisplay.rectTransform.sizeDelta = new Vector2(20, 20);
+
+        if (currentObj ==null )
+        {
+            currentObj = _currentHit.Value.transform.gameObject;
+            highlightObject(currentObj);
+        }
     }
 
     private void NotDetected()
     {
+        PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
+        if (!pickUpInteractor.isHoldingObj())
+        {
+            _interactionCue.SetInteractionCue(InteractionCueType.Empty);
+        }
+        if (pickUpInteractor.IsHeld("Tape Model"))
+        {
+            InputManager inputManager = FindObjectOfType<InputManager>();
+            if (!inputManager.InInspection())
+            {
+                _interactionCue.SetInteractionCue(InteractionCueType.Hold);
+            }
+        }
         _crossHairDisplay.sprite = _defaultCrosshair;
+        _crossHairDisplay.rectTransform.sizeDelta = new Vector2(15, 15);
     }
     #endregion
 
@@ -111,15 +210,64 @@ public class InteractableDetector : MonoBehaviour
             if (pickUpInteractor.IsHeld("Tape Model"))
             {
                 tapeManager.insertTape(pickUpInteractor.HeldObj);
-            } else if (!pickUpInteractor.isHoldingObj())
+            }
+            else if (!pickUpInteractor.isHoldingObj())
             {
                 tapeManager.removeTape();
-            }   
-        } else if (interactionType == InteractionType.Pickup)
+            }
+        }
+        else if (interactionType == InteractionType.Pickup)
         {
             Debug.Log("Interaction type: pickup");
+            // _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             GameObject obj = _currentHit.Value.transform.gameObject;
             pickUpInteractor.PickupObject(obj);
         }
+        else if (interactionType == InteractionType.Place)
+        {
+            Debug.Log("Interaction type: place");
+            pickUpInteractor.DropHeldObject();
+        }
+    }
+
+    public void highlightObject(GameObject obj)
+    {
+        obj.GetComponent<Outline>().OutlineWidth = 5f;
+        obj.GetComponent<Outline>().OutlineColor = Color.yellow;
+        AddMaterial(obj);
+    }
+
+    public void unhighlightObject(GameObject obj)
+    {
+        obj.GetComponent<Outline>().OutlineWidth = 0f;
+        RemoveMaterial(obj);
+    }
+
+    private void AddMaterial(GameObject obj)
+    {
+        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            // get a list of the materials assigned to renderer
+            List<Material> myMaterials = renderer.sharedMaterials.ToList();
+            // if highlight material is not in myMaterials
+            if (renderer.sharedMaterial != highlightMaterial)
+            {
+                myMaterials.Add(highlightMaterial);
+                renderer.materials = myMaterials.ToArray();
+            }
+        }
+    }
+
+    private void RemoveMaterial(GameObject obj)
+    {
+        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            List<Material> myMaterials = renderer.sharedMaterials.ToList();
+            myMaterials.Remove(highlightMaterial);
+            renderer.materials = myMaterials.ToArray();
+        }
     }
 }
+    

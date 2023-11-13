@@ -23,6 +23,8 @@ public class AudioController : MonoBehaviour
         }
 
         playerAudioSource = GameObject.Find("Player").GetComponentInChildren<AudioSource>();
+
+        PuzzleNonBranchingKeyItem.OnKeyItemPlaced += PlayBGMStem;
     }
 
     public void SwitchAndPlayAudio(AudioClip audioClip)
@@ -61,5 +63,15 @@ public class AudioController : MonoBehaviour
         AudioClip randomFootstep = footsteps[randomIndex];
 
         SwitchAndPlayAudio(randomFootstep);
+    }
+
+    public void PlayBGMStem(GameObject obj)
+    {
+        AudioSource bgm_stem = obj.GetComponentInChildren<AudioSource>();
+
+        if (bgm_stem != null)
+        {
+            bgm_stem.mute = false;
+        }
     }
 }
