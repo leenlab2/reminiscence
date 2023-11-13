@@ -20,6 +20,10 @@ public abstract class PuzzleKeyItem : MonoBehaviour
     protected float timeLeft = -1f; // amount of time left for the outline to stay.
 
     protected PuzzleManagerNew puzzleManager;
+    
+    
+    // Objects that will appear in the memory scene when this branching item is placed
+    [SerializeField] private List<GameObject> appearingObjects;
 
     public void Start()
     {
@@ -43,9 +47,20 @@ public abstract class PuzzleKeyItem : MonoBehaviour
 
     public virtual void HandleCorrectPosition()
     {
+        // Make corresponding objects appear to update memory scene
+        MakeObjectsAppear();
+        
         // Disable this script, prevent item from being interactable
         Destroy(GetComponent<PickupInteractable>());
-        GetComponent<ObjectDistance>().enabled = false; 
+        GetComponent<ObjectDistance>().enabled = false;
+    }
+
+    private void MakeObjectsAppear()
+    {
+        foreach (GameObject obj in appearingObjects)
+        {
+            obj.SetActive(true);
+        }
     }
 
     protected abstract void CorrectPuzzleLogic();
