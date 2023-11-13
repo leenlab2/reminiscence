@@ -379,7 +379,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 1761e5e1182eca04da2c67fe629e80f9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: f6ce606f90b475b4ba5ea6cf891e06fe, type: 3}
+      objectReference: {fileID: 2100000, guid: 64f0aa0489680354599f5072927759eb, type: 2}
     - target: {fileID: 919132149155446097, guid: 1761e5e1182eca04da2c67fe629e80f9, type: 3}
       propertyPath: m_Name
       value: Poster_audition_textures
