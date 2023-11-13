@@ -27,6 +27,7 @@ public abstract class PuzzleKeyItem : MonoBehaviour
 
     public void Start()
     {
+        
         outline = GetComponent<Outline>();
         puzzleManager = GameObject.Find("Puzzle Manager").GetComponent<PuzzleManagerNew>();
     }
