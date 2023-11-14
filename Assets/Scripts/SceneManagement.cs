@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class SceneManagement : MonoBehaviour
 {
@@ -33,6 +34,12 @@ public class SceneManagement : MonoBehaviour
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
         camera = Camera.main.gameObject;
         automaticallyEnterMemorySceneOnOpenTV = false;
+
+        // Set to dim lighting
+        RenderSettings.ambientMode = AmbientMode.Flat;
+        RenderSettings.ambientSkyColor = Color.black;
+        RenderSettings.ambientEquatorColor = Color.black;
+        RenderSettings.ambientGroundColor = Color.black;
     }
 
     public void EnterMemoryScene()

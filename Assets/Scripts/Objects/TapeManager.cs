@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.Rendering;
 
 public class TapeManager : MonoBehaviour
 {
@@ -59,6 +60,9 @@ public class TapeManager : MonoBehaviour
             //tapeInfo.branchingItemB.GetComponent<ObjectDistanceNew>().enabled = true;
             ShowBranchCues();
 
+            // After insert tape change to normal lighting
+            RenderSettings.ambientMode = AmbientMode.Skybox;
+            GameObject.Find("Tape Light").SetActive(false);
         }
     }
 
