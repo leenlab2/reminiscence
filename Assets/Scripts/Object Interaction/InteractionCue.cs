@@ -29,7 +29,7 @@ public class InteractionCue : MonoBehaviour
     private string xboxRemoveTape = "<sprite=4> Remove tape";
     // private string xboxPutDown = "<sprite=5> Inspect";
     private string xboxHoldText = "<sprite=4> Put down                        <sprite=6> Inspect";
-    private string xboxInspectionText = "<sprite=42> Rotate                        <sprite=6> Exit";
+    private string xboxInspectionText = "<sprite=42> Rotate                        <sprite=5> Exit";
     private string xboxBranching = "<sprite=27><sprite=31> <sprite=25> Switch                         <sprite=4> Select";
     private string xboxExitMemoryText = "<sprite=5> Exit Memory";
 
