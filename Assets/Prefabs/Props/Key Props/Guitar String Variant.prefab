@@ -90,6 +90,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -15.649
       objectReference: {fileID: 0}
+    - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: inspectionObjectText
+      value: "What are these doing here? These aren\u2019t even the brand I use\u2026
+        I wonder who got them. "
+      objectReference: {fileID: 0}
     - target: {fileID: 2170228245570418129, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_Name
       value: Guitar String Variant
@@ -336,6 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e72b18b5d11243e0a9a9828277cfa0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearingObjects: []
   appearsOnBothBranches: 0
 --- !u!4 &8849019363245869011 stripped
 Transform:
