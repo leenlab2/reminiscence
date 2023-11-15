@@ -21,7 +21,7 @@ public class InputManager : MonoBehaviour
     private InteractionCue _interactionCue;
     private GameObject currSelectedBranching = null;
 
-    private bool inTVMode;
+    private bool inTVMode = false;
 
     private bool inBranchingSelection;
 
