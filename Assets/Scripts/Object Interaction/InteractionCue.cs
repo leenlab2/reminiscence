@@ -39,7 +39,7 @@ public class InteractionCue : MonoBehaviour
     private string kmInsertTape = "[LeftClick] Insert tape";
     private string kmRemoveTape = "[LeftClick] Remove tape";
     // private string kmPutDown = "[E] Inspect";
-    private string kmHoldText = "Hold [LeftClick] + [RightClick] Put down                        [E] Inspect";
+    private string kmHoldText = "[LeftClick] Put down                        [E] Inspect";
     private string kmInspectionText = "[Mouse] Rotate                        [E] Exit";
     private string kmBranching = "[A] / [D] Switch                         [LeftClick] Select";
     private string kmExitMemoryText = "[Tab] Exit Memory";
@@ -47,7 +47,7 @@ public class InteractionCue : MonoBehaviour
     private string empty = "";
 
     // 0: xbox controller, 1: keyboard/mouse, 2: ps controller
-    private int input = 0;
+    private int input = 1;
 
     // Start is called before the first frame update
     void Start()
