@@ -64,7 +64,7 @@ public class TapeManager : MonoBehaviour
             RenderSettings.ambientMode = AmbientMode.Skybox;
             GameObject.Find("Tape Light").SetActive(false);
             GameObject.Find("Window Block").SetActive(false);
-            GameObject.Find("TV Player").GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
+            //GameObject.Find("TV Player").GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
         }
     }
 
