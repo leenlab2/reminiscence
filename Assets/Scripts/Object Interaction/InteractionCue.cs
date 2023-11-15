@@ -46,8 +46,8 @@ public class InteractionCue : MonoBehaviour
 
     private string empty = "";
 
-    // 0: xbox controller, 1: keyboard/mouse, 2: ps controller
-    private int input = 1;
+    // 0: controller, 1: keyboard/mouse
+    [SerializeField] private int input = 0;
 
     // Start is called before the first frame update
     void Start()
