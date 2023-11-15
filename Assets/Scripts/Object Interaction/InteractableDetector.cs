@@ -31,6 +31,8 @@ public class InteractableDetector : MonoBehaviour
     [SerializeField] private Sprite _objectDetected;
     [SerializeField] private Material highlightMaterial;
 
+    private Vector2 _lastCrossHairDisplaySize = new Vector2(15, 15);
+
     // Events
     public static Action<RaycastHit> OnCursorHitChange;
 
@@ -112,6 +114,10 @@ public class InteractableDetector : MonoBehaviour
         if (inputManager.InTVMode())
         {
             _interactionCue.SetInteractionCue(InteractionCueType.Empty);
+            _lastCrossHairDisplaySize = _crossHairDisplay.rectTransform.sizeDelta;
+            _crossHairDisplay.rectTransform.sizeDelta = new Vector2(0, 0);
+        } else {
+            _crossHairDisplay.rectTransform.sizeDelta = _lastCrossHairDisplaySize;
         }
         if (inputManager.InInspection())
         {
