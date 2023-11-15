@@ -21,6 +21,10 @@ public class InteractionCue : MonoBehaviour
     private TMP_Text _interactText;
     private TMP_Text _pickupText;
     private TMP_Text _TVText;
+    private TMP_Text _dialogueText;
+
+    // dialogue text
+    public StringValue dialogueTextInfo;
 
     // xbox controls
     private string xboxTV = "<sprite=7> TV mode";
@@ -56,6 +60,7 @@ public class InteractionCue : MonoBehaviour
         _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
         _pickupText = GameObject.Find("Pickup Text").GetComponent<TMP_Text>();
         _TVText = GameObject.Find("TV Interaction Text").GetComponent<TMP_Text>();
+        _dialogueText = GameObject.Find("Dialogue Text").GetComponent<TMP_Text>();
 
         if (input == 0)
         {
@@ -79,6 +84,8 @@ public class InteractionCue : MonoBehaviour
         {
             _pickupText.text = empty;
             _interactText.text = empty;
+            _dialogueText.text = empty;
+
         } else if (type == InteractionCueType.Pickup)
         {
             if (input == 0)
@@ -123,6 +130,7 @@ public class InteractionCue : MonoBehaviour
                 _pickupText.text = "";
                 _interactText.text = kmHoldText;
             }
+            _dialogueText.text = empty;
         } else if (type == InteractionCueType.Inspection)
         {
             if (input == 0)
@@ -133,6 +141,7 @@ public class InteractionCue : MonoBehaviour
             {
                 _interactText.text = kmInspectionText;
             }
+            _dialogueText.text = dialogueTextInfo.value;  //TODO: change with dynamic value
             _pickupText.text = empty;
         } else if (type == InteractionCueType.Branching)
         {
@@ -144,6 +153,7 @@ public class InteractionCue : MonoBehaviour
             {
                 _interactText.text = kmBranching;
             }
+            _dialogueText.text = empty;
             _pickupText.text = empty;
         } else if (type == InteractionCueType.ExitMemory)
         {
