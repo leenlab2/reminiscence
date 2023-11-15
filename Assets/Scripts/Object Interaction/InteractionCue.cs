@@ -43,15 +43,15 @@ public class InteractionCue : MonoBehaviour
     private string kmInsertTape = "[LeftClick] Insert tape";
     private string kmRemoveTape = "[LeftClick] Remove tape";
     // private string kmPutDown = "[E] Inspect";
-    private string kmHoldText = "Hold [LeftClick] + [RightClick] Put down                        [E] Inspect";
+    private string kmHoldText = "[LeftClick] Put down                        [E] Inspect";
     private string kmInspectionText = "[Mouse] Rotate                        [E] Exit";
     private string kmBranching = "[A] / [D] Switch                         [LeftClick] Select";
     private string kmExitMemoryText = "[Tab] Exit Memory";
 
     private string empty = "";
 
-    // 0: xbox controller, 1: keyboard/mouse, 2: ps controller
-    private int input = 0;
+    // input type
+    [SerializeField] private bool isController = true;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +62,7 @@ public class InteractionCue : MonoBehaviour
         _TVText = GameObject.Find("TV Interaction Text").GetComponent<TMP_Text>();
         _dialogueText = GameObject.Find("Dialogue Text").GetComponent<TMP_Text>();
 
-        if (input == 0)
+        if (isController)
         {
             _TVText.text = xboxTV;
         }
@@ -88,7 +88,7 @@ public class InteractionCue : MonoBehaviour
 
         } else if (type == InteractionCueType.Pickup)
         {
-            if (input == 0)
+            if (isController)
             {
                 _pickupText.text = xboxPickUp;
             } 
@@ -98,7 +98,7 @@ public class InteractionCue : MonoBehaviour
             }
         } else if (type == InteractionCueType.InsertTape)
         {
-            if (input == 0)
+            if (isController)
             {
                 _pickupText.text = xboxInsertTape;
             } 
@@ -109,7 +109,7 @@ public class InteractionCue : MonoBehaviour
             _interactText.text = empty;
         } else if (type == InteractionCueType.RemoveTape)
         {
-            if (input == 0)
+            if (isController)
             {
                 _pickupText.text = xboxRemoveTape;
             } 
@@ -120,7 +120,7 @@ public class InteractionCue : MonoBehaviour
         } else if (type == InteractionCueType.Hold)
         {
             Debug.Log("xbox hold");
-            if (input == 0)
+            if (isController)
             {
                 _pickupText.text = "";
                 _interactText.text = xboxHoldText;
@@ -133,7 +133,7 @@ public class InteractionCue : MonoBehaviour
             _dialogueText.text = empty;
         } else if (type == InteractionCueType.Inspection)
         {
-            if (input == 0)
+            if (isController)
             {
                 _interactText.text = xboxInspectionText;
             }
@@ -145,7 +145,7 @@ public class InteractionCue : MonoBehaviour
             _pickupText.text = empty;
         } else if (type == InteractionCueType.Branching)
         {
-            if (input == 0)
+            if (isController)
             {
                 _interactText.text = xboxBranching;
             }
@@ -157,7 +157,7 @@ public class InteractionCue : MonoBehaviour
             _pickupText.text = empty;
         } else if (type == InteractionCueType.ExitMemory)
         {
-            if (input == 0)
+            if (isController)
             {
                 _TVText.text = xboxTV;
             }
@@ -167,7 +167,7 @@ public class InteractionCue : MonoBehaviour
             }
         } else if (type == InteractionCueType.EnterMemory)
         {
-            if (input == 0)
+            if (isController)
             {
                 _TVText.text = xboxExitMemoryText;
             }
