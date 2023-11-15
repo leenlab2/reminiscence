@@ -4923,6 +4923,7 @@ GameObject:
   - component: {fileID: 4209469078090970382}
   - component: {fileID: 2130201090686878148}
   - component: {fileID: 4911560616993780415}
+  - component: {fileID: 4369939628494703352}
   m_Layer: 0
   m_Name: VHS
   m_TagString: Untagged
@@ -5019,6 +5020,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.9, y: 0.9, z: 3.8}
   m_Center: {x: -0.3, y: 2, z: 0.8}
+--- !u!114 &4369939628494703352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472599695179718673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.8962264, g: 0.65263283, b: 0.17248127, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &560125709808327588
 GameObject:
   m_ObjectHideFlags: 0
@@ -5491,7 +5510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2930568635854099009}
   - component: {fileID: 466943572842288819}
-  - component: {fileID: 4515870898506143654}
+  - component: {fileID: 269746053702485820}
   m_Layer: 0
   m_Name: TV
   m_TagString: Untagged
@@ -5625,7 +5644,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4515870898506143654
+--- !u!114 &269746053702485820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5869,7 +5888,7 @@ VideoPlayer:
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 0.516
+  - 0.65
   m_Url: https://www.youtube.com/watch?v=oigva-8SgYo
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
@@ -5932,7 +5951,7 @@ GameObject:
   m_Component:
   - component: {fileID: 495849430499852918}
   - component: {fileID: 2550217470181327819}
-  - component: {fileID: 5114777710614039103}
+  - component: {fileID: 2251748296924630041}
   m_Layer: 0
   m_Name: Area Light
   m_TagString: Untagged
@@ -6017,7 +6036,7 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &5114777710614039103
+--- !u!114 &2251748296924630041
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class SceneManagement : MonoBehaviour
 {
@@ -33,12 +34,19 @@ public class SceneManagement : MonoBehaviour
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
         camera = Camera.main.gameObject;
         automaticallyEnterMemorySceneOnOpenTV = false;
+
+        // Set to dim lighting
+        RenderSettings.ambientMode = AmbientMode.Flat;
+        RenderSettings.ambientSkyColor = Color.black;
+        RenderSettings.ambientEquatorColor = Color.black;
+        RenderSettings.ambientGroundColor = Color.black;
     }
 
     public void EnterMemoryScene()
     {
         if (tapeManager.televisionHasTape()) // Enter memory scene if TV has tape inserted
         {
+            RenderSettings.ambientIntensity = 0.5f;
             effects.SetActive(true);
             camera.GetComponent<UniversalAdditionalCameraData>().renderPostProcessing = true;
             
@@ -65,6 +73,8 @@ public class SceneManagement : MonoBehaviour
         puzzleManager.memorySceneCanvas.SetActive(false);
         effects.SetActive(false);
         camera.GetComponent<UniversalAdditionalCameraData>().renderPostProcessing = false;
+        
+        RenderSettings.ambientIntensity = 1;
 
         Vector3 cameraRotationAtTelevision = new Vector3(0, 160, 0);
         player.transform.rotation = Quaternion.Euler(cameraRotationAtTelevision);

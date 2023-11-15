@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8639991984944494913}
   - component: {fileID: 3894040815628920468}
-  - component: {fileID: 2648836120021771541}
+  - component: {fileID: 3779143897412271799}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -95,7 +95,7 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &2648836120021771541
+--- !u!114 &3779143897412271799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7593704697015776725, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.96
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7593704697015776725, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -176,7 +176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7593704697015776725, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.26
+      value: 15.24
       objectReference: {fileID: 0}
     - target: {fileID: 7593704697015776725, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -208,6 +208,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5929280924604274769, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+    - {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+    - {fileID: 5731597399940653500, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7839345734118803749, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
     - {fileID: 5003668651631620905, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
