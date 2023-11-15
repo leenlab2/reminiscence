@@ -13,8 +13,20 @@ public class PuzzleNonBranchingKeyItem : PuzzleKeyItem
     // Note: this takes in parent root object
     public static event Action<GameObject> OnKeyItemPlaced;
     
+    // Light in memory scene to brighten
+    private Light memoryLight;
+
+    void Start()
+    {
+        base.Start();
+        memoryLight = GameObject.Find("Memory Light").GetComponent<Light>();
+    }
+
     public override void HandleCorrectPosition()
     {
+        // Make memory scene brighter
+        memoryLight.intensity += 20;
+        
         base.HandleCorrectPosition();
 
         Debug.Log("Key Item Placed:" + name);

@@ -46,6 +46,7 @@ public class SceneManagement : MonoBehaviour
     {
         if (tapeManager.televisionHasTape()) // Enter memory scene if TV has tape inserted
         {
+            RenderSettings.ambientIntensity = 0.5f;
             effects.SetActive(true);
             camera.GetComponent<UniversalAdditionalCameraData>().renderPostProcessing = true;
             
@@ -72,6 +73,8 @@ public class SceneManagement : MonoBehaviour
         puzzleManager.memorySceneCanvas.SetActive(false);
         effects.SetActive(false);
         camera.GetComponent<UniversalAdditionalCameraData>().renderPostProcessing = false;
+        
+        RenderSettings.ambientIntensity = 1;
 
         Vector3 cameraRotationAtTelevision = new Vector3(0, 160, 0);
         player.transform.rotation = Quaternion.Euler(cameraRotationAtTelevision);

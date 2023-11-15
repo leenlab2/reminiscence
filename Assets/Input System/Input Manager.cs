@@ -23,6 +23,8 @@ public class InputManager : MonoBehaviour
 
     private bool inTVMode;
 
+    private bool inBranchingSelection;
+
     private void Awake()
     {
         _speed = _walkSpeed;
@@ -56,6 +58,8 @@ public class InputManager : MonoBehaviour
         PickUpInteractor.OnBranchingPickup += BranchingItemPickedUp;
         playerInputActions.Branching.Navigate.performed += SwitchBranchingItem;
         playerInputActions.Branching.Submit.performed += SubmitBranchingItem;
+
+        inBranchingSelection = false;
     }
 
     private void Start()
@@ -243,6 +247,7 @@ public class InputManager : MonoBehaviour
         currSelectedBranching = obj;
         playerInputActions.Player.Disable();
         playerInputActions.Branching.Enable();
+        inBranchingSelection = true;
     }
 
     void SwitchBranchingItem(InputAction.CallbackContext ctx)
@@ -269,6 +274,13 @@ public class InputManager : MonoBehaviour
         
         SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
         sceneManagement.EnableAutomaticEnterMemoryScene();
+
+        inBranchingSelection = false;
+    }
+
+    public bool isInBranchingSelection()
+    {
+        return inBranchingSelection;
     }
     #endregion
 }

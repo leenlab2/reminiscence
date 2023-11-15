@@ -177,7 +177,10 @@ public class InteractableDetector : MonoBehaviour
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
         if (!pickUpInteractor.isHoldingObj())
         {
-            _interactionCue.SetInteractionCue(InteractionCueType.Empty);
+            InputManager inputManager = FindObjectOfType<InputManager>();
+            if (!inputManager.isInBranchingSelection()){
+                _interactionCue.SetInteractionCue(InteractionCueType.Empty);
+            }
         }
         if (pickUpInteractor.IsHeld("Tape Model"))
         {
