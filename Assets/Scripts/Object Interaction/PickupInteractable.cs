@@ -16,6 +16,9 @@ public class PickupInteractable : MonoBehaviour
     private Rigidbody rigidbody;
     private bool onWall;
 
+    public StringValue objectTextInfo;
+    public string inspectionObjectText;
+
     void Awake()
     {
         originalParent = transform.parent;
@@ -28,6 +31,7 @@ public class PickupInteractable : MonoBehaviour
         transform.SetPositionAndRotation(holdArea.position, holdArea.rotation);
         transform.SetParent(holdArea);
         onWall = false;
+        objectTextInfo.value = inspectionObjectText;
     }
 
     #region Placement Guide
