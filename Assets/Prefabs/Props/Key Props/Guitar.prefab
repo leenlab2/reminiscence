@@ -556,8 +556,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: inspectionObjectText
+      value: "Hey old friend. Can\u2019t believe you survived all that mistreatment
+        back in the day. I wonder\u2026 maybe I can take you home with me after this
+        reunion blows over. "
+      objectReference: {fileID: 0}
     - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: appearsOnBothBranches
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: appearingObjects.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2170228245570418129, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}

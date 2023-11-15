@@ -164,6 +164,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Candelabra Variant 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: inspectionObjectText
+      value: "Mom loved this thing\u2026 I- I miss you\u2026"
+      objectReference: {fileID: 0}
     - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.04
