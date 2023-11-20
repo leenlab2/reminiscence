@@ -130,6 +130,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bed_texture
       objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 7930a08342c0f9d4e8df13a0d7e23ef0, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
