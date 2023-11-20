@@ -4974,7 +4974,7 @@ GameObject:
   - component: {fileID: 4209469078090970382}
   - component: {fileID: 2130201090686878148}
   - component: {fileID: 4911560616993780415}
-  - component: {fileID: 1168353817013434763}
+  - component: {fileID: 7529412291629067653}
   m_Layer: 0
   m_Name: VHS
   m_TagString: Untagged
@@ -5071,7 +5071,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.9, y: 0.9, z: 3.8}
   m_Center: {x: -0.3, y: 2, z: 0.8}
---- !u!114 &1168353817013434763
+--- !u!114 &7529412291629067653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5581,7 +5581,7 @@ GameObject:
   - component: {fileID: 167254050841616644}
   - component: {fileID: 7583159409805469127}
   - component: {fileID: 2088660345755922065}
-  - component: {fileID: 2885631415598167507}
+  - component: {fileID: 8532227804584225040}
   m_Layer: 5
   m_Name: Dial
   m_TagString: Untagged
@@ -5607,7 +5607,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000000059604645, y: 0}
+  m_AnchoredPosition: {x: 0.000002026558, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &7583159409805469127
@@ -5643,13 +5643,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 1
+  outlineMode: 0
   outlineColor: {r: 0.9339623, g: 0.8009788, b: 0.13568883, a: 1}
   outlineWidth: 0
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &2885631415598167507
+--- !u!114 &8532227804584225040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5658,14 +5658,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4368322288557826298}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6560fa01b23f53540a60fabc42fb2822, type: 3}
+  m_Script: {fileID: 11500000, guid: 18310d7d9e518fb49a2edffc6bfb111c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dial: {fileID: 4368322288557826298}
-  inText: {fileID: 7999830901906757274}
-  outText: {fileID: 16112358008013829}
-  sceneManagement: {fileID: 0}
-  uiButton: {fileID: 3577105539779067731}
 --- !u!1 &4486561824925666840
 GameObject:
   m_ObjectHideFlags: 0
@@ -5677,6 +5672,7 @@ GameObject:
   - component: {fileID: 3695968245962362958}
   - component: {fileID: 329491325268552985}
   - component: {fileID: 3577105539779067731}
+  - component: {fileID: 7465971701463220807}
   m_Layer: 5
   m_Name: Mode toggle
   m_TagString: Untagged
@@ -5692,8 +5688,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4486561824925666840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.037}
-  m_LocalScale: {x: 0.58446, y: 0.58446, z: 0.58446}
+  m_LocalPosition: {x: 0, y: 0, z: 0.037000347}
+  m_LocalScale: {x: 0.58446026, y: 0.58446, z: 0.58446026}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5206356768795376089}
@@ -5703,7 +5699,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1.209, y: 2.168002}
+  m_AnchoredPosition: {x: 1.2089996, y: 2.168002}
   m_SizeDelta: {x: 0.7854, y: 0.8952}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &329491325268552985
@@ -5727,7 +5723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
+    m_Mode: 3
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -5754,7 +5750,7 @@ MonoBehaviour:
     m_SelectedTrigger: 
     m_DisabledTrigger: 
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7999830901906757274}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -5770,6 +5766,24 @@ MonoBehaviour:
           m_StringArgument: Move
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7465971701463220807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4486561824925666840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6560fa01b23f53540a60fabc42fb2822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dial: {fileID: 4368322288557826298}
+  inText: {fileID: 7999830901906757274}
+  outText: {fileID: 16112358008013829}
+  sceneManagement: {fileID: 0}
+  dialBaseModel: {fileID: 1363288187507711196}
+  dialStickModel: {fileID: 7055462834332579654}
 --- !u!1 &4944282981366583310
 GameObject:
   m_ObjectHideFlags: 0
@@ -5878,7 +5892,7 @@ GameObject:
   m_Component:
   - component: {fileID: 495849430499852918}
   - component: {fileID: 2550217470181327819}
-  - component: {fileID: 8699034043695567468}
+  - component: {fileID: 7240202947200788606}
   m_Layer: 0
   m_Name: Area Light
   m_TagString: Untagged
@@ -5963,7 +5977,7 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &8699034043695567468
+--- !u!114 &7240202947200788606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6522,11 +6536,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6276832034884080114, guid: ac13c423140cdbb48844a3024486eb11, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2601563293381425772, guid: ac13c423140cdbb48844a3024486eb11, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ac13c423140cdbb48844a3024486eb11, type: 3}
       propertyPath: m_Name
@@ -6545,8 +6559,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac13c423140cdbb48844a3024486eb11, type: 3}
+--- !u!1 &1363288187507711196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6276832034884080114, guid: ac13c423140cdbb48844a3024486eb11, type: 3}
+  m_PrefabInstance: {fileID: 4183679020163085010}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4433178769765586233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ac13c423140cdbb48844a3024486eb11, type: 3}
+  m_PrefabInstance: {fileID: 4183679020163085010}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7055462834332579654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2601563293381425772, guid: ac13c423140cdbb48844a3024486eb11, type: 3}
   m_PrefabInstance: {fileID: 4183679020163085010}
   m_PrefabAsset: {fileID: 0}

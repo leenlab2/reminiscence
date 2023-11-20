@@ -11,24 +11,37 @@ public class MemoryTransition : MonoBehaviour, ISelectHandler, IDeselectHandler
     [SerializeField] private TextMeshProUGUI inText;
     [SerializeField] private TextMeshProUGUI outText;
     [SerializeField] private SceneManagement sceneManagement;
-    [SerializeField] private Button uiButton;
 
     private InteractableDetector detector;
     private Animator dialAnimator;
+    public GameObject dialBaseModel;
+    public GameObject dialStickModel;
 
-    void Start()
+    void OnEnable()
     {
-        detector = FindAnyObjectByType<InteractableDetector>();
-        dialAnimator = dial.GetComponent<Animator>();
+        dialBaseModel.SetActive(false);
+        dialStickModel.SetActive(false);
 
         inText.color = Color.white;
         outText.color = Color.yellow;
     }
 
+    void OnDisable()
+    {
+        dialBaseModel.SetActive(true);
+        dialStickModel.SetActive(true);
+    }
+
+    void Start()
+    {
+        detector = FindAnyObjectByType<InteractableDetector>();
+        dialAnimator = dial.GetComponent<Animator>();
+    }
+
     public void OnSelect(BaseEventData eventData)
     {
         Debug.Log("Selected");
-        if (eventData.selectedObject == uiButton.gameObject)
+        if (eventData.selectedObject == gameObject)
         {
             Debug.Log("button selected");
             detector.highlightObject(dial);
@@ -37,7 +50,7 @@ public class MemoryTransition : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public void OnDeselect(BaseEventData eventData)
     {
-        if (eventData.selectedObject == uiButton.gameObject)
+        if (eventData.selectedObject == gameObject)
         {
             detector.unhighlightObject(dial);
         }
