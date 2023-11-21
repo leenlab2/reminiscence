@@ -5312,7 +5312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBranchingItemModel: {fileID: 0}
-  memorySceneCanvas: {fileID: 0}
+  memorySceneCanvas: {fileID: 1128450803}
   tapeObjs:
   - {fileID: 1267630268}
   - {fileID: 1416378135}
@@ -5845,6 +5845,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3ff63de2a8b638747ba0f65b4cf010a8, type: 3}
   m_PrefabInstance: {fileID: 1122986770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1128450803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2469239308035777312, guid: 8bf85bdc0850b2d44a1afee0d06a3f8f, type: 3}
+  m_PrefabInstance: {fileID: 289744171}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1136239282
 GameObject:
