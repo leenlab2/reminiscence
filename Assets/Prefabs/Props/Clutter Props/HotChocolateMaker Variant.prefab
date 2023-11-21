@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 43770993739950759, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 839126950360818611, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -15,6 +19,10 @@ PrefabInstance:
     - target: {fileID: 2569194390380454344, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: m_Name
       value: HotChocolateMaker Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344622818634122826, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.899
       objectReference: {fileID: 0}
     - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -56,6 +64,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6537206880551773397, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.999
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5869136795443387708, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
@@ -88,11 +100,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -104,7 +116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
       propertyPath: m_LocalRotation.y
@@ -126,9 +138,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5371029533418804361, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 370607267929383044, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
       propertyPath: m_Name
       value: Hot_Chocolate_Maker_Textured
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426108877724069576, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979027145221621315, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -150,11 +178,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.899
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -166,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5e4f78109a9d5408e2d10295ad2ddc, type: 3}
       propertyPath: m_LocalRotation.y
