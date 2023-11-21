@@ -41,13 +41,10 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         outline.OutlineWidth = 5f;
         timeLeft = timeLengthOutline;
 
-        // Turn off branching item's cue
-
 
         // Enable ObjectDistance scripts of three key items on this branch
         foreach (GameObject obj in keyItemModels)
         {
-            Debug.Log(obj.name);
             ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.enabled = true;
             
@@ -56,7 +53,9 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
                 objDist.SwitchPuzzleTarget(branch);
             }
         }
-        
+
+        ShowCuesOfNonBranchingKeyItems();
+
         // Disable other branching item
         otherBranchingItem.transform.parent.gameObject.SetActive(false);
     }
