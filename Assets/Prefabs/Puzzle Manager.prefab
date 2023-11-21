@@ -45,4 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
-  branch: 0
+  currentBranch: 0
+  currentBranchingItemModel: {fileID: 0}
+  enterMemoryButton: {fileID: 0}
+  memorySceneCanvas: {fileID: 0}
