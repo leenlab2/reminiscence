@@ -5110,6 +5110,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5316712396611475656, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
   m_PrefabInstance: {fileID: 1160039100}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1160039102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4486561824925666840, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+  m_PrefabInstance: {fileID: 1160039100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1177036134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9166,7 +9171,7 @@ PrefabInstance:
     - target: {fileID: 845513360825957052, guid: d88c5b4686eb63242bb01bfe2db9a257, type: 3}
       propertyPath: enterMemoryButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1160039102}
     - target: {fileID: 845513360825957052, guid: d88c5b4686eb63242bb01bfe2db9a257, type: 3}
       propertyPath: memorySceneCanvas
       value: 
