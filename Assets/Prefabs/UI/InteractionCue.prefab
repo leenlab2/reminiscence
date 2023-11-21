@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3504773574853915377}
   - component: {fileID: 3811801298118590172}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: InteractionCue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2430673581241d09e46ee64abd9534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueTextInfo: {fileID: 11400000, guid: c4baf7bf52c29c64e899665b1cc8bb07, type: 2}
+  isController: 1
