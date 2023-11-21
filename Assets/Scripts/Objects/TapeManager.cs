@@ -9,6 +9,7 @@ public class TapeManager : MonoBehaviour
     private VideoPlayer videoPlayer;
     private GameObject currentTapeInTv;
     private PickUpInteractor pickUpInteractor;
+    private bool lightsAreOn;
     
     void Start()
     {
@@ -55,8 +56,12 @@ public class TapeManager : MonoBehaviour
 
             // After insert tape change to normal lighting
             RenderSettings.ambientMode = AmbientMode.Skybox;
-            GameObject.Find("Window Block").SetActive(false);
-            GameObject.Find("Tape Light").SetActive(false);
+            if (!lightsAreOn)
+            {
+                GameObject.Find("Window Block").SetActive(false);
+                GameObject.Find("Tape Light").SetActive(false);
+                lightsAreOn = true;
+            }
             //GameObject.Find("TV Player").GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
         }
     }
