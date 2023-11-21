@@ -56,12 +56,12 @@ public class TapeManager : MonoBehaviour
 
             // After insert tape change to normal lighting
             RenderSettings.ambientMode = AmbientMode.Skybox;
-            if (!lightsAreOn)
-            {
-                GameObject.Find("Window Block").SetActive(false);
-                GameObject.Find("Tape Light").SetActive(false);
-                lightsAreOn = true;
-            }
+            GameObject.Find("Tape Light").SetActive(false);
+            GameObject.Find("Window Block").SetActive(false);
+            GameObject.Find("TVRoomSpotLight").SetActive(true);
+            GameObject.Find("TVRoomSpotLight2").SetActive(true);
+            GameObject.Find("Lamplight").SetActive(true);
+            GameObject.Find("Window Block").SetActive(true);
             //GameObject.Find("TV Player").GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
         }
     }
