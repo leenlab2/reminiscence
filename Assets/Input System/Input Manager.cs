@@ -181,7 +181,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Memory.Enable();
     }
 
-    private void ExitMemoryScene(InputAction.CallbackContext obj)
+    public void ExitMemoryScene(InputAction.CallbackContext obj)
     {
         playerInputActions.Memory.Disable();
         playerInputActions.Player.OpenTV.Enable();
