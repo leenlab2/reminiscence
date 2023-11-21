@@ -14,6 +14,9 @@ public class SceneManagement : MonoBehaviour
     public GameObject player;
     public GameObject enterMemoryButton;
 
+    private Vector3 _originalPlayerPos;
+    private Quaternion _originalPlayerRot;
+
     private InteractionCue _interactionCue;
 
     // Start is called before the first frame update
@@ -53,6 +56,9 @@ public class SceneManagement : MonoBehaviour
 
             _interactionCue.SetInteractionCue(InteractionCueType.EnterMemory);
             
+            _originalPlayerPos = player.transform.position;
+            _originalPlayerRot = player.transform.rotation;
+
             player.transform.position = new Vector3(-5.03f, 50f, 4f);
             player.transform.rotation = new Quaternion(0,0,0, 0);
         }
@@ -60,8 +66,7 @@ public class SceneManagement : MonoBehaviour
 
     public void ExitMemoryScene()
     {
-        player.transform.position = new Vector3(6.5f, -0.00115942955f, -9.0f);
-        player.transform.rotation = new Quaternion(-1.7f, -0.95f, 8.96f, 0);
+        player.transform.SetPositionAndRotation(_originalPlayerPos, _originalPlayerRot);
 
         _interactionCue.SetInteractionCue(InteractionCueType.ExitMemory);
 
