@@ -27,26 +27,26 @@ public class InteractionCue : MonoBehaviour
     public StringValue dialogueTextInfo;
 
     // xbox controls
-    private string xboxTV = "<sprite=7> TV mode";
-    private string xboxPickUp = "<sprite=4> Pickup";
-    private string xboxInsertTape = "<sprite=4> Insert tape";
-    private string xboxRemoveTape = "<sprite=4> Remove tape";
+    private string xboxTV = "<sprite=0> TV mode";
+    private string xboxPickUp = "<sprite=1> Pickup";
+    private string xboxInsertTape = "<sprite=1> Insert tape";
+    private string xboxRemoveTape = "<sprite=1> Remove tape";
     // private string xboxPutDown = "<sprite=5> Inspect";
-    private string xboxHoldText = "<sprite=4> Put down                        <sprite=6> Inspect";
-    private string xboxInspectionText = "<sprite=42> Rotate                        <sprite=5> Exit";
-    private string xboxBranching = "<sprite=27><sprite=31> <sprite=25> Switch                         <sprite=4> Select";
-    private string xboxExitMemoryText = "<sprite=5> Exit Memory";
+    private string xboxHoldText = "<sprite=1> Put down                        <sprite=3> Inspect";
+    private string xboxInspectionText = "<sprite=4> Rotate                        <sprite=2> Exit";
+    private string xboxBranching = "<sprite=4> Switch                         <sprite=1> Select";
+    private string xboxExitMemoryText = "<sprite=2> Exit Memory";
 
     // keyboard/mouse controls
-    private string kmTV = "[T] TV mode";
-    private string kmPickUp = "[LeftClick] Pickup";
-    private string kmInsertTape = "[LeftClick] Insert tape";
-    private string kmRemoveTape = "[LeftClick] Remove tape";
+    private string kmTV = "<sprite=12> TV mode";
+    private string kmPickUp = "<sprite=16> Pickup";
+    private string kmInsertTape = "<sprite=16> Insert tape";
+    private string kmRemoveTape = "<sprite=16> Remove tape";
     // private string kmPutDown = "[E] Inspect";
-    private string kmHoldText = "[LeftClick] Put down                        [E] Inspect";
-    private string kmInspectionText = "[Mouse] Rotate                        [E] Exit";
-    private string kmBranching = "[A] / [D] Switch                         [LeftClick] Select";
-    private string kmExitMemoryText = "[Tab] Exit Memory";
+    private string kmHoldText = "<sprite=16> Put down                        <sprite=15> Inspect";
+    private string kmInspectionText = "<sprite=17> Rotate                        <sprite=15> Exit";
+    private string kmBranching = "<sprite=14> Switch                         <sprite=16> Select";
+    private string kmExitMemoryText = "<sprite=13> Exit Memory";
 
     private string empty = "";
 
