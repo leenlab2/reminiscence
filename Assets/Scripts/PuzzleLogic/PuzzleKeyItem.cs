@@ -19,7 +19,7 @@ public abstract class PuzzleKeyItem : MonoBehaviour
     public const float timeLengthOutline = 3f; // how long the outline should stay when object placed in right location
     protected float timeLeft = -1f; // amount of time left for the outline to stay.
 
-    protected PuzzleManagerNew puzzleManager;
+    protected PuzzleManager puzzleManager;
     
     // Objects that will appear in the memory scene when this branching item is placed
     [SerializeField] private List<GameObject> appearingObjects;
@@ -28,7 +28,7 @@ public abstract class PuzzleKeyItem : MonoBehaviour
     {
         
         outline = GetComponent<Outline>();
-        puzzleManager = GameObject.Find("Puzzle Manager").GetComponent<PuzzleManagerNew>();
+        puzzleManager = GameObject.Find("Puzzle Manager").GetComponent<PuzzleManager>();
     }
 
     // Update is called once per frame

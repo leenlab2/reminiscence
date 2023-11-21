@@ -9,7 +9,6 @@ public class InputManager : MonoBehaviour
     public PlayerInputActions playerInputActions;
 
     private Rigidbody playerBody;
-    private PlayerInput playerInput;
 
     private float _mouseSensitivity = 3f;
     
@@ -29,7 +28,6 @@ public class InputManager : MonoBehaviour
     {
         _speed = _walkSpeed;
         playerBody = GetComponent<Rigidbody>();
-        playerInput = GetComponent<PlayerInput>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
@@ -45,8 +43,9 @@ public class InputManager : MonoBehaviour
         };
         playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
         
-        playerInputActions.FindAction("ExitMemoryScene").Disable();
-        playerInputActions.Player.ExitMemoryScene.performed += ExitMemoryScene;
+        // Memory Input Map
+        playerInputActions.Memory.Disable();
+        playerInputActions.Memory.ExitMemoryScene.performed += ExitMemoryScene;
 
         // Television Input Map
         playerInputActions.Television.CloseTV.performed += CloseTelevision;
@@ -154,11 +153,6 @@ public class InputManager : MonoBehaviour
         cameraCtrl.SwitchToTapeView();
         
         SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
-        if (sceneManagement.automaticallyEnterMemorySceneOnOpenTV)
-        {
-            sceneManagement.EnterMemoryScene();
-            sceneManagement.DisableAutomaticEnterMemoryScene();
-        }
     }
 
     public void CloseTelevision(InputAction.CallbackContext obj)
@@ -180,9 +174,17 @@ public class InputManager : MonoBehaviour
     #endregion
 
     #region SceneManagement
+    public void EnterMemoryScene()
+    {
+        CloseTelevision(new InputAction.CallbackContext());
+        playerInputActions.Player.OpenTV.Disable();
+        playerInputActions.Memory.Enable();
+    }
 
     private void ExitMemoryScene(InputAction.CallbackContext obj)
     {
+        playerInputActions.Memory.Disable();
+        playerInputActions.Player.OpenTV.Enable();
         SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
         sceneManagement.ExitMemoryScene();
     }
@@ -271,9 +273,6 @@ public class InputManager : MonoBehaviour
 
         playerInputActions.Branching.Disable();
         playerInputActions.Player.Enable();
-        
-        SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
-        sceneManagement.EnableAutomaticEnterMemoryScene();
 
         inBranchingSelection = false;
     }

@@ -49,15 +49,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "ExitMemoryScene",
-                    "type": "Button",
-                    "id": "fb2eae1f-8938-42db-a62d-66fa6013534d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -234,28 +225,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "InspectionToggle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "707587f1-b795-45b2-92e7-34240e17a31a",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ExitMemoryScene",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3fa64247-4f42-4034-986e-ad3e3d9aacc6",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ExitMemoryScene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1405,6 +1374,45 @@
                     "processors": "",
                     "groups": "Joystick",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Memory",
+            "id": "0cbbc568-0843-46c4-840b-97dc491eb1ef",
+            "actions": [
+                {
+                    "name": "ExitMemoryScene",
+                    "type": "Button",
+                    "id": "a524ac88-1886-4570-9d37-a67e721e4efc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "10153148-39f3-414d-bafe-f78790a4cca7",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitMemoryScene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a80a074-893d-4e6a-8990-5f5728cba8d7",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitMemoryScene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -71,15 +71,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ExitMemoryScene"",
-                    ""type"": ""Button"",
-                    ""id"": ""fb2eae1f-8938-42db-a62d-66fa6013534d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -256,28 +247,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""InspectionToggle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""707587f1-b795-45b2-92e7-34240e17a31a"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ExitMemoryScene"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3fa64247-4f42-4034-986e-ad3e3d9aacc6"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ExitMemoryScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1431,6 +1400,45 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Memory"",
+            ""id"": ""0cbbc568-0843-46c4-840b-97dc491eb1ef"",
+            ""actions"": [
+                {
+                    ""name"": ""ExitMemoryScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""a524ac88-1886-4570-9d37-a67e721e4efc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""10153148-39f3-414d-bafe-f78790a4cca7"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitMemoryScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a80a074-893d-4e6a-8990-5f5728cba8d7"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitMemoryScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1503,7 +1511,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_OpenTV = m_Player.FindAction("OpenTV", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_InspectionToggle = m_Player.FindAction("InspectionToggle", throwIfNotFound: true);
-        m_Player_ExitMemoryScene = m_Player.FindAction("ExitMemoryScene", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1531,6 +1538,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Branching_Look = m_Branching.FindAction("Look", throwIfNotFound: true);
         m_Branching_Submit = m_Branching.FindAction("Submit", throwIfNotFound: true);
         m_Branching_Navigate = m_Branching.FindAction("Navigate", throwIfNotFound: true);
+        // Memory
+        m_Memory = asset.FindActionMap("Memory", throwIfNotFound: true);
+        m_Memory_ExitMemoryScene = m_Memory.FindAction("ExitMemoryScene", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1597,7 +1607,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_OpenTV;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_InspectionToggle;
-    private readonly InputAction m_Player_ExitMemoryScene;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1607,7 +1616,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @OpenTV => m_Wrapper.m_Player_OpenTV;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @InspectionToggle => m_Wrapper.m_Player_InspectionToggle;
-        public InputAction @ExitMemoryScene => m_Wrapper.m_Player_ExitMemoryScene;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1632,9 +1640,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @InspectionToggle.started += instance.OnInspectionToggle;
             @InspectionToggle.performed += instance.OnInspectionToggle;
             @InspectionToggle.canceled += instance.OnInspectionToggle;
-            @ExitMemoryScene.started += instance.OnExitMemoryScene;
-            @ExitMemoryScene.performed += instance.OnExitMemoryScene;
-            @ExitMemoryScene.canceled += instance.OnExitMemoryScene;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1654,9 +1659,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @InspectionToggle.started -= instance.OnInspectionToggle;
             @InspectionToggle.performed -= instance.OnInspectionToggle;
             @InspectionToggle.canceled -= instance.OnInspectionToggle;
-            @ExitMemoryScene.started -= instance.OnExitMemoryScene;
-            @ExitMemoryScene.performed -= instance.OnExitMemoryScene;
-            @ExitMemoryScene.canceled -= instance.OnExitMemoryScene;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1978,6 +1980,52 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public BranchingActions @Branching => new BranchingActions(this);
+
+    // Memory
+    private readonly InputActionMap m_Memory;
+    private List<IMemoryActions> m_MemoryActionsCallbackInterfaces = new List<IMemoryActions>();
+    private readonly InputAction m_Memory_ExitMemoryScene;
+    public struct MemoryActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public MemoryActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ExitMemoryScene => m_Wrapper.m_Memory_ExitMemoryScene;
+        public InputActionMap Get() { return m_Wrapper.m_Memory; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MemoryActions set) { return set.Get(); }
+        public void AddCallbacks(IMemoryActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MemoryActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MemoryActionsCallbackInterfaces.Add(instance);
+            @ExitMemoryScene.started += instance.OnExitMemoryScene;
+            @ExitMemoryScene.performed += instance.OnExitMemoryScene;
+            @ExitMemoryScene.canceled += instance.OnExitMemoryScene;
+        }
+
+        private void UnregisterCallbacks(IMemoryActions instance)
+        {
+            @ExitMemoryScene.started -= instance.OnExitMemoryScene;
+            @ExitMemoryScene.performed -= instance.OnExitMemoryScene;
+            @ExitMemoryScene.canceled -= instance.OnExitMemoryScene;
+        }
+
+        public void RemoveCallbacks(IMemoryActions instance)
+        {
+            if (m_Wrapper.m_MemoryActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMemoryActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MemoryActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MemoryActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MemoryActions @Memory => new MemoryActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -2030,7 +2078,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnOpenTV(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnInspectionToggle(InputAction.CallbackContext context);
-        void OnExitMemoryScene(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -2062,5 +2109,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
+    }
+    public interface IMemoryActions
+    {
+        void OnExitMemoryScene(InputAction.CallbackContext context);
     }
 }
