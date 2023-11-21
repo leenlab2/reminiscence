@@ -17,7 +17,7 @@ public class SceneManagement : MonoBehaviour
     public GameObject player;
 
     private GameObject camera;
-    private bool firstExit = true;
+    public bool showNonBranchingShadowCues;
 
     public bool automaticallyEnterMemorySceneOnOpenTV;
 
@@ -80,9 +80,9 @@ public class SceneManagement : MonoBehaviour
         player.transform.rotation = Quaternion.Euler(cameraRotationAtTelevision);
 
         // if a branching item is placed, show the shadow cues of the 3 key items
-        if (firstExit && puzzleManager.currentBranch != Branch.None)
+        if (showNonBranchingShadowCues && puzzleManager.currentBranch != Branch.None)
         {
-            firstExit = false;
+            showNonBranchingShadowCues = false;
             puzzleManager.ShowNonBranchingItemsShadowCues();
         }
     }

@@ -13,6 +13,8 @@ public class PuzzleManagerNew : MonoBehaviour
     public GameObject enterMemoryButton;
     public GameObject memorySceneCanvas;
     private SceneManagement sceneManagement;
+    [SerializeField] private List<GameObject> levelTwoBranchingObjects; // should be the MODELS of the game objects. TODO: make this extensible for multiple levels
+    [SerializeField] private List<GameObject> nextLevelsTapeObjects; // tape objects, index 0 is level 1 tape
     
     void Start()
     {
@@ -25,7 +27,6 @@ public class PuzzleManagerNew : MonoBehaviour
         PuzzleNonBranchingKeyItem.OnKeyItemPlaced += HandleNonBranchingKeyItemPlaced;
         PuzzleBranchingKeyItem.OnBranchingKeyItemPlaced += HandleBranchingItemPlaced;
         // TODO: Activate only level 1's branching items and non branching key items upon startup
-
     }
 
     public void HandleBranchingItemPlaced(GameObject placedBranchingItemModel)
@@ -70,10 +71,43 @@ public class PuzzleManagerNew : MonoBehaviour
             }
             memorySceneCanvas.SetActive(true);
             StartCoroutine(waiter());
-            level++;
-            // TODO: Deactivate current level's branching items and non branching key items
-            // TODO: Activate next level's branching items and non branching key items
+
+            if (level < 2) // Start next level if any remaining
+            {
+                StartNextLevel(); 
+            }
+            else if (level == 2) // Player has completed game
+            {
+                // TODO: DoSomething for game complete
+                Debug.Log("You have completed the game!");
+            }
+
         }
+    }
+
+    private void StartNextLevel()
+    {
+        level++;
+        countKeyItemsLeft = 3;
+        
+        // Enable Object Distance for branching items in level 2
+        foreach (GameObject obj in levelTwoBranchingObjects)
+        {
+            obj.SetActive(true);
+            obj.GetComponent<ObjectDistance>().enabled = true;
+        }
+        
+        // Show physical tape for next level in scene
+        nextLevelsTapeObjects[level - 1].SetActive(true);
+    
+        // Reset branch to none (neither A nor B)
+        currentBranch = Branch.None;
+        
+        // Ensure Tape 2 is set to play from original clip
+        TapeSO tapeSOTwo = GameObject.Find("Tape 2").GetComponentInChildren<TapeInformation>().TapeSO;
+        tapeSOTwo.tapeIsFixed = false;
+        tapeSOTwo.clipToPlay = ClipToPlay.OriginalCorrupted;
+        tapeSOTwo.tapeSolutionBranch = ClipToPlay.OriginalCorrupted;
     }
 
     // Call this when the player has exited the memory scene after placing a branching object in the right place

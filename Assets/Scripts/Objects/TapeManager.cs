@@ -51,19 +51,12 @@ public class TapeManager : MonoBehaviour
             tapeGameObject.active = false;
             pickUpInteractor.DropHeldObject();
             
-            // activate branching items of this tape
-            TapeInformation tapeInfo = tapeGameObject.GetComponent<TapeInformation>();
-
-            // TODO: Only activate branching items of this tape if PuzzleManager says we are on this tape's level
-            int level = tapeInfo.TapeSO.level;
-            //tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>().enabled = true;
-            //tapeInfo.branchingItemB.GetComponent<ObjectDistanceNew>().enabled = true;
             ShowBranchCues();
 
             // After insert tape change to normal lighting
             RenderSettings.ambientMode = AmbientMode.Skybox;
-            GameObject.Find("Tape Light").SetActive(false);
             GameObject.Find("Window Block").SetActive(false);
+            GameObject.Find("Tape Light").SetActive(false);
             //GameObject.Find("TV Player").GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
         }
     }
@@ -107,6 +100,7 @@ public class TapeManager : MonoBehaviour
         objDist.targetObj.SetActive(true);
         ObjectDistance objDistB = tapeInfo.branchingItemB.GetComponent<ObjectDistance>();
         objDistB.targetObj.SetActive(true);
+        
     }
 
     // Hide cue of branching object for whatever tape is in the TV
