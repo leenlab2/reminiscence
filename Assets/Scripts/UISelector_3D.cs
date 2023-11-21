@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MemoryTransition : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class UISelector_3D : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     [SerializeField] private GameObject dial;
     [SerializeField] private TextMeshProUGUI inText;
@@ -14,25 +14,14 @@ public class MemoryTransition : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     private InteractableDetector detector;
     private Animator dialAnimator;
-    public GameObject dialBaseModel;
-    public GameObject dialStickModel;
 
     void OnEnable()
     {
-        dialBaseModel.SetActive(false);
-        dialStickModel.SetActive(false);
-
         inText.color = Color.white;
         outText.color = Color.yellow;
     }
 
-    void OnDisable()
-    {
-        dialBaseModel.SetActive(true);
-        dialStickModel.SetActive(true);
-    }
-
-    void Start()
+    void Awake()
     {
         detector = FindAnyObjectByType<InteractableDetector>();
         dialAnimator = dial.GetComponent<Animator>();

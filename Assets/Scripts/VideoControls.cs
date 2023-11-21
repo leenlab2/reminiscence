@@ -23,6 +23,8 @@ public class VideoControls : MonoBehaviour
     public ParticleSystem televisionParticleEffects;
     private TapeManager _tapeManager;
 
+    public static Action clipWatched;
+
     void Start()
     {
         print(GameObject.Find("TV"));
@@ -127,41 +129,16 @@ public class VideoControls : MonoBehaviour
         {
             float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length); 
             _progressBarImage.fillAmount = progressPercentage;
+
+            if (progressPercentage >= 0.85f)
+            {
+                clipWatched?.Invoke();
+            }
         }
         else
         {
             _progressBarImage.fillAmount = 0;
         }
     }
-    
-    //IEnumerator waiter(ClipToPlay clip)
-    //{
-        //Wait for 4 seconds
-        //yield return new WaitForSeconds(2);
-        /*TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
-        
-        televisionAudioSource.Play(); // Play noise from TV. TODO: Different noise between this and OnPuzzleComplete
-        televisionParticleEffects.startColor = Color.white; // play particles from TV
-        televisionParticleEffects.Play();
-        
-        if (clip == ClipToPlay.OriginalCorrupted) // switch video on TV to original corrupted
-        {
-            _videoPlayer.clip = tapeSOInTV.originalCorruptedVideoClip;
-            tapeSOInTV.clipToPlay = ClipToPlay.OriginalCorrupted;
-        }
-        else if (clip == ClipToPlay.BranchACorrupted) // switch video on TV to Branch A Corrupted
-        {
-            _videoPlayer.clip = tapeSOInTV.branchACorruptedVideoClip;
-            tapeSOInTV.clipToPlay = ClipToPlay.BranchACorrupted;
-        }
-        else if (clip == ClipToPlay.BranchBCorrupted) // switch video on TV to Branch B Corrupted
-        {
-            _videoPlayer.clip = tapeSOInTV.branchBCorruptedVideoClip;
-            tapeSOInTV.clipToPlay = ClipToPlay.BranchBCorrupted;
-        }
-        // play for one frame to update render texture
-        _videoPlayer.Play();
-        _videoPlayer.Pause();
-    }*/
 }
 

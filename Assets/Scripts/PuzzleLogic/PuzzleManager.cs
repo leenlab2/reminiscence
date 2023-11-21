@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PuzzleManagerNew : MonoBehaviour
+public class PuzzleManager : MonoBehaviour
 {
-    public int level;
-    public Branch currentBranch;
+    public static int level;
+    public static Branch currentBranch;
     private int countKeyItemsLeft;
     private VideoControls _videoControls;
     public GameObject currentBranchingItemModel;
-    public GameObject enterMemoryButton;
     public GameObject memorySceneCanvas;
     private SceneManagement sceneManagement;
     
@@ -43,12 +42,7 @@ public class PuzzleManagerNew : MonoBehaviour
         }
         memorySceneCanvas.SetActive(true);
 
-        // if first time player placed branching item, show enter memory scene button on TV for future entrances
-        if (level == 1)
-        {
-            sceneManagement.DisableAutomaticEnterMemoryScene();
-            enterMemoryButton.SetActive(true);
-        }
+        ShowNonBranchingItemsShadowCues();
 
         StartCoroutine(waiter());
 
@@ -86,6 +80,7 @@ public class PuzzleManagerNew : MonoBehaviour
     {
         //Wait for 4 seconds
         yield return new WaitForSeconds(4);
+        memorySceneCanvas.SetActive(false);
         sceneManagement.ExitMemoryScene();
     }
 }
