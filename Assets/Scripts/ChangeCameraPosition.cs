@@ -6,47 +6,16 @@ using UnityEngine.InputSystem;
 
 public class ChangeCameraPosition : MonoBehaviour
 {
-    private Transform _televisionTransform;
-
-    private Transform _cameraTransform;
-    private Transform _cameraOnTelevisionTransform;
-    private Transform _cameraOnPlayerTransform;
-    private Transform _playerOnPlayerTransform;
+    private Camera _originalCamera;
 
     public GameObject _televisionCanvas;
+    public Camera tvViewCamera;
 
     private VideoControls _videoControls;
 
-    private GameObject _player;
-
-    private InteractionCue _interactionCue;
-
     void Start()
     {        
-        // Get Player
-        _player = GameObject.Find("Player");
-        
-        // Get Television and Camera Transforms
-        _televisionTransform = GameObject.Find("TV").GetComponent<Transform>();
-        _cameraTransform = GetComponent<Transform>();
-        
-        // Calculate position of camera when it is on television
-        _cameraOnTelevisionTransform = new GameObject().transform;
-        print(_televisionTransform.position);
-        _cameraOnTelevisionTransform.position = _televisionTransform.position + new Vector3(-1.0f, 2.50f, 3.80f);
-        
-
-        // Calculate rotation of camera when it is on television
-        Vector3 televisionRotation = _televisionTransform.rotation.eulerAngles;
-        Vector3 cameraRotationAtTelevision = televisionRotation +  new Vector3(0, 135f, 0);
-        _cameraOnTelevisionTransform.rotation = Quaternion.Euler(cameraRotationAtTelevision);
-        
         _videoControls = FindObjectOfType<VideoControls>();
-        
-        _cameraOnPlayerTransform = new GameObject().transform;
-        _playerOnPlayerTransform = new GameObject().transform;
-
-        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
     }
     
     /*
@@ -60,25 +29,13 @@ public class ChangeCameraPosition : MonoBehaviour
     {
         Debug.Log("Switching to tape view");
 
-        // Create copy of camera and player transform when on player
-        _cameraOnPlayerTransform.rotation = _cameraTransform.rotation;
-        _playerOnPlayerTransform.position = _player.transform.position;
-        _playerOnPlayerTransform.rotation = _player.transform.rotation;
+        _originalCamera = Camera.main;
 
-        //_player.transform.Find("Model").transform.Find("Vini").GetComponent<MeshCollider>().enabled = false;
-
-        //Vector3 pos = new Vector3(7.69864f, -4.38f, -10.02994f);
-        Vector3 pos = new Vector3(2.00999999f, -0.970000029f, -9.64999962f);
-        Quaternion rot = Quaternion.Euler(0f, 180f, 0f);
-
-
-        _player.transform.SetPositionAndRotation(pos, rot);
-        //_cameraOnTelevisionTransform.position = GameObject.Find("TVCamera").transform.position;
-        Camera.main.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        _originalCamera.gameObject.SetActive(false);
+        tvViewCamera.gameObject.SetActive(true);
 
         _televisionCanvas.SetActive(true);
         _videoControls = FindObjectOfType<VideoControls>();
-        //_player.transform.Find("Model").transform.Find("Vini").GetComponent<MeshRenderer>().enabled = false;
     }
     
     /*
@@ -93,11 +50,10 @@ public class ChangeCameraPosition : MonoBehaviour
         Debug.Log("Switching to player view");
 
         _videoControls.Pause(); // pause video in case playing
-        
-        Camera.main.transform.rotation = _cameraOnPlayerTransform.rotation;
-        _player.transform.SetPositionAndRotation(_playerOnPlayerTransform.position, _playerOnPlayerTransform.rotation);
+
+        _originalCamera.gameObject.SetActive(true);
+        tvViewCamera.gameObject.SetActive(false);
+
         _televisionCanvas.SetActive(false);
-        //_player.transform.Find("Model").transform.Find("Vini").GetComponent<MeshRenderer>().enabled = true;
-        //_player.transform.Find("Model").transform.Find("Vini").GetComponent<MeshCollider>().enabled = true;
     }
 }

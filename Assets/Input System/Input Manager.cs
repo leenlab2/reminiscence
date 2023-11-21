@@ -69,6 +69,8 @@ public class InputManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (inTVMode) return;
+
         MovePlayer();
         MoveCamera();
         ObjectRotation();
@@ -151,16 +153,14 @@ public class InputManager : MonoBehaviour
 
         ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
         cameraCtrl.SwitchToTapeView();
-        
-        SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
     }
 
     public void CloseTelevision(InputAction.CallbackContext obj)
     {
+        inTVMode = false;
+
         playerInputActions.Television.Disable();
         playerInputActions.Player.Enable();
-
-        inTVMode = false;
 
         ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
         cameraCtrl.SwitchToPlayerView();
