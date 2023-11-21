@@ -29,7 +29,6 @@ public class ObjectDistance : MonoBehaviour
         
         // If this object is not in the player's hand
         if (!pickUpInteractor.IsHeld(gameObject)) {
-            
             // If object is placed in right location
             if (dist <= distanceThreshold) {
                 SnapToTarget();
