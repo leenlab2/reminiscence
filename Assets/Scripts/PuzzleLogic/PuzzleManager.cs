@@ -1,31 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PuzzleManager : MonoBehaviour
 {
-    public static int level;
+    public static int level = 0;
     public static Branch currentBranch;
+
     private int countKeyItemsLeft;
     private VideoControls _videoControls;
+
     public GameObject currentBranchingItemModel;
     public GameObject memorySceneCanvas;
-    private SceneManagement sceneManagement;
-    [SerializeField] private List<GameObject> levelTwoBranchingObjects; // should be the MODELS of the game objects. TODO: make this extensible for multiple levels
-    [SerializeField] private List<GameObject> nextLevelsTapeObjects; // tape objects, index 0 is level 1 tape
+
+    private InputManager inputManager;
+
+    [SerializeField] private List<GameObject> tapeObjs; // tape objects, index 0 is level 1 tape
     
     void Start()
     {
         _videoControls = FindObjectOfType<VideoControls>();
-        sceneManagement = FindObjectOfType<SceneManagement>();
-        level = 1;
-        countKeyItemsLeft = 3;
-        currentBranch = Branch.None;
+        inputManager = FindObjectOfType<InputManager>();
+
+        StartNextLevel();
 
         PuzzleNonBranchingKeyItem.OnKeyItemPlaced += HandleNonBranchingKeyItemPlaced;
         PuzzleBranchingKeyItem.OnBranchingKeyItemPlaced += HandleBranchingItemPlaced;
-        // TODO: Activate only level 1's branching items and non branching key items upon startup
     }
 
     public void HandleBranchingItemPlaced(GameObject placedBranchingItemModel)
@@ -43,8 +45,6 @@ public class PuzzleManager : MonoBehaviour
         }
         memorySceneCanvas.SetActive(true);
 
-        ShowNonBranchingItemsShadowCues();
-
         StartCoroutine(waiter());
 
     }
@@ -53,6 +53,7 @@ public class PuzzleManager : MonoBehaviour
     {
         countKeyItemsLeft--;
         Debug.Log("Key items left: " + countKeyItemsLeft);
+
         if (countKeyItemsLeft == 0)
         {
             if (currentBranch == Branch.BranchA)
@@ -83,31 +84,22 @@ public class PuzzleManager : MonoBehaviour
     {
         level++;
         countKeyItemsLeft = 3;
-        
-        // Enable Object Distance for branching items in level 2
-        foreach (GameObject obj in levelTwoBranchingObjects)
-        {
-            obj.SetActive(true);
-            obj.GetComponent<ObjectDistance>().enabled = true;
-        }
-        
+        Debug.Log($"Starting level: {level}");
+
+        TapeInformation tapeInformation = tapeObjs[level - 1].GetComponentInChildren<TapeInformation>();
+        tapeInformation.TapeSO.tapeIsFixed = true;
+        tapeInformation.TapeSO.clipToPlay = ClipToPlay.OriginalCorrupted;
+        tapeInformation.TapeSO.tapeSolutionBranch = ClipToPlay.OriginalCorrupted;
+
+        // Turn on branching objects for this level
+        tapeInformation.branchingItemA.gameObject.SetActive(true);
+        tapeInformation.branchingItemB.gameObject.SetActive(true);
+
         // Show physical tape for next level in scene
-        nextLevelsTapeObjects[level - 1].SetActive(true);
+        tapeObjs[level - 1].SetActive(true);
     
         // Reset branch to none (neither A nor B)
         currentBranch = Branch.None;
-        
-        // Ensure Tape 2 is set to play from original clip
-        TapeSO tapeSOTwo = GameObject.Find("Tape 2").GetComponentInChildren<TapeInformation>().TapeSO;
-        tapeSOTwo.tapeIsFixed = false;
-        tapeSOTwo.clipToPlay = ClipToPlay.OriginalCorrupted;
-        tapeSOTwo.tapeSolutionBranch = ClipToPlay.OriginalCorrupted;
-    }
-
-    // Call this when the player has exited the memory scene after placing a branching object in the right place
-    public void ShowNonBranchingItemsShadowCues()
-    {
-        currentBranchingItemModel.GetComponent<PuzzleBranchingKeyItem>().ShowCuesOfNonBranchingKeyItems();
     }
     
     IEnumerator waiter()
@@ -115,6 +107,6 @@ public class PuzzleManager : MonoBehaviour
         //Wait for 4 seconds
         yield return new WaitForSeconds(4);
         memorySceneCanvas.SetActive(false);
-        sceneManagement.ExitMemoryScene();
+        inputManager.ExitMemoryScene(new InputAction.CallbackContext());
     }
 }

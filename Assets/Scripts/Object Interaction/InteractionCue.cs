@@ -56,7 +56,7 @@ public class InteractionCue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("InteractionCue");
+        //Debug.Log("InteractionCue");
         _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
         _pickupText = GameObject.Find("Pickup Text").GetComponent<TMP_Text>();
         _TVText = GameObject.Find("TV Interaction Text").GetComponent<TMP_Text>();
@@ -119,7 +119,7 @@ public class InteractionCue : MonoBehaviour
             }
         } else if (type == InteractionCueType.Hold)
         {
-            Debug.Log("xbox hold");
+            //Debug.Log("xbox hold");
             if (isController)
             {
                 _pickupText.text = "";

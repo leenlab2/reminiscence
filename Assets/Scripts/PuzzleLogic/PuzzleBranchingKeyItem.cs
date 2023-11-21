@@ -41,10 +41,10 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         outline.OutlineWidth = 5f;
         timeLeft = timeLengthOutline;
 
+
         // Enable ObjectDistance scripts of three key items on this branch
         foreach (GameObject obj in keyItemModels)
         {
-            Debug.Log(obj.name);
             ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.enabled = true;
             
@@ -53,13 +53,11 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
                 objDist.SwitchPuzzleTarget(branch);
             }
         }
-        
+
+        ShowCuesOfNonBranchingKeyItems();
+
         // Disable other branching item
         otherBranchingItem.transform.parent.gameObject.SetActive(false);
-        
-        // Tell SceneManagement to show non branching shadow cues upon memory exit
-        SceneManagement sceneManagement = GameObject.Find("Scene Management").GetComponent<SceneManagement>();
-        sceneManagement.showNonBranchingShadowCues = true;
     }
 
     public void ShowCuesOfNonBranchingKeyItems()
