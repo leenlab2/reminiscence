@@ -213,6 +213,10 @@ PrefabInstance:
       value: ChispitasMariposa Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fcc29d911d646e4492abc047df85d2b, type: 3}
+    - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: inspectionObjectText
       value: "I remember these! I don't think they are legal anymore\u2026 (chuckles)
         It's a miracle we didn\u2019t end up burning down the house as kids."

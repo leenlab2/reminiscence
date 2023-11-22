@@ -2261,10 +2261,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3940476896136046968, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 728c51ce80785f74e86df3b3e471ba0b, type: 2}
     - target: {fileID: 4343487692431442849, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
       propertyPath: _crossHairDisplay
       value: 
@@ -8101,28 +8097,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5674059825433782140, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: inspectionObjectText
-      value: "Hey old friend. Can\u2019t believe you survived all that mistreatment
-        back in the day. I wonder\u2026 maybe I can take you home with me after this
-        reunion blows over. "
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873312132613158131, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: Mute
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873312132613158131, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: Priority
-      value: 210
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873312132613158131, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: m_Volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873312132613158131, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6445700269863729111, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
       propertyPath: appearingObjects.Array.size
       value: 1
@@ -8716,6 +8690,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5455387630399075901, guid: bda09d5ae9939a3448d7979059dbec40, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: deec016e7461ef941afa4f1a983d29cc, type: 3}
     - target: {fileID: 6515231848793644755, guid: bda09d5ae9939a3448d7979059dbec40, type: 3}
       propertyPath: m_Name
       value: Guitar String
@@ -8741,21 +8719,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1811929022}
     m_Modifications:
-    - target: {fileID: 649486355475401089, guid: db744e44004f30a40b503bcc40f23500, type: 3}
-      propertyPath: objectTextInfo
-      value: 
-      objectReference: {fileID: 11400000, guid: c4baf7bf52c29c64e899665b1cc8bb07, type: 2}
-    - target: {fileID: 649486355475401089, guid: db744e44004f30a40b503bcc40f23500, type: 3}
-      propertyPath: inspectionObjectText
-      value: Creepy. Big sis always had such weird tastes in toys.
-      objectReference: {fileID: 0}
     - target: {fileID: 1791551511332135279, guid: db744e44004f30a40b503bcc40f23500, type: 3}
       propertyPath: m_Name
       value: Ragdoll
-      objectReference: {fileID: 0}
-    - target: {fileID: 5546263389984653365, guid: db744e44004f30a40b503bcc40f23500, type: 3}
-      propertyPath: inspectionObjectText
-      value: Creepy. Big sis always had such weird tastes in toys.
       objectReference: {fileID: 0}
     - target: {fileID: 8043622159117803883, guid: db744e44004f30a40b503bcc40f23500, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9103,10 +9069,6 @@ PrefabInstance:
     - target: {fileID: 338262659414955586, guid: cc2a29c2fbcfd6a40a8d644c1d2e5b41, type: 3}
       propertyPath: m_Name
       value: Candelabra
-      objectReference: {fileID: 0}
-    - target: {fileID: 1544293652101217964, guid: cc2a29c2fbcfd6a40a8d644c1d2e5b41, type: 3}
-      propertyPath: inspectionObjectText
-      value: "Mom loved this thing\u2026 I- I miss you\u2026"
       objectReference: {fileID: 0}
     - target: {fileID: 8344520571670517318, guid: cc2a29c2fbcfd6a40a8d644c1d2e5b41, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9608,18 +9570,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1811929022}
     m_Modifications:
-    - target: {fileID: 4537452034365911004, guid: a95cda5751e83dc44965723d559893cd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4537452034365911004, guid: a95cda5751e83dc44965723d559893cd, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4537452034365911004, guid: a95cda5751e83dc44965723d559893cd, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4537452034365911004, guid: a95cda5751e83dc44965723d559893cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.9700007
@@ -11162,6 +11112,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 980658744179382341, guid: eb61e4b31b59fb6468e1b09a862ffa83, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c2c67088118629408f8d5ff7101c584, type: 3}
+    - target: {fileID: 980658744179382341, guid: eb61e4b31b59fb6468e1b09a862ffa83, type: 3}
+      propertyPath: objectAudioInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 17f168b25b2884e458ef6822baebc095, type: 2}
     - target: {fileID: 2036842074227503275, guid: eb61e4b31b59fb6468e1b09a862ffa83, type: 3}
       propertyPath: m_Name
       value: Chair
@@ -11219,6 +11177,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 858339499}
     m_Modifications:
+    - target: {fileID: 3004229588434310234, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c2c67088118629408f8d5ff7101c584, type: 3}
+    - target: {fileID: 3004229588434310234, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
+      propertyPath: objectAudioInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 17f168b25b2884e458ef6822baebc095, type: 2}
     - target: {fileID: 4066332758468689076, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
       propertyPath: m_Name
       value: Tape

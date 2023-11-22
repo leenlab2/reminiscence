@@ -5,6 +5,9 @@ using UnityEngine;
 public class Inspection : MonoBehaviour
 {
     public GameObject holdArea;
+    public AudioClipScriptableObject objectAudioInfo;
+
+    private AudioSource audio;
 
     private Camera cam;
     private Vector3 screenspaceCenter;
@@ -17,6 +20,7 @@ public class Inspection : MonoBehaviour
         cam = Camera.main;
         screenspaceCenter = new Vector3(Screen.width / 2, Screen.height / 2, 1.5f);
         localSidePosition = holdArea.transform.localPosition;
+        audio = GameObject.Find("AudioDialogue").GetComponent<AudioSource>();
     }
 
     public bool InspectIsValid()
@@ -33,6 +37,10 @@ public class Inspection : MonoBehaviour
 
         if (focus)
         {
+            //Dialogue Audio
+            audio.clip = objectAudioInfo.GetSoundClip();
+            audio.PlayOneShot(audio.clip, 1.0F);
+
             screenspaceCenter.z = CalcDistFromFace();
             Vector3 worldCamCenter = cam.ScreenToWorldPoint(screenspaceCenter);
             Vector3 offset = holdArea.transform.position - heldObjBounds.center;

@@ -21,6 +21,10 @@ PrefabInstance:
       value: HotChocolateMaker Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: d401d086bc4daaa4db7c20b1d8c597f0, type: 3}
+    - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: inspectionObjectText
       value: You would never think that putting cheese on hot chocolate works. It
         does tho!
