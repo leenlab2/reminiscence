@@ -15,6 +15,9 @@ public class SceneManagement : MonoBehaviour
     public GameObject enterMemoryButton;
     public Animator cameraAnimator;
 
+    public AudioClip memoryEnterSfx;
+    public AudioClip memoryExitSfx;
+
     private Vector3 _originalPlayerPos;
     private Quaternion _originalPlayerRot;
 
@@ -52,7 +55,10 @@ public class SceneManagement : MonoBehaviour
         {
             Debug.Log("Entering memory scene");
             cameraAnimator.SetTrigger("Enter");
-            cameraAnimator.gameObject.GetComponent<AudioSource>().Play();
+
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.pitch = 1;
+            GetComponent<AudioSource>().PlayOneShot(memoryEnterSfx);
         }
     }
 
@@ -74,6 +80,10 @@ public class SceneManagement : MonoBehaviour
 
     public void ExitMemoryScene()
     {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.pitch = 3;
+        GetComponent<AudioSource>().PlayOneShot(memoryExitSfx);
+
         player.transform.SetPositionAndRotation(_originalPlayerPos, _originalPlayerRot);
 
         _interactionCue.SetInteractionCue(InteractionCueType.ExitMemory);
