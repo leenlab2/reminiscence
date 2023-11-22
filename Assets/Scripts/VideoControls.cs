@@ -84,7 +84,7 @@ public class VideoControls : MonoBehaviour
     public void CompletePuzzle(ClipToPlay clip) // TODO: Only call this method if there exists a tape in the TV. Otherwise, we wouldn't know which tape's puzzle we are currently solving
     {   
         // play confirmation noise from television
-        televisionAudioSource.Play();
+        // televisionAudioSource.Play();
         televisionParticleEffects.startColor = Color.yellow; // play particles from TV
         televisionParticleEffects.Play();
         

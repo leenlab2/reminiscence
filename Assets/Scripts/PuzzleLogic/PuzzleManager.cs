@@ -68,19 +68,11 @@ public class PuzzleManager : MonoBehaviour
         countKeyItemsLeft--;
         Debug.Log("Key items left: " + countKeyItemsLeft);
 
-        // Play correct SFX
-        // if (obj.transform.Find("Model/Audio/CorrectPlacement") != null)
-        // {
-        //     AudioSource correctAudio = obj.transform.Find("Model/Audio/CorrectPlacement").GetComponent<AudioSource>();
-        //     if (correctAudio != null)
-        //     {
-        //         correctAudio.Play();
-        //     }
-        // }
         placementAudio.correctKeyPlacementSFX();
         
         if (countKeyItemsLeft == 0)
         {
+            StartCoroutine(completeSFXWaiter());
             if (currentBranch == Branch.BranchA)
             {
                 _videoControls.CompletePuzzle(ClipToPlay.BranchASolution);
@@ -147,12 +139,6 @@ public class PuzzleManager : MonoBehaviour
     {
         //Wait for 2 seconds
         yield return new WaitForSeconds(2);
-        // Play puzzle complete SFX
-        // AudioSource completeAudio = GetComponent<AudioSource>();
-        // if (completeAudio != null)
-        // {
-        //     completeAudio.Play();
-        // }
         placementAudio.tapeChangeSFX();
     }
 }

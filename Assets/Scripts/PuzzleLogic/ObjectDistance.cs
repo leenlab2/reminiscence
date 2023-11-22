@@ -35,13 +35,6 @@ public class ObjectDistance : MonoBehaviour
                 GetComponent<Rigidbody>().isKinematic = true;
                 targetObj.SetActive(false);
                 puzzleKeyItem.HandleCorrectPosition();
-
-                // Play correct SFX
-                AudioSource correctAudio = transform.Find("Audio/PlacementAudio").GetComponent<AudioSource>();
-                if (correctAudio != null)
-                {
-                    correctAudio.Play();
-                }
             }
         }
     }
