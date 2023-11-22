@@ -17,6 +17,7 @@ public class SceneManagement : MonoBehaviour
 
     public AudioClip memoryEnterSfx;
     public AudioClip memoryExitSfx;
+    public GameObject mainAudioSource;
 
     private Vector3 _originalPlayerPos;
     private Quaternion _originalPlayerRot;
@@ -59,6 +60,7 @@ public class SceneManagement : MonoBehaviour
             AudioSource audioSource = GetComponent<AudioSource>();
             audioSource.pitch = 1;
             GetComponent<AudioSource>().PlayOneShot(memoryEnterSfx);
+            mainAudioSource.GetComponent<AudioEchoFilter>().enabled = true;
         }
     }
 
@@ -80,6 +82,7 @@ public class SceneManagement : MonoBehaviour
 
     public void ExitMemoryScene()
     {
+        mainAudioSource.GetComponent<AudioEchoFilter>().enabled = false;    
         AudioSource audioSource = GetComponent<AudioSource>();
         audioSource.pitch = 3;
         GetComponent<AudioSource>().PlayOneShot(memoryExitSfx);

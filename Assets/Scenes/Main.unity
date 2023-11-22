@@ -2767,9 +2767,9 @@ PrefabInstance:
       propertyPath: appearingObjects.Array.data[0]
       value: 
       objectReference: {fileID: 1475965227}
-    - target: {fileID: 3662881621313737459, guid: d064b1a65f2da01418471e15a8eb4b16, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 4940932476039587109, guid: d064b1a65f2da01418471e15a8eb4b16, type: 3}
+      propertyPath: m_Volume
+      value: 0.481
       objectReference: {fileID: 0}
     - target: {fileID: 7865823249431313115, guid: d064b1a65f2da01418471e15a8eb4b16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3148,14 +3148,6 @@ PrefabInstance:
     - target: {fileID: 738764746396975150, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6435359707947890125, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
-      propertyPath: Mute
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6435359707947890125, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
-      propertyPath: m_Volume
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6992450636416142980, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
       propertyPath: m_Name
@@ -4229,10 +4221,6 @@ PrefabInstance:
     - target: {fileID: 653896204363538287, guid: 0200db84def1dcc4d9c21569c2c0c54e, type: 3}
       propertyPath: m_Name
       value: PosterB Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 3039655906020742144, guid: 0200db84def1dcc4d9c21569c2c0c54e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5829734924419995759, guid: 0200db84def1dcc4d9c21569c2c0c54e, type: 3}
       propertyPath: otherBranchingItem
@@ -7399,6 +7387,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7762675187843565928, guid: 55140f8776d0abf4ba71559713e9a5ef, type: 3}
   m_PrefabInstance: {fileID: 1664661217}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1686437067 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6992450636416142980, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
+  m_PrefabInstance: {fileID: 560125895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1769783845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6718850743741405992, guid: ff55947623f76c34d8e550409880fbc5, type: 3}
@@ -8057,10 +8050,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 552641248}
     m_Modifications:
-    - target: {fileID: 2855454717754047850, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2890625431989768086, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8101,47 +8090,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5674059825433782140, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: inspectionObjectText
-      value: "Hey old friend. Can\u2019t believe you survived all that mistreatment
-        back in the day. I wonder\u2026 maybe I can take you home with me after this
-        reunion blows over. "
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873312132613158131, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: Mute
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873312132613158131, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: Priority
-      value: 210
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873312132613158131, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: m_Volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873312132613158131, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445700269863729111, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: appearingObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6445700269863729111, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
       propertyPath: appearingObjects.Array.data[0]
       value: 
       objectReference: {fileID: 30918285}
-    - target: {fileID: 6445700269863729111, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: appearingObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6873022605064703890, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
       propertyPath: m_Name
       value: Guitar
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638396101325432766, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8724,10 +8679,6 @@ PrefabInstance:
       propertyPath: appearingObjects.Array.data[0]
       value: 
       objectReference: {fileID: 3935825334124056281}
-    - target: {fileID: 8280604589794506495, guid: bda09d5ae9939a3448d7979059dbec40, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9385,6 +9336,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1160039103}
     - target: {fileID: 2030963388574207995, guid: c1047ff49c7f8a44ba57c555856614e0, type: 3}
+      propertyPath: mainAudioSource
+      value: 
+      objectReference: {fileID: 1686437067}
+    - target: {fileID: 2030963388574207995, guid: c1047ff49c7f8a44ba57c555856614e0, type: 3}
       propertyPath: enterMemoryButton
       value: 
       objectReference: {fileID: 1160039102}
@@ -9519,10 +9474,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 563048650492985291, guid: 5b808565b965f7546964b95a2373c447, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6353583175441012707, guid: 5b808565b965f7546964b95a2373c447, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8118909190837960655, guid: 5b808565b965f7546964b95a2373c447, type: 3}
