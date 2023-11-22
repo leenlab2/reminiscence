@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
 
     private Rigidbody playerBody;
 
-    private float _mouseSensitivity = 3f;
+    private float _mouseSensitivity = 2f;
     
     private float _sprintSpeed = 9f;
     private float _walkSpeed = 7f;
@@ -129,7 +129,7 @@ public class InputManager : MonoBehaviour
         }
 
         // Move the player to look around left/right when mouse pans left/right
-        transform.Rotate(0, cameraInput.x * _mouseSensitivity * 1.2f, 0);
+        transform.Rotate(0, cameraInput.x * _mouseSensitivity, 0);
 
         // Move the camera to look around up/down when mouse pans up/down
         Transform playerCamera = GetComponentInChildren<Camera>().transform;
