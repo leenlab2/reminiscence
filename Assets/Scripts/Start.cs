@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Start : MonoBehaviour
 {
-    [SerializeField] public string attic;
+    [SerializeField] public string scene;
 
     // Update is called once per frame
     void OnEnable()
@@ -21,7 +21,7 @@ public class Start : MonoBehaviour
         // You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
         // a sceneBuildIndex of 1 as shown in Build Settings.
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(attic);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
 
         // Wait until the asynchronous scene fully loads
         while (!asyncLoad.isDone)

@@ -71,6 +71,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""6641afca-c88d-4824-9d7e-e7db5b4329dc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +256,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""InspectionToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c39f5cd-3f2a-47a0-a802-b4c01bbf7772"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b28ea70a-4616-4db1-80d9-8670c0368ada"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1511,6 +1542,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_OpenTV = m_Player.FindAction("OpenTV", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_InspectionToggle = m_Player.FindAction("InspectionToggle", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1607,6 +1639,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_OpenTV;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_InspectionToggle;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1616,6 +1649,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @OpenTV => m_Wrapper.m_Player_OpenTV;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @InspectionToggle => m_Wrapper.m_Player_InspectionToggle;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1640,6 +1674,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @InspectionToggle.started += instance.OnInspectionToggle;
             @InspectionToggle.performed += instance.OnInspectionToggle;
             @InspectionToggle.canceled += instance.OnInspectionToggle;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1659,6 +1696,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @InspectionToggle.started -= instance.OnInspectionToggle;
             @InspectionToggle.performed -= instance.OnInspectionToggle;
             @InspectionToggle.canceled -= instance.OnInspectionToggle;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -2078,6 +2118,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnOpenTV(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnInspectionToggle(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
