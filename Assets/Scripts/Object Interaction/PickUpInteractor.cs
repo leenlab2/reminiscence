@@ -64,6 +64,11 @@ public class PickUpInteractor : MonoBehaviour
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
     }
 
+    private void OnDestroy()
+    {
+        InteractableDetector.OnCursorHitChange -= DetermineNewPosition;
+    }
+
     private void ToggleObjectColliders(GameObject obj, bool on)
     {        
         Collider[] colliders = obj.GetComponentsInChildren<Collider>();

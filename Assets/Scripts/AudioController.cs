@@ -35,6 +35,11 @@ public class AudioController : MonoBehaviour
         PuzzleManager.OnLevelChange -= SwitchBase;
     }
 
+    private void OnDestroy()
+    {
+        PuzzleNonBranchingKeyItem.OnKeyItemPlaced -= PlayBGMStem;
+    }
+
     public void SwitchAndPlayAudio(AudioClip audioClip)
     {
         //Debug.Log("Playing audio: " + audioClip.name);

@@ -17,7 +17,9 @@ public class PickupInteractable : MonoBehaviour
     private bool onWall;
 
     public StringValue objectTextInfo;
+    public AudioClipScriptableObject objectAudioInfo;
     public string inspectionObjectText;
+    public AudioClip dialogueAudio;
 
     public AudioSource pickupSound;
     public AudioSource placeSound;
@@ -27,6 +29,7 @@ public class PickupInteractable : MonoBehaviour
         originalParent = transform.parent;
         originalObjScale = transform.localScale;
         rigidbody = GetComponent<Rigidbody>();
+        onWall = false;
     }
 
     public void MoveToHand(Transform holdArea)
@@ -40,6 +43,7 @@ public class PickupInteractable : MonoBehaviour
         {
             pickupSound.Play();
         }
+        objectAudioInfo.SetAudioClip(dialogueAudio);
     }
 
     #region Placement Guide

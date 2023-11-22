@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PuzzleManager : MonoBehaviour
 {
-    public static int level = 0;
+    public static int level;
     public static Branch currentBranch;
 
     private int countKeyItemsLeft;
@@ -24,6 +24,9 @@ public class PuzzleManager : MonoBehaviour
     
     void Start()
     {
+        level = 0;
+        currentBranch = Branch.None;
+
         _videoControls = FindObjectOfType<VideoControls>();
         inputManager = FindObjectOfType<InputManager>();
 
@@ -31,6 +34,12 @@ public class PuzzleManager : MonoBehaviour
 
         PuzzleNonBranchingKeyItem.OnKeyItemPlaced += HandleNonBranchingKeyItemPlaced;
         PuzzleBranchingKeyItem.OnBranchingKeyItemPlaced += HandleBranchingItemPlaced;
+    }
+
+    private void OnDestroy()
+    {
+        PuzzleNonBranchingKeyItem.OnKeyItemPlaced -= HandleNonBranchingKeyItemPlaced;
+        PuzzleBranchingKeyItem.OnBranchingKeyItemPlaced -= HandleBranchingItemPlaced;
     }
 
     public void HandleBranchingItemPlaced(GameObject placedBranchingItemModel)

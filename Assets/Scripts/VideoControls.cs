@@ -33,6 +33,13 @@ public class VideoControls : MonoBehaviour
         _progressBarImage.fillAmount = 0;
         televisionAudioSource = GameObject.Find("TV").GetComponent<AudioSource>();
         televisionParticleEffects = GameObject.Find("TVEffectsPuzzleComplete").GetComponent<ParticleSystem>();
+
+        InputManager.OnGamePaused += Pause;
+    }
+
+    private void OnDestroy()
+    {
+        InputManager.OnGamePaused -= Pause;
     }
 
     public void PauseOrPlay()

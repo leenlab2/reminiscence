@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine.InputSystem.Interactions;
 public class InputManager : MonoBehaviour
 {
     public PlayerInputActions playerInputActions;
+    public GameObject pauseMenu;
 
     private Rigidbody playerBody;
 
@@ -16,14 +18,17 @@ public class InputManager : MonoBehaviour
     private float _sprintSpeed = 9f;
     private float _walkSpeed = 7f;
     private float _speed;
-    private bool inspectionMode = false;
 
     private InteractionCue _interactionCue;
     private GameObject currSelectedBranching = null;
 
     private bool inTVMode = false;
+    private bool gamePaused = false;
+    private bool inBranchingSelection = false;
+    private bool inspectionMode = false;
 
-    private bool inBranchingSelection;
+    public static Action OnGamePaused;
+    public static Action OnGameResumed;
 
     private void Awake()
     {
@@ -36,32 +41,68 @@ public class InputManager : MonoBehaviour
         playerInputActions.Television.Disable();
         playerInputActions.Inspect.Disable();
         playerInputActions.Branching.Disable();
-
-        // Player Input Map
-        playerInputActions.Player.OpenTV.performed += OpenTelevision;
-        playerInputActions.Player.Interact.performed += ctx =>
-        {
-            if (ctx.interaction is not HoldInteraction) ObjectInteract(ctx);
-        };
-        playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
-        
-        // Memory Input Map
         playerInputActions.Memory.Disable();
-        playerInputActions.Memory.ExitMemoryScene.performed += ExitMemoryScene;
 
-        // Television Input Map
+        AssignPlayerHandlers();
+        AssignTelevisionHandlers();
+        AssignMemoryHandlers();
+        AssignBranchingHandlers();
+        AssignInspectionHandlers();
+
+        playerInputActions.UI.Pause.performed += PauseGame;
+        playerInputActions.UI.Pause.Enable();   
+    }
+
+    #region Assigning Handlers
+    private void AssignPlayerHandlers()
+    {
+        playerInputActions.Player.OpenTV.performed += OpenTelevision;
+        playerInputActions.Player.Interact.performed += ObjectInteract;
+        playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
+    }
+
+    private void AssignTelevisionHandlers()
+    {
         playerInputActions.Television.CloseTV.performed += CloseTelevision;
+    }
 
-        // Inspection Input Map
-        playerInputActions.Inspect.InspectionToggle.performed += ObjectInspectionToggle;
+    private void AssignMemoryHandlers()
+    {
+        playerInputActions.Memory.ExitMemoryScene.performed += ExitMemoryScene;
+    }
 
-        // Branching Input Map
+    private void AssignBranchingHandlers()
+    {
         PickUpInteractor.OnBranchingPickup += BranchingItemPickedUp;
         playerInputActions.Branching.Navigate.performed += SwitchBranchingItem;
         playerInputActions.Branching.Submit.performed += SubmitBranchingItem;
-
-        inBranchingSelection = false;
     }
+
+    private void AssignInspectionHandlers()
+    {
+        playerInputActions.Inspect.InspectionToggle.performed += ObjectInspectionToggle;
+    }
+
+    private void OnDestroy()
+    {
+        // unsubscribe from all events assigned in previous functions
+        playerInputActions.Player.OpenTV.performed -= OpenTelevision;
+        playerInputActions.Player.Interact.performed -= ObjectInteract;
+        playerInputActions.Player.InspectionToggle.performed -= ObjectInspectionToggle;
+
+        playerInputActions.UI.Pause.performed -= PauseGame;
+
+        playerInputActions.Television.CloseTV.performed -= CloseTelevision;
+
+        playerInputActions.Memory.ExitMemoryScene.performed -= ExitMemoryScene;
+
+        PickUpInteractor.OnBranchingPickup -= BranchingItemPickedUp;
+        playerInputActions.Branching.Navigate.performed -= SwitchBranchingItem;
+        playerInputActions.Branching.Submit.performed -= SubmitBranchingItem;
+
+        playerInputActions.Inspect.InspectionToggle.performed -= ObjectInspectionToggle;
+    }
+    #endregion
 
     private void Start()
     {
@@ -71,7 +112,7 @@ public class InputManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (inTVMode) return;
+        if (inTVMode || gamePaused) return;
 
         MovePlayer();
         MoveCamera();
@@ -90,6 +131,29 @@ public class InputManager : MonoBehaviour
             Cursor.visible = true;
         }
     }
+
+    #region Pause Menu
+    private void PauseGame(InputAction.CallbackContext obj)
+    {
+        gamePaused = true;
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+
+        playerInputActions.Player.Disable();
+
+        OnGamePaused?.Invoke();
+    }
+
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false); 
+        Time.timeScale = 1;
+        gamePaused = false;
+        playerInputActions.Player.Enable();
+
+        OnGameResumed?.Invoke();
+    }
+    #endregion
 
     #region Player Movement
     private void MovePlayer()
@@ -206,9 +270,11 @@ public class InputManager : MonoBehaviour
     #region Object Interactions
     private void ObjectInteract(InputAction.CallbackContext context)
     {
-        //Debug.Log("Interaction button pressed");
-        InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
-        interactableDetector.InteractWithObject();
+        if (context.interaction is not HoldInteraction)
+        {            
+            InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
+            interactableDetector.InteractWithObject();
+        }
     }
 
     #region Object Inspection

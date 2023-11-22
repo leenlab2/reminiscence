@@ -90,7 +90,7 @@ public class TapeManager : MonoBehaviour
 
             // put obj back in hands of player and set video clip on TV to null
             // set clip on TV's player to null
-            currentTapeInTv.active = true;
+            currentTapeInTv.SetActive(true);
             videoPlayer.targetTexture.Release();
             pickUpInteractor.PickupObject(currentTapeInTv);
             videoPlayer.clip = null;
