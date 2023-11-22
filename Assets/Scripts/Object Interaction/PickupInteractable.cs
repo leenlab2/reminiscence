@@ -17,7 +17,12 @@ public class PickupInteractable : MonoBehaviour
     private bool onWall;
 
     public StringValue objectTextInfo;
+    public AudioClipScriptableObject objectAudioInfo;
     public string inspectionObjectText;
+    public AudioClip dialogueAudio;
+
+    public AudioSource pickupSound;
+    public AudioSource placeSound;
 
     void Awake()
     {
@@ -33,6 +38,12 @@ public class PickupInteractable : MonoBehaviour
         transform.SetParent(holdArea);
         onWall = false;
         objectTextInfo.value = inspectionObjectText;
+
+        if (pickupSound.clip != null)
+        {
+            pickupSound.Play();
+        }
+        objectAudioInfo.SetAudioClip(dialogueAudio);
     }
 
     #region Placement Guide
@@ -45,6 +56,11 @@ public class PickupInteractable : MonoBehaviour
     {
         transform.SetPositionAndRotation(placementGuide.transform.position, placementGuide.transform.rotation);
         transform.SetParent(originalParent);
+
+        if (placeSound.clip != null)
+        {
+            placeSound.Play();
+        }
     }
 
     public void TransformPlacementGuide(RaycastHit hit)

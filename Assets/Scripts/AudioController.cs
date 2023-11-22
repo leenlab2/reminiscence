@@ -8,6 +8,7 @@ public class AudioController : MonoBehaviour
     public static AudioController instance { get; private set; }
 
     [SerializeField] private List<AudioClip> footsteps = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> bgmStems = new List<AudioClip>();
     private AudioSource playerAudioSource;
     private float lastStepTime = 0.0f;
 
@@ -25,11 +26,13 @@ public class AudioController : MonoBehaviour
         playerAudioSource = GameObject.Find("Player").GetComponentInChildren<AudioSource>();
 
         PuzzleNonBranchingKeyItem.OnKeyItemPlaced += PlayBGMStem;
+        PuzzleManager.OnLevelChange += SwitchBase;
     }
 
     private void OnDestroy()
     {
         PuzzleNonBranchingKeyItem.OnKeyItemPlaced -= PlayBGMStem;
+        PuzzleManager.OnLevelChange -= SwitchBase;
     }
 
     public void SwitchAndPlayAudio(AudioClip audioClip)
@@ -37,6 +40,12 @@ public class AudioController : MonoBehaviour
         //Debug.Log("Playing audio: " + audioClip.name);
         playerAudioSource.clip = audioClip;
         playerAudioSource.Play();
+    }
+
+    void SwitchBase(int level)
+    {
+        GetComponentInChildren<AudioSource>().clip = bgmStems[level - 1];
+        GetComponentInChildren<AudioSource>().Play();
     }
 
     public void PlayFootsteps(float velocity)

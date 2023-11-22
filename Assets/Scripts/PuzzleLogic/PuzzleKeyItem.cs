@@ -14,6 +14,8 @@ public enum Branch
 /// </summary>
 public abstract class PuzzleKeyItem : MonoBehaviour
 {
+    // Which level this item is part of
+    public int level;
     protected Outline outline; // points to Outline script
 
     public const float timeLengthOutline = 3f; // how long the outline should stay when object placed in right location
