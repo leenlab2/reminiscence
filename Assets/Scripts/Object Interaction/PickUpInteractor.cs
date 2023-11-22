@@ -79,13 +79,6 @@ public class PickUpInteractor : MonoBehaviour
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
         if (pickObj == null) return;
 
-        // Play Pickup SFX
-        AudioSource pickupAudio = obj.transform.Find("Audio/PickupAudio").GetComponent<AudioSource>();
-        if (pickupAudio != null)
-        {
-            pickupAudio.Play();
-        }
-
         // TODO: once a more robust map switching system is in place, change this
         if (pickObj.GetComponent<PuzzleBranchingKeyItem>() != null && transform.position.y < 40)
         {
@@ -170,13 +163,6 @@ public class PickUpInteractor : MonoBehaviour
 
     void DropObject(GameObject obj)
     {
-        // Play placement SFX
-        AudioSource pickupAudio = obj.transform.Find("Audio/PlacementAudio").GetComponent<AudioSource>();
-        if (pickupAudio != null)
-        {
-            pickupAudio.Play();
-        }
-
         ToggleObjectColliders(obj, true);
 
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();

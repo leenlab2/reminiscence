@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key Interactable Prop Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2839243218696162935, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -92,7 +96,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
-      insertIndex: 2
+      insertIndex: -1
       addedObject: {fileID: 4520202208637398225}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 43770993739950759, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}

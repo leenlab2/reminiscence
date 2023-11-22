@@ -32,6 +32,9 @@ public class PickupInteractable : MonoBehaviour
         transform.SetParent(holdArea);
         onWall = false;
         objectTextInfo.value = inspectionObjectText;
+
+        AudioSource audioSrc = GetComponent<AudioSource>();
+        audioSrc.Play();
     }
 
     #region Placement Guide
@@ -44,6 +47,9 @@ public class PickupInteractable : MonoBehaviour
     {
         transform.SetPositionAndRotation(placementGuide.transform.position, placementGuide.transform.rotation);
         transform.SetParent(originalParent);
+
+        AudioSource audioSrc = GetComponent<AudioSource>();
+        audioSrc.Play();
     }
 
     public void TransformPlacementGuide(RaycastHit hit)
