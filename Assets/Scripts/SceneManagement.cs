@@ -13,6 +13,13 @@ public class SceneManagement : MonoBehaviour
     public GameObject effects;
     public GameObject player;
     public GameObject enterMemoryButton;
+    public Animator cameraAnimator;
+
+    public AudioClip memoryEnterSfx;
+    public AudioClip memoryExitSfx;
+
+    private Vector3 _originalPlayerPos;
+    private Quaternion _originalPlayerRot;
 
     private InteractionCue _interactionCue;
 
@@ -46,22 +53,38 @@ public class SceneManagement : MonoBehaviour
     {
         if (tapeManager.televisionHasTape()) // Enter memory scene if TV has tape inserted
         {
-            RenderSettings.ambientIntensity = 0.5f;
-            effects.SetActive(true);
+            Debug.Log("Entering memory scene");
+            cameraAnimator.SetTrigger("Enter");
 
-            FindObjectOfType<InputManager>().EnterMemoryScene();
-
-            _interactionCue.SetInteractionCue(InteractionCueType.EnterMemory);
-            
-            player.transform.position = new Vector3(-5.03f, 50f, 4f);
-            player.transform.rotation = new Quaternion(0,0,0, 0);
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.pitch = 1;
+            GetComponent<AudioSource>().PlayOneShot(memoryEnterSfx);
         }
+    }
+
+    public void SetupMemoryScene()
+    { 
+        RenderSettings.ambientIntensity = 0.5f;
+        effects.SetActive(true);
+
+        FindObjectOfType<InputManager>().EnterMemoryScene();
+
+        _interactionCue.SetInteractionCue(InteractionCueType.EnterMemory);
+
+        _originalPlayerPos = player.transform.position;
+        _originalPlayerRot = player.transform.rotation;
+
+        player.transform.position = new Vector3(-5.03f, 50f, 4f);
+        player.transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
     public void ExitMemoryScene()
     {
-        player.transform.position = new Vector3(6.5f, -0.00115942955f, -9.0f);
-        player.transform.rotation = new Quaternion(-1.7f, -0.95f, 8.96f, 0);
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.pitch = 3;
+        GetComponent<AudioSource>().PlayOneShot(memoryExitSfx);
+
+        player.transform.SetPositionAndRotation(_originalPlayerPos, _originalPlayerRot);
 
         _interactionCue.SetInteractionCue(InteractionCueType.ExitMemory);
 
