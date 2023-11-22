@@ -119,6 +119,10 @@ PrefabInstance:
       value: -15.129
       objectReference: {fileID: 0}
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a2cc8d242269444c8db80a2e0a81792, type: 3}
+    - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: inspectionObjectText
       value: I was so worried about that audition. Third place isn't so bad right?
       objectReference: {fileID: 0}

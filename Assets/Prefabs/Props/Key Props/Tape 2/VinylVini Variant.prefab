@@ -263,6 +263,10 @@ PrefabInstance:
       value: 92.249
       objectReference: {fileID: 0}
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: ee9607f9613506a46b11d371f0c34c41, type: 3}
+    - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: inspectionObjectText
       value: "So this is where they are! I am so stupid for leaving behind such a
         great collection. Guess this is what happens when you run away from your

@@ -447,7 +447,9 @@ MonoBehaviour:
   wallMountable: 0
   originalParent: {fileID: 0}
   objectTextInfo: {fileID: 11400000, guid: c4baf7bf52c29c64e899665b1cc8bb07, type: 2}
+  objectAudioInfo: {fileID: 11400000, guid: 17f168b25b2884e458ef6822baebc095, type: 2}
   inspectionObjectText: 
+  dialogueAudio: {fileID: 8300000, guid: 8c2c67088118629408f8d5ff7101c584, type: 3}
 --- !u!114 &2241491481293771561
 MonoBehaviour:
   m_ObjectHideFlags: 0

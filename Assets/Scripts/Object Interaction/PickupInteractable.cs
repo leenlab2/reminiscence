@@ -17,7 +17,9 @@ public class PickupInteractable : MonoBehaviour
     private bool onWall;
 
     public StringValue objectTextInfo;
+    public AudioClipScriptableObject objectAudioInfo;
     public string inspectionObjectText;
+    public AudioClip dialogueAudio;
 
     void Awake()
     {
@@ -33,6 +35,7 @@ public class PickupInteractable : MonoBehaviour
         transform.SetParent(holdArea);
         onWall = false;
         objectTextInfo.value = inspectionObjectText;
+        objectAudioInfo.SetAudioClip(dialogueAudio);
     }
 
     #region Placement Guide
