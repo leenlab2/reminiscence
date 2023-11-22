@@ -274,7 +274,7 @@ MonoBehaviour:
   wallMountable: 0
   originalParent: {fileID: 0}
   objectTextInfo: {fileID: 11400000, guid: c4baf7bf52c29c64e899665b1cc8bb07, type: 2}
-  inspectionObjectText: 
+  inspectionObjectText: Paint? That symbol... it looks familiar, but from where?
 --- !u!114 &7194209420348003164
 MonoBehaviour:
   m_ObjectHideFlags: 0
