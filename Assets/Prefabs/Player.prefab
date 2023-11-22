@@ -205,7 +205,6 @@ GameObject:
   - component: {fileID: 9122481451796719112}
   - component: {fileID: 4603097404337733328}
   - component: {fileID: 5061304008739695943}
-  - component: {fileID: 2377988249575854456}
   - component: {fileID: 6574358494624870371}
   m_Layer: 0
   m_Name: Main Camera
@@ -292,19 +291,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3802703007843839458}
   m_Enabled: 1
---- !u!114 &2377988249575854456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3802703007843839458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01d446861b12e45038dab6f95ab97841, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _televisionCanvas: {fileID: 0}
 --- !u!114 &6574358494624870371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +701,7 @@ GameObject:
   - component: {fileID: 2280167045166944507}
   - component: {fileID: 259123305166191292}
   - component: {fileID: 1486358823514584282}
+  - component: {fileID: 6103307674487485015}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -845,6 +832,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6103307674487485015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112840480135186097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d446861b12e45038dab6f95ab97841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _televisionCanvas: {fileID: 0}
+  tvViewCamera: {fileID: 0}
+  HUD: {fileID: 0}
 --- !u!1001 &1014889727322982483
 PrefabInstance:
   m_ObjectHideFlags: 0
