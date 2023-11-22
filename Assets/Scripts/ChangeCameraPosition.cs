@@ -74,7 +74,7 @@ public class ChangeCameraPosition : MonoBehaviour
     {
         if (_televisionCanvas.activeSelf)
         {
-            _televisionCanvas.GetComponent<UnityEngine.EventSystems.EventSystem>().enabled = false;
+            _televisionCanvas.GetComponentInChildren<UnityEngine.EventSystems.EventSystem>().enabled = false;
         }
     }
 
@@ -82,7 +82,7 @@ public class ChangeCameraPosition : MonoBehaviour
     {
         if (_televisionCanvas.activeSelf)
         {
-            _televisionCanvas.GetComponent<UnityEngine.EventSystems.EventSystem>().enabled = true;
+            _televisionCanvas.GetComponentInChildren<UnityEngine.EventSystems.EventSystem>().enabled = true;
         }
     }
 }
