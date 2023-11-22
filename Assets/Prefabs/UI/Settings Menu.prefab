@@ -645,6 +645,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EventSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 279898662851328127, guid: 0a4ccad1bf5f84b39afe29ec43bec9c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6929507611840284716, guid: 0a4ccad1bf5f84b39afe29ec43bec9c1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0

@@ -769,6 +769,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7541883826277973610}
     - target: {fileID: 7610062479236165878, guid: 0a4ccad1bf5f84b39afe29ec43bec9c1, type: 3}
+      propertyPath: m_PointAction
+      value: 
+      objectReference: {fileID: -1066246146455810644, guid: 52416dff7036312419fb28f163ca1ca1, type: 3}
+    - target: {fileID: 7610062479236165878, guid: 0a4ccad1bf5f84b39afe29ec43bec9c1, type: 3}
       propertyPath: m_DeselectOnBackgroundClick
       value: 1
       objectReference: {fileID: 0}
