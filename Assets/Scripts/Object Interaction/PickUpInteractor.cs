@@ -64,6 +64,11 @@ public class PickUpInteractor : MonoBehaviour
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
     }
 
+    private void OnDestroy()
+    {
+        InteractableDetector.OnCursorHitChange -= DetermineNewPosition;
+    }
+
     private void ToggleObjectColliders(GameObject obj, bool on)
     {        
         Collider[] colliders = obj.GetComponentsInChildren<Collider>();
@@ -174,12 +179,12 @@ public class PickUpInteractor : MonoBehaviour
     void DropObject(GameObject obj)
     {
         // Play placement SFX
-        if (obj.transform.Find("Audio/PickupAudio") != null)
+        if (obj.transform.Find("Audio/PlacementAudio") != null)
         {
-            AudioSource placeAudio = obj.transform.Find("Audio/PickupAudio").GetComponent<AudioSource>();
-            if (placeAudio != null)
+            AudioSource placementAudio = obj.transform.Find("Audio/PlacementAudio").GetComponent<AudioSource>();
+            if (placementAudio != null)
             {
-                placeAudio.Play();
+                placementAudio.Play();
             }
         }
 

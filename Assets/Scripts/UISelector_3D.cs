@@ -49,9 +49,8 @@ public class UISelector_3D : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
         inText.color = Color.yellow;
         outText.color = Color.white;
-
+                
         sceneManagement.EnterMemoryScene();
-        dialAnimator.SetTrigger("Move");
     }
 
     public void SwitchToOut()
