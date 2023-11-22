@@ -1,0 +1,1671 @@
+fileFormatVersion: 2
+guid: c727bb4ac8d08ee4a83425b9e105437c
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Reminiscense_Rig:c_neck02_jnt' has translation
+      animation that will be discarded.\n\t'Reminiscense_Rig:r_thumb01_jnt' has translation
+      animation that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: IdleV2
+      takeName: Take 001
+      internalID: 1827226128182048838
+      firstFrame: 0
+      lastFrame: 387
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 73
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Reminiscense_Rig:c_pelvis_jnt
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_hip_jnt
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_hip_jnt
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_knee_jnt
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_knee_jnt
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_ankle_jnt
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_ankle_jnt
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:c_spine001_jnt
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:c_spine002_jnt
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:c_neck01_jnt
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:c_neck02_jnt
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_clavicle_jnt
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_clavicle_jnt
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_shoulder_jnt
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_shoulder_jnt
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_elbow_jnt
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_elbow_jnt
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_wrist_jnt
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_wrist_jnt
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_arch_jnt
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_arch_jnt
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:c_skull_jnt
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_thumb01_jnt
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_thumb02_jnt
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_thumb03_jnt
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_index01_jnt
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_index02_jnt
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_index03_jnt
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_middle01_jnt
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_middle02_jnt
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_middle03_jnt
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_ring01_jnt
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_ring02_jnt
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_ring03_jnt
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_pinky01_jnt
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_pinky02_jnt
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:l_pinky03_jnt
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_thumb01_jnt
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_thumb02_jnt
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_thumb03_jnt
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_index01_jnt
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_index02_jnt
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_index03_jnt
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_middle01_jnt
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_middle02_jnt
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_middle03_jnt
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_ring01_jnt
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_ring02_jnt
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_ring03_jnt
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_pinky01_jnt
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_pinky02_jnt
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:r_pinky03_jnt
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Reminiscense_Rig:c_chest_jnt
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Reminiscence_Stand_idol_Anim_v2(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:mesh_grp
+      parentName: Reminiscence_Stand_idol_Anim_v2(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:model_geo
+      parentName: Reminiscense_Rig:mesh_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_master_null
+      parentName: Reminiscence_Stand_idol_Anim_v2(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_master_ctrl
+      parentName: Reminiscense_Rig:c_master_null
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_pelvis_null
+      parentName: Reminiscense_Rig:c_master_ctrl
+      position: {x: -0, y: 3.222332, z: -0.08384296}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_pelvis_ctrl
+      parentName: Reminiscense_Rig:c_pelvis_null
+      position: {x: 0.09160263, y: -0.042165693, z: 0.26864746}
+      rotation: {x: 0.026552467, y: -0.029762186, z: 0.015632885, w: 0.999082}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_spine001_null
+      parentName: Reminiscense_Rig:c_pelvis_ctrl
+      position: {x: -0, y: 0.5269975, z: -0.027436135}
+      rotation: {x: -0.044267327, y: 0, z: -0, w: 0.99901974}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_spine001_ctrl
+      parentName: Reminiscense_Rig:c_spine001_null
+      position: {x: -0, y: 0, z: -0.0000017204553}
+      rotation: {x: 0.0073580123, y: -0.00006487948, z: -0.016121114, w: 0.999843}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_spine002_null
+      parentName: Reminiscense_Rig:c_spine001_ctrl
+      position: {x: -0, y: 0.36221114, z: 0.0000017187422}
+      rotation: {x: -0.00000002226414, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_spine002_ctrl
+      parentName: Reminiscense_Rig:c_spine002_null
+      position: {x: -0, y: 0.0000014850395, z: -0.000016724196}
+      rotation: {x: 0.03807281, y: 0.0007766914, z: -0.013953576, w: 0.9991773}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_chest_null
+      parentName: Reminiscense_Rig:c_spine002_ctrl
+      position: {x: -0, y: 0.41395396, z: 0.000016722832}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_chest_ctrl
+      parentName: Reminiscense_Rig:c_chest_null
+      position: {x: -0, y: 0.0000014850395, z: -0.000016724196}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_neck_null
+      parentName: Reminiscense_Rig:c_chest_ctrl
+      position: {x: -0, y: 0.6561151, z: 0.06271804}
+      rotation: {x: 0.04426735, y: -0, z: -0, w: 0.99901974}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:_ctrl
+      parentName: Reminiscense_Rig:c_neck_null
+      position: {x: -0.000016711925, y: -0.000000033393004, z: -0.0000016169521}
+      rotation: {x: 0.08488947, y: 0.0017692179, z: -0.020761658, w: 0.9961725}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_skull_null
+      parentName: Reminiscense_Rig:_ctrl
+      position: {x: 0.000016711925, y: 0.20592836, z: 0.04811717}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_skull_ctrl
+      parentName: Reminiscense_Rig:c_skull_null
+      position: {x: -0.000016711925, y: -0.000000033393004, z: -0.0000016169521}
+      rotation: {x: -0.096629724, y: -0.027628848, z: 0.045326624, w: 0.9939039}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_clavicle_null
+      parentName: Reminiscense_Rig:c_chest_ctrl
+      position: {x: -0.1791058, y: 0.3840309, z: -0.006841658}
+      rotation: {x: 0.58241284, y: -0.3910764, z: 0.6049691, w: 0.3766525}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_clavicle_ctrl
+      parentName: Reminiscense_Rig:l_clavicle_null
+      position: {x: 4.0523138e-17, y: 0, z: -0.0000007892832}
+      rotation: {x: 0.1162008, y: 0.013654369, z: -0.05515357, w: 0.99159926}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_shoulder_null
+      parentName: Reminiscense_Rig:l_clavicle_ctrl
+      position: {x: -5.0325977e-10, y: 0.39400193, z: 0.000000794125}
+      rotation: {x: 0.32653904, y: -0.05497086, z: 0.019027226, w: 0.943392}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_shoulder_ctrl
+      parentName: Reminiscense_Rig:l_shoulder_null
+      position: {x: -0.00001865417, y: -0.000000037273907, z: -0.0000018048728}
+      rotation: {x: 0.045016482, y: 1.9189783e-15, z: -5.023744e-15, w: 0.99898624}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_elbow_null
+      parentName: Reminiscense_Rig:l_shoulder_ctrl
+      position: {x: 0.000018653223, y: 0.9408146, z: 0.0000017830303}
+      rotation: {x: -0.096905716, y: -0.68971115, z: -0.101445414, w: 0.71036375}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_elbow_ctrl
+      parentName: Reminiscense_Rig:l_elbow_null
+      position: {x: -0.000016711925, y: -0.000000033393004, z: -0.0000016169521}
+      rotation: {x: 0.06317485, y: -0, z: -0, w: 0.99800247}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_wrist_null
+      parentName: Reminiscense_Rig:l_elbow_ctrl
+      position: {x: 0.00001671493, y: 0.7381585, z: 0.000001616978}
+      rotation: {x: 0.031872522, y: 0.7636042, z: -0.046328407, w: 0.64323133}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_wrist_ctrl
+      parentName: Reminiscense_Rig:l_wrist_null
+      position: {x: -0.000010651834, y: -0.000000021284007, z: -0.0000010306117}
+      rotation: {x: -0.011743008, y: -0.1880923, z: 0.00698328, w: 0.9820563}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_clavicle_null
+      parentName: Reminiscense_Rig:c_chest_ctrl
+      position: {x: 0.1791058, y: 0.38410023, z: -0.0076221838}
+      rotation: {x: -0.58102465, y: -0.39200905, z: 0.60615736, w: -0.37591565}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_clavicle_ctrl
+      parentName: Reminiscense_Rig:r_clavicle_null
+      position: {x: -0.000016711925, y: -0.000000033393004, z: -0.0000016169521}
+      rotation: {x: 0.06844575, y: 0.039624136, z: 0.09959894, w: 0.99187964}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_shoulder_null
+      parentName: Reminiscense_Rig:r_clavicle_ctrl
+      position: {x: 0.000016712445, y: 0.39400196, z: 0.0000016217917}
+      rotation: {x: 0.32657215, y: 0.050913114, z: -0.017619943, w: 0.9436356}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_shoulder_ctrl
+      parentName: Reminiscense_Rig:r_shoulder_null
+      position: {x: -0.0000017836439, y: 0.000007763835, z: -0.000014779905}
+      rotation: {x: 0.07363529, y: -2.4427367e-15, z: 4.829531e-15, w: 0.99728525}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_elbow_null
+      parentName: Reminiscense_Rig:r_shoulder_ctrl
+      position: {x: 0.0000017837757, y: 0.9407786, z: 0.000014772264}
+      rotation: {x: -0.09550425, y: 0.69687027, z: 0.100197636, w: 0.70371246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_elbow_ctrl
+      parentName: Reminiscense_Rig:r_elbow_null
+      position: {x: -0.000016711925, y: -0.000000033393004, z: -0.0000016169521}
+      rotation: {x: 0.060545642, y: -0, z: -0, w: 0.9981655}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_wrist_null
+      parentName: Reminiscense_Rig:r_elbow_ctrl
+      position: {x: 0.000016713431, y: 0.73805964, z: 0.0000016285991}
+      rotation: {x: 0.02956273, y: -0.7641766, z: 0.04695182, w: 0.64261633}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_wrist_ctrl
+      parentName: Reminiscense_Rig:r_wrist_null
+      position: {x: -0.00000091185717, y: 0.000005169755, z: -0.000015948235}
+      rotation: {x: 0.015996117, y: 0.19938038, z: 0.008068381, w: 0.9797584}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fkhip_null
+      parentName: Reminiscense_Rig:c_pelvis_ctrl
+      position: {x: -0.4090772, y: -0.022939404, z: -0.07189474}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fkhip_ctrl
+      parentName: Reminiscense_Rig:l_fkhip_null
+      position: {x: -0, y: 0, z: -0.000001442713}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ikknee_null1
+      parentName: Reminiscense_Rig:l_fkhip_ctrl
+      position: {x: -0, y: -1.4139613, z: 0.14170563}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.07374016, y: 0.07374016, z: 0.07374016}
+    - name: Reminiscense_Rig:l_ikknee_ctrl
+      parentName: Reminiscense_Rig:l_ikknee_null1
+      position: {x: -0, y: 0, z: -0.00001679}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fkankle_null
+      parentName: Reminiscense_Rig:l_ikknee_ctrl
+      position: {x: 6.483702e-16, y: -18.858828, z: -2.894594}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 13.5611315, y: 13.5611315, z: 13.5611315}
+    - name: Reminiscense_Rig:l_fkankle_ctrl
+      parentName: Reminiscense_Rig:l_fkankle_null
+      position: {x: -0, y: 0, z: -0.00000090044045}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fkarch_null
+      parentName: Reminiscense_Rig:l_fkankle_ctrl
+      position: {x: 1.6209255e-16, y: -0.3589825, z: 0.33957893}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fkarch_ctrl
+      parentName: Reminiscense_Rig:l_fkarch_null
+      position: {x: -0, y: 0, z: -0.0000011375342}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkhip_null
+      parentName: Reminiscense_Rig:c_pelvis_ctrl
+      position: {x: 0.40907738, y: -0.022941183, z: -0.07189461}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkhip_ctrl
+      parentName: Reminiscense_Rig:r_fkhip_null
+      position: {x: -0, y: 0, z: -0.00001679}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkknee_null
+      parentName: Reminiscense_Rig:r_fkhip_ctrl
+      position: {x: -0, y: -1.4139588, z: 0.14172082}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkknee_ctrl
+      parentName: Reminiscense_Rig:r_fkknee_null
+      position: {x: -0, y: 0, z: -0.00001679}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkankle_null
+      parentName: Reminiscense_Rig:r_fkknee_ctrl
+      position: {x: -0, y: -1.3906536, z: -0.21343234}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkankle_ctrl
+      parentName: Reminiscense_Rig:r_fkankle_null
+      position: {x: -0, y: 0, z: -0.00001679}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkarch_null
+      parentName: Reminiscense_Rig:r_fkankle_ctrl
+      position: {x: -0, y: -0.3589825, z: 0.33959526}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkarch_ctrl
+      parentName: Reminiscense_Rig:r_fkarch_null
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ikwrist_null
+      parentName: Reminiscense_Rig:c_pelvis_ctrl
+      position: {x: -1.2964649, y: 0.052072816, z: 0.05111904}
+      rotation: {x: 0.65451676, y: -0.0037783645, z: 0.7202251, w: 0.22993368}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ikwrist_ctrl
+      parentName: Reminiscense_Rig:l_ikwrist_null
+      position: {x: 0.808887, y: -0.4581281, z: 0.8322216}
+      rotation: {x: 0.37694997, y: -0.08066339, z: -0.58987993, w: 0.70953774}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ikwrist_null
+      parentName: Reminiscense_Rig:c_pelvis_ctrl
+      position: {x: 1.2964648, y: 0.052072726, z: 0.051498566}
+      rotation: {x: -0.65701807, y: -0.0044083605, z: 0.71739453, w: -0.23163104}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ikwrist_ctrl
+      parentName: Reminiscense_Rig:r_ikwrist_null
+      position: {x: 0.70670515, y: -0.25119862, z: 0.6639268}
+      rotation: {x: 0.08425357, y: -0.013773206, z: -0.036169216, w: 0.99569243}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_pelvis_jnt
+      parentName: Reminiscence_Stand_idol_Anim_v2(Clone)
+      position: {x: -0.00000009685755, y: 3.2814417, z: 0.18480448}
+      rotation: {x: 0.000000002551569, y: -0.000000005103138, z: -0.0000000017542037, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ikhip_jnt
+      parentName: Reminiscense_Rig:c_pelvis_jnt
+      position: {x: -0.4090772, y: -0.022937275, z: -0.07191872}
+      rotation: {x: -0.104939595, y: -0.1557338, z: -0.008484311, w: 0.9821724}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ikknee_jnt
+      parentName: Reminiscense_Rig:l_ikhip_jnt
+      position: {x: -0, y: -1.4139613, z: 0.14170419}
+      rotation: {x: 0.09961641, y: -0, z: -0, w: 0.99502593}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ikankle_jnt
+      parentName: Reminiscense_Rig:l_ikknee_jnt
+      position: {x: -0, y: -1.3906529, z: -0.21344905}
+      rotation: {x: -0.024939682, y: -0.0049656807, z: -0.013677377, w: 0.99958307}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ikarch_jnt
+      parentName: Reminiscense_Rig:l_ikankle_jnt
+      position: {x: -0, y: -0.3589825, z: 0.3395769}
+      rotation: {x: 2.934477e-26, y: -5.7310465e-11, z: 0.0000000074503603, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_iktoe_jnt
+      parentName: Reminiscense_Rig:l_ikarch_jnt
+      position: {x: -0, y: -0.0032340768, z: 0.42042997}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fkhip_jnt
+      parentName: Reminiscense_Rig:c_pelvis_jnt
+      position: {x: -0.4090772, y: -0.022939404, z: -0.07189618}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fkknee_jnt
+      parentName: Reminiscense_Rig:l_fkhip_jnt
+      position: {x: 8.1046276e-17, y: -1.4139613, z: 0.14170438}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fkankle_jnt
+      parentName: Reminiscense_Rig:l_fkknee_jnt
+      position: {x: -4.0523138e-17, y: -1.3906529, z: -0.21344873}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fkarch_jnt
+      parentName: Reminiscense_Rig:l_fkankle_jnt
+      position: {x: 2.026157e-16, y: -0.3589825, z: 0.3395778}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fktoe_jnt
+      parentName: Reminiscense_Rig:l_fkarch_jnt
+      position: {x: -0, y: -0.0032340768, z: 0.42042997}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ikhip_jnt
+      parentName: Reminiscense_Rig:c_pelvis_jnt
+      position: {x: 0.40907738, y: -0.022939054, z: -0.071918584}
+      rotation: {x: -0.029900111, y: 0.111779146, z: -0.05308088, w: 0.99186385}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ikknee_jnt
+      parentName: Reminiscense_Rig:r_ikhip_jnt
+      position: {x: -0, y: -1.4139588, z: 0.14170402}
+      rotation: {x: 0.0365227, y: -0, z: -0, w: 0.99933285}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ikankle_jnt
+      parentName: Reminiscense_Rig:r_ikknee_jnt
+      position: {x: -0, y: -1.3906536, z: -0.21344914}
+      rotation: {x: 0.08330945, y: 0.05073047, z: 0.06609742, w: 0.9930343}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ikarch_jnt
+      parentName: Reminiscense_Rig:r_ikankle_jnt
+      position: {x: -0, y: -0.3589825, z: 0.33957845}
+      rotation: {x: -0.20814195, y: -0.0385336, z: -0.035662804, w: 0.97668844}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_iktoe_jnt
+      parentName: Reminiscense_Rig:r_ikarch_jnt
+      position: {x: -0, y: -0.003234119, z: 0.42042962}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkhip_jnt
+      parentName: Reminiscense_Rig:c_pelvis_jnt
+      position: {x: 0.40907738, y: -0.022941183, z: -0.0719114}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkknee_jnt
+      parentName: Reminiscense_Rig:r_fkhip_jnt
+      position: {x: -8.1046276e-17, y: -1.4139588, z: 0.14170402}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkankle_jnt
+      parentName: Reminiscense_Rig:r_fkknee_jnt
+      position: {x: 8.1046276e-17, y: -1.3906536, z: -0.21344914}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkarch_jnt
+      parentName: Reminiscense_Rig:r_fkankle_jnt
+      position: {x: 8.1046276e-17, y: -0.3589825, z: 0.33959526}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fktoe_jnt
+      parentName: Reminiscense_Rig:r_fkarch_jnt
+      position: {x: -0, y: -0.003234119, z: 0.42042962}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_spine001_jnt
+      parentName: Reminiscense_Rig:c_pelvis_jnt
+      position: {x: 4.0523138e-17, y: 0.5269974, z: -0.027437853}
+      rotation: {x: -0.044267334, y: 0.000000005013422, z: 0.0000000021377031, w: 0.99901974}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Reminiscense_Rig:c_spine002_jnt
+      parentName: Reminiscense_Rig:c_spine001_jnt
+      position: {x: -2.0261569e-17, y: 0.36221263, z: -0.000015005454}
+      rotation: {x: -0.000000014901161, y: -0.000000002358203, z: -0.0000000022907054, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_chest_jnt
+      parentName: Reminiscense_Rig:c_spine002_jnt
+      position: {x: -0, y: 0.41395542, z: -0.0000000013634517}
+      rotation: {x: -0, y: -0, z: -3.5139963e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_neck01_jnt
+      parentName: Reminiscense_Rig:c_chest_jnt
+      position: {x: -0, y: 0.46569973, z: 0.000000004527866}
+      rotation: {x: 0.044267353, y: -0.0000000026479, z: 0.0000000021174829, w: 0.99901974}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_neck02_jnt
+      parentName: Reminiscense_Rig:c_neck01_jnt
+      position: {x: -0.000000013120541, y: 0.19521545, z: 0.045630246}
+      rotation: {x: -0.000000007450581, y: 0.0000000025515687, z: -0.000000006059978, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_skull_jnt
+      parentName: Reminiscense_Rig:c_neck02_jnt
+      position: {x: -0.00000019998254, y: 0.20593022, z: 0.048116285}
+      rotation: {x: -0, y: -0.0000000025515692, z: 0.0000000051031397, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:c_topskull_jnt
+      parentName: Reminiscense_Rig:c_skull_jnt
+      position: {x: -0, y: 0.7474995, z: 0.1746563}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_clavicle_jnt
+      parentName: Reminiscense_Rig:c_chest_jnt
+      position: {x: -0.17910565, y: 0.384031, z: -0.0068416405}
+      rotation: {x: 0.5654692, y: -0.4169613, z: 0.58381355, w: 0.40687793}
+      scale: {x: 1.0000005, y: 1.0000007, z: 1.0000002}
+    - name: Reminiscense_Rig:l_ikshoulder_jnt
+      parentName: Reminiscense_Rig:l_clavicle_jnt
+      position: {x: -5.0206245e-10, y: 0.39400193, z: 0.000000004841759}
+      rotation: {x: 0.370636, y: -0.13845502, z: -0.08846327, w: 0.9141299}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ikelbow_jnt
+      parentName: Reminiscense_Rig:l_ikshoulder_jnt
+      position: {x: -9.476835e-10, y: 0.9408146, z: -0.0000000218427}
+      rotation: {x: 0.0045965025, y: 0.010782672, z: -0.6353848, w: 0.7721067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ikwrist_jnt
+      parentName: Reminiscense_Rig:l_ikelbow_jnt
+      position: {x: -0, y: 0.7381585, z: 0.000000003004579}
+      rotation: {x: 0.123094216, y: 0.09607994, z: -0.0960182, w: 0.98305494}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fkshoulder_jnt
+      parentName: Reminiscense_Rig:l_clavicle_jnt
+      position: {x: 0.000000011526156, y: 0.3940018, z: -0.00000009801999}
+      rotation: {x: 0.36867622, y: -0.054058593, z: 0.021482533, w: 0.927736}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fkelbow_jnt
+      parentName: Reminiscense_Rig:l_fkshoulder_jnt
+      position: {x: -0.00000004931323, y: 0.94081444, z: -0.000000022563253}
+      rotation: {x: 0.002971287, y: -0.0004930497, z: -0.07748493, w: 0.996989}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_fkwrist_jnt
+      parentName: Reminiscense_Rig:l_fkelbow_jnt
+      position: {x: -0.00000034408635, y: 0.73815835, z: 0.0000040120003}
+      rotation: {x: 0.041103326, y: -0.08896133, z: -0.0131071815, w: 0.9951003}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_shoulder_jnt
+      parentName: Reminiscense_Rig:l_clavicle_jnt
+      position: {x: -5.0206245e-10, y: 0.39400193, z: 0.0000000048417594}
+      rotation: {x: -0.14472224, y: -0.046370074, z: -0.006623564, w: 0.988363}
+      scale: {x: 1.0000001, y: 1.0000006, z: 1.0000001}
+    - name: Reminiscense_Rig:l_elbow_jnt
+      parentName: Reminiscense_Rig:l_shoulder_jnt
+      position: {x: -9.476837e-10, y: 0.9408146, z: -0.0000000218427}
+      rotation: {x: -0.013609287, y: 0.0018095037, z: -0.036492735, w: 0.9992397}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000005}
+    - name: Reminiscense_Rig:l_wrist_jnt
+      parentName: Reminiscense_Rig:l_elbow_jnt
+      position: {x: -1.1559622e-10, y: 0.7381585, z: 0.00000002594822}
+      rotation: {x: 0.05725224, y: 0.087502554, z: -0.010138295, w: 0.994466}
+      scale: {x: 1.0000001, y: 1.0000007, z: 1.0000005}
+    - name: Reminiscense_Rig:l_hand_null
+      parentName: Reminiscense_Rig:l_wrist_jnt
+      position: {x: -1.0859702, y: 2.5019474, z: 2.2281296}
+      rotation: {x: 0.65451676, y: -0.003778347, z: 0.72022504, w: -0.22993375}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_pinky01_null
+      parentName: Reminiscense_Rig:l_hand_null
+      position: {x: -1.4202806, y: 2.9077654, z: -0.028142871}
+      rotation: {x: 0.6546972, y: -0.05129794, z: 0.74504626, w: 0.116817474}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_pinky01_ctrl
+      parentName: Reminiscense_Rig:l_pinky01_null
+      position: {x: -0.0000006823688, y: -0.0000022938523, z: 0.00001371839}
+      rotation: {x: 0.05954151, y: -0.005953156, z: -0.09930899, w: 0.99325585}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_pinky02_null
+      parentName: Reminiscense_Rig:l_pinky01_ctrl
+      position: {x: 0.0018453399, y: 0.11593462, z: -0.00001372133}
+      rotation: {x: 0.15499628, y: -0, z: -0, w: 0.9879151}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_pinky02_ctrl
+      parentName: Reminiscense_Rig:l_pinky02_null
+      position: {x: 0.0000016883612, y: 0.000009894715, z: 0.0000108420745}
+      rotation: {x: 0.25400046, y: -0, z: -0, w: 0.9672041}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_pinky03_null
+      parentName: Reminiscense_Rig:l_pinky02_ctrl
+      position: {x: -0.0008896841, y: 0.09417458, z: -0.000010841479}
+      rotation: {x: 0.011667953, y: -0, z: -0, w: 0.99993193}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_pinky03_ctrl
+      parentName: Reminiscense_Rig:l_pinky03_null
+      position: {x: 0.0000016883612, y: 0.000009894715, z: 0.0000108420745}
+      rotation: {x: 0.25400046, y: -0, z: -0, w: 0.9672041}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ring01_null
+      parentName: Reminiscense_Rig:l_hand_null
+      position: {x: -1.4346913, y: 2.9018502, z: 0.04397363}
+      rotation: {x: 0.6643555, y: 0.020419102, z: 0.72422844, w: 0.18359742}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ring01_ctrl
+      parentName: Reminiscense_Rig:l_ring01_null
+      position: {x: -0.0000008227288, y: -0.000002765687, z: 0.000016540198}
+      rotation: {x: 0.02760308, y: -0.0010148878, z: -0.036728352, w: 0.9989435}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ring02_null
+      parentName: Reminiscense_Rig:l_ring01_ctrl
+      position: {x: 0.00033768947, y: 0.12510844, z: -0.000016541646}
+      rotation: {x: 0.16694668, y: -0, z: -0, w: 0.98596597}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ring02_ctrl
+      parentName: Reminiscense_Rig:l_ring02_null
+      position: {x: 0.0000016883612, y: 0.000009894715, z: 0.0000108420745}
+      rotation: {x: 0.22268255, y: -0, z: -0, w: 0.97489107}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ring03_null
+      parentName: Reminiscense_Rig:l_ring02_ctrl
+      position: {x: -0.00010120304, y: 0.116319984, z: -0.000010842228}
+      rotation: {x: 0.06857281, y: -0, z: -0, w: 0.99764615}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ring03_ctrl
+      parentName: Reminiscense_Rig:l_ring03_null
+      position: {x: 0.0000016883612, y: 0.000009894715, z: 0.0000108420745}
+      rotation: {x: 0.22268255, y: -0, z: -0, w: 0.97489107}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_middle01_null
+      parentName: Reminiscense_Rig:l_hand_null
+      position: {x: -1.4347284, y: 2.9350078, z: 0.11911568}
+      rotation: {x: 0.65947646, y: 0.04710876, z: 0.70585716, w: 0.25423858}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_middle01_ctrl
+      parentName: Reminiscense_Rig:l_middle01_null
+      position: {x: 0.00001661654, y: -0.0000023969399, z: 0.00000025618166}
+      rotation: {x: 0, y: 0, z: 0.033829805, w: 0.9994276}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_middle02_null
+      parentName: Reminiscense_Rig:l_middle01_ctrl
+      position: {x: -0.0016197875, y: 0.13888584, z: -0.00000025099288}
+      rotation: {x: 0.20727496, y: -0, z: -0, w: 0.97828275}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_middle02_ctrl
+      parentName: Reminiscense_Rig:l_middle02_null
+      position: {x: 0.0000019185923, y: 0.000011243993, z: 0.000012320539}
+      rotation: {x: 0.11562969, y: -0, z: -0, w: 0.9932924}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_middle03_null
+      parentName: Reminiscense_Rig:l_middle02_ctrl
+      position: {x: 0.0006002196, y: 0.12579094, z: -0.000012320182}
+      rotation: {x: 0.052241504, y: -0, z: -0, w: 0.9986345}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_middle03_ctrl
+      parentName: Reminiscense_Rig:l_middle03_null
+      position: {x: 0.0000016883612, y: 0.000009894715, z: 0.0000108420745}
+      rotation: {x: 0.11562969, y: -0, z: -0, w: 0.9932924}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_index01_null
+      parentName: Reminiscense_Rig:l_hand_null
+      position: {x: -1.419363, y: 2.998539, z: 0.18116224}
+      rotation: {x: 0.6548251, y: 0.10476345, z: 0.67740947, w: 0.3183475}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_index01_ctrl
+      parentName: Reminiscense_Rig:l_index01_null
+      position: {x: 0.000002467155, y: 0.000014458869, z: 0.000015843221}
+      rotation: {x: 0.017323522, y: -0.0047336323, z: 0.09330711, w: 0.9954754}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_index02_null
+      parentName: Reminiscense_Rig:l_index01_ctrl
+      position: {x: -0.002485074, y: 0.12812111, z: -0.000015844682}
+      rotation: {x: 0.11885767, y: -0, z: -0, w: 0.99291134}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_index02_ctrl
+      parentName: Reminiscense_Rig:l_index02_null
+      position: {x: 0.0000019185923, y: 0.000011243993, z: 0.000012320539}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_index03_null
+      parentName: Reminiscense_Rig:l_index02_ctrl
+      position: {x: 0.00054158503, y: 0.12020647, z: -0.000012319897}
+      rotation: {x: 0.06596734, y: -0, z: -0, w: 0.9978218}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_index03_ctrl
+      parentName: Reminiscense_Rig:l_index03_null
+      position: {x: 0.0000019185923, y: 0.000011243993, z: 0.000012320539}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_thumb01_null
+      parentName: Reminiscense_Rig:l_hand_null
+      position: {x: -1.3077687, y: 3.2026043, z: 0.09738666}
+      rotation: {x: 0.8632638, y: -0.07123387, z: -0.044372596, w: 0.49772733}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_thumb01_ctrl
+      parentName: Reminiscense_Rig:l_thumb01_null
+      position: {x: -0.0000005563854, y: 0.000003154415, z: -0.000009731091}
+      rotation: {x: 0.09988157, y: -0.027466597, z: -0.065165974, w: 0.9924831}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_thumb02_null
+      parentName: Reminiscense_Rig:l_thumb01_ctrl
+      position: {x: 0.00009330362, y: 0.11923012, z: -0.0017731467}
+      rotation: {x: 0.0011774304, y: -0.0030526202, z: -0.024048593, w: 0.9997055}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_thumb02_ctrl
+      parentName: Reminiscense_Rig:l_thumb02_null
+      position: {x: -0.0000014902466, y: -0.000014516691, z: 0.0000033046351}
+      rotation: {x: 0.083108895, y: -0, z: -0, w: 0.9965405}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_thumb03_null
+      parentName: Reminiscense_Rig:l_thumb02_ctrl
+      position: {x: 0.00026162245, y: 0.11632614, z: -0.0056706616}
+      rotation: {x: -0.0028167642, y: 0.0010203135, z: 0.060027648, w: 0.99819225}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_thumb03_ctrl
+      parentName: Reminiscense_Rig:l_thumb03_null
+      position: {x: -0.0000010347632, y: -0.000010079766, z: 0.0000022945962}
+      rotation: {x: 0.06881343, y: -0, z: -0, w: 0.9976296}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_wristikswitch_null
+      parentName: Reminiscense_Rig:l_wrist_jnt
+      position: {x: 0.000000004394983, y: -0.0000000025266407, z: -0.00000002236756}
+      rotation: {x: -0.002088557, y: 0.0123870345, z: -0.0018096064, w: 0.9999195}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_wristikswitch_ctrl
+      parentName: Reminiscense_Rig:l_wristikswitch_null
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_thumb01_jnt
+      parentName: Reminiscense_Rig:l_wrist_jnt
+      position: {x: 0.099913485, y: 0.106467254, z: 0.029997284}
+      rotation: {x: 0.09434185, y: -0.03650293, z: -0.3590012, w: 0.9278391}
+      scale: {x: 0.99999934, y: 1.0000001, z: 0.9999997}
+    - name: Reminiscense_Rig:l_thumb02_jnt
+      parentName: Reminiscense_Rig:l_thumb01_jnt
+      position: {x: 0.0017828409, y: 0.119233616, z: 0.00000012770465}
+      rotation: {x: 0.024077313, y: -0.000000026077027, z: 0.00000019371505, w: 0.9997101}
+      scale: {x: 1.0000001, y: 1.0000006, z: 1.0000004}
+    - name: Reminiscense_Rig:l_thumb03_jnt
+      parentName: Reminiscense_Rig:l_thumb02_jnt
+      position: {x: 0.00567192, y: 0.11631185, z: 0.000000040542307}
+      rotation: {x: -0.05704909, y: 0.0013086098, z: -0.024194553, w: 0.9980774}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000005}
+    - name: Reminiscense_Rig:l_thumb04_jnt
+      parentName: Reminiscense_Rig:l_thumb03_jnt
+      position: {x: -0.0074586244, y: 0.092638694, z: 0.009682725}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_index01_jnt
+      parentName: Reminiscense_Rig:l_wrist_jnt
+      position: {x: 0.11664933, y: 0.35122293, z: -0.00049085496}
+      rotation: {x: 0.01778878, y: -0.0028174655, z: -0.13639604, w: 0.9904907}
+      scale: {x: 0.9999998, y: 0.9999998, z: 1}
+    - name: Reminiscense_Rig:l_index02_jnt
+      parentName: Reminiscense_Rig:l_index01_jnt
+      position: {x: -0.0024826068, y: 0.12813558, z: -0.0000000014618221}
+      rotation: {x: 0.037433267, y: -0.00061047036, z: 0.008202479, w: 0.9992653}
+      scale: {x: 0.99999994, y: 1.0000006, z: 1}
+    - name: Reminiscense_Rig:l_index03_jnt
+      parentName: Reminiscense_Rig:l_index02_jnt
+      position: {x: 0.0005435036, y: 0.12021771, z: 6.4113387e-10}
+      rotation: {x: 0.04009295, y: 0.00029784662, z: 0.0027307656, w: 0.9991922}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000004}
+    - name: Reminiscense_Rig:l_index04_jnt
+      parentName: Reminiscense_Rig:l_index03_jnt
+      position: {x: 0.0019390973, y: 0.10524946, z: 8.252618e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_middle01_jnt
+      parentName: Reminiscense_Rig:l_wrist_jnt
+      position: {x: 0.037889086, y: 0.39486125, z: -0.0043664197}
+      rotation: {x: 0.021828435, y: -0.0011836737, z: -0.05413375, w: 0.9982944}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: Reminiscense_Rig:l_middle02_jnt
+      parentName: Reminiscense_Rig:l_middle01_jnt
+      position: {x: -0.0016031711, y: 0.13888721, z: -0.0000007848824}
+      rotation: {x: 0.033018082, y: -0.0006038492, z: 0.006887401, w: 0.9994309}
+      scale: {x: 0.99999994, y: 1.0000004, z: 1}
+    - name: Reminiscense_Rig:l_middle03_jnt
+      parentName: Reminiscense_Rig:l_middle02_jnt
+      position: {x: 0.00060213817, y: 0.12580512, z: -0.0000016843261}
+      rotation: {x: 0.040975664, y: 0.000076535296, z: 0.00042938525, w: 0.99916005}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1}
+    - name: Reminiscense_Rig:l_middle04_jnt
+      parentName: Reminiscense_Rig:l_middle03_jnt
+      position: {x: 0.0010010275, y: 0.11420953, z: -0.0000000018417927}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_ring01_jnt
+      parentName: Reminiscense_Rig:l_wrist_jnt
+      position: {x: -0.04390427, y: 0.4022932, z: -0.0049299123}
+      rotation: {x: 0.050032984, y: 0.00092285126, z: 0.018418273, w: 0.99857736}
+      scale: {x: 1, y: 0.9999997, z: 1}
+    - name: Reminiscense_Rig:l_ring02_jnt
+      parentName: Reminiscense_Rig:l_ring01_jnt
+      position: {x: 0.00033686677, y: 0.1251121, z: -0.0000011699805}
+      rotation: {x: 0.035164468, y: 0.00012311079, z: -0.0014043921, w: 0.9993805}
+      scale: {x: 1.0000005, y: 1.0000008, z: 1.0000004}
+    - name: Reminiscense_Rig:l_ring03_jnt
+      parentName: Reminiscense_Rig:l_ring02_jnt
+      position: {x: -0.00009951468, y: 0.116335966, z: -0.0000024123613}
+      rotation: {x: 0.040180437, y: -0.00004567661, z: -0.0003098284, w: 0.9991924}
+      scale: {x: 0.99999994, y: 1.0000004, z: 1.0000004}
+    - name: Reminiscense_Rig:l_ring04_jnt
+      parentName: Reminiscense_Rig:l_ring03_jnt
+      position: {x: -0.00023735454, y: 0.10101237, z: -0.0000000017074024}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_pinky01_jnt
+      parentName: Reminiscense_Rig:l_wrist_jnt
+      position: {x: -0.11063087, y: 0.37084612, z: -0.0035071196}
+      rotation: {x: 0.016531004, y: 0.005682915, z: 0.03606245, w: 0.9991967}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1}
+    - name: Reminiscense_Rig:l_pinky02_jnt
+      parentName: Reminiscense_Rig:l_pinky01_jnt
+      position: {x: 0.0018446575, y: 0.11593966, z: -0.000001276844}
+      rotation: {x: 0.035656918, y: 0.00039233066, z: -0.009782389, w: 0.99931616}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: Reminiscense_Rig:l_pinky03_jnt
+      parentName: Reminiscense_Rig:l_pinky02_jnt
+      position: {x: -0.0008879957, y: 0.09419116, z: -0.0000033070594}
+      rotation: {x: 0.011668011, y: 0.00000009767926, z: -0.0000000076383175, w: 0.999932}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_pinky04_jnt
+      parentName: Reminiscense_Rig:l_pinky03_jnt
+      position: {x: -0.00095666095, y: 0.08454993, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_clavicle_jnt
+      parentName: Reminiscense_Rig:c_chest_jnt
+      position: {x: 0.17910917, y: 0.3840999, z: -0.0076220836}
+      rotation: {x: -0.5642308, y: -0.41779387, z: 0.58487386, w: -0.4062197}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000002}
+    - name: Reminiscense_Rig:r_ikshoulder_jnt
+      parentName: Reminiscense_Rig:r_clavicle_jnt
+      position: {x: 5.2117105e-10, y: 0.39400193, z: 0.000000004839824}
+      rotation: {x: 0.44869465, y: -0.0210482, z: -0.22942516, w: 0.86347795}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ikelbow_jnt
+      parentName: Reminiscense_Rig:r_ikshoulder_jnt
+      position: {x: 1.3185605e-10, y: 0.94078636, z: -0.000000007638891}
+      rotation: {x: 0.000024281177, y: -0.00016165522, z: 0.000008273433, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ikwrist_jnt
+      parentName: Reminiscense_Rig:r_ikelbow_jnt
+      position: {x: 0.000000011662028, y: 0.73805964, z: -0.0000000013846587}
+      rotation: {x: -0.054549336, y: -0.024016663, z: 0.30712473, w: 0.949801}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkshoulder_jnt
+      parentName: Reminiscense_Rig:r_clavicle_jnt
+      position: {x: -0.00000024824814, y: 0.3940011, z: -0.0000022938239}
+      rotation: {x: 0.39517042, y: 0.04947744, z: -0.021321107, w: 0.9170266}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkelbow_jnt
+      parentName: Reminiscense_Rig:r_fkshoulder_jnt
+      position: {x: 0.000000046255813, y: 0.9407862, z: -0.000000008745299}
+      rotation: {x: 0.0031950742, y: 0.0006064821, z: 0.07818403, w: 0.99693364}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_fkwrist_jnt
+      parentName: Reminiscense_Rig:r_fkelbow_jnt
+      position: {x: 0.0000064581754, y: 0.7380596, z: -0.0000006816179}
+      rotation: {x: 0.06560572, y: 0.10867402, z: 0.03258027, w: 0.991375}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_shoulder_jnt
+      parentName: Reminiscense_Rig:r_clavicle_jnt
+      position: {x: 5.2117105e-10, y: 0.39400193, z: 0.0000000048398237}
+      rotation: {x: -0.1446306, y: 0.041139543, z: 0.008346051, w: 0.98859495}
+      scale: {x: 1, y: 0.99999994, z: 0.9999999}
+    - name: Reminiscense_Rig:r_elbow_jnt
+      parentName: Reminiscense_Rig:r_shoulder_jnt
+      position: {x: 1.3185589e-10, y: 0.94078636, z: -0.00000000763889}
+      rotation: {x: 0.013144029, y: 0.0015671325, z: -0.036618453, w: -0.9992417}
+      scale: {x: 1, y: 0.9999998, z: 1}
+    - name: Reminiscense_Rig:r_wrist_jnt
+      parentName: Reminiscense_Rig:r_elbow_jnt
+      position: {x: 0.000000011661995, y: 0.73805964, z: -0.0000000013846053}
+      rotation: {x: -0.056175664, y: 0.078554064, z: -0.0116731385, w: -0.9952575}
+      scale: {x: 1.0000004, y: 1.0000008, z: 1.0000007}
+    - name: Reminiscense_Rig:r_hand_null
+      parentName: Reminiscense_Rig:r_wrist_jnt
+      position: {x: 0.00053449837, y: 0.00027030314, z: 0.0024995762}
+      rotation: {x: 0.0018120119, y: 0.0062828134, z: -0.001044854, w: 0.99997807}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_thumb01_null
+      parentName: Reminiscense_Rig:r_hand_null
+      position: {x: -0.09072764, y: 0.10293765, z: 0.026572911}
+      rotation: {x: -0.19444847, y: 0.66775006, z: 0.32849118, w: 0.6390565}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_thumb01_ctrl
+      parentName: Reminiscense_Rig:r_thumb01_null
+      position: {x: 0.000027984399, y: -0.000020440759, z: 0.000008729452}
+      rotation: {x: 0.07459502, y: 0.028547576, z: 0.058882985, w: 0.99506456}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_thumb02_null
+      parentName: Reminiscense_Rig:r_thumb01_ctrl
+      position: {x: 0.0001253282, y: 0.111736834, z: 0.004605817}
+      rotation: {x: 0.001118195, y: 0.0029969572, z: 0.036999878, w: 0.99931014}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_thumb02_ctrl
+      parentName: Reminiscense_Rig:r_thumb02_null
+      position: {x: 0.000024395213, y: -0.000017819097, z: 0.000007609842}
+      rotation: {x: 0.0817469, y: -0, z: -0, w: 0.99665314}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_thumb03_null
+      parentName: Reminiscense_Rig:r_thumb02_ctrl
+      position: {x: -0.00028448162, y: 0.121536985, z: -0.009562534}
+      rotation: {x: -0.00059711514, y: -0.0020180969, z: -0.020421017, w: 0.99978924}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_thumb03_ctrl
+      parentName: Reminiscense_Rig:r_thumb03_null
+      position: {x: 0.000013147553, y: -0.000009603421, z: 0.000004101247}
+      rotation: {x: 0.120295815, y: -0, z: -0, w: 0.9927381}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ring01_null
+      parentName: Reminiscense_Rig:r_hand_null
+      position: {x: 0.04675393, y: 0.3944316, z: -0.00806868}
+      rotation: {x: 0.050330073, y: -0.00065681426, z: -0.013032484, w: 0.9986474}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ring01_ctrl
+      parentName: Reminiscense_Rig:r_ring01_null
+      position: {x: -0.0000008227288, y: -0.000002765687, z: 0.000016540198}
+      rotation: {x: 0.101768024, y: 0.002968211, z: 0.02900255, w: 0.9943809}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ring02_null
+      parentName: Reminiscense_Rig:r_ring01_ctrl
+      position: {x: 0.00009793583, y: 0.12554221, z: -0.000016541355}
+      rotation: {x: 0.16431108, y: -0, z: -0, w: 0.9864086}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ring02_ctrl
+      parentName: Reminiscense_Rig:r_ring02_null
+      position: {x: 0.000013147553, y: -0.000009603421, z: 0.000004101247}
+      rotation: {x: 0.101811305, y: -0, z: -0, w: 0.9948037}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ring03_null
+      parentName: Reminiscense_Rig:r_ring02_ctrl
+      position: {x: -0.000056565677, y: 0.117912956, z: -0.000004100607}
+      rotation: {x: 0.017520789, y: -0, z: -0, w: 0.9998465}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ring03_ctrl
+      parentName: Reminiscense_Rig:r_ring03_null
+      position: {x: 0.000013147553, y: -0.000009603421, z: 0.000004101247}
+      rotation: {x: 0.101811305, y: -0, z: -0, w: 0.9948037}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_index01_null
+      parentName: Reminiscense_Rig:r_hand_null
+      position: {x: -0.12257949, y: 0.36184868, z: -0.0013548724}
+      rotation: {x: 0.027577482, y: 0.0035909177, z: 0.12907197, w: 0.9912452}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_index01_ctrl
+      parentName: Reminiscense_Rig:r_index01_null
+      position: {x: -0.0000008227288, y: -0.000002765687, z: 0.000016540198}
+      rotation: {x: 0.030802635, y: -0.0034186826, z: -0.11025639, w: 0.9934199}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_index02_null
+      parentName: Reminiscense_Rig:r_index01_ctrl
+      position: {x: 0.002556366, y: 0.12486127, z: -0.00001653992}
+      rotation: {x: 0.12360772, y: -0, z: -0, w: 0.99233115}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_index02_ctrl
+      parentName: Reminiscense_Rig:r_index02_null
+      position: {x: 0.000013147553, y: -0.000009603421, z: 0.000004101247}
+      rotation: {x: 0.030991768, y: -0, z: -0, w: 0.99951965}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_index03_null
+      parentName: Reminiscense_Rig:r_index02_ctrl
+      position: {x: -0.00075371674, y: 0.11606218, z: -0.0000041011012}
+      rotation: {x: 0.053936414, y: -0, z: -0, w: 0.9985444}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_index03_ctrl
+      parentName: Reminiscense_Rig:r_index03_null
+      position: {x: 0.000013147553, y: -0.000009603421, z: 0.000004101247}
+      rotation: {x: 0.030991768, y: -0, z: -0, w: 0.99951965}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_pinky01_null
+      parentName: Reminiscense_Rig:r_hand_null
+      position: {x: 0.11434206, y: 0.37247846, z: -0.0022065032}
+      rotation: {x: 0.044415258, y: -0.00487678, z: -0.10903471, w: 0.99303323}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_pinky01_ctrl
+      parentName: Reminiscense_Rig:r_pinky01_null
+      position: {x: 0.00001613351, y: 0.000004139802, z: 0.0000021156354}
+      rotation: {x: 0.13128199, y: 0.014622817, z: 0.10973016, w: 0.9851449}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_pinky02_null
+      parentName: Reminiscense_Rig:r_pinky01_ctrl
+      position: {x: -0.0012569176, y: 0.112647675, z: -0.000002115394}
+      rotation: {x: 0.1594659, y: -0, z: -0, w: 0.9872035}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_pinky02_ctrl
+      parentName: Reminiscense_Rig:r_pinky02_null
+      position: {x: 0.000013147553, y: -0.000009603421, z: 0.000004101247}
+      rotation: {x: 0.13209385, y: -0, z: -0, w: 0.9912372}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_pinky03_null
+      parentName: Reminiscense_Rig:r_pinky02_ctrl
+      position: {x: 0.0010121941, y: 0.095828034, z: -0.000004100336}
+      rotation: {x: -0.053868853, y: 0, z: -0, w: 0.99854803}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_pinky03_ctrl
+      parentName: Reminiscense_Rig:r_pinky03_null
+      position: {x: 0.000013147553, y: -0.000009603421, z: 0.000004101247}
+      rotation: {x: 0.13209385, y: -0, z: -0, w: 0.9912372}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_middle01_null
+      parentName: Reminiscense_Rig:r_hand_null
+      position: {x: -0.038512856, y: 0.3888654, z: -0.0023122046}
+      rotation: {x: 0.018624697, y: 0.0009752724, z: 0.05228373, w: 0.9984581}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_middle01_ctrl
+      parentName: Reminiscense_Rig:r_middle01_null
+      position: {x: -0.0000008227288, y: -0.000002765687, z: 0.000016540198}
+      rotation: {x: 0.058906298, y: -0.002512175, z: -0.04253411, w: 0.99735385}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_middle02_null
+      parentName: Reminiscense_Rig:r_middle01_ctrl
+      position: {x: 0.0023695596, y: 0.14584777, z: -0.00001654205}
+      rotation: {x: 0.21023683, y: -0, z: -0, w: 0.9776505}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_middle02_ctrl
+      parentName: Reminiscense_Rig:r_middle02_null
+      position: {x: 0.000013147553, y: -0.000009603421, z: 0.000004101247}
+      rotation: {x: 0.058959845, y: -0, z: -0, w: 0.9982604}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_middle03_null
+      parentName: Reminiscense_Rig:r_middle02_ctrl
+      position: {x: -0.00076427654, y: 0.12804784, z: -0.000004101234}
+      rotation: {x: 0.08178448, y: -0, z: -0, w: 0.99665004}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_middle03_ctrl
+      parentName: Reminiscense_Rig:r_middle03_null
+      position: {x: 0.000013147553, y: -0.000009603421, z: 0.000004101247}
+      rotation: {x: 0.058959845, y: -0, z: -0, w: 0.9982604}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_wristikswitch_null
+      parentName: Reminiscense_Rig:r_wrist_jnt
+      position: {x: 3.0392353e-17, y: 1.2967404e-15, z: 1.6209255e-16}
+      rotation: {x: -0.0010743261, y: -0.0062824353, z: 0.0008953969, w: 0.9999793}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_wristikswitch_ctrl
+      parentName: Reminiscense_Rig:r_wristikswitch_null
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_thumb01_jnt
+      parentName: Reminiscense_Rig:r_wrist_jnt
+      position: {x: -0.09132522, y: 0.10324361, z: 0.026757387}
+      rotation: {x: -0.08164495, y: -0.03142705, z: -0.3827511, w: -0.91969997}
+      scale: {x: 0.9999998, y: 1.0000001, z: 0.99999994}
+    - name: Reminiscense_Rig:r_thumb02_jnt
+      parentName: Reminiscense_Rig:r_thumb01_jnt
+      position: {x: 0.006032825, y: 0.11195154, z: 0.005256184}
+      rotation: {x: 0.031539205, y: 0.0005583779, z: -0.026694378, w: 0.9991458}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
+    - name: Reminiscense_Rig:r_thumb03_jnt
+      parentName: Reminiscense_Rig:r_thumb02_jnt
+      position: {x: -0.009560282, y: 0.121518575, z: -0.000000031839164}
+      rotation: {x: -0.012509697, y: 0.00012587495, z: 0.024323698, w: 0.9996259}
+      scale: {x: 1.0000001, y: 0.9999998, z: 0.99999994}
+    - name: Reminiscense_Rig:r_thumb04_jnt
+      parentName: Reminiscense_Rig:r_thumb03_jnt
+      position: {x: 0.0049413685, y: 0.10538505, z: -5.414906e-10}
+      rotation: {x: 0, y: -2.220446e-16, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_index01_jnt
+      parentName: Reminiscense_Rig:r_wrist_jnt
+      position: {x: -0.12128733, y: 0.36237028, z: 0.004008451}
+      rotation: {x: 0.030916113, y: 0.0040255184, z: 0.12905928, w: 0.9911466}
+      scale: {x: 0.99999994, y: 0.9999996, z: 0.99999994}
+    - name: Reminiscense_Rig:r_index02_jnt
+      parentName: Reminiscense_Rig:r_index01_jnt
+      position: {x: 0.0025695136, y: 0.12485096, z: -0.000014919906}
+      rotation: {x: -0.03709586, y: -0.0006199975, z: 0.009452363, w: -0.9992668}
+      scale: {x: 0.9999998, y: 1.0000001, z: 0.9999998}
+    - name: Reminiscense_Rig:r_index03_jnt
+      parentName: Reminiscense_Rig:r_index02_jnt
+      position: {x: -0.0007405692, y: 0.116052195, z: -0.0000010581565}
+      rotation: {x: 0.040673852, y: -0.00016275584, z: -0.0014404217, w: 0.9991714}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Reminiscense_Rig:r_index04_jnt
+      parentName: Reminiscense_Rig:r_index03_jnt
+      position: {x: -0.0018149666, y: 0.10035124, z: 3.872879e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_middle01_jnt
+      parentName: Reminiscense_Rig:r_wrist_jnt
+      position: {x: -0.03718309, y: 0.3892168, z: 0.0020921815}
+      rotation: {x: 0.018624762, y: 0.0009751542, z: 0.052283812, w: 0.99845815}
+      scale: {x: 0.9999998, y: 0.9999997, z: 0.9999998}
+    - name: Reminiscense_Rig:r_middle02_jnt
+      parentName: Reminiscense_Rig:r_middle01_jnt
+      position: {x: 0.0023827073, y: 0.14583732, z: -0.000016751086}
+      rotation: {x: -0.032784794, y: -0.00095304457, z: 0.009400545, w: -0.99941784}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000002}
+    - name: Reminiscense_Rig:r_middle03_jnt
+      parentName: Reminiscense_Rig:r_middle02_jnt
+      position: {x: -0.00075112894, y: 0.1280377, z: -0.00000162041}
+      rotation: {x: 0.039469875, y: -0.0004289133, z: -0.0021864069, w: 0.9992183}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000001}
+    - name: Reminiscense_Rig:r_middle04_jnt
+      parentName: Reminiscense_Rig:r_middle03_jnt
+      position: {x: -0.0016176016, y: 0.11307392, z: 2.2419994e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_ring01_jnt
+      parentName: Reminiscense_Rig:r_wrist_jnt
+      position: {x: 0.04801575, y: 0.3946267, z: -0.004715678}
+      rotation: {x: 0.050330155, y: -0.0006568953, z: -0.0130324615, w: 0.9986474}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Reminiscense_Rig:r_ring02_jnt
+      parentName: Reminiscense_Rig:r_ring01_jnt
+      position: {x: 0.000111083384, y: 0.12553181, z: -0.000015774564}
+      rotation: {x: 0.035233017, y: 0.00003396288, z: -0.0004934238, w: 0.9993791}
+      scale: {x: 1, y: 1.0000002, z: 1.0000002}
+    - name: Reminiscense_Rig:r_ring03_jnt
+      parentName: Reminiscense_Rig:r_ring02_jnt
+      position: {x: -0.000043418124, y: 0.11790321, z: -0.00000033834527}
+      rotation: {x: 0.017520841, y: -0.00000010203959, z: -0.000000025449134, w: 0.9998466}
+      scale: {x: 1, y: 1.0000004, z: 1.0000002}
+    - name: Reminiscense_Rig:r_ring04_jnt
+      parentName: Reminiscense_Rig:r_ring03_jnt
+      position: {x: -0.00005367979, y: 0.10723937, z: 0.0000000011027239}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_pinky01_jnt
+      parentName: Reminiscense_Rig:r_wrist_jnt
+      position: {x: 0.11564303, y: 0.3725175, z: 0.00020330049}
+      rotation: {x: 0.024073277, y: -0.006228012, z: -0.034497604, w: 0.9990954}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: Reminiscense_Rig:r_pinky02_jnt
+      parentName: Reminiscense_Rig:r_pinky01_jnt
+      position: {x: -0.00124377, y: 0.11263727, z: -0.0000012463735}
+      rotation: {x: 0.035439886, y: -0.000021529837, z: 0.00847908, w: 0.9993359}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: Reminiscense_Rig:r_pinky03_jnt
+      parentName: Reminiscense_Rig:r_pinky02_jnt
+      position: {x: 0.0010253417, y: 0.09581893, z: 0.0000010102573}
+      rotation: {x: -0.040802322, y: -0.000088056506, z: -0.0009672582, w: 0.99916685}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    - name: Reminiscense_Rig:r_pinky04_jnt
+      parentName: Reminiscense_Rig:r_pinky03_jnt
+      position: {x: 0.00021544343, y: 0.07882169, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_hip_jnt
+      parentName: Reminiscense_Rig:c_pelvis_jnt
+      position: {x: -0.4090772, y: -0.022937275, z: -0.07191872}
+      rotation: {x: -0.000000002551569, y: -0.000000005103138, z: 0.0000000017542037, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_knee_jnt
+      parentName: Reminiscense_Rig:l_hip_jnt
+      position: {x: -0, y: -1.4139613, z: 0.14170419}
+      rotation: {x: -0, y: -0.000000010206277, z: -6.3789224e-10, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Reminiscense_Rig:l_ankle_jnt
+      parentName: Reminiscense_Rig:l_knee_jnt
+      position: {x: -0, y: -1.3906529, z: -0.21344905}
+      rotation: {x: -6.510504e-18, y: 0.000000020412553, z: 6.3789224e-10, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Reminiscense_Rig:l_legikfkfswitch_null
+      parentName: Reminiscense_Rig:l_ankle_jnt
+      position: {x: -0, y: 0.0000014891626, z: 0.00000040219672}
+      rotation: {x: 0.000008475998, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_legikfkfswitch_ctrl
+      parentName: Reminiscense_Rig:l_legikfkfswitch_null
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_arch_jnt
+      parentName: Reminiscense_Rig:l_ankle_jnt
+      position: {x: -0, y: -0.3589825, z: 0.33957803}
+      rotation: {x: -0, y: -0, z: 1.3289601e-25, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:l_toe_jnt
+      parentName: Reminiscense_Rig:l_arch_jnt
+      position: {x: -0, y: -0.0032340768, z: 0.42042997}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_hip_jnt
+      parentName: Reminiscense_Rig:c_pelvis_jnt
+      position: {x: 0.40907738, y: -0.022939054, z: -0.071918584}
+      rotation: {x: -0.0000000032191732, y: -0.00003421654, z: -0.0000008752678, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_knee_jnt
+      parentName: Reminiscense_Rig:r_hip_jnt
+      position: {x: -0, y: -1.4139588, z: 0.14170402}
+      rotation: {x: 0.0000000031890137, y: 0.000000020416337, z: -3.9858244e-10, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Reminiscense_Rig:r_ankle_jnt
+      parentName: Reminiscense_Rig:r_knee_jnt
+      position: {x: -0, y: -1.3906536, z: -0.21344914}
+      rotation: {x: -0.0000000025213855, y: 0.000034201228, z: 0.0000008774206, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Reminiscense_Rig:r_legikfkfswitch_null
+      parentName: Reminiscense_Rig:r_ankle_jnt
+      position: {x: -0, y: 0.0000014891654, z: 0.00000040219345}
+      rotation: {x: 0.0000013309946, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_legikfkfswitch_ctrl
+      parentName: Reminiscense_Rig:r_legikfkfswitch_null
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_arch_jnt
+      parentName: Reminiscense_Rig:r_ankle_jnt
+      position: {x: -0, y: -0.3589825, z: 0.33957845}
+      rotation: {x: -0, y: 0.0000000051004463, z: 0.000000002551503, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Reminiscense_Rig:r_toe_jnt
+      parentName: Reminiscense_Rig:r_arch_jnt
+      position: {x: -0, y: -0.003234119, z: 0.42042962}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 73
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
