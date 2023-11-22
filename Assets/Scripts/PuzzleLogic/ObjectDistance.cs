@@ -35,6 +35,13 @@ public class ObjectDistance : MonoBehaviour
                 SnapToTarget();
                 targetObj.SetActive(false);
                 puzzleKeyItem.HandleCorrectPosition();
+
+                // Play correct SFX
+                AudioSource correctAudio = transform.Find("Audio/PlacementAudio").GetComponent<AudioSource>();
+                if (correctAudio != null)
+                {
+                    correctAudio.Play();
+                }
             }
         }
     }

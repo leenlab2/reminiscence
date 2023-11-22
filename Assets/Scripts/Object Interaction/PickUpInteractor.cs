@@ -171,10 +171,10 @@ public class PickUpInteractor : MonoBehaviour
     void DropObject(GameObject obj)
     {
         // Play placement SFX
-        AudioSource pickupAudio = obj.transform.Find("Audio/PlacementAudio").GetComponent<AudioSource>();
-        if (pickupAudio != null)
+        AudioSource placeAudio = obj.transform.Find("Audio/PlacementAudio").GetComponent<AudioSource>();
+        if (placeAudio != null)
         {
-            pickupAudio.Play();
+            placeAudio.Play();
         }
 
         ToggleObjectColliders(obj, true);
