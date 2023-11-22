@@ -56,12 +56,7 @@ public class PuzzleManager : MonoBehaviour
 
         if (countKeyItemsLeft == 0)
         {
-            // Play puzzle complete SFX
-            AudioSource completeAudio = GetComponent<AudioSource>();
-            if (completeAudio != null)
-            {
-                completeAudio.Play();
-            }
+            StartCoroutine(completeSFXWaiter());
 
             if (currentBranch == Branch.BranchA)
             {
@@ -119,5 +114,17 @@ public class PuzzleManager : MonoBehaviour
         yield return new WaitForSeconds(4);
         memorySceneCanvas.SetActive(false);
         inputManager.ExitMemoryScene(new InputAction.CallbackContext());
+    }
+
+    IEnumerator completeSFXWaiter()
+    {
+        //Wait for 2 seconds
+        yield return new WaitForSeconds(2);
+        // Play puzzle complete SFX
+        AudioSource completeAudio = GetComponent<AudioSource>();
+        if (completeAudio != null)
+        {
+            completeAudio.Play();
+        }
     }
 }

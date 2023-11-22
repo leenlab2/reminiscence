@@ -69,6 +69,10 @@ PrefabInstance:
       value: PosterB Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3477268798312429424, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_Volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477268798312429424, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 8d6f61e301b6040ff833091cebf4ad96, type: 3}
