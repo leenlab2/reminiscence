@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     private Rigidbody playerBody;
 
     private float _mouseSensitivity = 2f;
+    private Animator playerAnimate;
     
     private float _sprintSpeed = 9f;
     private float _walkSpeed = 7f;
@@ -28,6 +29,7 @@ public class InputManager : MonoBehaviour
     {
         _speed = _walkSpeed;
         playerBody = GetComponent<Rigidbody>();
+        playerAnimate = GetComponent<Animator>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
@@ -97,6 +99,15 @@ public class InputManager : MonoBehaviour
         // Movement needs to be in local space axis not world space
         Vector3 movement = transform.TransformDirection(new Vector3(movementInput.x, 0, movementInput.y)) * _speed;
         playerBody.velocity = movement;
+
+        if (movementInput.sqrMagnitude > 0)
+        {
+            playerAnimate.SetBool("Walking", true);
+        }
+        else
+        {
+            playerAnimate.SetBool("Walking", false);
+        }
 
         // Setup audio playback based on movement input
         if (playerInputActions.Player.Move.phase == InputActionPhase.Started)
