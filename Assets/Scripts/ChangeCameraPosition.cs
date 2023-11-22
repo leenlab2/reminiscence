@@ -10,6 +10,7 @@ public class ChangeCameraPosition : MonoBehaviour
 
     public GameObject _televisionCanvas;
     public Camera tvViewCamera;
+    public GameObject HUD;
 
     private VideoControls _videoControls;
 
@@ -34,6 +35,8 @@ public class ChangeCameraPosition : MonoBehaviour
         _originalCamera.gameObject.SetActive(false);
         tvViewCamera.gameObject.SetActive(true);
 
+        HUD.GetComponent<Canvas>().worldCamera = tvViewCamera;
+
         _televisionCanvas.SetActive(true);
         _videoControls = FindObjectOfType<VideoControls>();
     }
@@ -53,6 +56,8 @@ public class ChangeCameraPosition : MonoBehaviour
 
         _originalCamera.gameObject.SetActive(true);
         tvViewCamera.gameObject.SetActive(false);
+
+        HUD.GetComponent<Canvas>().worldCamera = _originalCamera.transform.Find("UI Camera").GetComponent<Camera>();
 
         _televisionCanvas.SetActive(false);
     }

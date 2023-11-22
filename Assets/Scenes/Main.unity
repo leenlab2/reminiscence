@@ -2307,6 +2307,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6103307674487485015, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
+      propertyPath: HUD
+      value: 
+      objectReference: {fileID: 868526971}
+    - target: {fileID: 6103307674487485015, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
       propertyPath: tvViewCamera
       value: 
       objectReference: {fileID: 381444520}
@@ -4139,6 +4143,11 @@ Transform:
   - {fileID: 1007898652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &868526971 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 443894620657861292, guid: 245c9e2852a19405084a91783b9f475b, type: 3}
+  m_PrefabInstance: {fileID: 940690156}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &873426268
 GameObject:
   m_ObjectHideFlags: 0
@@ -5962,6 +5971,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5803312946193085744, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: sceneManagement
+      value: 
+      objectReference: {fileID: 1663569518}
     - target: {fileID: 7465971701463220807, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: sceneManagement
       value: 
@@ -5979,6 +5992,11 @@ GameObject:
 --- !u!1 &1160039102 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4486561824925666840, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+  m_PrefabInstance: {fileID: 1160039100}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1160039103 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4238718119668150106, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
   m_PrefabInstance: {fileID: 1160039100}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1177036134
@@ -9584,6 +9602,10 @@ PrefabInstance:
       propertyPath: effects
       value: 
       objectReference: {fileID: 542954244}
+    - target: {fileID: 2030963388574207995, guid: c1047ff49c7f8a44ba57c555856614e0, type: 3}
+      propertyPath: cameraAnimator
+      value: 
+      objectReference: {fileID: 1160039103}
     - target: {fileID: 2030963388574207995, guid: c1047ff49c7f8a44ba57c555856614e0, type: 3}
       propertyPath: enterMemoryButton
       value: 

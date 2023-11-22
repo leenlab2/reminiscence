@@ -206,7 +206,6 @@ GameObject:
   - component: {fileID: 4603097404337733328}
   - component: {fileID: 5061304008739695943}
   - component: {fileID: 6574358494624870371}
-  - component: {fileID: 603478469570821539}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -338,27 +337,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!95 &603478469570821539
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3802703007843839458}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 83be5a842c4f05e4497ccbe1ba3011ea, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4128523641254061687
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _televisionCanvas: {fileID: 0}
   tvViewCamera: {fileID: 0}
+  HUD: {fileID: 0}
 --- !u!1001 &1014889727322982483
 PrefabInstance:
   m_ObjectHideFlags: 0

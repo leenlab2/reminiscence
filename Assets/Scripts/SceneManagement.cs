@@ -13,6 +13,7 @@ public class SceneManagement : MonoBehaviour
     public GameObject effects;
     public GameObject player;
     public GameObject enterMemoryButton;
+    public Animator cameraAnimator;
 
     private Vector3 _originalPlayerPos;
     private Quaternion _originalPlayerRot;
@@ -49,19 +50,26 @@ public class SceneManagement : MonoBehaviour
     {
         if (tapeManager.televisionHasTape()) // Enter memory scene if TV has tape inserted
         {
-            RenderSettings.ambientIntensity = 0.5f;
-            effects.SetActive(true);
-
-            FindObjectOfType<InputManager>().EnterMemoryScene();
-
-            _interactionCue.SetInteractionCue(InteractionCueType.EnterMemory);
-            
-            _originalPlayerPos = player.transform.position;
-            _originalPlayerRot = player.transform.rotation;
-
-            player.transform.position = new Vector3(-5.03f, 50f, 4f);
-            player.transform.rotation = new Quaternion(0,0,0, 0);
+            Debug.Log("Entering memory scene");
+            cameraAnimator.SetTrigger("Enter");
+            cameraAnimator.gameObject.GetComponent<AudioSource>().Play();
         }
+    }
+
+    public void SetupMemoryScene()
+    { 
+        RenderSettings.ambientIntensity = 0.5f;
+        effects.SetActive(true);
+
+        FindObjectOfType<InputManager>().EnterMemoryScene();
+
+        _interactionCue.SetInteractionCue(InteractionCueType.EnterMemory);
+
+        _originalPlayerPos = player.transform.position;
+        _originalPlayerRot = player.transform.rotation;
+
+        player.transform.position = new Vector3(-5.03f, 50f, 4f);
+        player.transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
     public void ExitMemoryScene()
