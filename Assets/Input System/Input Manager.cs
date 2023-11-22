@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,9 @@ public class InputManager : MonoBehaviour
     private bool inBranchingSelection = false;
     private bool inspectionMode = false;
 
+    public static Action OnGamePaused;
+    public static Action OnGameResumed;
+
     private void Awake()
     {
         _speed = _walkSpeed;
@@ -42,6 +46,9 @@ public class InputManager : MonoBehaviour
         AssignMemoryHandlers();
         AssignBranchingHandlers();
         AssignInspectionHandlers();
+
+        playerInputActions.UI.Pause.performed += PauseGame;
+        playerInputActions.UI.Pause.Enable();   
     }
 
     #region Assigning Handlers
@@ -50,7 +57,6 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
         playerInputActions.Player.Interact.performed += ObjectInteract;
         playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
-        playerInputActions.Player.Pause.performed += PauseGame;
     }
 
     private void AssignTelevisionHandlers()
@@ -81,7 +87,8 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.OpenTV.performed -= OpenTelevision;
         playerInputActions.Player.Interact.performed -= ObjectInteract;
         playerInputActions.Player.InspectionToggle.performed -= ObjectInspectionToggle;
-        playerInputActions.Player.Pause.performed -= PauseGame;
+
+        playerInputActions.UI.Pause.performed -= PauseGame;
 
         playerInputActions.Television.CloseTV.performed -= CloseTelevision;
 
@@ -131,6 +138,8 @@ public class InputManager : MonoBehaviour
         pauseMenu.SetActive(true);
 
         playerInputActions.Player.Disable();
+
+        OnGamePaused?.Invoke();
     }
 
     public void ResumeGame()
@@ -139,6 +148,8 @@ public class InputManager : MonoBehaviour
         Time.timeScale = 1;
         gamePaused = false;
         playerInputActions.Player.Enable();
+
+        OnGameResumed?.Invoke();
     }
     #endregion
 
