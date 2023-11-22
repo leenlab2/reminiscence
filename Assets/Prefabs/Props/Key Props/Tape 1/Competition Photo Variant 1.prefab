@@ -35,6 +35,10 @@ PrefabInstance:
         it was a thing mom wanted to see, but it got a bit too much after\u2026 "
       objectReference: {fileID: 0}
     - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: appearingObjects.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -235,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e72b18b5d11243e0a9a9828277cfa0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   appearingObjects: []
   appearsOnBothBranches: 0
 --- !u!4 &4247384109045720031 stripped

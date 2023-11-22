@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class PuzzleManager : MonoBehaviour
     private InputManager inputManager;
 
     [SerializeField] private List<GameObject> tapeObjs; // tape objects, index 0 is level 1 tape
+
+    public static Action<int> OnLevelChange;
     
     void Start()
     {
@@ -104,8 +107,16 @@ public class PuzzleManager : MonoBehaviour
     
         // Reset branch to none (neither A nor B)
         currentBranch = Branch.None;
+
+        StartCoroutine(TurnOffAudio());
     }
     
+    IEnumerator TurnOffAudio()
+    {
+        yield return new WaitForSeconds(5);
+        OnLevelChange?.Invoke(level);
+    }
+
     IEnumerator waiter()
     {
         //Wait for 4 seconds

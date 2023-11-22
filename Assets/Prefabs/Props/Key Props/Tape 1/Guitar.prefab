@@ -583,6 +583,10 @@ PrefabInstance:
         reunion blows over. "
       objectReference: {fileID: 0}
     - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: appearsOnBothBranches
       value: 1
       objectReference: {fileID: 0}
