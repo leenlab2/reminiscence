@@ -16,6 +16,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sombrero Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4377233922160096776, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 85cbf593e51dc4d80bd11e0b70ec57b0, type: 3}
+    - target: {fileID: 4677852714939348836, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 85cbf593e51dc4d80bd11e0b70ec57b0, type: 3}
     - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: dialogueAudio
       value: 

@@ -259,6 +259,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Uniform Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3477268798312429424, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_Volume
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3899134568024078250, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_IsActive
       value: 0
