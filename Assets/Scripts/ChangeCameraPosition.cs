@@ -17,8 +17,16 @@ public class ChangeCameraPosition : MonoBehaviour
     void Start()
     {        
         _videoControls = FindObjectOfType<VideoControls>();
+        InputManager.OnGamePaused += PauseGame;
+        InputManager.OnGameResumed += ResumeGame;
     }
-    
+
+    private void OnDestroy()
+    {
+        InputManager.OnGamePaused -= PauseGame;
+        InputManager.OnGameResumed -= ResumeGame;
+    }
+
     /*
      * If:
      *    TODO: player within range of TV and
@@ -60,5 +68,21 @@ public class ChangeCameraPosition : MonoBehaviour
         HUD.GetComponent<Canvas>().worldCamera = _originalCamera.transform.Find("UI Camera").GetComponent<Camera>();
 
         _televisionCanvas.SetActive(false);
+    }
+
+    void PauseGame()
+    {
+        if (_televisionCanvas.activeSelf)
+        {
+            _televisionCanvas.GetComponentInChildren<UnityEngine.EventSystems.EventSystem>().enabled = false;
+        }
+    }
+
+    void ResumeGame()
+    {
+        if (_televisionCanvas.activeSelf)
+        {
+            _televisionCanvas.GetComponentInChildren<UnityEngine.EventSystems.EventSystem>().enabled = true;
+        }
     }
 }

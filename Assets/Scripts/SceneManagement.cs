@@ -38,6 +38,11 @@ public class SceneManagement : MonoBehaviour
         VideoControls.clipWatched += FirstEntry;
     }
 
+    private void OnDestroy()
+    {
+        VideoControls.clipWatched -= FirstEntry;
+    }
+
     void FirstEntry()
     {
         VideoControls.clipWatched -= FirstEntry;
