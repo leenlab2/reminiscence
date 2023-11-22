@@ -24,6 +24,7 @@ public class PickupInteractable : MonoBehaviour
         originalParent = transform.parent;
         originalObjScale = transform.localScale;
         rigidbody = GetComponent<Rigidbody>();
+        onWall = false;
     }
 
     public void MoveToHand(Transform holdArea)

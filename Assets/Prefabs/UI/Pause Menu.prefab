@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: MainMenuAlpha
+  resetGame: 1
 --- !u!1 &5631765511616509223
 GameObject:
   m_ObjectHideFlags: 0

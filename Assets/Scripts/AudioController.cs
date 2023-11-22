@@ -27,6 +27,11 @@ public class AudioController : MonoBehaviour
         PuzzleNonBranchingKeyItem.OnKeyItemPlaced += PlayBGMStem;
     }
 
+    private void OnDestroy()
+    {
+        PuzzleNonBranchingKeyItem.OnKeyItemPlaced -= PlayBGMStem;
+    }
+
     public void SwitchAndPlayAudio(AudioClip audioClip)
     {
         //Debug.Log("Playing audio: " + audioClip.name);

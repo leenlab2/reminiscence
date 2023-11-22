@@ -35,6 +35,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Television.Disable();
         playerInputActions.Inspect.Disable();
         playerInputActions.Branching.Disable();
+        playerInputActions.Memory.Disable();
 
         AssignPlayerHandlers();
         AssignTelevisionHandlers();
@@ -47,10 +48,7 @@ public class InputManager : MonoBehaviour
     private void AssignPlayerHandlers()
     {
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
-        playerInputActions.Player.Interact.performed += ctx =>
-        {
-            if (ctx.interaction is not HoldInteraction) ObjectInteract(ctx);
-        };
+        playerInputActions.Player.Interact.performed += ObjectInteract;
         playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
         playerInputActions.Player.Pause.performed += PauseGame;
     }
@@ -62,7 +60,6 @@ public class InputManager : MonoBehaviour
 
     private void AssignMemoryHandlers()
     {
-        playerInputActions.Memory.Disable();
         playerInputActions.Memory.ExitMemoryScene.performed += ExitMemoryScene;
     }
 
@@ -76,6 +73,25 @@ public class InputManager : MonoBehaviour
     private void AssignInspectionHandlers()
     {
         playerInputActions.Inspect.InspectionToggle.performed += ObjectInspectionToggle;
+    }
+
+    private void OnDestroy()
+    {
+        // unsubscribe from all events assigned in previous functions
+        playerInputActions.Player.OpenTV.performed -= OpenTelevision;
+        playerInputActions.Player.Interact.performed -= ObjectInteract;
+        playerInputActions.Player.InspectionToggle.performed -= ObjectInspectionToggle;
+        playerInputActions.Player.Pause.performed -= PauseGame;
+
+        playerInputActions.Television.CloseTV.performed -= CloseTelevision;
+
+        playerInputActions.Memory.ExitMemoryScene.performed -= ExitMemoryScene;
+
+        PickUpInteractor.OnBranchingPickup -= BranchingItemPickedUp;
+        playerInputActions.Branching.Navigate.performed -= SwitchBranchingItem;
+        playerInputActions.Branching.Submit.performed -= SubmitBranchingItem;
+
+        playerInputActions.Inspect.InspectionToggle.performed -= ObjectInspectionToggle;
     }
     #endregion
 
@@ -232,9 +248,11 @@ public class InputManager : MonoBehaviour
     #region Object Interactions
     private void ObjectInteract(InputAction.CallbackContext context)
     {
-        //Debug.Log("Interaction button pressed");
-        InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
-        interactableDetector.InteractWithObject();
+        if (context.interaction is not HoldInteraction)
+        {            
+            InteractableDetector interactableDetector = GetComponent<InteractableDetector>();
+            interactableDetector.InteractWithObject();
+        }
     }
 
     #region Object Inspection

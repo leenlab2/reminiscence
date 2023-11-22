@@ -1,17 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Start : MonoBehaviour
+public class GameLoader : MonoBehaviour
 {
     [SerializeField] public string scene;
+    public bool resetGame = false;
+
+    public static Action OnResetGame;
 
     // Update is called once per frame
     void OnEnable()
     {
+        ResetGame();
         StartCoroutine(LoadYourAsyncScene());
-
     }
 
     IEnumerator LoadYourAsyncScene()
@@ -28,5 +32,12 @@ public class Start : MonoBehaviour
         {
             yield return null;
         }
+    }
+
+    public void ResetGame()
+    {
+        if (!resetGame) return;
+
+        OnResetGame?.Invoke();
     }
 }
