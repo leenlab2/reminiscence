@@ -36,7 +36,7 @@ public class ObjectDistance : MonoBehaviour
                 puzzleKeyItem.HandleCorrectPosition();
 
                 // Play correct SFX
-                AudioSource correctAudio = transform.Find("Audio/PlacementAudio").GetComponent<AudioSource>();
+                AudioSource correctAudio = transform.Find("Audio/CorrectPlacement").GetComponent<AudioSource>();
                 if (correctAudio != null)
                 {
                     correctAudio.Play();

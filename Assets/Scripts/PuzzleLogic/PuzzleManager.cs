@@ -56,6 +56,13 @@ public class PuzzleManager : MonoBehaviour
 
         if (countKeyItemsLeft == 0)
         {
+            // Play puzzle complete SFX
+            AudioSource completeAudio = GetComponent<AudioSource>();
+            if (completeAudio != null)
+            {
+                completeAudio.Play();
+            }
+
             if (currentBranch == Branch.BranchA)
             {
                 _videoControls.CompletePuzzle(ClipToPlay.BranchASolution);

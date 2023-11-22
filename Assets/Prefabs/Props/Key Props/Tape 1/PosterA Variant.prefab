@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PosterA Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3477268798312429424, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d6f61e301b6040ff833091cebf4ad96, type: 3}
     - target: {fileID: 3899134568024078250, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -124,6 +128,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -29.708008
       objectReference: {fileID: 0}
+    - target: {fileID: 4565469239230935562, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0352ef9dbcc0e450f92369e0225472d4, type: 3}
     - target: {fileID: 5731597399940653500, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_Constraints
       value: 0
