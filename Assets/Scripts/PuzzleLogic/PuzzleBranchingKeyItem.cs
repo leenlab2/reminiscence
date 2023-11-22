@@ -8,10 +8,7 @@ using UnityEngine;
 /// if the branching object has been placed or removed to/from the right location
 /// </summary>
 public class PuzzleBranchingKeyItem : PuzzleKeyItem
-{
-    // Which level this branching item is part of
-    public int level;
-    
+{    
     // Which branch this branching item and its non branching items are part of
     public Branch branch;
 
