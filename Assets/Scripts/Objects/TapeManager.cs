@@ -10,7 +10,7 @@ public class TapeManager : MonoBehaviour
     private GameObject currentTapeInTv;
     private PickUpInteractor pickUpInteractor;
     private bool lightsAreOn;
-    
+
     void Start()
     {
         videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
@@ -19,7 +19,7 @@ public class TapeManager : MonoBehaviour
         tapeSO.tapeIsFixed = false;
         tapeSO.clipToPlay = ClipToPlay.OriginalCorrupted;
         tapeSO.tapeSolutionBranch = ClipToPlay.OriginalCorrupted;
-        
+
         videoPlayer.targetTexture.Release(); // ensure nothing is rendered on TV upon startup
     }
 
@@ -44,24 +44,30 @@ public class TapeManager : MonoBehaviour
             TapeSO tapeSO = tapeGameObject.GetComponent<TapeInformation>().TapeSO;
             videoPlayer.clip = tapeSO.GetVideoClip();
             videoPlayer.time = 0;
-            
+
             // play first frame to update render text
             videoPlayer.Play();
             videoPlayer.Pause();
             currentTapeInTv = tapeGameObject;
             tapeGameObject.active = false;
             pickUpInteractor.DropHeldObject();
-            
+
             ShowBranchCues();
 
             // After insert tape change to normal lighting
             RenderSettings.ambientMode = AmbientMode.Skybox;
-            GameObject.Find("Tape Light").SetActive(false);
-            GameObject.Find("Window Block").SetActive(false);
-            GameObject.Find("TVRoomSpotLight").SetActive(true);
-            GameObject.Find("TVRoomSpotLight2").SetActive(true);
-            GameObject.Find("Lamplight").SetActive(true);
-            GameObject.Find("Window Block").SetActive(true);
+
+            if (!lightsAreOn)
+            {
+                GameObject.Find("Window Block").SetActive(false);
+                GameObject.Find("Tape Light").SetActive(false);
+                GameObject.Find("TVRoomSpotLight").GetComponent<Light>().enabled = true;
+                GameObject.Find("TVRoomSpotLight2").GetComponent<Light>().enabled = true;
+                GameObject.Find("Lamplight").GetComponent<Light>().enabled = true;
+
+
+                lightsAreOn = true;
+            }
             //GameObject.Find("TV Player").GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
         }
     }
@@ -81,7 +87,7 @@ public class TapeManager : MonoBehaviour
             int level = tapeInfo.TapeSO.level;
             tapeInfo.branchingItemA.GetComponent<ObjectDistance>().enabled = false;
             tapeInfo.branchingItemB.GetComponent<ObjectDistance>().enabled = false;
-            
+
             // put obj back in hands of player and set video clip on TV to null
             // set clip on TV's player to null
             currentTapeInTv.active = true;
@@ -91,7 +97,7 @@ public class TapeManager : MonoBehaviour
             currentTapeInTv = null;
         }
     }
-    
+
     public TapeSO GetCurrentTapeInTV()
     {
         return currentTapeInTv.GetComponent<TapeInformation>().TapeSO;
@@ -105,7 +111,7 @@ public class TapeManager : MonoBehaviour
         objDist.targetObj.SetActive(true);
         ObjectDistance objDistB = tapeInfo.branchingItemB.GetComponent<ObjectDistance>();
         objDistB.targetObj.SetActive(true);
-        
+
     }
 
     // Hide cue of branching object for whatever tape is in the TV
