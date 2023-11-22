@@ -20,7 +20,13 @@ public class ChangeCameraPosition : MonoBehaviour
         InputManager.OnGamePaused += PauseGame;
         InputManager.OnGameResumed += ResumeGame;
     }
-    
+
+    private void OnDestroy()
+    {
+        InputManager.OnGamePaused -= PauseGame;
+        InputManager.OnGameResumed -= ResumeGame;
+    }
+
     /*
      * If:
      *    TODO: player within range of TV and
