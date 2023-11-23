@@ -146,14 +146,18 @@ public class PuzzleManager : MonoBehaviour
         if (routeTracker > 0)
         {
             Debug.Log("Music Route");
+            StartCoroutine(LoadYourAsyncScene("Ending A"));
         }
         else if (routeTracker < 0)
         {
             Debug.Log("Brothers Route");
+            StartCoroutine(LoadYourAsyncScene("Ending B"));
         }
         else
         {
             Debug.Log("Neutral Route");
+            // TODO swap this for neutral ending
+            StartCoroutine(LoadYourAsyncScene("Ending A"));
         }
     }
 
