@@ -54,8 +54,6 @@ public class TapeManager : MonoBehaviour
             
             TapeInformation tapeInfo = currentTapeInTv.GetComponent<TapeInformation>();
             
-            Debug.Log(tapeInfo.TapeSO.clipToPlay);
-            
             // If user has not placed a branching item down for the current tape in TV, enable branching items' object distance scripts
             if (tapeInfo.TapeSO.clipToPlay == ClipToPlay.OriginalCorrupted)
             {
