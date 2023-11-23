@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -21,10 +22,13 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private List<GameObject> tapeObjs; // tape objects, index 0 is level 1 tape
 
     public static Action<int> OnLevelChange;
+
+    private int routeTracker; // 0 neutral, +ve branch A, -ve branch B
     
     void Start()
     {
         level = 0;
+        routeTracker = 0;
         currentBranch = Branch.None;
 
         _videoControls = FindObjectOfType<VideoControls>();
@@ -70,10 +74,12 @@ public class PuzzleManager : MonoBehaviour
         {
             if (currentBranch == Branch.BranchA)
             {
+                routeTracker += 1;
                 _videoControls.CompletePuzzle(ClipToPlay.BranchASolution);
             }
             else if (currentBranch == Branch.BranchB)
             {
+                routeTracker -= 1;
                 _videoControls.CompletePuzzle(ClipToPlay.BranchBSolution);
             }
             memorySceneCanvas.SetActive(true);
@@ -85,8 +91,7 @@ public class PuzzleManager : MonoBehaviour
             }
             else if (level == 2) // Player has completed game
             {
-                // TODO: DoSomething for game complete
-                Debug.Log("You have completed the game!");
+                OnGameComplete();
             }
 
         }
@@ -133,4 +138,35 @@ public class PuzzleManager : MonoBehaviour
         memorySceneCanvas.SetActive(false);
         inputManager.ExitMemoryScene(new InputAction.CallbackContext());
     }
+
+    void OnGameComplete()
+    {
+        Debug.Log("Game complete");
+        
+        if (routeTracker > 0)
+        {
+            Debug.Log("Music Route");
+        }
+        else if (routeTracker < 0)
+        {
+            Debug.Log("Brothers Route");
+        }
+        else
+        {
+            Debug.Log("Neutral Route");
+        }
+    }
+
+    // TODO: maybe merge this with gameloader later
+    IEnumerator LoadYourAsyncScene(string scene)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
+
 }
