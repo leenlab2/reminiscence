@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9211370734253348177}
   - component: {fileID: 845513360825957052}
-  - component: {fileID: 5812081829460783704}
+  - component: {fileID: 6771175446397445861}
+  - component: {fileID: 4563849132696020942}
   m_Layer: 0
   m_Name: Puzzle Manager
   m_TagString: Untagged
@@ -50,7 +51,21 @@ MonoBehaviour:
   tapeObjs:
   - {fileID: 0}
   - {fileID: 0}
---- !u!82 &5812081829460783704
+--- !u!114 &6771175446397445861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8704303653242440373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341166697370b49beb4d359746dee231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correctKey: {fileID: 8300000, guid: fbdf0ad218123477b819bd27cc6f3756, type: 3}
+  tapeChange: {fileID: 8300000, guid: 8d6f61e301b6040ff833091cebf4ad96, type: 3}
+--- !u!82 &4563849132696020942
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,9 +75,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8d6f61e301b6040ff833091cebf4ad96, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -17,6 +17,7 @@ public class PuzzleManager : MonoBehaviour
     public GameObject memorySceneCanvas;
 
     private InputManager inputManager;
+    private PlacementAudio placementAudio;
 
     [SerializeField] private List<GameObject> tapeObjs; // tape objects, index 0 is level 1 tape
 
@@ -29,6 +30,7 @@ public class PuzzleManager : MonoBehaviour
 
         _videoControls = FindObjectOfType<VideoControls>();
         inputManager = FindObjectOfType<InputManager>();
+        placementAudio = FindObjectOfType<PlacementAudio>();
 
         StartNextLevel();
 
@@ -67,14 +69,15 @@ public class PuzzleManager : MonoBehaviour
         Debug.Log("Key items left: " + countKeyItemsLeft);
 
         // Play correct SFX
-        if (obj.transform.Find("Model/Audio/CorrectPlacement") != null)
-        {
-            AudioSource correctAudio = obj.transform.Find("Model/Audio/CorrectPlacement").GetComponent<AudioSource>();
-            if (correctAudio != null)
-            {
-                correctAudio.Play();
-            }
-        }
+        // if (obj.transform.Find("Model/Audio/CorrectPlacement") != null)
+        // {
+        //     AudioSource correctAudio = obj.transform.Find("Model/Audio/CorrectPlacement").GetComponent<AudioSource>();
+        //     if (correctAudio != null)
+        //     {
+        //         correctAudio.Play();
+        //     }
+        // }
+        placementAudio.correctKeyPlacementSFX();
 
         if (countKeyItemsLeft == 0)
         {
@@ -151,10 +154,11 @@ public class PuzzleManager : MonoBehaviour
         //Wait for 2 seconds
         yield return new WaitForSeconds(2);
         // Play puzzle complete SFX
-        AudioSource completeAudio = GetComponent<AudioSource>();
-        if (completeAudio != null)
-        {
-            completeAudio.Play();
-        }
+        // AudioSource completeAudio = GetComponent<AudioSource>();
+        // if (completeAudio != null)
+        // {
+        //     completeAudio.Play();
+        // }
+        placementAudio.tapeChangeSFX();
     }
 }
