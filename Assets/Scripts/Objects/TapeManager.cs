@@ -51,8 +51,18 @@ public class TapeManager : MonoBehaviour
             currentTapeInTv = tapeGameObject;
             tapeGameObject.active = false;
             pickUpInteractor.DropHeldObject();
-
-            ShowBranchCues();
+            
+            TapeInformation tapeInfo = currentTapeInTv.GetComponent<TapeInformation>();
+            
+            Debug.Log(tapeInfo.TapeSO.clipToPlay);
+            
+            // If user has not placed a branching item down for the current tape in TV, enable branching items' object distance scripts
+            if (tapeInfo.TapeSO.clipToPlay == ClipToPlay.OriginalCorrupted)
+            {
+                tapeInfo.branchingItemA.GetComponent<ObjectDistance>().enabled = true;
+                tapeInfo.branchingItemB.GetComponent<ObjectDistance>().enabled = true;
+                ShowBranchCues();
+            }
 
             // After insert tape change to normal lighting
             RenderSettings.ambientMode = AmbientMode.Skybox;
@@ -64,7 +74,6 @@ public class TapeManager : MonoBehaviour
                 GameObject.Find("TVRoomSpotLight").GetComponent<Light>().enabled = true;
                 GameObject.Find("TVRoomSpotLight2").GetComponent<Light>().enabled = true;
                 GameObject.Find("Lamplight").GetComponent<Light>().enabled = true;
-
 
                 lightsAreOn = true;
             }
