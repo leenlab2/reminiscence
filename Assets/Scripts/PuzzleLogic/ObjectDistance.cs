@@ -32,6 +32,7 @@ public class ObjectDistance : MonoBehaviour
             // If object is placed in right location
             if (dist <= distanceThreshold) {
                 SnapToTarget();
+                GetComponent<Rigidbody>().isKinematic = true;
                 targetObj.SetActive(false);
                 puzzleKeyItem.HandleCorrectPosition();
             }
