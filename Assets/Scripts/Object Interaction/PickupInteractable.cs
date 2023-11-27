@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PickupInteractable : MonoBehaviour
 {
-    [SerializeField] private GameObject placementGuide = null;
+    [SerializeField] public GameObject placementGuide = null;
     [SerializeField] private bool wallMountable = false;
 
     public Transform originalParent;
@@ -23,6 +24,8 @@ public class PickupInteractable : MonoBehaviour
 
     public AudioSource pickupSound;
     public AudioSource placeSound;
+    
+    private PickUpInteractor _pickUpInteractor;
 
     void Awake()
     {
@@ -30,6 +33,7 @@ public class PickupInteractable : MonoBehaviour
         originalObjScale = transform.localScale;
         rigidbody = GetComponent<Rigidbody>();
         onWall = false;
+        _pickUpInteractor = GameObject.Find("Player").GetComponent<PickUpInteractor>();
     }
 
     public void MoveToHand(Transform holdArea)
@@ -69,10 +73,22 @@ public class PickupInteractable : MonoBehaviour
 
         onWall = false;
         bool hitIsWall;
-        if(!IsValidSurface(hit, out hitIsWall)) return;
+        if (!IsValidSurface(hit, out hitIsWall))
+        {
+            
+            if ((0 < hit.point.y && hit.point.y < 4)|| (50 < hit.point.y && hit.point.y < 54)) // Drop object if hit point is within distance above ground on wall
+            {
+                placementGuide.transform.position = hit.point + hit.normal;
+                _pickUpInteractor.doNotDropObj = false;
+                return;
+            }
+            _pickUpInteractor.doNotDropObj = true;
+            return;
+        }
 
         placementGuide.transform.position = hit.point;
         placementGuide.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+        _pickUpInteractor.doNotDropObj = false;
 
         if (wallMountable && hitIsWall) { 
             onWall = true;
@@ -83,6 +99,7 @@ public class PickupInteractable : MonoBehaviour
     private bool IsValidSurface(RaycastHit hit, out bool hitIsWall)
     {
         hitIsWall = hit.normal.y <= 0.05f;
+        
         float distFromFlat = Vector3.Distance(hit.normal, new Vector3(0f, 1f, 0f));
         bool hitIsFloor = distFromFlat <= 0.05f;
 

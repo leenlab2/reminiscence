@@ -30,6 +30,8 @@ public class PickUpInteractor : MonoBehaviour
     public static Action<GameObject> OnBranchingPickup;
 
     private InteractionCue _interactionCue;
+    public bool doNotDropObj;
+
 
 #region IsHeld
     public bool isHoldingObj()
@@ -161,6 +163,7 @@ public class PickUpInteractor : MonoBehaviour
     #region Object Drop
     public void DropHeldObject()
     {
+        if (doNotDropObj) return;
         DropObject(HeldObj);
 
         ResetHoldArea();
@@ -168,9 +171,9 @@ public class PickUpInteractor : MonoBehaviour
 
     void DropObject(GameObject obj)
     {
-        ToggleObjectColliders(obj, true);
-
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
+
+        ToggleObjectColliders(obj, true);
         pickObj.MoveToPlacementGuide();
         pickObj.TogglePlacementGuide(false);
         pickObj.ToggleFreezeBody(false);
