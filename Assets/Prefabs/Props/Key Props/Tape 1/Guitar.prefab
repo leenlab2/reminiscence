@@ -591,6 +591,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: bgmAudio
+      value: 
+      objectReference: {fileID: 118540518785192040}
+    - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: appearsOnBothBranches
       value: 1
       objectReference: {fileID: 0}
@@ -754,6 +758,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1480194420436574362}
   m_SourcePrefab: {fileID: 100100000, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+--- !u!82 &118540518785192040 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4673312867759188523, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+  m_PrefabInstance: {fileID: 4719722603812682307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2773845799335234191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7422350813914525900, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
@@ -792,7 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObj: {fileID: 0}
-  distanceThreshold: 2
+  distanceThreshold: 0.5
   isOnBothBranches: 1
   targetObjA: {fileID: 8638396101325432766}
   targetObjB: {fileID: 2855454717754047850}
