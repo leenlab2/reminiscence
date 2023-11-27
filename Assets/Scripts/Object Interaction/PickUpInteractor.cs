@@ -171,9 +171,10 @@ public class PickUpInteractor : MonoBehaviour
 
     void DropObject(GameObject obj)
     {
+        ToggleObjectColliders(obj, true);
+        
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
 
-        ToggleObjectColliders(obj, true);
         pickObj.MoveToPlacementGuide();
         pickObj.TogglePlacementGuide(false);
         pickObj.ToggleFreezeBody(false);

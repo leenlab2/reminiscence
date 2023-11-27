@@ -74,30 +74,29 @@ public class PickupInteractable : MonoBehaviour
 
         onWall = false;
         bool hitIsWall;
+        
+        // Drop object if hit point is within distance above ground on wall
         if (!IsValidSurface(hit, out hitIsWall))
         {
+            if (!((0 < hit.point.y && hit.point.y < 4)|| (50 < hit.point.y && hit.point.y < 54))){ // If placing non-mountable object too high on wall, do nothing
+                _pickUpInteractor.doNotDropObj = true;
+                return;
+            }
+            
+            // Find below surface and to snap object to
             if (Physics.Raycast(hit.point + hit.normal, new Vector3(0, -1f, 0), out hit_bottom, 10,
                     ~LayerMask.GetMask("Ignore Raycast")))
             {
                 
                 Debug.DrawRay(hit.point, new Vector3(0, -1f, 0) * hit_bottom.distance, Color.yellow);
+                _pickUpInteractor.doNotDropObj = false;
                 placementGuide.transform.position = hit_bottom.point;
                 return;
             }
-            /*
-            if ((0 < hit.point.y && hit.point.y < 4)|| (50 < hit.point.y && hit.point.y < 54)) // Drop object if hit point is within distance above ground on wall
-            {
-                placementGuide.transform.position = hit.point + hit.normal;
-                _pickUpInteractor.doNotDropObj = false;
-                return;
-            }
-            _pickUpInteractor.doNotDropObj = true;
-            return;*/
         }
-
+        _pickUpInteractor.doNotDropObj = false;
         placementGuide.transform.position = hit.point;
         placementGuide.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-        _pickUpInteractor.doNotDropObj = false;
 
         if (wallMountable && hitIsWall) { 
             onWall = true;
