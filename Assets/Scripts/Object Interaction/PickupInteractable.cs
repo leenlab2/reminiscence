@@ -69,13 +69,22 @@ public class PickupInteractable : MonoBehaviour
 
     public void TransformPlacementGuide(RaycastHit hit)
     {
+        RaycastHit hit_bottom;
         if (!placementGuide.activeSelf) return;
 
         onWall = false;
         bool hitIsWall;
         if (!IsValidSurface(hit, out hitIsWall))
         {
-            
+            if (Physics.Raycast(hit.point + hit.normal, new Vector3(0, -1f, 0), out hit_bottom, 10,
+                    ~LayerMask.GetMask("Ignore Raycast")))
+            {
+                
+                Debug.DrawRay(hit.point, new Vector3(0, -1f, 0) * hit_bottom.distance, Color.yellow);
+                placementGuide.transform.position = hit_bottom.point;
+                return;
+            }
+            /*
             if ((0 < hit.point.y && hit.point.y < 4)|| (50 < hit.point.y && hit.point.y < 54)) // Drop object if hit point is within distance above ground on wall
             {
                 placementGuide.transform.position = hit.point + hit.normal;
@@ -83,7 +92,7 @@ public class PickupInteractable : MonoBehaviour
                 return;
             }
             _pickUpInteractor.doNotDropObj = true;
-            return;
+            return;*/
         }
 
         placementGuide.transform.position = hit.point;
