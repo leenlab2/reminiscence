@@ -116,6 +116,10 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6293426132330665909, guid: 9f59321641fc63745ac2820f0d3b0e12, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2fa1da39af7ca6d48928163288a25ecc, type: 2}
     - target: {fileID: -6289479602100927201, guid: 9f59321641fc63745ac2820f0d3b0e12, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -124,14 +128,26 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5725737390139730279, guid: 9f59321641fc63745ac2820f0d3b0e12, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2fa1da39af7ca6d48928163288a25ecc, type: 2}
     - target: {fileID: -5650638125063187039, guid: 9f59321641fc63745ac2820f0d3b0e12, type: 3}
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 615251567799592987, guid: 9f59321641fc63745ac2820f0d3b0e12, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2fa1da39af7ca6d48928163288a25ecc, type: 2}
     - target: {fileID: 919132149155446097, guid: 9f59321641fc63745ac2820f0d3b0e12, type: 3}
       propertyPath: m_Name
       value: SmallCupboard_Textured
       objectReference: {fileID: 0}
+    - target: {fileID: 3555663320309860317, guid: 9f59321641fc63745ac2820f0d3b0e12, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2fa1da39af7ca6d48928163288a25ecc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
