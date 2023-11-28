@@ -242,8 +242,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e72b18b5d11243e0a9a9828277cfa0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   appearingObjects: []
   appearsOnBothBranches: 0
+  bgmAudio: {fileID: 0}
 --- !u!4 &7593704697015776725 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}

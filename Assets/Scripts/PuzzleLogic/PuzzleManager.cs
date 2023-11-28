@@ -17,6 +17,7 @@ public class PuzzleManager : MonoBehaviour
     public GameObject memorySceneCanvas;
 
     private InputManager inputManager;
+    private PlacementAudio placementAudio;
 
     [SerializeField] private List<GameObject> tapeObjs; // tape objects, index 0 is level 1 tape
 
@@ -29,6 +30,7 @@ public class PuzzleManager : MonoBehaviour
 
         _videoControls = FindObjectOfType<VideoControls>();
         inputManager = FindObjectOfType<InputManager>();
+        placementAudio = FindObjectOfType<PlacementAudio>();
 
         StartNextLevel();
 
@@ -66,8 +68,11 @@ public class PuzzleManager : MonoBehaviour
         countKeyItemsLeft--;
         Debug.Log("Key items left: " + countKeyItemsLeft);
 
+        placementAudio.correctKeyPlacementSFX();
+        
         if (countKeyItemsLeft == 0)
         {
+            StartCoroutine(completeSFXWaiter());
             if (currentBranch == Branch.BranchA)
             {
                 _videoControls.CompletePuzzle(ClipToPlay.BranchASolution);
@@ -128,5 +133,12 @@ public class PuzzleManager : MonoBehaviour
         yield return new WaitForSeconds(4);
         memorySceneCanvas.SetActive(false);
         inputManager.ExitMemoryScene(new InputAction.CallbackContext());
+    }
+
+    IEnumerator completeSFXWaiter()
+    {
+        //Wait for 2 seconds
+        yield return new WaitForSeconds(2);
+        placementAudio.tapeChangeSFX();
     }
 }
