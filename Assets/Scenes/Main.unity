@@ -12274,6 +12274,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2111370020}
     m_Modifications:
+    - target: {fileID: 1088647644521217613, guid: 735cf378ab576d840a6b668c959c09d0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3181716793586152738, guid: 735cf378ab576d840a6b668c959c09d0, type: 3}
       propertyPath: m_Name
       value: BandShirt
