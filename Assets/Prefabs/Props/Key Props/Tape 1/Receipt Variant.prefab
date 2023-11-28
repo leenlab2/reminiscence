@@ -196,8 +196,10 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 61e2efa1cddb84c4fada24d4e3858fef, type: 3}
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: inspectionObjectText
-      value: "What was this for? Guitar strings?! Didn\u2019t I see them lying about
-        somewhere?"
+      value: "Oh cool a receipt\u2026 for guitar strings? Forty dollars?! For guitar
+        strings?! Oh my god who paid for this?! It isn\u2019t even the brand I- Hey
+        wait a minute\u2026 I saw these guitar strings somewhere else. Where did
+        I put those?"
       objectReference: {fileID: 0}
     - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: level

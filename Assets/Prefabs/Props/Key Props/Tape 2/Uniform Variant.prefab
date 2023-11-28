@@ -252,8 +252,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 74bbba670541c93498ae33237b2c838b, type: 3}
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: inspectionObjectText
-      value: "Never working there again. Can\u2019t even remember why I ended up
-        there of all places. "
+      value: Never working there again. Oh my god no.
       objectReference: {fileID: 0}
     - target: {fileID: 2170228245570418129, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_Name
@@ -419,8 +418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ddb1cf1c1404d6094ee6b5c13dfbfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appearingObjects: []
   level: 2
+  appearingObjects: []
   branch: 0
   keyItemModels:
   - {fileID: 0}
