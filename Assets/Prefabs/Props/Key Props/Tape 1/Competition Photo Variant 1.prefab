@@ -34,9 +34,9 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 4541807af0f725c4486a71ae041460c1, type: 3}
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: inspectionObjectText
-      value: " Nothing worse than a\u2026 Teenager's \"moustache\". Urgh, dad always
-        insisted on taking pictures for every single one of my gigs\u2026 I know
-        it was a thing mom wanted to see, but it got a bit too much after\u2026 "
+      value: "Nothing worse than a\u2026 Teenager's \"moustache\". Dad always insisted
+        on taking pictures for every single one of my competitions\u2026 I know it
+        was a thing mom wanted to see, but it got a bit too much after\u2026 ugh"
       objectReference: {fileID: 0}
     - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: level
@@ -246,6 +246,7 @@ MonoBehaviour:
   level: 0
   appearingObjects: []
   appearsOnBothBranches: 0
+  bgmAudio: {fileID: 0}
 --- !u!4 &4247384109045720031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}

@@ -198,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 05e7fcdecaf4580438cde1a45ec56d47, type: 3}
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: inspectionObjectText
-      value: "Oh yeah, these were sick! Good times. Wait\u2026 this looks like Joaquin\u2019s
+      value: " Oh yes! Yeah, these were sick! Good times. This kinda looks like Joaquin\u2019s
         art style\u2026 don\u2019t tell me\u2026"
       objectReference: {fileID: 0}
     - target: {fileID: 2170228245570418129, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
@@ -355,8 +355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ddb1cf1c1404d6094ee6b5c13dfbfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appearingObjects: []
   level: 2
+  appearingObjects: []
   branch: 1
   keyItemModels:
   - {fileID: 0}
