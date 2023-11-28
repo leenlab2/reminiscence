@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameLoader : MonoBehaviour
 {
-    [SerializeField] public string scene;
+    [SerializeField] public string m_scene;
     public bool resetGame = false;
 
     public static Action OnResetGame;
@@ -15,10 +15,10 @@ public class GameLoader : MonoBehaviour
     void OnEnable()
     {
         ResetGame();
-        StartCoroutine(LoadYourAsyncScene());
+        StartCoroutine(LoadYourAsyncScene(m_scene));
     }
 
-    IEnumerator LoadYourAsyncScene()
+    public static IEnumerator LoadYourAsyncScene(string scene)
     {
         // The Application loads the Scene in the background as the current Scene runs.
         // This is particularly good for creating loading screens.
