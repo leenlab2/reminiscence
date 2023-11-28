@@ -226,7 +226,8 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 1b97aecfea8b4c144b64c37640208892, type: 3}
     - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: inspectionObjectText
-      value: Creepy. Big sis always had such weird tastes in toys.
+      value: Creepy. Looks like sis taste in toys transfer to her taste in lovers
+        urgh.
       objectReference: {fileID: 0}
     - target: {fileID: 4377233922160096776, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: m_audioClip

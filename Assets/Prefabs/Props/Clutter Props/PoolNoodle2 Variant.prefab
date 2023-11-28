@@ -170,8 +170,8 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 392ed9038da2f2449b95c55d3d3bfac5, type: 3}
     - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: inspectionObjectText
-      value: "Emilia used to beat the shit out of me with these. That\u2019s what
-        I get for messing with the oldest."
+      value: "These\u2026 hurt so much. Emilia would beat the shit out of me with
+        these. Oh my god. Still sore from it."
       objectReference: {fileID: 0}
     - target: {fileID: 4344622818634122826, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: m_LocalPosition.x

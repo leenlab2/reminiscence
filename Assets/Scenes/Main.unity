@@ -9121,6 +9121,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5674059825433782140, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
+      propertyPath: inspectionObjectText
+      value: Hey old friend. I can't believe you survived all that mistreatment back
+        in the day. I wonder if I can take you home with me after this reunion blows
+        over.
+      objectReference: {fileID: 0}
     - target: {fileID: 6445700269863729111, guid: d2da1f6667f5d7643a0a9907cf02057f, type: 3}
       propertyPath: bgmAudio
       value: 
