@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7995ac400ab59104696436dc1e765bad
+guid: a4e5bdc106f2155468c9edd693e0cea8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Vinyl_box1
-    second: {fileID: 2100000, guid: 203e1c832c68a564baaee9545233cde7, type: 2}
+      name: Band_tee_mayaConverterShader1
+    second: {fileID: 2100000, guid: e78d44712bb000148b83301e9cb7a222, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Band_tee_mayaConverterShader2
+    second: {fileID: 2100000, guid: d645c55decfa7264aacc1bd49423f61d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Band_tee_mayaConverterShader3
+    second: {fileID: 2100000, guid: 5235ded8d6e8705428c2586ae93a0e96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Stencil_in
+    second: {fileID: 2100000, guid: 771e8e291b01cc348b5d79e854167f7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_stencil1
+    second: {fileID: 2100000, guid: 4682689c4be752a4db5cabb81b635ea3, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Vinyl_box_BaseColor
-    second: {fileID: 2800000, guid: 25e25522f289a12469db8e66f6a69410, type: 3}
+      name: T_Stencil1_BC
+    second: {fileID: 2800000, guid: 98f187c8ed2c36d41afd8f134d6f6d8d, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -45,7 +65,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.4
+    globalScale: 1
     meshCompression: 0
     addColliders: 1
     useSRGBMaterialColor: 1
@@ -100,7 +120,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.004
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
