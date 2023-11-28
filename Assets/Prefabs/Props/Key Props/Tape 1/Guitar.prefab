@@ -368,7 +368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a0c02d7d031be1842b786eeb5414763a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.52
+      value: 1.618
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a0c02d7d031be1842b786eeb5414763a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -582,14 +582,18 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 4f754ec0d81f76f49badfb5f688415e7, type: 3}
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: inspectionObjectText
-      value: "Hey old friend. Can\u2019t believe you survived all that mistreatment
-        back in the day. I wonder\u2026 maybe I can take you home with me after this
-        reunion blows over. "
+      value: Hey old friend. I can't believe you survived all that mistreatment back
+        in the day. I wonder if I can take you home with me after this reunion blows
+        over.
       objectReference: {fileID: 0}
     - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: level
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: bgmAudio
+      value: 
+      objectReference: {fileID: 118540518785192040}
     - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: appearsOnBothBranches
       value: 1
@@ -754,6 +758,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1480194420436574362}
   m_SourcePrefab: {fileID: 100100000, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+--- !u!82 &118540518785192040 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4673312867759188523, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+  m_PrefabInstance: {fileID: 4719722603812682307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2773845799335234191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7422350813914525900, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
