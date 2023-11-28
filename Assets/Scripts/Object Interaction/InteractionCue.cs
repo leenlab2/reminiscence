@@ -51,7 +51,7 @@ public class InteractionCue : MonoBehaviour
     private string empty = "";
 
     // input type
-    [SerializeField] private bool isController = true;
+    private bool isController = true;
 
     // Start is called before the first frame update
     void Start()
@@ -72,10 +72,9 @@ public class InteractionCue : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ToggleController()
     {
-        
+        isController = !isController;
     }
 
     public void SetInteractionCue(InteractionCueType type)
