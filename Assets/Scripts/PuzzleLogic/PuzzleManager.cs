@@ -78,11 +78,9 @@ public class PuzzleManager : MonoBehaviour
         //     }
         // }
         placementAudio.correctKeyPlacementSFX();
-
+        
         if (countKeyItemsLeft == 0)
         {
-            StartCoroutine(completeSFXWaiter());
-
             if (currentBranch == Branch.BranchA)
             {
                 _videoControls.CompletePuzzle(ClipToPlay.BranchASolution);
@@ -121,10 +119,6 @@ public class PuzzleManager : MonoBehaviour
         // Turn on branching objects for this level
         tapeInformation.branchingItemA.gameObject.SetActive(true);
         tapeInformation.branchingItemB.gameObject.SetActive(true);
-        
-        // Turn on ObjectDistance scripts for branching items
-        tapeInformation.branchingItemA.gameObject.GetComponent<ObjectDistance>().enabled = true;
-        tapeInformation.branchingItemB.gameObject.GetComponent<ObjectDistance>().enabled = true;
 
         // Show physical tape for next level in scene
         tapeObjs[level - 1].SetActive(true);

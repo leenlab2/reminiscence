@@ -43,9 +43,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8704303653242440373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eb44591aca7a524b9055380c06d54fa, type: 3}
+  m_Script: {fileID: 11500000, guid: a663d7a4b86e745c5b4aeed29af04e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
+  currentBranch: 0
   currentBranchingItemModel: {fileID: 0}
   memorySceneCanvas: {fileID: 2469239308035777312, guid: 8bf85bdc0850b2d44a1afee0d06a3f8f, type: 3}
   tapeObjs:
@@ -161,3 +163,5 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  enterMemoryButton: {fileID: 0}
+  memorySceneCanvas: {fileID: 0}
