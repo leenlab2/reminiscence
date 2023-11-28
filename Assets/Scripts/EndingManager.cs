@@ -30,13 +30,13 @@ public class EndingManager : MonoBehaviour
 
     private void Update()
     {
-        if (!_videoPlayer.isPlaying && !firstClipFinished)
+        if (!_videoPlayer.isPlaying && !firstClipFinished && _videoPlayer.time > 0)
         {
             firstClipFinished = true;
             _videoPlayer.clip = Credits;
             _videoPlayer.Play();
         }
-        else if (!_videoPlayer.isPlaying && firstClipFinished)
+        else if (!_videoPlayer.isPlaying && firstClipFinished && _videoPlayer.time > 0)
         {
             Debug.Log("Game finished");
             GameLoader.OnResetGame?.Invoke();
