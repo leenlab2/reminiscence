@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
@@ -9,6 +10,7 @@ public class InputManager : MonoBehaviour
 {
     public PlayerInputActions playerInputActions;
     public GameObject pauseMenu;
+    public GameObject resumeButton;
 
     private Rigidbody playerBody;
 
@@ -21,6 +23,7 @@ public class InputManager : MonoBehaviour
 
     private InteractionCue _interactionCue;
     private GameObject currSelectedBranching = null;
+    private GameObject oldSelected;
 
     private bool inTVMode = false;
     private bool gamePaused = false;
@@ -120,6 +123,12 @@ public class InputManager : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        // print current selected from event system
+        Debug.Log(EventSystem.current.currentSelectedGameObject);
+    }
+
     private void OnApplicationFocus(bool focus)
     {
         if (focus)
@@ -140,6 +149,8 @@ public class InputManager : MonoBehaviour
         gamePaused = true;
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
+        oldSelected = EventSystem.current.currentSelectedGameObject;
+        EventSystem.current.SetSelectedGameObject(resumeButton);
 
         playerInputActions.Player.Disable();
 
@@ -152,6 +163,7 @@ public class InputManager : MonoBehaviour
         Time.timeScale = 1;
         gamePaused = false;
         playerInputActions.Player.Enable();
+        EventSystem.current.SetSelectedGameObject(oldSelected);
 
         OnGameResumed?.Invoke();
     }
