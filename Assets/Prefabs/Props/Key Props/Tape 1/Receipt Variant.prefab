@@ -206,6 +206,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: bgmAudio
+      value: 
+      objectReference: {fileID: 1055905851834600581}
+    - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: appearingObjects.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -354,6 +358,11 @@ PrefabInstance:
       addedObject: {fileID: 6779004931604971968}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+--- !u!82 &1055905851834600581 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4673312867759188523, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+  m_PrefabInstance: {fileID: 5655858735845205678}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2989503055204128354 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7422350813914525900, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}

@@ -246,10 +246,15 @@ MonoBehaviour:
   level: 0
   appearingObjects: []
   appearsOnBothBranches: 0
-  bgmAudio: {fileID: 0}
+  bgmAudio: {fileID: 4940932476039587109}
 --- !u!4 &4247384109045720031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4520202208637398225, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+  m_PrefabInstance: {fileID: 309418662522752782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &4940932476039587109 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4673312867759188523, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
   m_PrefabInstance: {fileID: 309418662522752782}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7154594863776759746 stripped
