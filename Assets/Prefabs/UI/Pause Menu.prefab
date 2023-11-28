@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d198b278a458d94891cabe73891cc92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: MainMenuAlpha
+  m_scene: Main Menu
   resetGame: 1
 --- !u!1 &5631765511616509223
 GameObject:
