@@ -80,7 +80,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d5ffdf96c3c752446b04d8fe6e8da99a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.079
+      value: 0.118999995
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d5ffdf96c3c752446b04d8fe6e8da99a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -116,7 +116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7257895962041954766, guid: d5ffdf96c3c752446b04d8fe6e8da99a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -323812527744778789, guid: d5ffdf96c3c752446b04d8fe6e8da99a, type: 3}
       propertyPath: m_Enabled
@@ -125,6 +125,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d5ffdf96c3c752446b04d8fe6e8da99a, type: 3}
       propertyPath: m_Name
       value: Folded Uniform_Textured
+      objectReference: {fileID: 0}
+    - target: {fileID: 5735034090781988248, guid: d5ffdf96c3c752446b04d8fe6e8da99a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -230,7 +234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7422350813914525900, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.040999994
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 7422350813914525900, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.z
