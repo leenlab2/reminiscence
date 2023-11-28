@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: dialogueAudio
       value: 
-      objectReference: {fileID: 8300000, guid: 4541807af0f725c4486a71ae041460c1, type: 3}
+      objectReference: {fileID: 8300000, guid: b7553b54233e5a9449e92c027b542fd1, type: 3}
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: inspectionObjectText
       value: "Nothing worse than a\u2026 Teenager's \"moustache\". Dad always insisted
