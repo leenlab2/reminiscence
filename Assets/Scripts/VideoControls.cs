@@ -30,7 +30,11 @@ public class VideoControls : MonoBehaviour
         print(GameObject.Find("TV"));
         _tapeManager = FindObjectOfType<TapeManager>();
         _videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
-        _progressBarImage.fillAmount = 0;
+        if (_progressBarImage != null)
+        {
+            _progressBarImage.fillAmount = 0;
+        }
+        
         televisionAudioSource = GameObject.Find("TV").GetComponent<AudioSource>();
         televisionParticleEffects = GameObject.Find("TVEffectsPuzzleComplete").GetComponent<ParticleSystem>();
 
@@ -132,12 +136,14 @@ public class VideoControls : MonoBehaviour
 
     void Update()
     {
+        if (_progressBarImage == null) return;
+
         if (_videoPlayer.length > 0)
         {
             float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length); 
             _progressBarImage.fillAmount = progressPercentage;
 
-            if (progressPercentage >= 0.85f)
+            if (progressPercentage >= 0.95f)
             {
                 clipWatched?.Invoke();
             }
