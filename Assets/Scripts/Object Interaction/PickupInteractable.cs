@@ -90,14 +90,29 @@ public class PickupInteractable : MonoBehaviour
     private bool IsValidSurface(RaycastHit hit, out bool hitIsWall)
     {
         hitIsWall = hit.normal.y <= 0.05f;
+
+        // get height of object
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        Bounds bounds = renderers[0].bounds;
+
+        for (int i = 1; i < renderers.Length; ++i)
+        {
+            bounds.Encapsulate(renderers[i].bounds.min);
+            bounds.Encapsulate(renderers[i].bounds.max);
+        }
+
+        float height = bounds.max.y - bounds.min.y;
+
+        float topOfObject = hit.point.y + height;
+
+        bool hitIsRoofInAttic = 7 <= topOfObject && topOfObject <= 50;
+        bool hitIsRoofInMemory = 57 <= topOfObject;
+        bool hitIsRoof = hitIsRoofInAttic || hitIsRoofInMemory;
+
         float distFromFlat = Vector3.Distance(hit.normal, new Vector3(0f, 1f, 0f));
         bool hitIsFloor = distFromFlat <= 0.05f;
 
-        if (!hitIsFloor && !hitIsWall) { 
-            return false; 
-        }
-
-        return true;
+        return (hitIsFloor || hitIsWall) && !hitIsRoof;
     }
 
     public void ToggleFreezeBody(bool freeze)
