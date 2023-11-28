@@ -72,11 +72,18 @@ public class PickupInteractable : MonoBehaviour
         if(!IsValidSurface(hit, out hitIsWall)) return;
 
         placementGuide.transform.position = hit.point;
-        placementGuide.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+
+        if (wallMountable || !hitIsWall)
+        {
+            placementGuide.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+        }
 
         if (wallMountable && hitIsWall) { 
             onWall = true;
             placementGuide.transform.position += 0.1f * hit.normal;
+        } else if (!wallMountable && hitIsWall)
+        {
+            placementGuide.transform.position += hit.normal;
         }
     }
 
@@ -86,7 +93,7 @@ public class PickupInteractable : MonoBehaviour
         float distFromFlat = Vector3.Distance(hit.normal, new Vector3(0f, 1f, 0f));
         bool hitIsFloor = distFromFlat <= 0.05f;
 
-        if (!wallMountable && hitIsWall || (!hitIsFloor && !hitIsWall)) { 
+        if (!hitIsFloor && !hitIsWall) { 
             return false; 
         }
 
