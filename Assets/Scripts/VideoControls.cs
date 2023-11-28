@@ -132,12 +132,14 @@ public class VideoControls : MonoBehaviour
 
     void Update()
     {
+        if (_progressBarImage == null) return;
+
         if (_videoPlayer.length > 0)
         {
             float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length); 
             _progressBarImage.fillAmount = progressPercentage;
 
-            if (progressPercentage >= 0.85f)
+            if (progressPercentage >= 0.95f)
             {
                 clipWatched?.Invoke();
             }
