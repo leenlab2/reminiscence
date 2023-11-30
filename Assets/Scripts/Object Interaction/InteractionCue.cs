@@ -72,8 +72,9 @@ public class InteractionCue : MonoBehaviour
         }
     }
 
-    void Update()
+    public void ToggleController()
     {
+        isController = !isController;
         if (isController)
         {
             _TVText.text = xboxTV;
@@ -82,11 +83,6 @@ public class InteractionCue : MonoBehaviour
         {
             _TVText.text = kmTV;
         }
-    }
-
-    public void ToggleController()
-    {
-        isController = !isController;
     }
 
     public void SetInteractionCue(InteractionCueType type)
