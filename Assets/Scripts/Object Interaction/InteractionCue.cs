@@ -22,6 +22,7 @@ public class InteractionCue : MonoBehaviour
     private TMP_Text _pickupText;
     private TMP_Text _TVText;
     private TMP_Text _dialogueText;
+    private TMP_Text _pauseText;
 
     // dialogue text
     public StringValue dialogueTextInfo;
@@ -36,6 +37,7 @@ public class InteractionCue : MonoBehaviour
     private string xboxInspectionText = "<sprite=4> Rotate                        <sprite=2> Exit";
     private string xboxBranching = "<sprite=4> Switch                         <sprite=1> Select";
     private string xboxExitMemoryText = "<sprite=2> Exit Memory";
+    private string xboxPause = "<sprite=6> Pause";
 
     // keyboard/mouse controls
     private string kmTV = "<sprite=12> TV mode";
@@ -47,6 +49,7 @@ public class InteractionCue : MonoBehaviour
     private string kmInspectionText = "<sprite=17> Rotate                        <sprite=15> Exit";
     private string kmBranching = "<sprite=14> Switch                         <sprite=16> Select";
     private string kmExitMemoryText = "<sprite=13> Exit Memory";
+    private string kmPause = "[ESC] Pause";
 
     private string empty = "";
 
@@ -61,14 +64,17 @@ public class InteractionCue : MonoBehaviour
         _pickupText = GameObject.Find("Pickup Text").GetComponent<TMP_Text>();
         _TVText = GameObject.Find("TV Interaction Text").GetComponent<TMP_Text>();
         _dialogueText = GameObject.Find("Dialogue Text").GetComponent<TMP_Text>();
+        _pauseText = GameObject.Find("Pause Text").GetComponent<TMP_Text>();
 
         if (isController)
         {
             _TVText.text = xboxTV;
+            _pauseText.text = xboxPause;
         }
         else
         {
             _TVText.text = kmTV;
+            _pauseText.text = kmPause;
         }
     }
 
