@@ -123,12 +123,6 @@ public class InputManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        // print current selected from event system
-        Debug.Log(EventSystem.current.currentSelectedGameObject);
-    }
-
     private void OnApplicationFocus(bool focus)
     {
         if (focus)
