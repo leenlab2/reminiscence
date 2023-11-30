@@ -572,7 +572,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <sprite=12> TV mode
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d9382b72ce663084885f6a281d6e2430, type: 2}
   m_sharedMaterial: {fileID: 6444708209948551474, guid: d9382b72ce663084885f6a281d6e2430, type: 2}
