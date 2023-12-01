@@ -13,7 +13,9 @@ public enum InteractionCueType
     Inspection,
     Branching,
     ExitMemory,
-    EnterMemory
+    EnterMemory,
+    Open,
+    Close
 }
 
 public class InteractionCue : MonoBehaviour
@@ -29,6 +31,8 @@ public class InteractionCue : MonoBehaviour
     // xbox controls
     private string xboxTV = "<sprite=0> TV mode";
     private string xboxPickUp = "<sprite=1> Pickup";
+    private string xboxOpen = "<sprite=1> Open";
+    private string xboxClose = "<sprite=1> Close";
     private string xboxInsertTape = "<sprite=1> Insert tape";
     private string xboxRemoveTape = "<sprite=1> Remove tape";
     // private string xboxPutDown = "<sprite=5> Inspect";
@@ -40,6 +44,8 @@ public class InteractionCue : MonoBehaviour
     // keyboard/mouse controls
     private string kmTV = "<sprite=12> TV mode";
     private string kmPickUp = "<sprite=16> Pickup";
+    private string kmOpen = "<sprite=16> Open";
+    private string kmClose = "<sprite=16> Close";
     private string kmInsertTape = "<sprite=16> Insert tape";
     private string kmRemoveTape = "<sprite=16> Remove tape";
     // private string kmPutDown = "[E] Inspect";
@@ -95,7 +101,29 @@ public class InteractionCue : MonoBehaviour
             {
                 _pickupText.text = kmPickUp;
             }
-        } else if (type == InteractionCueType.InsertTape)
+        }
+        else if (type == InteractionCueType.Open)
+        {
+            if (isController)
+            {
+                _pickupText.text = xboxOpen;
+            }
+            else
+            {
+                _pickupText.text = kmOpen;
+            }
+        } else if (type == InteractionCueType.Close)
+        {
+            if (isController)
+            {
+                _pickupText.text = xboxClose;
+            }
+            else
+            {
+                _pickupText.text = kmClose;
+            }
+        }
+        else if (type == InteractionCueType.InsertTape)
         {
             if (isController)
             {
@@ -174,6 +202,17 @@ public class InteractionCue : MonoBehaviour
             {
                 _TVText.text = kmExitMemoryText;
             }
+        }
+    }
+
+    public void ToggleOpenClose(bool isOpen)
+    {
+        if (isOpen)
+        {
+            SetInteractionCue(InteractionCueType.Close);
+        } else
+        {
+            SetInteractionCue(InteractionCueType.Open);
         }
     }
 }

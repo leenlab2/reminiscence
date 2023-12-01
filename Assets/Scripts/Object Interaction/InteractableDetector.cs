@@ -155,7 +155,8 @@ public class InteractableDetector : MonoBehaviour
             interactionType = InteractionType.Place;
         } else if (hit.transform.GetComponent<OpenInteractable>())
         {
-            _interactionCue.SetInteractionCue(InteractionCueType.Pickup); // TODO: change to open
+            bool isOpen = hit.transform.GetComponent<OpenInteractable>().isOpen;
+            _interactionCue.ToggleOpenClose(isOpen); // TODO: change to open
             interactionType = InteractionType.Open;
         }
         else

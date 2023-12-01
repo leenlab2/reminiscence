@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class OpenInteractable : MonoBehaviour
     public AudioSource audioSource;
 
     private Animator animator;
-    private bool isOpen = false;
+    public bool isOpen = false;
 
     private void Awake()
     {
