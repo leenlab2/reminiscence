@@ -75,6 +75,14 @@ public class InteractionCue : MonoBehaviour
     public void ToggleController()
     {
         isController = !isController;
+        if (isController)
+        {
+            _TVText.text = xboxTV;
+        }
+        else
+        {
+            _TVText.text = kmTV;
+        }
     }
 
     public void SetInteractionCue(InteractionCueType type)
