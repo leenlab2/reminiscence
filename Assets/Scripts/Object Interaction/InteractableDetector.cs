@@ -239,7 +239,7 @@ public class InteractableDetector : MonoBehaviour
         {
             Debug.Log("Interaction type: open");
             GameObject obj = _currentHit.Value.transform.gameObject;
-            obj.GetComponent<OpenInteractable>().Open();
+            obj.GetComponent<OpenInteractable>().ToggleOpen();
         }
     }
 

@@ -12,19 +12,16 @@ public class OpenInteractable : MonoBehaviour
     public AudioSource audioSource;
 
     private Animator animator;
+    private bool isOpen = false;
 
     private void Awake()
     {
         animator = GetComponentInParent<Animator>();
     }
 
-    public void Open()
+    public void ToggleOpen()
     {
-        animator.SetBool("IsOpen", true);
-    }
-
-    public void Close()
-    {
-        animator.SetBool("IsOpen", false);
+        isOpen = !isOpen;
+        animator.SetBool("IsOpen", isOpen);
     }
 }
