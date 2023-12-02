@@ -88,9 +88,12 @@ public class InteractableDetector : MonoBehaviour
             OnCursorHitChange?.Invoke(hit);
 
             CheckInteractableTypeHit(hit);
+            
+            TapeManager tapeManager = FindObjectOfType<TapeManager>();
 
             // if cursor on interactable object immediately after being on another interactable object
-            if (currentObj)
+            // or the TV has no tape and the cursor was just one the VHS player
+            if (currentObj && !(currentObj.name == "VHS" && !tapeManager.televisionHasTape()))
             {
                 //Debug.Log(currentObj.name);
                 unhighlightObject(currentObj);
@@ -144,6 +147,11 @@ public class InteractableDetector : MonoBehaviour
                 }
             }
             interactionType = InteractionType.InsertRemoveTape;
+            
+            // add highlight to VHS player
+           /* InteractableDetector interactableDetect = GetComponent<InteractableDetector>();
+            GameObject vhsPlayer = GameObject.Find("VHS");
+            interactableDetect.highlightObject(vhsPlayer);*/
         }
         else if (hit.transform.GetComponent<PickupInteractable>() && !pickUpInteractor.isHoldingObj())
         {
@@ -219,6 +227,11 @@ public class InteractableDetector : MonoBehaviour
             if (pickUpInteractor.IsHeld("Tape Model"))
             {
                 tapeManager.insertTape(pickUpInteractor.HeldObj);
+            
+                // remove highlight from VHS player
+                InteractableDetector interactableDetect = GetComponent<InteractableDetector>();
+                GameObject vhsPlayer = GameObject.Find("VHS");
+                interactableDetect.unhighlightObject(vhsPlayer);
             }
             else if (!pickUpInteractor.isHoldingObj())
             {

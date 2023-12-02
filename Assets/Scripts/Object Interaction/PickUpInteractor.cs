@@ -117,6 +117,15 @@ public class PickUpInteractor : MonoBehaviour
         obj.MoveToHand(newPos);
 
         ToggleObjectColliders(obj.gameObject, false);
+        
+        // Highlight VHS player if player picked up a tape
+        if (obj.transform.name == "Tape Model")
+        {
+            InteractableDetector interactableDetect = GetComponent<InteractableDetector>();
+            GameObject vhsPlayer = GameObject.Find("VHS");
+            vhsPlayer.GetComponent<Outline>().enabled = true;
+            interactableDetect.highlightObject(vhsPlayer);
+        }
     }
 
     #region Branching Item Choice
