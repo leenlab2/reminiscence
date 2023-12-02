@@ -88,12 +88,20 @@ public class InteractableDetector : MonoBehaviour
             OnCursorHitChange?.Invoke(hit);
 
             CheckInteractableTypeHit(hit);
-
+            
             // if cursor on interactable object immediately after being on another interactable object
             if (currentObj)
             {
-                //Debug.Log(currentObj.name);
-                unhighlightObject(currentObj);
+                Debug.Log(currentObj.name);
+                
+                TapeManager tapeManager = FindObjectOfType<TapeManager>();
+                
+                // If cursor moves off VHS player and TV has no tape, keep VHS player highlighted. Otherwise, unhighlight object
+                if (!(currentObj.name == "VHS" && !tapeManager.televisionHasTape()))
+                {
+                    Debug.Log("Unhighlighting " + currentObj.name);
+                    unhighlightObject(currentObj);
+                }
                 currentObj = null;
             }
 
