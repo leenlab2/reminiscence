@@ -145,19 +145,29 @@ public class InteractableDetector : MonoBehaviour
             }
             interactionType = InteractionType.InsertRemoveTape;
         }
-        else if (hit.transform.GetComponent<PickupInteractable>() && !pickUpInteractor.isHoldingObj())
-        {
-            _interactionCue.SetInteractionCue(InteractionCueType.Pickup);
-            interactionType = InteractionType.Pickup;
-        }
         else if (pickUpInteractor.isHoldingObj())
         {
             interactionType = InteractionType.Place;
-        } else if (hit.transform.GetComponent<OpenInteractable>())
+        }
+        else if (hit.transform.GetComponent<Interactable>()?.isInteractable ?? false)
         {
-            bool isOpen = hit.transform.GetComponent<OpenInteractable>().isOpen;
-            _interactionCue.ToggleOpenClose(isOpen); // TODO: change to open
-            interactionType = InteractionType.Open;
+            Interactable interactable = hit.transform.GetComponent<Interactable>();
+
+            switch (interactable)
+            {
+                case OpenInteractable openInteractable:
+                    bool isOpen = hit.transform.GetComponent<OpenInteractable>().isOpen;
+                    _interactionCue.ToggleOpenClose(isOpen); // TODO: change to open
+                    interactionType = InteractionType.Open;
+                    break;
+                case PickupInteractable pickupInteractable when !pickUpInteractor.isHoldingObj():
+                    _interactionCue.SetInteractionCue(InteractionCueType.Pickup);
+                    interactionType = InteractionType.Pickup;
+                    break;
+                default:
+                    break;
+            }
+
         }
         else
         {

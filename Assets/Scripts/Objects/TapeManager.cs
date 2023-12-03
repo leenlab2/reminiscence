@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.Rendering;
+using System;
 
 public class TapeManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class TapeManager : MonoBehaviour
     private GameObject currentTapeInTv;
     private PickUpInteractor pickUpInteractor;
     private bool lightsAreOn;
+
+    public static Action OnFirstTapeInserted;
 
     void Start()
     {
@@ -74,6 +77,7 @@ public class TapeManager : MonoBehaviour
                 GameObject.Find("Lamplight").GetComponent<Light>().enabled = true;
 
                 lightsAreOn = true;
+                OnFirstTapeInserted?.Invoke();
             }
             //GameObject.Find("TV Player").GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
         }
