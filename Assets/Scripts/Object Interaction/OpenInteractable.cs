@@ -3,20 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Outline))]
-public class OpenInteractable : MonoBehaviour
+public class OpenInteractable : Interactable
 {
-    [Header("Sound effects")]
-    public AudioClip openSound;
-    public AudioClip closeSound;
-    public AudioSource audioSource;
-
     private Animator animator;
     public bool isOpen = false;
 
-    private void Awake()
+    void Awake()
     {
+        base.Awake();
         animator = GetComponentInParent<Animator>();
     }
 

@@ -12936,14 +12936,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 858339499}
     m_Modifications:
-    - target: {fileID: 3004229588434310234, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
-      propertyPath: dialogueAudio
-      value: 
-      objectReference: {fileID: 8300000, guid: 8c2c67088118629408f8d5ff7101c584, type: 3}
-    - target: {fileID: 3004229588434310234, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
-      propertyPath: objectAudioInfo
-      value: 
-      objectReference: {fileID: 11400000, guid: 17f168b25b2884e458ef6822baebc095, type: 2}
     - target: {fileID: 4066332758468689076, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
       propertyPath: m_Name
       value: Tape
