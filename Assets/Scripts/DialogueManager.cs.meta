@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 860c98fd56098264cbe1b415e7f1224a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - objectTextInfo: {fileID: 11400000, guid: c4baf7bf52c29c64e899665b1cc8bb07, type: 2}
+  - objectAudioInfo: {fileID: 11400000, guid: 17f168b25b2884e458ef6822baebc095, type: 2}
+  - dialogueAudio: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

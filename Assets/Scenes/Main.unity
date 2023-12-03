@@ -765,6 +765,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8190199214842243167, guid: 9cc9bf3dbd8795140b461a5a9dd29536, type: 3}
   m_PrefabInstance: {fileID: 771870445850420002}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &83672741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 83672742}
+  - component: {fileID: 83672743}
+  m_Layer: 0
+  m_Name: Dialogue Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &83672742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83672741}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.23807712, z: -0, w: 0.9712463}
+  m_LocalPosition: {x: 2.4971967, y: 0, z: -5.724476}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1993608631}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &83672743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83672741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 860c98fd56098264cbe1b415e7f1224a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectTextInfo: {fileID: 11400000, guid: c4baf7bf52c29c64e899665b1cc8bb07, type: 2}
+  objectAudioInfo: {fileID: 11400000, guid: 17f168b25b2884e458ef6822baebc095, type: 2}
+  dialogueAudio: {fileID: 8300000, guid: 8c2c67088118629408f8d5ff7101c584, type: 3}
 --- !u!1001 &97845629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9189,6 +9236,7 @@ Transform:
   m_Children:
   - {fileID: 1042131123}
   - {fileID: 1663569517}
+  - {fileID: 83672742}
   - {fileID: 1471012349}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11542,6 +11590,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 552641248}
     m_Modifications:
+    - target: {fileID: 325695563069503228, guid: a2777648e0225374ab93925f2e0653e2, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: f6c3b0be6e584e04b9d8b8b9d9c4bec4, type: 3}
     - target: {fileID: 1538740813951573522, guid: a2777648e0225374ab93925f2e0653e2, type: 3}
       propertyPath: m_Name
       value: PosterA Variant
