@@ -5,27 +5,32 @@ using UnityEngine;
 /// <summary>
 /// Contains the functions for modifying the object as well as managing its placement guide
 /// </summary>
-[RequireComponent(typeof(Rigidbody))]
-public class PickupInteractable : MonoBehaviour
+public class PickupInteractable : Interactable
 {
+    [Header("Pickup/Place Sound Effects")]
+    // TODO: change this to use enterSound and exitSound
+    // Use FormerlySerializedAs to keep the old names for the sound effects
+    public AudioSource pickupSound;
+    public AudioSource placeSound;
+
+    [Header("Placement")]
     [SerializeField] private GameObject placementGuide = null;
     [SerializeField] private bool wallMountable = false;
 
-    public Transform originalParent;
+    private Transform originalParent;
     private Vector3 originalObjScale;
     private Rigidbody rigidbody;
     private bool onWall;
 
+    [Header("Inspection Dialogue")]
     public StringValue objectTextInfo;
     public AudioClipScriptableObject objectAudioInfo;
     public string inspectionObjectText;
     public AudioClip dialogueAudio;
 
-    public AudioSource pickupSound;
-    public AudioSource placeSound;
-
     void Awake()
     {
+        base.Awake();
         originalParent = transform.parent;
         originalObjScale = transform.localScale;
         rigidbody = GetComponent<Rigidbody>();

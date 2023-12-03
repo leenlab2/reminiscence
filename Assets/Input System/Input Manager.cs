@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
 
     private Rigidbody playerBody;
 
-    private float _mouseSensitivity = 2f;
+    private float _mouseSensitivity = 2.0f;
     private Animator playerAnimate;
     
     private float _sprintSpeed = 9f;
@@ -22,10 +22,13 @@ public class InputManager : MonoBehaviour
     private float _speed;
 
     private InteractionCue _interactionCue;
+    private DialogueManager _dialogueManager;
     private GameObject currSelectedBranching = null;
     private GameObject oldSelected;
+    private GameObject hud;
 
     private bool inTVMode = false;
+    private bool inMemoryMode = false;
     private bool gamePaused = false;
     private bool inBranchingSelection = false;
     private bool inspectionMode = false;
@@ -110,7 +113,10 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
+        _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
         inTVMode = false;
+
+        hud = GameObject.Find("HUD");
     }
 
     private void FixedUpdate()
@@ -126,9 +132,8 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         // print current selected from event system
-        Debug.Log(EventSystem.current.currentSelectedGameObject);
+        //Debug.Log(EventSystem.current.currentSelectedGameObject);
     }
-
     private void OnApplicationFocus(bool focus)
     {
         if (focus)
@@ -154,6 +159,8 @@ public class InputManager : MonoBehaviour
 
         playerInputActions.Player.Disable();
 
+        hud.SetActive(false);
+
         OnGamePaused?.Invoke();
     }
 
@@ -164,6 +171,8 @@ public class InputManager : MonoBehaviour
         gamePaused = false;
         playerInputActions.Player.Enable();
         EventSystem.current.SetSelectedGameObject(oldSelected);
+
+        hud.SetActive(true);
 
         OnGameResumed?.Invoke();
     }
@@ -229,6 +238,11 @@ public class InputManager : MonoBehaviour
 
         //playerCamera.Rotate(-cameraInput.y * _mouseSensitivity, 0, 0);
     }
+
+    public void changeCameraSpeed(float sliderVal)
+    {
+        _mouseSensitivity = 2.0f * sliderVal;
+    }
     #endregion
 
     #region Television Toggle
@@ -268,6 +282,7 @@ public class InputManager : MonoBehaviour
         CloseTelevision(new InputAction.CallbackContext());
         playerInputActions.Player.OpenTV.Disable();
         playerInputActions.Memory.Enable();
+        inMemoryMode = true;
     }
 
     public void ExitMemoryScene(InputAction.CallbackContext obj)
@@ -276,6 +291,12 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.OpenTV.Enable();
         SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
         sceneManagement.ExitMemoryScene();
+        inMemoryMode = false;
+    }
+
+    public bool isInMemoryMode()
+    {
+        return inMemoryMode;
     }
 
 
@@ -316,6 +337,7 @@ public class InputManager : MonoBehaviour
             playerInputActions.Inspect.Enable();
 
             inspection.ToggleFocusObject(true);
+            _dialogueManager.playDialogue();
         }
         else
         {
@@ -324,6 +346,9 @@ public class InputManager : MonoBehaviour
             playerInputActions.Player.Enable();
             playerInputActions.Inspect.Disable();
             inspection.ToggleFocusObject(false);
+
+            //Stop dialogue
+            _dialogueManager.stopDialogue();
         }
     }
 
@@ -341,6 +366,10 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Disable();
         playerInputActions.Branching.Enable();
         inBranchingSelection = true;
+
+        //Update dialogue and play audio
+        _dialogueManager.setDialogue(currSelectedBranching);
+        _dialogueManager.playBranchingDialogue();
     }
 
     void SwitchBranchingItem(InputAction.CallbackContext ctx)
@@ -352,6 +381,12 @@ public class InputManager : MonoBehaviour
         interactableDetect.highlightObject(otherBranching);
 
         currSelectedBranching = otherBranching;
+
+        //Update dialogue and play audio
+        _dialogueManager.stopDialogue();
+        _dialogueManager.setDialogue(currSelectedBranching);
+        _dialogueManager.playBranchingDialogue();
+
     }
 
     void SubmitBranchingItem(InputAction.CallbackContext ctx)
@@ -366,6 +401,9 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Enable();
 
         inBranchingSelection = false;
+
+        //Stop the dialogue on select
+        _dialogueManager.stopDialogue();
     }
 
     public bool isInBranchingSelection()
