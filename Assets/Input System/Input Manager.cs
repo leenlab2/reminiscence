@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
     private float _speed;
 
     private InteractionCue _interactionCue;
+    private DialogueManager _dialogueManager;
     private GameObject currSelectedBranching = null;
     private GameObject oldSelected;
 
@@ -110,6 +111,7 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
+        _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
         inTVMode = false;
     }
 
@@ -126,7 +128,7 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         // print current selected from event system
-        Debug.Log(EventSystem.current.currentSelectedGameObject);
+        //Debug.Log(EventSystem.current.currentSelectedGameObject);
     }
 
     private void OnApplicationFocus(bool focus)
@@ -341,6 +343,10 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Disable();
         playerInputActions.Branching.Enable();
         inBranchingSelection = true;
+
+        //Update dialogue and play audio
+        _dialogueManager.setDialogue(currSelectedBranching);
+        _dialogueManager.playBranchingDialogue();
     }
 
     void SwitchBranchingItem(InputAction.CallbackContext ctx)
@@ -352,6 +358,11 @@ public class InputManager : MonoBehaviour
         interactableDetect.highlightObject(otherBranching);
 
         currSelectedBranching = otherBranching;
+
+        //Update dialogue and play audio
+        _dialogueManager.setDialogue(currSelectedBranching);
+        _dialogueManager.playBranchingDialogue();
+
     }
 
     void SubmitBranchingItem(InputAction.CallbackContext ctx)

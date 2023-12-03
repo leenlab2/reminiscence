@@ -148,7 +148,7 @@ public class InteractionCue : MonoBehaviour
             {
                 _interactText.text = kmInspectionText;
             }
-            _dialogueText.text = dialogueTextInfo.value;  //TODO: change with dynamic value
+            _dialogueText.text = dialogueTextInfo.value; 
             _pickupText.text = empty;
         } else if (type == InteractionCueType.Branching)
         {
@@ -160,7 +160,7 @@ public class InteractionCue : MonoBehaviour
             {
                 _interactText.text = kmBranching;
             }
-            _dialogueText.text = empty;
+            _dialogueText.text = dialogueTextInfo.value;
             _pickupText.text = empty;
         } else if (type == InteractionCueType.ExitMemory)
         {
