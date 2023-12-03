@@ -24,6 +24,6 @@ public class CameraSlider : MonoBehaviour
         float localValue = value * maxSliderAmount;
         float changeValue = localValue - 1.0f;
         InputManager inputManager = FindObjectOfType<InputManager>();
-        inputManager.changeCameraSpeed(1.0f + (float) Math.Tan(changeValue * 0.75f));
+        inputManager.changeCameraSpeed(1.0f + (float) Math.Tan(changeValue * 0.5f));
     }
 }
