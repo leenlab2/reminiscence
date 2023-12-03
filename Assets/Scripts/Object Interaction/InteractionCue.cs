@@ -14,6 +14,8 @@ public enum InteractionCueType
     Branching,
     ExitMemory,
     EnterMemory,
+    EnterTV,
+    ExitTV,
     Open,
     Close
 }
@@ -29,7 +31,8 @@ public class InteractionCue : MonoBehaviour
     public StringValue dialogueTextInfo;
 
     // xbox controls
-    private string xboxTV = "<sprite=0> TV mode";
+    private string xboxEnterTV = "<sprite=0> Enter TV mode";
+    private string xboxExitTV = "<sprite=0> Exit TV mode";
     private string xboxPickUp = "<sprite=1> Pickup";
     private string xboxOpen = "<sprite=1> Open";
     private string xboxClose = "<sprite=1> Close";
@@ -42,7 +45,8 @@ public class InteractionCue : MonoBehaviour
     private string xboxExitMemoryText = "<sprite=2> Exit Memory";
 
     // keyboard/mouse controls
-    private string kmTV = "<sprite=12> TV mode";
+    private string kmEnterTV = "<sprite=12> Enter TV mode";
+    private string kmExitTV = "<sprite=12> Exit TV mode";
     private string kmPickUp = "<sprite=16> Pickup";
     private string kmOpen = "<sprite=16> Open";
     private string kmClose = "<sprite=16> Close";
@@ -70,24 +74,45 @@ public class InteractionCue : MonoBehaviour
 
         if (isController)
         {
-            _TVText.text = xboxTV;
+            _TVText.text = xboxEnterTV;
         }
         else
         {
-            _TVText.text = kmTV;
+            _TVText.text = kmEnterTV;
         }
     }
 
     public void ToggleController()
     {
         isController = !isController;
+        InputManager inputManager = FindObjectOfType<InputManager>();
         if (isController)
         {
-            _TVText.text = xboxTV;
+            if (inputManager.isInMemoryMode())
+            {
+                _TVText.text = xboxExitMemoryText;
+            }
+            else if (inputManager.InTVMode())
+            {
+                _TVText.text = xboxExitTV;
+            } else
+            {
+                _TVText.text = xboxEnterTV;
+            }
         }
         else
         {
-            _TVText.text = kmTV;
+            if (inputManager.isInMemoryMode())
+            {
+                _TVText.text = kmExitMemoryText;
+            }
+            else if (inputManager.InTVMode())
+            {
+                _TVText.text = kmExitTV;
+            } else
+            {
+                _TVText.text = kmEnterTV;
+            }
         }
     }
 
@@ -192,13 +217,26 @@ public class InteractionCue : MonoBehaviour
             _pickupText.text = empty;
         } else if (type == InteractionCueType.ExitMemory)
         {
+            InputManager inputManager = FindObjectOfType<InputManager>();
             if (isController)
             {
-                _TVText.text = xboxTV;
+                if (inputManager.InTVMode())
+                {
+                    _TVText.text = xboxExitTV;
+                } else
+                {
+                    _TVText.text = xboxEnterTV;
+                }
             }
             else
             {
-                _TVText.text = kmTV;
+                if (inputManager.InTVMode())
+                {
+                    _TVText.text = kmExitTV;
+                } else
+                {
+                    _TVText.text = kmEnterTV;
+                }
             }
         } else if (type == InteractionCueType.EnterMemory)
         {
@@ -209,6 +247,26 @@ public class InteractionCue : MonoBehaviour
             else
             {
                 _TVText.text = kmExitMemoryText;
+            }
+        } else if (type == InteractionCueType.EnterTV)
+        {
+            if (isController)
+            {
+                _TVText.text = xboxEnterTV;
+            }
+            else
+            {
+                _TVText.text = kmEnterTV;
+            }
+        } else if (type == InteractionCueType.ExitTV)
+        {
+            if (isController)
+            {
+                _TVText.text = xboxExitTV;
+            }
+            else
+            {
+                _TVText.text = kmExitTV;
             }
         }
     }

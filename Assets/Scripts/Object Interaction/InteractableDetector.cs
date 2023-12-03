@@ -121,9 +121,14 @@ public class InteractableDetector : MonoBehaviour
         if (inputManager.InTVMode())
         {
             _interactionCue.SetInteractionCue(InteractionCueType.Empty);
+            _interactionCue.SetInteractionCue(InteractionCueType.ExitTV);
             _lastCrossHairDisplaySize = _crossHairDisplay.rectTransform.sizeDelta;
             _crossHairDisplay.rectTransform.sizeDelta = new Vector2(0, 0);
         } else {
+            if (!inputManager.isInMemoryMode())
+            {
+                _interactionCue.SetInteractionCue(InteractionCueType.EnterTV);
+            }
             _crossHairDisplay.rectTransform.sizeDelta = _lastCrossHairDisplaySize;
         }
         if (inputManager.InInspection())

@@ -27,6 +27,7 @@ public class InputManager : MonoBehaviour
     private GameObject oldSelected;
 
     private bool inTVMode = false;
+    private bool inMemoryMode = false;
     private bool gamePaused = false;
     private bool inBranchingSelection = false;
     private bool inspectionMode = false;
@@ -274,6 +275,7 @@ public class InputManager : MonoBehaviour
         CloseTelevision(new InputAction.CallbackContext());
         playerInputActions.Player.OpenTV.Disable();
         playerInputActions.Memory.Enable();
+        inMemoryMode = true;
     }
 
     public void ExitMemoryScene(InputAction.CallbackContext obj)
@@ -282,6 +284,12 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.OpenTV.Enable();
         SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
         sceneManagement.ExitMemoryScene();
+        inMemoryMode = false;
+    }
+
+    public bool isInMemoryMode()
+    {
+        return inMemoryMode;
     }
 
 
