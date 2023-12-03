@@ -120,7 +120,7 @@ MonoBehaviour:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 6
-    m_Scale: 1
+    m_Scale: 1.8
     m_Name: controls_6
     m_HashCode: 1728694525
   - m_ElementType: 2
@@ -290,8 +290,8 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 58
       m_Height: 37
-      m_HorizontalBearingX: -29
-      m_HorizontalBearingY: 18.5
+      m_HorizontalBearingX: -7.3
+      m_HorizontalBearingY: 28.1
       m_HorizontalAdvance: 58
     m_GlyphRect:
       m_X: 75
