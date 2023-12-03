@@ -14,6 +14,7 @@ public enum InteractionType
     None,
     Pickup,
     Place,
+    Open,
     InsertRemoveTape
 }
 
@@ -80,17 +81,11 @@ public class InteractableDetector : MonoBehaviour
 
         // Perform raycast
         if (Physics.SphereCast(originRay, sphereRadius, out hit, maxPlayerReach, layerMask))
-        //if (Physics.Raycast(origin, direction, out hit, maxPlayerReach, layerMask))
         {
-            // Draw the ray
-            Debug.DrawRay(origin, direction * hit.distance, Color.yellow);
-
-            // Draw the sphere at the hit point
-            // Draw a yellow sphere at the transform's position
+            //Debug.DrawRay(origin, direction * hit.distance, Color.yellow);
             //OnDrawGizmosSelected();
 
             OnCursorHitChange?.Invoke(hit);
-            // Debug.Log("raycast hit: " + hit.transform.gameObject.name);
 
             CheckInteractableTypeHit(hit);
 
@@ -160,6 +155,11 @@ public class InteractableDetector : MonoBehaviour
         else if (pickUpInteractor.isHoldingObj())
         {
             interactionType = InteractionType.Place;
+        } else if (hit.transform.GetComponent<OpenInteractable>())
+        {
+            bool isOpen = hit.transform.GetComponent<OpenInteractable>().isOpen;
+            _interactionCue.ToggleOpenClose(isOpen); // TODO: change to open
+            interactionType = InteractionType.Open;
         }
         else
         {
@@ -238,6 +238,11 @@ public class InteractableDetector : MonoBehaviour
         {
             Debug.Log("Interaction type: place");
             pickUpInteractor.DropHeldObject();
+        } else if (interactionType == InteractionType.Open)
+        {
+            Debug.Log("Interaction type: open");
+            GameObject obj = _currentHit.Value.transform.gameObject;
+            obj.GetComponent<OpenInteractable>().ToggleOpen();
         }
     }
 

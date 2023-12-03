@@ -896,6 +896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
+  resumeButton: {fileID: 0}
 --- !u!114 &4343487692431442849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,6 +979,7 @@ MonoBehaviour:
   _televisionCanvas: {fileID: 0}
   tvViewCamera: {fileID: 0}
   HUD: {fileID: 0}
+  _playerModel: {fileID: 3366239325542754265}
 --- !u!1001 &4806932000241162068
 PrefabInstance:
   m_ObjectHideFlags: 0

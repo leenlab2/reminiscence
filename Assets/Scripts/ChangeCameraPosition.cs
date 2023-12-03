@@ -13,6 +13,7 @@ public class ChangeCameraPosition : MonoBehaviour
     public GameObject HUD;
 
     private VideoControls _videoControls;
+    [SerializeField] private GameObject _playerModel;
 
     void Start()
     {        
@@ -29,15 +30,12 @@ public class ChangeCameraPosition : MonoBehaviour
 
     /*
      * If:
-     *    TODO: player within range of TV and
      *    camera is currently on player and
      *    player presses button T
      * then switch camera to focus on TV
      */
     public void SwitchToTapeView()
     {
-        Debug.Log("Switching to tape view");
-
         _originalCamera = Camera.main;
 
         _originalCamera.gameObject.SetActive(false);
@@ -47,6 +45,10 @@ public class ChangeCameraPosition : MonoBehaviour
 
         _televisionCanvas.SetActive(true);
         _videoControls = FindObjectOfType<VideoControls>();
+        
+        // Turn off Player model to avoid blocking TV screen
+        _playerModel.SetActive(false);
+        
     }
     
     /*
@@ -58,8 +60,6 @@ public class ChangeCameraPosition : MonoBehaviour
 
     public void SwitchToPlayerView()
     {
-        Debug.Log("Switching to player view");
-
         _videoControls.Pause(); // pause video in case playing
 
         _originalCamera.gameObject.SetActive(true);
@@ -68,6 +68,9 @@ public class ChangeCameraPosition : MonoBehaviour
         HUD.GetComponent<Canvas>().worldCamera = _originalCamera.transform.Find("UI Camera").GetComponent<Camera>();
 
         _televisionCanvas.SetActive(false);
+        
+        // Turn Player model back on
+        _playerModel.SetActive(true);
     }
 
     void PauseGame()

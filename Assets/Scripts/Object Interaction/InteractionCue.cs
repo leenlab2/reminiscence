@@ -16,6 +16,8 @@ public enum InteractionCueType
     EnterMemory,
     EnterTV,
     ExitTV,
+    Open,
+    Close
 }
 
 public class InteractionCue : MonoBehaviour
@@ -32,6 +34,8 @@ public class InteractionCue : MonoBehaviour
     private string xboxEnterTV = "<sprite=0> Enter TV mode";
     private string xboxExitTV = "<sprite=0> Exit TV mode";
     private string xboxPickUp = "<sprite=1> Pickup";
+    private string xboxOpen = "<sprite=1> Open";
+    private string xboxClose = "<sprite=1> Close";
     private string xboxInsertTape = "<sprite=1> Insert tape";
     private string xboxRemoveTape = "<sprite=1> Remove tape";
     // private string xboxPutDown = "<sprite=5> Inspect";
@@ -44,6 +48,8 @@ public class InteractionCue : MonoBehaviour
     private string kmEnterTV = "<sprite=12> Enter TV mode";
     private string kmExitTV = "<sprite=12> Exit TV mode";
     private string kmPickUp = "<sprite=16> Pickup";
+    private string kmOpen = "<sprite=16> Open";
+    private string kmClose = "<sprite=16> Close";
     private string kmInsertTape = "<sprite=16> Insert tape";
     private string kmRemoveTape = "<sprite=16> Remove tape";
     // private string kmPutDown = "[E] Inspect";
@@ -79,6 +85,27 @@ public class InteractionCue : MonoBehaviour
     public void ToggleController()
     {
         isController = !isController;
+        InputManager inputManager = FindObjectOfType<InputManager>();
+        if (isController)
+        {
+            if (inputManager.InTVMode())
+            {
+                _TVText.text = xboxExitTV;
+            } else
+            {
+                _TVText.text = xboxEnterTV;
+            }
+        }
+        else
+        {
+            if (inputManager.InTVMode())
+            {
+                _TVText.text = kmExitTV;
+            } else
+            {
+                _TVText.text = kmEnterTV;
+            }
+        }
     }
 
     public void SetInteractionCue(InteractionCueType type)
@@ -99,7 +126,29 @@ public class InteractionCue : MonoBehaviour
             {
                 _pickupText.text = kmPickUp;
             }
-        } else if (type == InteractionCueType.InsertTape)
+        }
+        else if (type == InteractionCueType.Open)
+        {
+            if (isController)
+            {
+                _pickupText.text = xboxOpen;
+            }
+            else
+            {
+                _pickupText.text = kmOpen;
+            }
+        } else if (type == InteractionCueType.Close)
+        {
+            if (isController)
+            {
+                _pickupText.text = xboxClose;
+            }
+            else
+            {
+                _pickupText.text = kmClose;
+            }
+        }
+        else if (type == InteractionCueType.InsertTape)
         {
             if (isController)
             {
@@ -211,6 +260,17 @@ public class InteractionCue : MonoBehaviour
             {
                 _TVText.text = kmExitTV;
             }
+        }
+    }
+
+    public void ToggleOpenClose(bool isOpen)
+    {
+        if (isOpen)
+        {
+            SetInteractionCue(InteractionCueType.Close);
+        } else
+        {
+            SetInteractionCue(InteractionCueType.Open);
         }
     }
 }
