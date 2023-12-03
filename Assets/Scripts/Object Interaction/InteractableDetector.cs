@@ -14,6 +14,7 @@ public enum InteractionType
     None,
     Pickup,
     Place,
+    Open,
     InsertRemoveTape
 }
 
@@ -72,33 +73,39 @@ public class InteractableDetector : MonoBehaviour
         origin = Camera.main.transform.position;
         Vector3 direction = Camera.main.transform.TransformDirection(Vector3.forward);
         Ray originRay = new Ray(origin, direction);
-
-
+        
         Debug.DrawRay(origin, direction * maxPlayerReach, Color.red);
 
         int layerMask = ~LayerMask.GetMask("Ignore Raycast");
+        
+        // Unhighlight VHS player if it has a tape
+        TapeManager tapeManager = FindObjectOfType<TapeManager>();
+        if (tapeManager.televisionHasTape())
+        {
+            GameObject vhsPlayer = GameObject.Find("VHS");
+            unhighlightObject(vhsPlayer);
+        }
 
         // Perform raycast
         if (Physics.SphereCast(originRay, sphereRadius, out hit, maxPlayerReach, layerMask))
-        //if (Physics.Raycast(origin, direction, out hit, maxPlayerReach, layerMask))
         {
-            // Draw the ray
-            Debug.DrawRay(origin, direction * hit.distance, Color.yellow);
-
-            // Draw the sphere at the hit point
-            // Draw a yellow sphere at the transform's position
+            //Debug.DrawRay(origin, direction * hit.distance, Color.yellow);
             //OnDrawGizmosSelected();
 
             OnCursorHitChange?.Invoke(hit);
-            // Debug.Log("raycast hit: " + hit.transform.gameObject.name);
 
             CheckInteractableTypeHit(hit);
-
+            
             // if cursor on interactable object immediately after being on another interactable object
             if (currentObj)
             {
-                //Debug.Log(currentObj.name);
-                unhighlightObject(currentObj);
+                Debug.Log(currentObj.name);
+
+                // If cursor moves off VHS player and TV has no tape, keep VHS player highlighted. Otherwise, unhighlight object
+                if (!(currentObj.name == "VHS" && !tapeManager.televisionHasTape()))
+                {
+                    unhighlightObject(currentObj);
+                }
                 currentObj = null;
             }
 
@@ -158,6 +165,11 @@ public class InteractableDetector : MonoBehaviour
         else if (pickUpInteractor.isHoldingObj())
         {
             interactionType = InteractionType.Place;
+        } else if (hit.transform.GetComponent<OpenInteractable>())
+        {
+            bool isOpen = hit.transform.GetComponent<OpenInteractable>().isOpen;
+            _interactionCue.ToggleOpenClose(isOpen); // TODO: change to open
+            interactionType = InteractionType.Open;
         }
         else
         {
@@ -236,6 +248,11 @@ public class InteractableDetector : MonoBehaviour
         {
             Debug.Log("Interaction type: place");
             pickUpInteractor.DropHeldObject();
+        } else if (interactionType == InteractionType.Open)
+        {
+            Debug.Log("Interaction type: open");
+            GameObject obj = _currentHit.Value.transform.gameObject;
+            obj.GetComponent<OpenInteractable>().ToggleOpen();
         }
     }
 

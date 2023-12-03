@@ -130,7 +130,6 @@ public class InputManager : MonoBehaviour
         // print current selected from event system
         //Debug.Log(EventSystem.current.currentSelectedGameObject);
     }
-
     private void OnApplicationFocus(bool focus)
     {
         if (focus)
