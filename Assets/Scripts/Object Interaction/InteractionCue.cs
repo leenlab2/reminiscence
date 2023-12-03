@@ -88,7 +88,11 @@ public class InteractionCue : MonoBehaviour
         InputManager inputManager = FindObjectOfType<InputManager>();
         if (isController)
         {
-            if (inputManager.InTVMode())
+            if (inputManager.isInMemoryMode())
+            {
+                _TVText.text = xboxExitMemoryText;
+            }
+            else if (inputManager.InTVMode())
             {
                 _TVText.text = xboxExitTV;
             } else
@@ -98,7 +102,11 @@ public class InteractionCue : MonoBehaviour
         }
         else
         {
-            if (inputManager.InTVMode())
+            if (inputManager.isInMemoryMode())
+            {
+                _TVText.text = kmExitMemoryText;
+            }
+            else if (inputManager.InTVMode())
             {
                 _TVText.text = kmExitTV;
             } else
