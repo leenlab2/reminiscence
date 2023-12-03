@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
 
     private Rigidbody playerBody;
 
-    private float _mouseSensitivity = 1.5f;
+    private float _mouseSensitivity = 2.0f;
     private Animator playerAnimate;
     
     private float _sprintSpeed = 9f;
@@ -232,7 +232,7 @@ public class InputManager : MonoBehaviour
 
     public void changeCameraSpeed(float sliderVal)
     {
-        _mouseSensitivity = 1.5f * sliderVal;
+        _mouseSensitivity = 2.0f * sliderVal;
     }
     #endregion
 
