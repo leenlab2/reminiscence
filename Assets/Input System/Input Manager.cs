@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
 
     private Rigidbody playerBody;
 
-    private float _mouseSensitivity = 2f;
+    private float _mouseSensitivity = 1.5f;
     private Animator playerAnimate;
     
     private float _sprintSpeed = 9f;
@@ -228,6 +228,11 @@ public class InputManager : MonoBehaviour
         playerCamera.localRotation = Quaternion.Euler(x_rotation, playerCamera.localRotation.y, playerCamera.localRotation.z);
 
         //playerCamera.Rotate(-cameraInput.y * _mouseSensitivity, 0, 0);
+    }
+
+    public void changeCameraSpeed(float sliderVal)
+    {
+        _mouseSensitivity = 1.5f * sliderVal;
     }
     #endregion
 
