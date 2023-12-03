@@ -22,6 +22,7 @@ public class VideoControls : MonoBehaviour
     public AudioSource televisionAudioSource;
     public ParticleSystem televisionParticleEffects;
     private TapeManager _tapeManager;
+    private DialogueManager _dialogueManager;
 
     public static Action clipWatched;
 
@@ -30,6 +31,8 @@ public class VideoControls : MonoBehaviour
         print(GameObject.Find("TV"));
         _tapeManager = FindObjectOfType<TapeManager>();
         _videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
+        _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
+
         if (_progressBarImage != null)
         {
             _progressBarImage.fillAmount = 0;
@@ -142,6 +145,13 @@ public class VideoControls : MonoBehaviour
         {
             float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length); 
             _progressBarImage.fillAmount = progressPercentage;
+
+            //Dialogue Test
+            if (progressPercentage >= 0.5f)
+            {
+                _dialogueManager.setDialogueText("THIS IS A TEST");
+                _dialogueManager.playDialogueSubtitles();
+            }
 
             if (progressPercentage >= 0.95f)
             {

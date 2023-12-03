@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void setDialogue(GameObject obj)
@@ -45,11 +45,25 @@ public class DialogueManager : MonoBehaviour
         objectTextInfo.value = _inspectionObjectText;
     }
 
+    public void setDialogueText(string text)
+    {
+        _inspectionObjectText = text;
+
+        //objectAudioInfo.SetAudioClip(_pickupInteractable.dialogueAudio);
+        objectTextInfo.value = _inspectionObjectText;
+    }
+
     public void playDialogue()
     {
         //Dialogue Audio
         audio.clip = objectAudioInfo.GetSoundClip();
         audio.PlayOneShot(audio.clip, 1.0F);
+
+    }
+
+    public void playDialogueSubtitles()
+    {
+        _interactionCue.SetInteractionCue(InteractionCueType.SubtitlesOn);
     }
 
     public void stopDialogue()

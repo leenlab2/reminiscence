@@ -17,7 +17,9 @@ public enum InteractionCueType
     EnterTV,
     ExitTV,
     Open,
-    Close
+    Close,
+    SubtitlesOn,
+    SubtitlesOff
 }
 
 public class InteractionCue : MonoBehaviour
@@ -276,6 +278,12 @@ public class InteractionCue : MonoBehaviour
             {
                 _TVText.text = kmExitTV;
             }
+        }else if (type == InteractionCueType.SubtitlesOn)
+        {
+            _dialogueText.text = dialogueTextInfo.value;
+        }else if (type == InteractionCueType.SubtitlesOff)
+        {
+            _dialogueText.text = empty;
         }
     }
 
