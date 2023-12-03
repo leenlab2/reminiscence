@@ -73,11 +73,18 @@ public class InteractableDetector : MonoBehaviour
         origin = Camera.main.transform.position;
         Vector3 direction = Camera.main.transform.TransformDirection(Vector3.forward);
         Ray originRay = new Ray(origin, direction);
-
-
+        
         Debug.DrawRay(origin, direction * maxPlayerReach, Color.red);
 
         int layerMask = ~LayerMask.GetMask("Ignore Raycast");
+        
+        // Unhighlight VHS player if it has a tape
+        TapeManager tapeManager = FindObjectOfType<TapeManager>();
+        if (tapeManager.televisionHasTape())
+        {
+            GameObject vhsPlayer = GameObject.Find("VHS");
+            unhighlightObject(vhsPlayer);
+        }
 
         // Perform raycast
         if (Physics.SphereCast(originRay, sphereRadius, out hit, maxPlayerReach, layerMask))
@@ -88,12 +95,17 @@ public class InteractableDetector : MonoBehaviour
             OnCursorHitChange?.Invoke(hit);
 
             CheckInteractableTypeHit(hit);
-
+            
             // if cursor on interactable object immediately after being on another interactable object
             if (currentObj)
             {
-                //Debug.Log(currentObj.name);
-                unhighlightObject(currentObj);
+                Debug.Log(currentObj.name);
+
+                // If cursor moves off VHS player and TV has no tape, keep VHS player highlighted. Otherwise, unhighlight object
+                if (!(currentObj.name == "VHS" && !tapeManager.televisionHasTape()))
+                {
+                    unhighlightObject(currentObj);
+                }
                 currentObj = null;
             }
 
