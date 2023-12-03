@@ -317,6 +317,7 @@ public class InputManager : MonoBehaviour
             playerInputActions.Inspect.Enable();
 
             inspection.ToggleFocusObject(true);
+            _dialogueManager.playDialogue();
         }
         else
         {
@@ -325,6 +326,9 @@ public class InputManager : MonoBehaviour
             playerInputActions.Player.Enable();
             playerInputActions.Inspect.Disable();
             inspection.ToggleFocusObject(false);
+
+            //Stop dialogue
+            _dialogueManager.stopDialogue();
         }
     }
 
@@ -359,6 +363,7 @@ public class InputManager : MonoBehaviour
         currSelectedBranching = otherBranching;
 
         //Update dialogue and play audio
+        _dialogueManager.stopDialogue();
         _dialogueManager.setDialogue(currSelectedBranching);
         _dialogueManager.playBranchingDialogue();
 
@@ -376,6 +381,9 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Enable();
 
         inBranchingSelection = false;
+
+        //Stop the dialogue on select
+        _dialogueManager.stopDialogue();
     }
 
     public bool isInBranchingSelection()

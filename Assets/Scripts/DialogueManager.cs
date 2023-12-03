@@ -52,6 +52,11 @@ public class DialogueManager : MonoBehaviour
         audio.PlayOneShot(audio.clip, 1.0F);
     }
 
+    public void stopDialogue()
+    {
+        audio.Stop();
+    }
+
     public void playBranchingDialogue()
     {
         //Dialogue Audio
