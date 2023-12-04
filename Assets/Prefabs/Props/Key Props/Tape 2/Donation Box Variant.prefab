@@ -57,6 +57,10 @@ PrefabInstance:
       value: Hah, my dad never gave these out like I told him to? Well, it was out
         of my view and I couldn't focus on music back then.
       objectReference: {fileID: 0}
+    - target: {fileID: 1732874911824678292, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: appearingObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2170228245570418129, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_Name
       value: Donation Box Variant
