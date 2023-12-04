@@ -7,6 +7,7 @@ public class EndingManager : MonoBehaviour
 {
     public VideoClip EndingA;
     public VideoClip EndingB;
+    public VideoClip Neutral;
     public VideoClip Credits;
 
     private VideoPlayer _videoPlayer;
@@ -20,9 +21,13 @@ public class EndingManager : MonoBehaviour
         {
             _videoPlayer.clip = EndingA;
         }
-        else
+        else if (GameState.ending == Ending.EndingB)
         {
             _videoPlayer.clip = EndingB;
+        }
+        else
+        {
+            _videoPlayer.clip = Neutral;
         }
 
         _videoPlayer.Play();
