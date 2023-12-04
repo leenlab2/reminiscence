@@ -6470,10 +6470,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 450421515}
-    - target: {fileID: 2230785356099415936, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2585250944250562811, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: m_Name
       value: TV
