@@ -12430,6 +12430,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5010236338602959176, guid: 8323c276e8df1ac4ba59e13bbbc9aeae, type: 3}
+      propertyPath: isInteractable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6077679827462769062, guid: 8323c276e8df1ac4ba59e13bbbc9aeae, type: 3}
       propertyPath: m_Name
       value: Uniform
@@ -12709,6 +12713,10 @@ PrefabInstance:
     - target: {fileID: 3181716793586152738, guid: 735cf378ab576d840a6b668c959c09d0, type: 3}
       propertyPath: m_Name
       value: BandShirt
+      objectReference: {fileID: 0}
+    - target: {fileID: 4465341490210528716, guid: 735cf378ab576d840a6b668c959c09d0, type: 3}
+      propertyPath: isInteractable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6583079270962279718, guid: 735cf378ab576d840a6b668c959c09d0, type: 3}
       propertyPath: m_LocalPosition.x
