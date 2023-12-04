@@ -555,6 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EndingA: {fileID: 32900000, guid: a4cc70083c5f7c9499ae4720cc809ffd, type: 3}
   EndingB: {fileID: 32900000, guid: 8968473f64e6d51409637be3d1e0be8b, type: 3}
+  Neutral: {fileID: 32900000, guid: 188470ed5f0c76643a44bacaeb923fc8, type: 3}
   Credits: {fileID: 32900000, guid: 5ee4f29afb1901b4c9e414af82cbaf08, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
