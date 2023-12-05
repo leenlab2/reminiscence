@@ -84,7 +84,7 @@ MonoBehaviour:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 0
-    m_Scale: 1.6
+    m_Scale: 1.5
     m_Name: controls_3
     m_HashCode: 1728694520
   - m_ElementType: 2
@@ -120,7 +120,7 @@ MonoBehaviour:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 6
-    m_Scale: 1.8
+    m_Scale: 1.5
     m_Name: controls_6
     m_HashCode: 1728694525
   - m_ElementType: 2
@@ -156,7 +156,7 @@ MonoBehaviour:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 12
-    m_Scale: 1.6
+    m_Scale: 1.5
     m_Name: controls_13
     m_HashCode: 1212344329
   - m_ElementType: 2
@@ -194,9 +194,9 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 47
       m_Height: 46
-      m_HorizontalBearingX: -2.57
-      m_HorizontalBearingY: 35.56
-      m_HorizontalAdvance: 47
+      m_HorizontalBearingX: -5.6
+      m_HorizontalBearingY: 35.9
+      m_HorizontalAdvance: 48
     m_GlyphRect:
       m_X: 314
       m_Y: 335
@@ -211,7 +211,7 @@ MonoBehaviour:
       m_Width: 48
       m_Height: 48
       m_HorizontalBearingX: -5.6
-      m_HorizontalBearingY: 33.5
+      m_HorizontalBearingY: 35.9
       m_HorizontalAdvance: 48
     m_GlyphRect:
       m_X: 74
@@ -227,7 +227,7 @@ MonoBehaviour:
       m_Width: 48
       m_Height: 48
       m_HorizontalBearingX: -5.6
-      m_HorizontalBearingY: 33.5
+      m_HorizontalBearingY: 35.9
       m_HorizontalAdvance: 48
     m_GlyphRect:
       m_X: 154
@@ -243,7 +243,7 @@ MonoBehaviour:
       m_Width: 47
       m_Height: 47
       m_HorizontalBearingX: -5.6
-      m_HorizontalBearingY: 33.5
+      m_HorizontalBearingY: 35.9
       m_HorizontalAdvance: 47
     m_GlyphRect:
       m_X: 234
@@ -291,7 +291,7 @@ MonoBehaviour:
       m_Width: 58
       m_Height: 37
       m_HorizontalBearingX: -7.3
-      m_HorizontalBearingY: 28.1
+      m_HorizontalBearingY: 29.7
       m_HorizontalAdvance: 58
     m_GlyphRect:
       m_X: 75
@@ -403,7 +403,7 @@ MonoBehaviour:
       m_Width: 55
       m_Height: 37
       m_HorizontalBearingX: -13.3
-      m_HorizontalBearingY: 28.7
+      m_HorizontalBearingY: 28.9
       m_HorizontalAdvance: 55
     m_GlyphRect:
       m_X: 211

@@ -25,6 +25,7 @@ public class InputManager : MonoBehaviour
     private DialogueManager _dialogueManager;
     private GameObject currSelectedBranching = null;
     private GameObject oldSelected;
+    private GameObject hud;
 
     private bool inTVMode = false;
     private bool inMemoryMode = false;
@@ -114,6 +115,8 @@ public class InputManager : MonoBehaviour
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
         _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
         inTVMode = false;
+
+        hud = GameObject.Find("HUD");
     }
 
     private void FixedUpdate()
@@ -156,6 +159,8 @@ public class InputManager : MonoBehaviour
 
         playerInputActions.Player.Disable();
 
+        hud.SetActive(false);
+
         OnGamePaused?.Invoke();
     }
 
@@ -166,6 +171,8 @@ public class InputManager : MonoBehaviour
         gamePaused = false;
         playerInputActions.Player.Enable();
         EventSystem.current.SetSelectedGameObject(oldSelected);
+
+        hud.SetActive(true);
 
         OnGameResumed?.Invoke();
     }
