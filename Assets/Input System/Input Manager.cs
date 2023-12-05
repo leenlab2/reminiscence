@@ -218,13 +218,7 @@ public class InputManager : MonoBehaviour
     private void MoveCamera()
     {
         Vector2 cameraInput;
-        if (playerInputActions.Player.enabled)
-        {
-            cameraInput = playerInputActions.Player.Look.ReadValue<Vector2>();
-        } else
-        {
-            cameraInput = playerInputActions.Branching.Look.ReadValue<Vector2>();
-        }
+        cameraInput = playerInputActions.Player.Look.ReadValue<Vector2>();
 
         // Move the player to look around left/right when mouse pans left/right
         transform.Rotate(0, cameraInput.x * (float) Math.Tan(_mouseSensitivity * 0.5), 0);

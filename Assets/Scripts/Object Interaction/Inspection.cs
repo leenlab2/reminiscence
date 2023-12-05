@@ -52,7 +52,7 @@ public class Inspection : MonoBehaviour
         ChangeObjectLayer(holdArea.transform.GetChild(0), newLayer);
     }
 
-    public void ChangeObjectLayer(Transform obj, string layerName)
+    public static void ChangeObjectLayer(Transform obj, string layerName)
     {
         obj.gameObject.layer = LayerMask.NameToLayer(layerName);
 

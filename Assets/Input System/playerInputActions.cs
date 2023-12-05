@@ -1237,15 +1237,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""7640a630-4a5f-43db-a8de-c9d77b91ae7f"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Submit"",
                     ""type"": ""Button"",
                     ""id"": ""cbf93547-dcab-4082-a53b-a880717eeaa5"",
@@ -1396,39 +1387,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f60d5c6b-c823-4914-842c-f4e0c06fd0f2"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""76585d6d-2e83-476b-a2f7-8d0cbb754376"",
-                    ""path"": ""<Pointer>/delta"",
-                    ""interactions"": """",
-                    ""processors"": ""NormalizeVector2"",
-                    ""groups"": ""Keyboard&Mouse;Touch"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""aeabfa77-d937-4306-8a62-1291da9eb37e"",
-                    ""path"": ""<Joystick>/{Hatswitch}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1567,7 +1525,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Branching
         m_Branching = asset.FindActionMap("Branching", throwIfNotFound: true);
         m_Branching_Cancel = m_Branching.FindAction("Cancel", throwIfNotFound: true);
-        m_Branching_Look = m_Branching.FindAction("Look", throwIfNotFound: true);
         m_Branching_Submit = m_Branching.FindAction("Submit", throwIfNotFound: true);
         m_Branching_Navigate = m_Branching.FindAction("Navigate", throwIfNotFound: true);
         // Memory
@@ -1955,7 +1912,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Branching;
     private List<IBranchingActions> m_BranchingActionsCallbackInterfaces = new List<IBranchingActions>();
     private readonly InputAction m_Branching_Cancel;
-    private readonly InputAction m_Branching_Look;
     private readonly InputAction m_Branching_Submit;
     private readonly InputAction m_Branching_Navigate;
     public struct BranchingActions
@@ -1963,7 +1919,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         private @PlayerInputActions m_Wrapper;
         public BranchingActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Cancel => m_Wrapper.m_Branching_Cancel;
-        public InputAction @Look => m_Wrapper.m_Branching_Look;
         public InputAction @Submit => m_Wrapper.m_Branching_Submit;
         public InputAction @Navigate => m_Wrapper.m_Branching_Navigate;
         public InputActionMap Get() { return m_Wrapper.m_Branching; }
@@ -1978,9 +1933,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Cancel.started += instance.OnCancel;
             @Cancel.performed += instance.OnCancel;
             @Cancel.canceled += instance.OnCancel;
-            @Look.started += instance.OnLook;
-            @Look.performed += instance.OnLook;
-            @Look.canceled += instance.OnLook;
             @Submit.started += instance.OnSubmit;
             @Submit.performed += instance.OnSubmit;
             @Submit.canceled += instance.OnSubmit;
@@ -1994,9 +1946,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Cancel.started -= instance.OnCancel;
             @Cancel.performed -= instance.OnCancel;
             @Cancel.canceled -= instance.OnCancel;
-            @Look.started -= instance.OnLook;
-            @Look.performed -= instance.OnLook;
-            @Look.canceled -= instance.OnLook;
             @Submit.started -= instance.OnSubmit;
             @Submit.performed -= instance.OnSubmit;
             @Submit.canceled -= instance.OnSubmit;
@@ -2147,7 +2096,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface IBranchingActions
     {
         void OnCancel(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
     }

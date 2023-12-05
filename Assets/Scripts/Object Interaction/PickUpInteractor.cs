@@ -19,6 +19,7 @@ public class PickUpInteractor : MonoBehaviour
     [Header("Branching Item Held Position")]
     [SerializeField] private Transform rightHand;
     [SerializeField] private Transform leftHand;
+    [SerializeField] private GameObject crosshairs;
 
     public GameObject HeldObj { get; private set; }
     private GameObject righthandObj;
@@ -137,10 +138,21 @@ public class PickUpInteractor : MonoBehaviour
         NormalObjPickup(obj.GetComponent<PickupInteractable>(), rightHand);
         NormalObjPickup(otherBranching.GetComponent<PickupInteractable>(), leftHand);
 
+        // add picked up items to Branching layer
+        Inspection.ChangeObjectLayer(obj.transform, "Branching");
+        Inspection.ChangeObjectLayer(otherBranching.transform, "Branching");
+
+        rightHand.parent.Find("Canvas").gameObject.SetActive(true);
+
         _interactionCue.SetInteractionCue(InteractionCueType.Branching);
+
+        // TODO: make this more efficient
+        crosshairs.SetActive(false);
 
         righthandObj = obj;
         lefthandObj = otherBranching;
+        // TODO: mute all bgm
+        AudioController.instance.GetComponent<AudioSource>().mute = true;
 
         InteractableDetector interactableDetect = GetComponent<InteractableDetector>();
         interactableDetect.highlightObject(obj);
@@ -154,6 +166,14 @@ public class PickUpInteractor : MonoBehaviour
 
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
         PickupObject(pickObj);
+
+        Inspection.ChangeObjectLayer(righthandObj.transform, "Default");
+        Inspection.ChangeObjectLayer(lefthandObj.transform, "Default");
+
+        rightHand.parent.Find("Canvas").gameObject.SetActive(false);
+        crosshairs.SetActive(true);
+
+        AudioController.instance.GetComponent<AudioSource>().mute = false;
 
         righthandObj = null;
         lefthandObj = null;
