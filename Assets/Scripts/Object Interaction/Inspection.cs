@@ -7,18 +7,20 @@ public class Inspection : MonoBehaviour
     public GameObject holdArea;
     public AudioClipScriptableObject objectAudioInfo;
 
-
     private Camera cam;
     private Vector3 screenspaceCenter;
     private Vector3 localSidePosition;
 
     private Bounds heldObjBounds;
 
+    private Quaternion originalRotation;
+
     private void Awake()
     {
         cam = Camera.main;
         screenspaceCenter = new Vector3(Screen.width / 2, Screen.height / 2, 1.5f);
         localSidePosition = holdArea.transform.localPosition;
+        originalRotation = holdArea.transform.rotation;
     }
 
     public bool InspectIsValid()
@@ -44,7 +46,7 @@ public class Inspection : MonoBehaviour
         } else
         {
             newPosition = localSidePosition;
-
+            holdArea.transform.rotation = originalRotation;
             newLayer = "Default";
         }
 

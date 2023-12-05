@@ -160,6 +160,7 @@ public class PickupInteractable : Interactable
     {
         originalObjScale = transform.localScale;
         transform.localScale = transform.localScale / 2;
+        // TODO: figure out how to make all held objects a consistent size
     }
     #endregion
 }
