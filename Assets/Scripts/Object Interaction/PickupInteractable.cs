@@ -20,6 +20,7 @@ public class PickupInteractable : Interactable
     private Transform originalParent;
     private Vector3 originalObjScale;
     private Rigidbody rigidbody;
+    private bool guideOnWall;
     private bool onWall;
 
     [Header("Inspection Dialogue")]
@@ -35,6 +36,7 @@ public class PickupInteractable : Interactable
         originalObjScale = transform.localScale;
         rigidbody = GetComponent<Rigidbody>();
         onWall = false;
+        guideOnWall = false;
     }
 
     public void MoveToHand(Transform holdArea)
@@ -42,6 +44,7 @@ public class PickupInteractable : Interactable
         transform.SetPositionAndRotation(holdArea.position, holdArea.rotation);
         transform.SetParent(holdArea);
         onWall = false;
+        guideOnWall = false;
         objectTextInfo.value = inspectionObjectText;
 
         if (pickupSound.clip != null)
@@ -57,6 +60,11 @@ public class PickupInteractable : Interactable
         placementGuide.SetActive(on);
     }
 
+    public void ResetParent()
+    {
+        transform.SetParent(originalParent);
+    }
+
     public void MoveToPlacementGuide()
     {
         transform.SetPositionAndRotation(placementGuide.transform.position, placementGuide.transform.rotation);
@@ -66,6 +74,11 @@ public class PickupInteractable : Interactable
         {
             placeSound.Play();
         }
+
+        if (wallMountable && guideOnWall)
+        {
+            onWall = true;
+        }
     }
 
     public void TransformPlacementGuide(RaycastHit hit)
@@ -73,6 +86,7 @@ public class PickupInteractable : Interactable
         if (!placementGuide.activeSelf) return;
 
         onWall = false;
+        guideOnWall = false;
         bool hitIsWall;
         if(!IsValidSurface(hit, out hitIsWall)) return;
 
@@ -83,8 +97,8 @@ public class PickupInteractable : Interactable
             placementGuide.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
         }
 
-        if (wallMountable && hitIsWall) { 
-            onWall = true;
+        if (wallMountable && hitIsWall) {
+            guideOnWall = true;
             placementGuide.transform.position += 0.1f * hit.normal;
         } else if (!wallMountable && hitIsWall)
         {
