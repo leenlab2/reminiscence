@@ -1011,6 +1011,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &104832873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7081777278368111397, guid: 35b21464df4e4ff4cbb0293589ed9cf8, type: 3}
+  m_PrefabInstance: {fileID: 104832870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &107423896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2447,6 +2452,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2280167045166944507, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
+      propertyPath: crosshairs
+      value: 
+      objectReference: {fileID: 104832873}
     - target: {fileID: 4343487692431442849, guid: 269da555818aa4708930c30e1194c5c2, type: 3}
       propertyPath: _crossHairDisplay
       value: 
@@ -12706,17 +12715,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2111370020}
     m_Modifications:
-    - target: {fileID: 1088647644521217613, guid: 735cf378ab576d840a6b668c959c09d0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3181716793586152738, guid: 735cf378ab576d840a6b668c959c09d0, type: 3}
       propertyPath: m_Name
       value: BandShirt
-      objectReference: {fileID: 0}
-    - target: {fileID: 4465341490210528716, guid: 735cf378ab576d840a6b668c959c09d0, type: 3}
-      propertyPath: isInteractable
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6583079270962279718, guid: 735cf378ab576d840a6b668c959c09d0, type: 3}
       propertyPath: m_LocalPosition.x
