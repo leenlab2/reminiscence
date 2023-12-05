@@ -5206,8 +5206,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.9, y: 0.9, z: 3.8}
-  m_Center: {x: -0.3, y: 2, z: 0.8}
+  m_Size: {x: 2.9000006, y: 1.0171531, z: 3.9039063}
+  m_Center: {x: -0.29999605, y: 1.9944181, z: 0.74858236}
 --- !u!114 &7529412291629067653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5215,12 +5215,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472599695179718673}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 0.8962264, g: 0.65263283, b: 0.17248127, a: 1}
   outlineWidth: 0
   precomputeOutline: 0

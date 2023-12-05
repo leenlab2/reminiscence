@@ -30,6 +30,7 @@ public class PickUpInteractor : MonoBehaviour
     public static Action<GameObject> OnBranchingPickup;
 
     private InteractionCue _interactionCue;
+    private bool _firstTapePickup = false;
 
 #region IsHeld
     public bool isHoldingObj()
@@ -118,12 +119,12 @@ public class PickUpInteractor : MonoBehaviour
 
         ToggleObjectColliders(obj.gameObject, false);
 
-        if (obj.name == "Tape Model")
+        if (obj.name == "Tape Model" && !_firstTapePickup)
         {
             GameObject vhsPlayer = GameObject.Find("VHS");
             InteractableDetector interactableDetect = GetComponent<InteractableDetector>();
             interactableDetect.highlightObject(vhsPlayer);
-            vhsPlayer.GetComponent<Outline>().enabled = true;
+            _firstTapePickup = true;
         }
     }
 
