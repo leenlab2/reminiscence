@@ -169,9 +169,20 @@ public class PickUpInteractor : MonoBehaviour
     #region Object Drop
     public void DropHeldObject()
     {
-        DropObject(HeldObj);
+        PlaceObject(HeldObj);
 
         ResetHoldArea();
+    }
+
+    void PlaceObject(GameObject obj)
+    {
+        ToggleObjectColliders(obj, true);
+
+        PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
+        pickObj.MoveToPlacementGuide();
+        pickObj.TogglePlacementGuide(false);
+        pickObj.ToggleFreezeBody(false);
+        pickObj.MakeObjBig();
     }
 
     void DropObject(GameObject obj)
@@ -179,7 +190,7 @@ public class PickUpInteractor : MonoBehaviour
         ToggleObjectColliders(obj, true);
 
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
-        pickObj.MoveToPlacementGuide();
+        pickObj.ResetParent();
         pickObj.TogglePlacementGuide(false);
         pickObj.ToggleFreezeBody(false);
         pickObj.MakeObjBig();
