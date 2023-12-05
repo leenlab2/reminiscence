@@ -18,14 +18,6 @@ public class ChangeCameraPosition : MonoBehaviour
     void Start()
     {        
         _videoControls = FindObjectOfType<VideoControls>();
-        InputManager.OnGamePaused += PauseGame;
-        InputManager.OnGameResumed += ResumeGame;
-    }
-
-    private void OnDestroy()
-    {
-        InputManager.OnGamePaused -= PauseGame;
-        InputManager.OnGameResumed -= ResumeGame;
     }
 
     /*
@@ -62,30 +54,17 @@ public class ChangeCameraPosition : MonoBehaviour
     {
         _videoControls.Pause(); // pause video in case playing
 
-        _originalCamera.gameObject.SetActive(true);
-        tvViewCamera.gameObject.SetActive(false);
+        if (_originalCamera != null)
+        {
+            _originalCamera.gameObject.SetActive(true);
+            tvViewCamera.gameObject.SetActive(false);
 
-        HUD.GetComponent<Canvas>().worldCamera = _originalCamera.transform.Find("UI Camera").GetComponent<Camera>();
+            HUD.GetComponent<Canvas>().worldCamera = _originalCamera.transform.Find("UI Camera").GetComponent<Camera>();
+        }
 
         _televisionCanvas.SetActive(false);
         
         // Turn Player model back on
         _playerModel.SetActive(true);
-    }
-
-    void PauseGame()
-    {
-        if (_televisionCanvas.activeSelf)
-        {
-            _televisionCanvas.GetComponentInChildren<UnityEngine.EventSystems.EventSystem>().enabled = false;
-        }
-    }
-
-    void ResumeGame()
-    {
-        if (_televisionCanvas.activeSelf)
-        {
-            _televisionCanvas.GetComponentInChildren<UnityEngine.EventSystems.EventSystem>().enabled = true;
-        }
     }
 }
