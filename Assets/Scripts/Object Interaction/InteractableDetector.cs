@@ -92,7 +92,7 @@ public class InteractableDetector : MonoBehaviour
             //Debug.DrawRay(origin, direction * hit.distance, Color.yellow);
             //OnDrawGizmosSelected();
 
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
             OnCursorHitChange?.Invoke(hit);
 
             CheckInteractableTypeHit(hit);

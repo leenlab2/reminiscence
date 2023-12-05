@@ -13,6 +13,7 @@ public class PuzzleManager : MonoBehaviour
 
     public GameObject currentBranchingItemModel;
     public GameObject memorySceneCanvas;
+    public Animator tape2Box; 
 
     private InputManager inputManager;
     private PlacementAudio placementAudio;
@@ -103,6 +104,12 @@ public class PuzzleManager : MonoBehaviour
         GameState.level++;
         countKeyItemsLeft = 3;
         Debug.Log($"Starting level: {GameState.level}");
+
+        if (GameState.level == 2)
+        {
+            Debug.Log("Opening tape box");
+            tape2Box.SetBool("IsOpen", true);
+        }
 
         TapeInformation tapeInformation = tapeObjs[GameState.level - 1].GetComponentInChildren<TapeInformation>();
         tapeInformation.TapeSO.tapeIsFixed = true;
