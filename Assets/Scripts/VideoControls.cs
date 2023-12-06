@@ -23,6 +23,9 @@ public class VideoControls : MonoBehaviour
     public ParticleSystem televisionParticleEffects;
     private TapeManager _tapeManager;
 
+    [SerializeField]
+    private VideoClip insertTapeVideoClip;
+
     public static Action clipWatched;
 
     void Start()
@@ -137,13 +140,14 @@ public class VideoControls : MonoBehaviour
     void Update()
     {
         if (_progressBarImage == null) return;
+        
 
         if (_videoPlayer.length > 0)
         {
             float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length); 
             _progressBarImage.fillAmount = progressPercentage;
 
-            if (progressPercentage >= 0.95f)
+            if (progressPercentage >= 0.95f && !(_videoPlayer.clip.name == insertTapeVideoClip.name))
             {
                 clipWatched?.Invoke();
             }
