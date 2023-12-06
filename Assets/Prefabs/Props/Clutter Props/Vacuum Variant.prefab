@@ -107,6 +107,10 @@ PrefabInstance:
       value: Vacuum Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 463688c57e283a240b343e30bb1b821b, type: 3}
+    - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: inspectionObjectText
       value: Aha! My mom's prefered weapon of choice!
       objectReference: {fileID: 0}

@@ -21,6 +21,10 @@ PrefabInstance:
       value: Old Chair Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 84e351b98cd435145834fc57fc212818, type: 3}
+    - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: inspectionObjectText
       value: How many times did I fall because this thing kept breaking? Good times!
       objectReference: {fileID: 0}
