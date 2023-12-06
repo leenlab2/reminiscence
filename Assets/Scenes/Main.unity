@@ -1496,6 +1496,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3004229588434310234, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 20bb2ee37c4d92b40af834f6dab70e16, type: 3}
     - target: {fileID: 4066332758468689076, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
       propertyPath: m_Name
       value: Tape 2
@@ -2494,11 +2498,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3526766953257927981, guid: 9bc902f5ee96d2649abe95db5d43e40a, type: 3}
   m_PrefabInstance: {fileID: 214100662}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &253514516 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1434626060016628785, guid: cff9d31a5a9730f4da76801e64d27f9d, type: 3}
-  m_PrefabInstance: {fileID: 1985482165}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &254890995
 PrefabInstance:
@@ -7966,7 +7965,7 @@ Transform:
   m_LocalScale: {x: 0.6666666, y: 0.6666667, z: 0.6666666}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1855827071}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1110971568
 AudioSource:
@@ -12245,7 +12244,6 @@ Transform:
   - {fileID: 5702365075626423004}
   - {fileID: 1834451414}
   - {fileID: 1549415052}
-  - {fileID: 253514516}
   - {fileID: 547631119}
   m_Father: {fileID: 445247270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14266,6 +14264,46 @@ PrefabInstance:
       propertyPath: appearingObjects.Array.data[0]
       value: 
       objectReference: {fileID: 1934668634}
+    - target: {fileID: 6861346654409912278, guid: 51e3b41cbbfc61f43afa1c751cb81f93, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861346654409912278, guid: 51e3b41cbbfc61f43afa1c751cb81f93, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861346654409912278, guid: 51e3b41cbbfc61f43afa1c751cb81f93, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861346654409912278, guid: 51e3b41cbbfc61f43afa1c751cb81f93, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9987304
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861346654409912278, guid: 51e3b41cbbfc61f43afa1c751cb81f93, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.049078874
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861346654409912278, guid: 51e3b41cbbfc61f43afa1c751cb81f93, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.00055705453
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861346654409912278, guid: 51e3b41cbbfc61f43afa1c751cb81f93, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.011335791
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861346654409912278, guid: 51e3b41cbbfc61f43afa1c751cb81f93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -5.625
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861346654409912278, guid: 51e3b41cbbfc61f43afa1c751cb81f93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.128
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861346654409912278, guid: 51e3b41cbbfc61f43afa1c751cb81f93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 1.307
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15343,6 +15381,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 858339499}
     m_Modifications:
+    - target: {fileID: 3004229588434310234, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 34cb996dbb9737f499008810b6eabede, type: 3}
     - target: {fileID: 4066332758468689076, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
       propertyPath: m_Name
       value: Tape
@@ -15433,3 +15475,4 @@ SceneRoots:
   - {fileID: 546127321}
   - {fileID: 2079296147}
   - {fileID: 2099192983}
+  - {fileID: 1110971567}
