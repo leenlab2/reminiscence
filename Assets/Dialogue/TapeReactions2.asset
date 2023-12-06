@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f595e19fa89d5546ac0a31acc465cc7, type: 3}
+  m_Name: TapeReactions2
+  m_EditorClassIdentifier: 
+  tapeNumber: 2
+  start: {fileID: 8300000, guid: 0628389e5b638454ca8fd4729e598e58, type: 3}
+  middle: {fileID: 8300000, guid: aa8e740381f004949abc0960082995c0, type: 3}
+  endA: {fileID: 8300000, guid: 752531373fd171f478b3346b7b760cb6, type: 3}
+  endB: {fileID: 8300000, guid: 4191bda786ace444bac239c177d702ba, type: 3}
+  startSubtitles: "We used to fight all the time\u2026 Years later he won't even
+    look at my face\u2026"
+  middleSubtitles: ' Ouch.'
+  endASubtitles: "Life's still kicking my ass to this day\u2026"
+  endBSubtitles: "He always tried his best\u2026"
