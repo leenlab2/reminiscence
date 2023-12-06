@@ -44,7 +44,7 @@ public class InteractionCue : MonoBehaviour
     private string xboxInspectionText = "<sprite=4> Rotate                        <sprite=2> Exit";
     private string xboxBranching = "<sprite=4> Switch                         <sprite=1> Select";
     private string xboxExitMemoryText = "<sprite=2> Exit Memory";
-    private string xboxPause = "<sprite=6> Pause";
+    private string xboxPause = "<sprite=1> Pause";
 
     // keyboard/mouse controls
     private string kmEnterTV = "<sprite=12> Enter TV mode";
@@ -59,7 +59,7 @@ public class InteractionCue : MonoBehaviour
     private string kmInspectionText = "<sprite=17> Rotate                        <sprite=15> Exit";
     private string kmBranching = "<sprite=14> Switch                         <sprite=16> Select";
     private string kmExitMemoryText = "<sprite=13> Exit Memory";
-    private string kmPause = "[ESC] Pause";
+    private string kmPause = "<sprite=0> Pause";
 
     private string empty = "";
 
