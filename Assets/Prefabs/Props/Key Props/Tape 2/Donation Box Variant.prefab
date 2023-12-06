@@ -105,6 +105,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4673312867759188523, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4673312867759188523, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4fd92be8f4623354d936e81da6a176ea, type: 3}
     - target: {fileID: 6006811398805241733, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: distanceThreshold
       value: 2

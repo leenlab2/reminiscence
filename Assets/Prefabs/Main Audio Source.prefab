@@ -150,6 +150,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d69ef2e1d28ffc44e9794124479d2dd2, type: 3}
   - {fileID: 8300000, guid: 8bcc640bb27af1d46b01bd20c7fbdd41, type: 3}
   - {fileID: 8300000, guid: 91098b38aaa48854f82b8e9e368c1599, type: 3}
+  bgmStems:
+  - {fileID: 8300000, guid: 9d6d31da7d4558845b62f092561b0386, type: 3}
+  - {fileID: 8300000, guid: 527694199a722b741941b6dfa25ee947, type: 3}
 --- !u!168 &8039753086054777744
 AudioEchoFilter:
   m_ObjectHideFlags: 0

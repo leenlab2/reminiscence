@@ -46,6 +46,11 @@ public class AudioController : MonoBehaviour
     {
         GetComponentInChildren<AudioSource>().clip = bgmStems[level - 1];
         GetComponentInChildren<AudioSource>().Play();
+
+        if (level == 2)
+        {
+            GetComponentInChildren<AudioSource>().volume = 1f;
+        }
     }
 
     public void PlayFootsteps(float velocity)
