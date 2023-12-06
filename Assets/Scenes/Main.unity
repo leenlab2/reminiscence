@@ -8187,10 +8187,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Rewind
       objectReference: {fileID: 0}
+    - target: {fileID: 6955667546378465164, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.4090896
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955667546378465164, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.36037862
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955667546378465164, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.93280613
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955667546378465164, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.607098
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955667546378465164, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 137.753
+      objectReference: {fileID: 0}
     - target: {fileID: 7465971701463220807, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: sceneManagement
       value: 
       objectReference: {fileID: 1663569518}
+    - target: {fileID: 7800648725117463693, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
