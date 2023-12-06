@@ -23,8 +23,9 @@ public class VideoControls : MonoBehaviour
     public AudioSource televisionAudioSource;
     public ParticleSystem televisionParticleEffects;
     private TapeManager _tapeManager;
+    [SerializeField] private AudioSource buttonPressAudio;
     private DialogueManager _dialogueManager;
-
+    
     public static Action clipWatched;
     
     public static Action dialoguePrompt;
@@ -36,9 +37,9 @@ public class VideoControls : MonoBehaviour
 
     void Start()
     {
-        print(GameObject.Find("TV"));
         _tapeManager = FindObjectOfType<TapeManager>();
         _videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
+        buttonPressAudio = GetComponent<AudioSource>();
         _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
 
         if (_progressBarImage != null)
@@ -62,47 +63,50 @@ public class VideoControls : MonoBehaviour
 
     public void PauseOrPlay()
     {
+        PlayButtonPressAudio();
         if (_videoPlayer.isPlaying)
         {
             Pause();
         }
         else
         {
-            print("Play!");
             _videoPlayer.Play();
         }
     }
 
     public void Pause()
     {
-        print("Pause!");
         _videoPlayer.Pause();
     }
     
     public void Rewind()
     {
-        print("Rewind!");
+        PlayButtonPressAudio();
         _videoPlayer.time = _videoPlayer.time - 7;
     }
 
     public void FastForward()
     {
-        print("FastForward!");
+        PlayButtonPressAudio();
         _videoPlayer.time = _videoPlayer.time + 7;
     }
     
     public void Replay()
     {
-        print("Replay!");
+        PlayButtonPressAudio();
         _videoPlayer.time = 0;
         _videoPlayer.Play();
+    }
+
+    public void PlayButtonPressAudio()
+    {
+        buttonPressAudio.Play();
     }
 
     // Pass in one of the solution clip ENUMs
     public void CompletePuzzle(ClipToPlay clip) // TODO: Only call this method if there exists a tape in the TV. Otherwise, we wouldn't know which tape's puzzle we are currently solving
     {   
         // play confirmation noise from television
-        // televisionAudioSource.Play();
         televisionParticleEffects.startColor = Color.yellow; // play particles from TV
         televisionParticleEffects.Play();
 
