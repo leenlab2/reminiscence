@@ -50,9 +50,9 @@ public class DialogueManager : MonoBehaviour
     {
 
         float timer = playReaction();
-        if (timer > 10F) { timer = 10F; } //TAKE THIS OUT ONCE CLIPS HAVE BEEN TRIMMED
+        if (timer > 10f) { timer = 10f; } //TAKE THIS OUT ONCE CLIPS HAVE BEEN TRIMMED
         playDialogueSubtitles(timer);
-        Invoke(stopReaction, timer);
+        Invoke("stopReaction", timer);
     }
 
     #region Set Dialogue + Subtitles
