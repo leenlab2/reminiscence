@@ -105,12 +105,6 @@ public class PuzzleManager : MonoBehaviour
         countKeyItemsLeft = 3;
         Debug.Log($"Starting level: {GameState.level}");
 
-        if (GameState.level == 2)
-        {
-            Debug.Log("Opening tape box");
-            tape2Box.SetBool("IsOpen", true);
-        }
-
         TapeInformation tapeInformation = tapeObjs[GameState.level - 1].GetComponentInChildren<TapeInformation>();
         tapeInformation.TapeSO.tapeIsFixed = true;
         tapeInformation.TapeSO.clipToPlay = ClipToPlay.OriginalCorrupted;
@@ -131,16 +125,22 @@ public class PuzzleManager : MonoBehaviour
     
     IEnumerator TurnOffAudio()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
         OnLevelChange?.Invoke(GameState.level);
     }
 
     IEnumerator waiter()
     {
-        //Wait for 4 seconds
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         memorySceneCanvas.SetActive(false);
         inputManager.ExitMemoryScene(new InputAction.CallbackContext());
+
+        if (GameState.level == 2 && countKeyItemsLeft == 3 && currentBranch == Branch.None)
+        {
+            yield return new WaitForSeconds(0.5f);
+            Debug.Log("Opening tape box");
+            tape2Box.SetBool("IsOpen", true);
+        }
     }
 
     void OnGameComplete()
