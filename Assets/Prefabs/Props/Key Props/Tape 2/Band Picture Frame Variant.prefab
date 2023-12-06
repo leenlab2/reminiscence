@@ -1483,6 +1483,10 @@ PrefabInstance:
       value: 113.42
       objectReference: {fileID: 0}
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 89d923d7bd72f5b49b8fd315d2bc2d89, type: 3}
+    - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: inspectionObjectText
       value: Hey! All the guys are here! Might be good to call them up with me in
         town. We were amazing as a band.

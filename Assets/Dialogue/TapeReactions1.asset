@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: TapeReactions1
   m_EditorClassIdentifier: 
   tapeNumber: 1
-  start: {fileID: 8300000, guid: 6c5dab72566b959499a26350c7cbd951, type: 3}
+  start: {fileID: 8300000, guid: 65bd68a737b61674fa7465fb1f3a9bf8, type: 3}
   middle: {fileID: 8300000, guid: 7407652496ba7f248916e0a880312e63, type: 3}
   endA: {fileID: 8300000, guid: 97829de1583fee6429d66a42adda7bea, type: 3}
   endB: {fileID: 8300000, guid: 2b0e8b80a661aaa45b947620cd1b464d, type: 3}
-  startSubtitles: When was this recorded?
+  startSubtitles: "Oh my god, Joaquim. He looks so tiny\u2026"
   middleSubtitles: Was I that much of an asshole back then?
   endASubtitles: Maybe if I had my guitar back then I would have actually won. What
     else is in these tapes?

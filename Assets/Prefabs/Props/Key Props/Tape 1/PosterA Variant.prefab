@@ -59,7 +59,7 @@ PrefabInstance:
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: dialogueAudio
       value: 
-      objectReference: {fileID: 8300000, guid: f6c3b0be6e584e04b9d8b8b9d9c4bec4, type: 3}
+      objectReference: {fileID: 8300000, guid: 5b9990388d7dd694691fe5b7a010dc6f, type: 3}
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: wallMountable
       value: 1
