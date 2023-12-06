@@ -114,6 +114,11 @@ public class TapeManager : MonoBehaviour
         return currentTapeInTv.GetComponent<TapeInformation>().TapeSO;
     }
 
+    public TapeReactions GetTapeReactionsInTV()
+    {
+        return currentTapeInTv.GetComponent<TapeInformation>().TapeReactions;
+    }
+
     // Show cue of branching object for whatever tape is in the TV
     private void ShowBranchCues()
     {

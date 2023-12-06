@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f595e19fa89d5546ac0a31acc465cc7, type: 3}
+  m_Name: TapeReactions1
+  m_EditorClassIdentifier: 
+  tapeNumber: 1
+  start: {fileID: 8300000, guid: 6c5dab72566b959499a26350c7cbd951, type: 3}
+  middle: {fileID: 8300000, guid: 7407652496ba7f248916e0a880312e63, type: 3}
+  endA: {fileID: 8300000, guid: 97829de1583fee6429d66a42adda7bea, type: 3}
+  endB: {fileID: 8300000, guid: 2b0e8b80a661aaa45b947620cd1b464d, type: 3}
+  startSubtitles: When was this recorded?
+  middleSubtitles: Was I that much of an asshole back then?
+  endASubtitles: Maybe if I had my guitar back then I would have actually won. What
+    else is in these tapes?
+  endBSubtitles: "I thought\u2026 I was the one that fixed the guitar in the end.
+    What else have I forgotten about?"
