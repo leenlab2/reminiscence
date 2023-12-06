@@ -15308,22 +15308,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 263740764550698793, guid: eb61e4b31b59fb6468e1b09a862ffa83, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 263740764550698793, guid: eb61e4b31b59fb6468e1b09a862ffa83, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 980658744179382341, guid: eb61e4b31b59fb6468e1b09a862ffa83, type: 3}
       propertyPath: dialogueAudio
       value: 
-      objectReference: {fileID: 8300000, guid: 8c2c67088118629408f8d5ff7101c584, type: 3}
-    - target: {fileID: 980658744179382341, guid: eb61e4b31b59fb6468e1b09a862ffa83, type: 3}
-      propertyPath: objectAudioInfo
-      value: 
-      objectReference: {fileID: 11400000, guid: 17f168b25b2884e458ef6822baebc095, type: 2}
+      objectReference: {fileID: 8300000, guid: 84e351b98cd435145834fc57fc212818, type: 3}
     - target: {fileID: 2036842074227503275, guid: eb61e4b31b59fb6468e1b09a862ffa83, type: 3}
       propertyPath: m_Name
       value: Chair
