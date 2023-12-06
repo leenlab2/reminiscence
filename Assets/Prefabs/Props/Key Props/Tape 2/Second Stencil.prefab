@@ -42,8 +42,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: da7aa828dd4464a33b0ae7d9d34ac7e8, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -270,15 +270,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc08f9385ebb7924e893193fbb036050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInteractable: 0
+  enterSound: {fileID: 0}
+  exitSound: {fileID: 0}
+  audioSource: {fileID: 0}
+  pickupSound: {fileID: 8399571523744833000}
+  placeSound: {fileID: 9012502253471012600}
   placementGuide: {fileID: 7788281387875866423}
   wallMountable: 0
-  originalParent: {fileID: 0}
   objectTextInfo: {fileID: 11400000, guid: c4baf7bf52c29c64e899665b1cc8bb07, type: 2}
   objectAudioInfo: {fileID: 11400000, guid: 17f168b25b2884e458ef6822baebc095, type: 2}
   inspectionObjectText: Paint? That symbol... it looks familiar, but from where?
   dialogueAudio: {fileID: 8300000, guid: 8c2c67088118629408f8d5ff7101c584, type: 3}
-  pickupSound: {fileID: 8399571523744833000}
-  placeSound: {fileID: 9012502253471012600}
 --- !u!114 &7194209420348003164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,8 +373,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: da7aa828dd4464a33b0ae7d9d34ac7e8, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

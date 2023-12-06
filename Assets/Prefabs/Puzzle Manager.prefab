@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9211370734253348177}
-  - component: {fileID: 845513360825957052}
   - component: {fileID: 6771175446397445861}
   - component: {fileID: 4563849132696020942}
+  - component: {fileID: 1745181952052932677}
   m_Layer: 0
   m_Name: Puzzle Manager
   m_TagString: Untagged
@@ -34,23 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &845513360825957052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704303653242440373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eb44591aca7a524b9055380c06d54fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentBranchingItemModel: {fileID: 0}
-  memorySceneCanvas: {fileID: 2469239308035777312, guid: 8bf85bdc0850b2d44a1afee0d06a3f8f, type: 3}
-  tapeObjs:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &6771175446397445861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +144,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1745181952052932677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8704303653242440373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb44591aca7a524b9055380c06d54fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentBranchingItemModel: {fileID: 0}
+  memorySceneCanvas: {fileID: 0}
+  tape2Box: {fileID: 0}
+  tapeObjs:
+  - {fileID: 0}
+  - {fileID: 0}

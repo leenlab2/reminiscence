@@ -13,6 +13,7 @@ public class PuzzleManager : MonoBehaviour
 
     public GameObject currentBranchingItemModel;
     public GameObject memorySceneCanvas;
+    public Animator tape2Box; 
 
     private InputManager inputManager;
     private PlacementAudio placementAudio;
@@ -124,16 +125,22 @@ public class PuzzleManager : MonoBehaviour
     
     IEnumerator TurnOffAudio()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
         OnLevelChange?.Invoke(GameState.level);
     }
 
     IEnumerator waiter()
     {
-        //Wait for 4 seconds
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         memorySceneCanvas.SetActive(false);
         inputManager.ExitMemoryScene(new InputAction.CallbackContext());
+
+        if (GameState.level == 2 && countKeyItemsLeft == 3 && currentBranch == Branch.None)
+        {
+            yield return new WaitForSeconds(0.5f);
+            Debug.Log("Opening tape box");
+            tape2Box.SetBool("IsOpen", true);
+        }
     }
 
     void OnGameComplete()

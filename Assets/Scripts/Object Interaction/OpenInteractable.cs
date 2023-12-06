@@ -18,5 +18,7 @@ public class OpenInteractable : Interactable
     {
         isOpen = !isOpen;
         animator.SetBool("IsOpen", isOpen);
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play();
     }
 }
