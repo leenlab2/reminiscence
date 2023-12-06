@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Tape1
   m_EditorClassIdentifier: 
   originalCorruptedVideoClip: {fileID: 32900000, guid: 53f69572138474f9085eb61233d16e22, type: 3}
-  branchACorruptedVideoClip: {fileID: 32900000, guid: 2156983bbcffa4fb4975f96991213aaa, type: 3}
-  branchBCorruptedVideoClip: {fileID: 32900000, guid: f1f618564ab9947cda0707c0416d01ff, type: 3}
-  branchASolutionVideoClip: {fileID: 32900000, guid: aba4f598435614a86a3b597422a9ed3e, type: 3}
-  branchBSolutionVideoClip: {fileID: 32900000, guid: 9bcf4c5062a714736984434ab4b497eb, type: 3}
-  tapeIsFixed: 0
+  branchACorruptedVideoClip: {fileID: 32900000, guid: 497d0a5b1b83fbf4980d890af7bff9f4, type: 3}
+  branchBCorruptedVideoClip: {fileID: 32900000, guid: 4afe965dcead73344a0443c1d8cde949, type: 3}
+  branchASolutionVideoClip: {fileID: 32900000, guid: 370fc2b7799a991449a0d0ecfeb17c6f, type: 3}
+  branchBSolutionVideoClip: {fileID: 32900000, guid: c68fde70c7fb9544abbf40230b217af0, type: 3}
+  tapeIsFixed: 1
   clipToPlay: 0
   tapeSolutionBranch: 0
   level: 1
