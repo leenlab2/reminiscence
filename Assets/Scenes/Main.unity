@@ -8183,6 +8183,10 @@ PrefabInstance:
       propertyPath: sceneManagement
       value: 
       objectReference: {fileID: 1663569518}
+    - target: {fileID: 6931914186708807292, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Rewind
+      objectReference: {fileID: 0}
     - target: {fileID: 7465971701463220807, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: sceneManagement
       value: 
