@@ -20,12 +20,16 @@ public class VideoControls : MonoBehaviour
     private VideoPlayer _videoPlayer;
     public Image _progressBarImage;
     public GameObject _televisionCanvas;
-    public AudioSource televisionAudioSource;
-    public ParticleSystem televisionParticleEffects;
+    private AudioSource televisionAudioSource;
+    private ParticleSystem televisionParticleEffects;
     private TapeManager _tapeManager;
-    [SerializeField] private AudioSource buttonPressAudio;
+    private AudioSource buttonPressAudio;
     private DialogueManager _dialogueManager;
     
+
+    [SerializeField]
+    private VideoClip insertTapeVideoClip;
+
     public static Action clipWatched;
     
     public static Action dialoguePrompt;
@@ -215,9 +219,7 @@ public class VideoControls : MonoBehaviour
 
             ///////////////////////////
 
-
-
-            if (progressPercentage >= 0.95f)
+            if (progressPercentage >= 0.95f && !(_videoPlayer.clip.name == insertTapeVideoClip.name))
             {
                 clipWatched?.Invoke();
                 //hasBeenInvoked = false;
