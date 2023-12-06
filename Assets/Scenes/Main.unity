@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6073706, g: 0.44068745, b: 0.37690067, a: 1}
+  m_IndirectSpecularColor: {r: 0.60622907, g: 0.43973058, b: 0.376049, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11408,10 +11408,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Band Picture Frame
       objectReference: {fileID: 0}
-    - target: {fileID: 3989001445208749635, guid: cff9d31a5a9730f4da76801e64d27f9d, type: 3}
-      propertyPath: appearingObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 505747914}
     - target: {fileID: 5059210423413755394, guid: cff9d31a5a9730f4da76801e64d27f9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
