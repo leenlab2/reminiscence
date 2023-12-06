@@ -19,6 +19,7 @@ public class PickUpInteractor : MonoBehaviour
     [Header("Branching Item Held Position")]
     [SerializeField] private Transform rightHand;
     [SerializeField] private Transform leftHand;
+    [SerializeField] private GameObject crosshairs;
 
     public GameObject HeldObj { get; private set; }
     private GameObject righthandObj;
@@ -30,6 +31,7 @@ public class PickUpInteractor : MonoBehaviour
     public static Action<GameObject> OnBranchingPickup;
 
     private InteractionCue _interactionCue;
+    private bool _firstTapePickup = false;
 
 #region IsHeld
     public bool isHoldingObj()
@@ -62,6 +64,11 @@ public class PickUpInteractor : MonoBehaviour
 
         _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
+    }
+
+    private void OnDestroy()
+    {
+        InteractableDetector.OnCursorHitChange -= DetermineNewPosition;
     }
 
     private void ToggleObjectColliders(GameObject obj, bool on)
@@ -112,6 +119,14 @@ public class PickUpInteractor : MonoBehaviour
         obj.MoveToHand(newPos);
 
         ToggleObjectColliders(obj.gameObject, false);
+
+        if (obj.name == "Tape Model" && !_firstTapePickup)
+        {
+            GameObject vhsPlayer = GameObject.Find("VHS");
+            InteractableDetector interactableDetect = GetComponent<InteractableDetector>();
+            interactableDetect.highlightObject(vhsPlayer);
+            _firstTapePickup = true;
+        }
     }
 
     #region Branching Item Choice
@@ -123,10 +138,21 @@ public class PickUpInteractor : MonoBehaviour
         NormalObjPickup(obj.GetComponent<PickupInteractable>(), rightHand);
         NormalObjPickup(otherBranching.GetComponent<PickupInteractable>(), leftHand);
 
+        // add picked up items to Branching layer
+        Inspection.ChangeObjectLayer(obj.transform, "Branching");
+        Inspection.ChangeObjectLayer(otherBranching.transform, "Branching");
+
+        rightHand.parent.Find("Canvas").gameObject.SetActive(true);
+
         _interactionCue.SetInteractionCue(InteractionCueType.Branching);
+
+        // TODO: make this more efficient
+        crosshairs.SetActive(false);
 
         righthandObj = obj;
         lefthandObj = otherBranching;
+        // TODO: mute all bgm
+        AudioController.instance.GetComponent<AudioSource>().mute = true;
 
         InteractableDetector interactableDetect = GetComponent<InteractableDetector>();
         interactableDetect.highlightObject(obj);
@@ -140,6 +166,14 @@ public class PickUpInteractor : MonoBehaviour
 
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
         PickupObject(pickObj);
+
+        Inspection.ChangeObjectLayer(righthandObj.transform, "Default");
+        Inspection.ChangeObjectLayer(lefthandObj.transform, "Default");
+
+        rightHand.parent.Find("Canvas").gameObject.SetActive(false);
+        crosshairs.SetActive(true);
+
+        AudioController.instance.GetComponent<AudioSource>().mute = false;
 
         righthandObj = null;
         lefthandObj = null;
@@ -156,9 +190,20 @@ public class PickUpInteractor : MonoBehaviour
     #region Object Drop
     public void DropHeldObject()
     {
-        DropObject(HeldObj);
+        PlaceObject(HeldObj);
 
         ResetHoldArea();
+    }
+
+    void PlaceObject(GameObject obj)
+    {
+        ToggleObjectColliders(obj, true);
+
+        PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
+        pickObj.MoveToPlacementGuide();
+        pickObj.TogglePlacementGuide(false);
+        pickObj.ToggleFreezeBody(false);
+        pickObj.MakeObjBig();
     }
 
     void DropObject(GameObject obj)
@@ -166,7 +211,7 @@ public class PickUpInteractor : MonoBehaviour
         ToggleObjectColliders(obj, true);
 
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
-        pickObj.MoveToPlacementGuide();
+        pickObj.ResetParent();
         pickObj.TogglePlacementGuide(false);
         pickObj.ToggleFreezeBody(false);
         pickObj.MakeObjBig();

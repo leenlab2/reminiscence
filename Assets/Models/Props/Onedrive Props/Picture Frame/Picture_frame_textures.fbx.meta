@@ -18,12 +18,12 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Frame_Frame_BaseColor
-    second: {fileID: 2800000, guid: db0a12fa079deef478803000affc6f66, type: 3}
+    second: {fileID: 2800000, guid: baa6bd427ad34444d9bcf33d79c7cb2f, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Frame_Picture
-    second: {fileID: 2800000, guid: 0f32e49d70335f042b9030c297825cb8, type: 3}
+    second: {fileID: 2800000, guid: dc1feed92fd796a4c861dc1c29254d6d, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -52,7 +52,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1

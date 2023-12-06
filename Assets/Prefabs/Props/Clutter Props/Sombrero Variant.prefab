@@ -1,0 +1,244 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &66200262859878642
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 43770993739950759, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 839126950360818611, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569194390380454344, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_Name
+      value: Sombrero Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: d92f03135461a6a4ba9baf2979feeb5b, type: 3}
+    - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: inspectionObjectText
+      value: " Oh\u2026 Dad's hat\u2026 Heh look at that! It finally fits in my head!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344622818634122826, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.518
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377233922160096776, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 85cbf593e51dc4d80bd11e0b70ec57b0, type: 3}
+    - target: {fileID: 4677852714939348836, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 85cbf593e51dc4d80bd11e0b70ec57b0, type: 3}
+    - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98168254
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.19052443
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -21.967
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114742089837502924, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537206880551773397, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.437
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 5869136795443387708, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4344622818634122826, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3168011998068499837}
+    - targetCorrespondingSourceObject: {fileID: 6537206880551773397, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4399931264838881400}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+--- !u!4 &4368495652270945976 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4344622818634122826, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+  m_PrefabInstance: {fileID: 66200262859878642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6508796353895453735 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6537206880551773397, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+  m_PrefabInstance: {fileID: 66200262859878642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3205915725591020182
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4368495652270945976}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.518
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_Name
+      value: Sombrero_Volteado_Textured
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764288108801990510, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+--- !u!4 &3168011998068499837 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+  m_PrefabInstance: {fileID: 3205915725591020182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4216789068931282835
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6508796353895453735}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.437
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3409561801786755487, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_Name
+      value: Sombrero_Volteado_Textured
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764288108801990510, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+--- !u!4 &4399931264838881400 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ea6b51532c2d264ba921526cd5c1592, type: 3}
+  m_PrefabInstance: {fileID: 4216789068931282835}
+  m_PrefabAsset: {fileID: 0}

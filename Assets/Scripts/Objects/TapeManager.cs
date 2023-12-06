@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.Rendering;
+using System;
 
 public class TapeManager : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
     private GameObject currentTapeInTv;
     private PickUpInteractor pickUpInteractor;
-    
+    private bool lightsAreOn;
+
+    public static Action OnFirstTapeInserted;
+
     void Start()
     {
         videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
@@ -17,7 +22,7 @@ public class TapeManager : MonoBehaviour
         tapeSO.tapeIsFixed = false;
         tapeSO.clipToPlay = ClipToPlay.OriginalCorrupted;
         tapeSO.tapeSolutionBranch = ClipToPlay.OriginalCorrupted;
-        
+
         videoPlayer.targetTexture.Release(); // ensure nothing is rendered on TV upon startup
     }
 
@@ -42,7 +47,7 @@ public class TapeManager : MonoBehaviour
             TapeSO tapeSO = tapeGameObject.GetComponent<TapeInformation>().TapeSO;
             videoPlayer.clip = tapeSO.GetVideoClip();
             videoPlayer.time = 0;
-            
+
             // play first frame to update render text
             videoPlayer.Play();
             videoPlayer.Pause();
@@ -50,15 +55,31 @@ public class TapeManager : MonoBehaviour
             tapeGameObject.active = false;
             pickUpInteractor.DropHeldObject();
             
-            // activate branching items of this tape
-            TapeInformation tapeInfo = tapeGameObject.GetComponent<TapeInformation>();
+            TapeInformation tapeInfo = currentTapeInTv.GetComponent<TapeInformation>();
+            
+            // If user has not placed a branching item down for the current tape in TV, enable branching items' object distance scripts
+            if (tapeInfo.TapeSO.clipToPlay == ClipToPlay.OriginalCorrupted)
+            {
+                tapeInfo.branchingItemA.GetComponent<ObjectDistance>().enabled = true;
+                tapeInfo.branchingItemB.GetComponent<ObjectDistance>().enabled = true;
+                ShowBranchCues();
+            }
 
-            // TODO: Only activate branching items of this tape if PuzzleManager says we are on this tape's level
-            int level = tapeInfo.TapeSO.level;
-            //tapeInfo.branchingItemA.GetComponent<ObjectDistanceNew>().enabled = true;
-            //tapeInfo.branchingItemB.GetComponent<ObjectDistanceNew>().enabled = true;
-            ShowBranchCues();
+            // After insert tape change to normal lighting
+            RenderSettings.ambientMode = AmbientMode.Skybox;
 
+            if (!lightsAreOn)
+            {
+                GameObject.Find("Window Block").SetActive(false);
+                GameObject.Find("Tape Light").SetActive(false);
+                GameObject.Find("TVRoomSpotLight").GetComponent<Light>().enabled = true;
+                GameObject.Find("TVRoomSpotLight2").GetComponent<Light>().enabled = true;
+                GameObject.Find("Lamplight").GetComponent<Light>().enabled = true;
+
+                lightsAreOn = true;
+                OnFirstTapeInserted?.Invoke();
+            }
+            //GameObject.Find("TV Player").GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
         }
     }
 
@@ -77,20 +98,25 @@ public class TapeManager : MonoBehaviour
             int level = tapeInfo.TapeSO.level;
             tapeInfo.branchingItemA.GetComponent<ObjectDistance>().enabled = false;
             tapeInfo.branchingItemB.GetComponent<ObjectDistance>().enabled = false;
-            
+
             // put obj back in hands of player and set video clip on TV to null
             // set clip on TV's player to null
-            currentTapeInTv.active = true;
+            currentTapeInTv.SetActive(true);
             videoPlayer.targetTexture.Release();
             pickUpInteractor.PickupObject(currentTapeInTv);
             videoPlayer.clip = null;
             currentTapeInTv = null;
         }
     }
-    
+
     public TapeSO GetCurrentTapeInTV()
     {
         return currentTapeInTv.GetComponent<TapeInformation>().TapeSO;
+    }
+
+    public TapeReactions GetTapeReactionsInTV()
+    {
+        return currentTapeInTv.GetComponent<TapeInformation>().TapeReactions;
     }
 
     // Show cue of branching object for whatever tape is in the TV
@@ -101,6 +127,7 @@ public class TapeManager : MonoBehaviour
         objDist.targetObj.SetActive(true);
         ObjectDistance objDistB = tapeInfo.branchingItemB.GetComponent<ObjectDistance>();
         objDistB.targetObj.SetActive(true);
+
     }
 
     // Hide cue of branching object for whatever tape is in the TV

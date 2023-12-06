@@ -71,15 +71,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ExitMemoryScene"",
-                    ""type"": ""Button"",
-                    ""id"": ""fb2eae1f-8938-42db-a62d-66fa6013534d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -176,7 +167,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
                     ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": ""NormalizeVector2,StickDeadzone(min=0.1,max=0.95)"",
                     ""groups"": "";Keyboard&Mouse;Touch"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -258,28 +249,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""InspectionToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""707587f1-b795-45b2-92e7-34240e17a31a"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ExitMemoryScene"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3fa64247-4f42-4034-986e-ad3e3d9aacc6"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ExitMemoryScene"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -292,6 +261,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""2bc20ee6-6f34-4a2a-bd67-d354be396aa2"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe16f8e1-596f-4e0d-a517-43b93d782bb0"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -796,6 +774,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14f7038f-0353-46a3-a469-e8eee268b64d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ea51378-5cd0-4485-b91b-d186b2976eec"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1182,7 +1182,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""ab969a3c-87cd-4f70-8eb3-054e5bbc210c"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=4,y=4)"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
@@ -1193,7 +1193,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""f3ea8913-33a5-4539-bb24-ff82e8bdc85a"",
                     ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone(min=1.401298E-45),ScaleVector2(x=5.25,y=5.25)"",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
@@ -1235,15 +1235,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""7640a630-4a5f-43db-a8de-c9d77b91ae7f"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Submit"",
@@ -1396,37 +1387,43 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""Memory"",
+            ""id"": ""0cbbc568-0843-46c4-840b-97dc491eb1ef"",
+            ""actions"": [
+                {
+                    ""name"": ""ExitMemoryScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""a524ac88-1886-4570-9d37-a67e721e4efc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""f60d5c6b-c823-4914-842c-f4e0c06fd0f2"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""id"": ""10153148-39f3-414d-bafe-f78790a4cca7"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Look"",
+                    ""groups"": """",
+                    ""action"": ""ExitMemoryScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""76585d6d-2e83-476b-a2f7-8d0cbb754376"",
-                    ""path"": ""<Pointer>/delta"",
-                    ""interactions"": """",
-                    ""processors"": ""NormalizeVector2"",
-                    ""groups"": ""Keyboard&Mouse;Touch"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""aeabfa77-d937-4306-8a62-1291da9eb37e"",
-                    ""path"": ""<Joystick>/{Hatswitch}"",
+                    ""id"": ""6a80a074-893d-4e6a-8990-5f5728cba8d7"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Look"",
+                    ""groups"": """",
+                    ""action"": ""ExitMemoryScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1503,10 +1500,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_OpenTV = m_Player.FindAction("OpenTV", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_InspectionToggle = m_Player.FindAction("InspectionToggle", throwIfNotFound: true);
-        m_Player_ExitMemoryScene = m_Player.FindAction("ExitMemoryScene", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
         m_UI_Submit = m_UI.FindAction("Submit", throwIfNotFound: true);
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
@@ -1528,9 +1525,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Branching
         m_Branching = asset.FindActionMap("Branching", throwIfNotFound: true);
         m_Branching_Cancel = m_Branching.FindAction("Cancel", throwIfNotFound: true);
-        m_Branching_Look = m_Branching.FindAction("Look", throwIfNotFound: true);
         m_Branching_Submit = m_Branching.FindAction("Submit", throwIfNotFound: true);
         m_Branching_Navigate = m_Branching.FindAction("Navigate", throwIfNotFound: true);
+        // Memory
+        m_Memory = asset.FindActionMap("Memory", throwIfNotFound: true);
+        m_Memory_ExitMemoryScene = m_Memory.FindAction("ExitMemoryScene", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1597,7 +1596,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_OpenTV;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_InspectionToggle;
-    private readonly InputAction m_Player_ExitMemoryScene;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1607,7 +1605,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @OpenTV => m_Wrapper.m_Player_OpenTV;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @InspectionToggle => m_Wrapper.m_Player_InspectionToggle;
-        public InputAction @ExitMemoryScene => m_Wrapper.m_Player_ExitMemoryScene;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1632,9 +1629,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @InspectionToggle.started += instance.OnInspectionToggle;
             @InspectionToggle.performed += instance.OnInspectionToggle;
             @InspectionToggle.canceled += instance.OnInspectionToggle;
-            @ExitMemoryScene.started += instance.OnExitMemoryScene;
-            @ExitMemoryScene.performed += instance.OnExitMemoryScene;
-            @ExitMemoryScene.canceled += instance.OnExitMemoryScene;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1654,9 +1648,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @InspectionToggle.started -= instance.OnInspectionToggle;
             @InspectionToggle.performed -= instance.OnInspectionToggle;
             @InspectionToggle.canceled -= instance.OnInspectionToggle;
-            @ExitMemoryScene.started -= instance.OnExitMemoryScene;
-            @ExitMemoryScene.performed -= instance.OnExitMemoryScene;
-            @ExitMemoryScene.canceled -= instance.OnExitMemoryScene;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1679,6 +1670,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_Navigate;
+    private readonly InputAction m_UI_Pause;
     private readonly InputAction m_UI_Submit;
     private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Point;
@@ -1693,6 +1685,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         private @PlayerInputActions m_Wrapper;
         public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+        public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputAction @Submit => m_Wrapper.m_UI_Submit;
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputAction @Point => m_Wrapper.m_UI_Point;
@@ -1714,6 +1707,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Navigate.started += instance.OnNavigate;
             @Navigate.performed += instance.OnNavigate;
             @Navigate.canceled += instance.OnNavigate;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
             @Submit.started += instance.OnSubmit;
             @Submit.performed += instance.OnSubmit;
             @Submit.canceled += instance.OnSubmit;
@@ -1748,6 +1744,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Navigate.started -= instance.OnNavigate;
             @Navigate.performed -= instance.OnNavigate;
             @Navigate.canceled -= instance.OnNavigate;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
             @Submit.started -= instance.OnSubmit;
             @Submit.performed -= instance.OnSubmit;
             @Submit.canceled -= instance.OnSubmit;
@@ -1913,7 +1912,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Branching;
     private List<IBranchingActions> m_BranchingActionsCallbackInterfaces = new List<IBranchingActions>();
     private readonly InputAction m_Branching_Cancel;
-    private readonly InputAction m_Branching_Look;
     private readonly InputAction m_Branching_Submit;
     private readonly InputAction m_Branching_Navigate;
     public struct BranchingActions
@@ -1921,7 +1919,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         private @PlayerInputActions m_Wrapper;
         public BranchingActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Cancel => m_Wrapper.m_Branching_Cancel;
-        public InputAction @Look => m_Wrapper.m_Branching_Look;
         public InputAction @Submit => m_Wrapper.m_Branching_Submit;
         public InputAction @Navigate => m_Wrapper.m_Branching_Navigate;
         public InputActionMap Get() { return m_Wrapper.m_Branching; }
@@ -1936,9 +1933,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Cancel.started += instance.OnCancel;
             @Cancel.performed += instance.OnCancel;
             @Cancel.canceled += instance.OnCancel;
-            @Look.started += instance.OnLook;
-            @Look.performed += instance.OnLook;
-            @Look.canceled += instance.OnLook;
             @Submit.started += instance.OnSubmit;
             @Submit.performed += instance.OnSubmit;
             @Submit.canceled += instance.OnSubmit;
@@ -1952,9 +1946,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Cancel.started -= instance.OnCancel;
             @Cancel.performed -= instance.OnCancel;
             @Cancel.canceled -= instance.OnCancel;
-            @Look.started -= instance.OnLook;
-            @Look.performed -= instance.OnLook;
-            @Look.canceled -= instance.OnLook;
             @Submit.started -= instance.OnSubmit;
             @Submit.performed -= instance.OnSubmit;
             @Submit.canceled -= instance.OnSubmit;
@@ -1978,6 +1969,52 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public BranchingActions @Branching => new BranchingActions(this);
+
+    // Memory
+    private readonly InputActionMap m_Memory;
+    private List<IMemoryActions> m_MemoryActionsCallbackInterfaces = new List<IMemoryActions>();
+    private readonly InputAction m_Memory_ExitMemoryScene;
+    public struct MemoryActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public MemoryActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ExitMemoryScene => m_Wrapper.m_Memory_ExitMemoryScene;
+        public InputActionMap Get() { return m_Wrapper.m_Memory; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MemoryActions set) { return set.Get(); }
+        public void AddCallbacks(IMemoryActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MemoryActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MemoryActionsCallbackInterfaces.Add(instance);
+            @ExitMemoryScene.started += instance.OnExitMemoryScene;
+            @ExitMemoryScene.performed += instance.OnExitMemoryScene;
+            @ExitMemoryScene.canceled += instance.OnExitMemoryScene;
+        }
+
+        private void UnregisterCallbacks(IMemoryActions instance)
+        {
+            @ExitMemoryScene.started -= instance.OnExitMemoryScene;
+            @ExitMemoryScene.performed -= instance.OnExitMemoryScene;
+            @ExitMemoryScene.canceled -= instance.OnExitMemoryScene;
+        }
+
+        public void RemoveCallbacks(IMemoryActions instance)
+        {
+            if (m_Wrapper.m_MemoryActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMemoryActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MemoryActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MemoryActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MemoryActions @Memory => new MemoryActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -2030,11 +2067,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnOpenTV(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnInspectionToggle(InputAction.CallbackContext context);
-        void OnExitMemoryScene(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
         void OnNavigate(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
@@ -2059,8 +2096,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface IBranchingActions
     {
         void OnCancel(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
+    }
+    public interface IMemoryActions
+    {
+        void OnExitMemoryScene(InputAction.CallbackContext context);
     }
 }

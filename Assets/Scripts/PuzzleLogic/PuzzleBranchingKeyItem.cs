@@ -8,10 +8,7 @@ using UnityEngine;
 /// if the branching object has been placed or removed to/from the right location
 /// </summary>
 public class PuzzleBranchingKeyItem : PuzzleKeyItem
-{
-    // Which level this branching item is part of
-    public int level;
-    
+{    
     // Which branch this branching item and its non branching items are part of
     public Branch branch;
 
@@ -41,13 +38,10 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
         outline.OutlineWidth = 5f;
         timeLeft = timeLengthOutline;
 
-        // Turn off branching item's cue
-
 
         // Enable ObjectDistance scripts of three key items on this branch
         foreach (GameObject obj in keyItemModels)
         {
-            Debug.Log(obj.name);
             ObjectDistance objDist = obj.GetComponent<ObjectDistance>();
             objDist.enabled = true;
             
@@ -56,7 +50,9 @@ public class PuzzleBranchingKeyItem : PuzzleKeyItem
                 objDist.SwitchPuzzleTarget(branch);
             }
         }
-        
+
+        ShowCuesOfNonBranchingKeyItems();
+
         // Disable other branching item
         otherBranchingItem.transform.parent.gameObject.SetActive(false);
     }

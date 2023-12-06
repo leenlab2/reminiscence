@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1292132138c7046129596273a38de46e, type: 3}
+  m_Name: Tape2
+  m_EditorClassIdentifier: 
+  originalCorruptedVideoClip: {fileID: 32900000, guid: dc49f410ddbbc2140b39997c7ffa1d64, type: 3}
+  branchACorruptedVideoClip: {fileID: 32900000, guid: 7d8eb11c0f3503d4f8ccbd3b01ffb704, type: 3}
+  branchBCorruptedVideoClip: {fileID: 32900000, guid: e3c751a928f81524993d74cf92478ae1, type: 3}
+  branchASolutionVideoClip: {fileID: 32900000, guid: c45f21523b620da4f94890860894b752, type: 3}
+  branchBSolutionVideoClip: {fileID: 32900000, guid: 4ad6045e7662b0c42b4ca0dd112bfeca, type: 3}
+  tapeIsFixed: 0
+  clipToPlay: 0
+  tapeSolutionBranch: 0
+  level: 2

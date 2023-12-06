@@ -46,13 +46,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3510508756652344488, guid: 303ab6c0831a39245983a20d9d744534, type: 2}
   m_audioClip: {fileID: 8300000, guid: 9d6d31da7d4558845b62f092561b0386, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 210
+  Priority: 170
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -159,7 +159,7 @@ AudioEchoFilter:
   m_GameObject: {fileID: 6992450636416142980}
   m_Enabled: 0
   serializedVersion: 2
-  m_Delay: 500
-  m_DecayRatio: 0.5
+  m_Delay: 1000
+  m_DecayRatio: 0.25
   m_WetMix: 1
-  m_DryMix: 1
+  m_DryMix: 0.5

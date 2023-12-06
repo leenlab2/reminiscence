@@ -29,12 +29,10 @@ public class ObjectDistance : MonoBehaviour
         
         // If this object is not in the player's hand
         if (!pickUpInteractor.IsHeld(gameObject)) {
-            
             // If object is placed in right location
             if (dist <= distanceThreshold) {
-                Debug.Log("HERE");
-
                 SnapToTarget();
+                GetComponent<Rigidbody>().isKinematic = true;
                 targetObj.SetActive(false);
                 puzzleKeyItem.HandleCorrectPosition();
             }
@@ -50,9 +48,9 @@ public class ObjectDistance : MonoBehaviour
     // Calculates the distance between this object and its target location
     private float CalculateDistanceToTarget()
     {
-        Vector3 targetXZ = new Vector3(targetObj.transform.position.x, 0f, targetObj.transform.position.z);
-        Vector3 objectXZ = new Vector3(transform.position.x, 0f, transform.position.z);
-        float dist = Vector3.Distance(targetXZ, objectXZ);
+        Vector3 targetXYZ = new Vector3(targetObj.transform.position.x, targetObj.transform.position.y, targetObj.transform.position.z);
+        Vector3 objectXYZ = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        float dist = Vector3.Distance(targetXYZ, objectXYZ);
         return dist;
     }
     

@@ -5,10 +5,15 @@ ModelImporter:
   internalIDToNameTable: []
   externalObjects:
   - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Box_medium
+    second: {fileID: 2100000, guid: 31a5fa0076fb5564095673c162f83164, type: 2}
+  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: BoxMedium_BaseColor
-    second: {fileID: 2800000, guid: 6ca0fc1df55db2648a94e69de5b4b44a, type: 3}
+    second: {fileID: 2800000, guid: be90fc745f5e16b4e9649c55c29858dc, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

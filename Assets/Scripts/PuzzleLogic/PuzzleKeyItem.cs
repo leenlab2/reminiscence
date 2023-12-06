@@ -14,17 +14,23 @@ public enum Branch
 /// </summary>
 public abstract class PuzzleKeyItem : MonoBehaviour
 {
+    // Which level this item is part of
+    public int level;
     protected Outline outline; // points to Outline script
 
     public const float timeLengthOutline = 3f; // how long the outline should stay when object placed in right location
     protected float timeLeft = -1f; // amount of time left for the outline to stay.
 
-    protected PuzzleManagerNew puzzleManager;
+    protected PuzzleManager puzzleManager;
+    
+    // Objects that will appear in the memory scene when this branching item is placed
+    [SerializeField] private List<GameObject> appearingObjects;
 
     public void Start()
     {
+        
         outline = GetComponent<Outline>();
-        puzzleManager = GameObject.Find("Puzzle Manager").GetComponent<PuzzleManagerNew>();
+        puzzleManager = GameObject.Find("Puzzle Manager").GetComponent<PuzzleManager>();
     }
 
     // Update is called once per frame
@@ -43,9 +49,20 @@ public abstract class PuzzleKeyItem : MonoBehaviour
 
     public virtual void HandleCorrectPosition()
     {
+        // Make corresponding objects appear to update memory scene
+        MakeObjectsAppear();
+        
         // Disable this script, prevent item from being interactable
         Destroy(GetComponent<PickupInteractable>());
-        GetComponent<ObjectDistance>().enabled = false; 
+        GetComponent<ObjectDistance>().enabled = false;
+    }
+
+    private void MakeObjectsAppear()
+    {
+        foreach (GameObject obj in appearingObjects)
+        {
+            obj.SetActive(true);
+        }
     }
 
     protected abstract void CorrectPuzzleLogic();

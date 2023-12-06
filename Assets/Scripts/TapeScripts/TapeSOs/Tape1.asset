@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1292132138c7046129596273a38de46e, type: 3}
   m_Name: Tape1
   m_EditorClassIdentifier: 
-  originalCorruptedVideoClip: {fileID: 32900000, guid: 598ff7ece12da0441b267fb7303eddfc, type: 3}
-  branchACorruptedVideoClip: {fileID: 32900000, guid: a7e642ca58b207947a7cf524c929f471, type: 3}
-  branchBCorruptedVideoClip: {fileID: 32900000, guid: a733f6e2be429ef4785f855db2f34753, type: 3}
-  branchASolutionVideoClip: {fileID: 32900000, guid: ed7de673a7b18fa4e98d55056efb5159, type: 3}
-  branchBSolutionVideoClip: {fileID: 32900000, guid: a292ab30204b2234b97ecdb74e9e996c, type: 3}
-  tapeIsFixed: 0
+  originalCorruptedVideoClip: {fileID: 32900000, guid: 53f69572138474f9085eb61233d16e22, type: 3}
+  branchACorruptedVideoClip: {fileID: 32900000, guid: 497d0a5b1b83fbf4980d890af7bff9f4, type: 3}
+  branchBCorruptedVideoClip: {fileID: 32900000, guid: 4afe965dcead73344a0443c1d8cde949, type: 3}
+  branchASolutionVideoClip: {fileID: 32900000, guid: 370fc2b7799a991449a0d0ecfeb17c6f, type: 3}
+  branchBSolutionVideoClip: {fileID: 32900000, guid: c68fde70c7fb9544abbf40230b217af0, type: 3}
+  tapeIsFixed: 1
   clipToPlay: 0
   tapeSolutionBranch: 0
   level: 1
