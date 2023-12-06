@@ -26,8 +26,13 @@ public class VideoControls : MonoBehaviour
     private DialogueManager _dialogueManager;
 
     public static Action clipWatched;
+    
     public static Action dialoguePrompt;
-    public static Action<string, AudioClip> dialogueSet;
+
+    private TapeReactions tapeReactionsInTV;
+    private TapeSO tapeSOInTV;
+    private float timer;
+    private bool hasBeenInvoked;
 
     void Start()
     {
@@ -45,6 +50,9 @@ public class VideoControls : MonoBehaviour
         televisionParticleEffects = GameObject.Find("TVEffectsPuzzleComplete").GetComponent<ParticleSystem>();
 
         InputManager.OnGamePaused += Pause;
+        tapeReactionsInTV = null;
+        float timer = 0.5f;
+        hasBeenInvoked = false;
     }
 
     private void OnDestroy()
@@ -117,7 +125,6 @@ public class VideoControls : MonoBehaviour
     {
         //StartCoroutine(waiter(clip));
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
-        TapeReactions tapeReactionsInTV = _tapeManager.GetTapeReactionsInTV();
 
         televisionAudioSource.Play(); // Play noise from TV. TODO: Different noise between this and OnPuzzleComplete
         televisionParticleEffects.startColor = Color.white; // play particles from TV
@@ -127,7 +134,6 @@ public class VideoControls : MonoBehaviour
         {
             _videoPlayer.clip = tapeSOInTV.originalCorruptedVideoClip;
             tapeSOInTV.clipToPlay = ClipToPlay.OriginalCorrupted;
-            dialogueSet?.Invoke(tapeReactionsInTV.startSubtitles, tapeReactionsInTV.start);
         }
         else if (clip == ClipToPlay.BranchACorrupted) // switch video on TV to Branch A Corrupted
         {
@@ -146,23 +152,69 @@ public class VideoControls : MonoBehaviour
 
     void Update()
     {
+        
         if (_progressBarImage == null) return;
+
+        //Get this tape's reactions if there is one
+        if (_tapeManager.televisionHasTape())
+        {
+            tapeReactionsInTV = _tapeManager.GetTapeReactionsInTV();
+            tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
+
+        }
+        else
+        {
+            return;
+        }
 
         if (_videoPlayer.length > 0)
         {
-            float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length); 
+            float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length);
             _progressBarImage.fillAmount = progressPercentage;
 
-            //Dialogue Test
-            if (progressPercentage >= 0.5f)
+
+            //////// DIALOGuE DIRTY/////
+            if(progressPercentage == 0)
             {
-                dialoguePrompt?.Invoke(); 
+                if (tapeSOInTV.clipToPlay == ClipToPlay.OriginalCorrupted)
+                {
+                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.startSubtitles, tapeReactionsInTV.start);
+                    timer = 0.1f;
+                }
+                else if ((tapeSOInTV.clipToPlay == ClipToPlay.BranchACorrupted) || (tapeSOInTV.clipToPlay == ClipToPlay.BranchBCorrupted))
+                {
+                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
+                    timer = 0.95f;
+                }
+                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchASolution)
+                {
+                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.endASubtitles, tapeReactionsInTV.endA);
+                    timer = 0.95f;
+                }
+                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBSolution)
+                {
+                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.endBSubtitles, tapeReactionsInTV.endB);
+                    timer = 0.9f;
+                }
             }
+            
+            if ((progressPercentage >= timer) && !hasBeenInvoked)
+            {
+                dialoguePrompt?.Invoke();
+                hasBeenInvoked = true;
+            }
+
+            ///////////////////////////
+
+
 
             if (progressPercentage >= 0.95f)
             {
                 clipWatched?.Invoke();
+                hasBeenInvoked = false;
             }
+
+
         }
         else
         {

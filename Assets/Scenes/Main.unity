@@ -949,6 +949,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectTextInfo: {fileID: 11400000, guid: c4baf7bf52c29c64e899665b1cc8bb07, type: 2}
   objectAudioInfo: {fileID: 11400000, guid: 17f168b25b2884e458ef6822baebc095, type: 2}
+  reactionTextInfo: {fileID: 11400000, guid: 9f04e6d20a185c84d8a6bf1460b9ff0a, type: 2}
+  reactionAudioInfo: {fileID: 11400000, guid: 90b842fd4fdd8b947adf6e32a59b2d74, type: 2}
   dialogueAudio: {fileID: 8300000, guid: 8c2c67088118629408f8d5ff7101c584, type: 3}
 --- !u!1 &96306336
 GameObject:

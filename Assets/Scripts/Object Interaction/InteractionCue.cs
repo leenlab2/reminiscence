@@ -29,9 +29,11 @@ public class InteractionCue : MonoBehaviour
     private TMP_Text _TVText;
     private TMP_Text _dialogueText;
     private TMP_Text _pauseText;
+    private TMP_Text _reactionText;
 
     // dialogue text
     public StringValue dialogueTextInfo;
+    public StringValue reactionTextInfo;
 
     // xbox controls
     private string xboxEnterTV = "<sprite=0> Enter TV mode";
@@ -77,6 +79,7 @@ public class InteractionCue : MonoBehaviour
         _TVText = GameObject.Find("TV Interaction Text").GetComponent<TMP_Text>();
         _dialogueText = GameObject.Find("Dialogue Text").GetComponent<TMP_Text>();
         _pauseText = GameObject.Find("Pause Text").GetComponent<TMP_Text>();
+        _reactionText = GameObject.Find("Reaction Text").GetComponent<TMP_Text>();
 
         if (isController)
         {
@@ -132,7 +135,7 @@ public class InteractionCue : MonoBehaviour
         {
             _pickupText.text = empty;
             _interactText.text = empty;
-            //_dialogueText.text = empty; 
+            _dialogueText.text = empty; 
 
         } else if (type == InteractionCueType.Pickup)
         {
@@ -280,12 +283,12 @@ public class InteractionCue : MonoBehaviour
             }
         }else if (type == InteractionCueType.SubtitlesOn)
         {
-            _dialogueText.text = dialogueTextInfo.value; 
+            _reactionText.text = reactionTextInfo.value; 
 
         }
         else if (type == InteractionCueType.SubtitlesOff)
         {
-            _dialogueText.text = empty;
+            _reactionText.text = empty;
         }
     }
 

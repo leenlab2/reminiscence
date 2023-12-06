@@ -17,10 +17,15 @@ public class DialogueManager : MonoBehaviour
 
     public StringValue objectTextInfo;
     public AudioClipScriptableObject objectAudioInfo;
+
+    //Reactions
+    public StringValue reactionTextInfo;
+    public AudioClipScriptableObject reactionAudioInfo;
     
     public AudioClip dialogueAudio;
 
     private AudioSource audio;
+    private AudioSource audioReaction;
 
     // Start is called before the first frame update
     void Start()
@@ -30,29 +35,30 @@ public class DialogueManager : MonoBehaviour
         _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
         audio = GameObject.Find("AudioDialogue").GetComponent<AudioSource>();
+        audioReaction = GameObject.Find("AudioReaction").GetComponent<AudioSource>();
 
-        VideoControls.dialoguePrompt += FirstEntry;
-        VideoControls.dialogueSet += SetDialogueNoObject;
+        VideoControls.dialoguePrompt += PlayDialogue;
 
     }
 
     private void OnDestroy()
     {
-        VideoControls.dialoguePrompt -= FirstEntry;
+        VideoControls.dialoguePrompt -= PlayDialogue;
     }
-
-    void FirstEntry()
+   
+    void PlayDialogue()
     {
-        VideoControls.dialoguePrompt -= FirstEntry;
 
-        //setDialogueText("TESTING THIS MESS");
-        playDialogue();
-        playDialogueSubtitles(10f);
+        float timer = playReaction();
+        if (timer > 10F) { timer = 10F; } //TAKE THIS OUT ONCE CLIPS HAVE BEEN TRIMMED
+        playDialogueSubtitles(timer);
+        Invoke(stopReaction, timer);
     }
 
     #region Set Dialogue + Subtitles
     public void setDialogue(GameObject obj)
     {
+
         _pickupInteractable = obj.GetComponent<PickupInteractable>();
         _inspectionObjectText = _pickupInteractable.inspectionObjectText;
 
@@ -60,11 +66,11 @@ public class DialogueManager : MonoBehaviour
         objectTextInfo.value = _inspectionObjectText;
     }
 
-    public void SetDialogueNoObject(string text, AudioClip dialogueAudio)
+    /*public void SetDialogueNoObject(string text, AudioClip dialogueAudio)
     {
-        objectTextInfo.value = text;
-        objectAudioInfo.SetAudioClip(dialogueAudio);
-    }
+        reactionTextInfo.value = text;
+        reactionAudioInfo.SetAudioClip(dialogueAudio);
+    }*/
 
     #region Set Individual
     public void setDialogueText(string text)
@@ -95,6 +101,42 @@ public class DialogueManager : MonoBehaviour
     }
     #endregion
 
+
+
+    public void playBranchingDialogue()
+    {
+        //Dialogue Audio
+        audio.clip = objectAudioInfo.GetSoundClip();
+        audio.PlayOneShot(audio.clip, 1.0F);
+
+        //Show subtitles
+        _interactionCue.SetInteractionCue(InteractionCueType.Branching); 
+
+        //Test connection
+        Debug.Log("Doing the branching dialogue thing");
+    }
+
+    #region Reactions
+    public void SetDialogueNoObject(string text, AudioClip dialogueAudio)
+    {
+        reactionTextInfo.value = text;
+        reactionAudioInfo.SetAudioClip(dialogueAudio);
+        //VideoControls.dialoguePrompt += PlayDialogue;
+    }
+    public float playReaction()
+    {
+        //Dialogue Audio
+        audioReaction.clip = reactionAudioInfo.GetSoundClip();
+        audioReaction.PlayOneShot(audioReaction.clip, 1.0F);
+        return audioReaction.clip.length;
+
+    }
+
+    public void stopReaction()
+    {
+        audioReaction.Stop();
+    }
+
     #region Subtitles
     public void playDialogueSubtitles(float timer)
     {
@@ -118,21 +160,9 @@ public class DialogueManager : MonoBehaviour
     {
         _interactionCue.SetInteractionCue(InteractionCueType.SubtitlesOff);
         Debug.Log("Turning off subtitles");
+        
     }
     #endregion
-
     #endregion
-
-    public void playBranchingDialogue()
-    {
-        //Dialogue Audio
-        audio.clip = objectAudioInfo.GetSoundClip();
-        audio.PlayOneShot(audio.clip, 1.0F);
-
-        //Show subtitles
-        _interactionCue.SetInteractionCue(InteractionCueType.Branching); 
-
-        //Test connection
-        Debug.Log("Doing the branching dialogue thing");
-    }
+    #endregion
 }
