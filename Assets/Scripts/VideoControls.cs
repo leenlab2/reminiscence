@@ -23,16 +23,13 @@ public class VideoControls : MonoBehaviour
     public AudioSource televisionAudioSource;
     public ParticleSystem televisionParticleEffects;
     private TapeManager _tapeManager;
-<<<<<<< HEAD
     [SerializeField] private AudioSource buttonPressAudio;
     private DialogueManager _dialogueManager;
     
-=======
 
     [SerializeField]
     private VideoClip insertTapeVideoClip;
 
->>>>>>> 91dad46990ae0bb32e09feca39295f2fce8e0472
     public static Action clipWatched;
     
     public static Action dialoguePrompt;
@@ -165,7 +162,6 @@ public class VideoControls : MonoBehaviour
     {
         
         if (_progressBarImage == null) return;
-        
 
         //Get this tape's reactions if there is one
         if (_tapeManager.televisionHasTape())
@@ -184,7 +180,6 @@ public class VideoControls : MonoBehaviour
             float progressPercentage = (float)(_videoPlayer.time / _videoPlayer.length);
             _progressBarImage.fillAmount = progressPercentage;
 
-<<<<<<< HEAD
 
             //////// DIALOGuE DIRTY/////
             if (progressPercentage >= 0)
@@ -224,12 +219,7 @@ public class VideoControls : MonoBehaviour
 
             ///////////////////////////
 
-
-
-            if (progressPercentage >= 0.95f)
-=======
             if (progressPercentage >= 0.95f && !(_videoPlayer.clip.name == insertTapeVideoClip.name))
->>>>>>> 91dad46990ae0bb32e09feca39295f2fce8e0472
             {
                 clipWatched?.Invoke();
                 //hasBeenInvoked = false;
