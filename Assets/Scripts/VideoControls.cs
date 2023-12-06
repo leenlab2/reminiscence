@@ -169,22 +169,27 @@ public class VideoControls : MonoBehaviour
 
         if (_videoPlayer.length > 0)
         {
-            float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length);
+            float progressPercentage = (float)(_videoPlayer.time / _videoPlayer.length);
             _progressBarImage.fillAmount = progressPercentage;
 
 
             //////// DIALOGuE DIRTY/////
-            if(progressPercentage == 0)
+            if (progressPercentage >= 0)
             {
                 if (tapeSOInTV.clipToPlay == ClipToPlay.OriginalCorrupted)
                 {
                     _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.startSubtitles, tapeReactionsInTV.start);
                     timer = 0.1f;
                 }
-                else if ((tapeSOInTV.clipToPlay == ClipToPlay.BranchACorrupted) || (tapeSOInTV.clipToPlay == ClipToPlay.BranchBCorrupted))
+                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchACorrupted) 
                 {
                     _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
-                    timer = 0.95f;
+                    timer = 0.8f;
+                }
+                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBCorrupted)
+                {
+                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
+                    timer = 0.8f;
                 }
                 else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchASolution)
                 {
@@ -197,8 +202,8 @@ public class VideoControls : MonoBehaviour
                     timer = 0.9f;
                 }
             }
-            
-            if ((progressPercentage >= timer) && !hasBeenInvoked)
+
+            if ((progressPercentage <= 0.94f) && (progressPercentage >= timer) && (!hasBeenInvoked))
             {
                 dialoguePrompt?.Invoke();
                 hasBeenInvoked = true;
@@ -211,6 +216,12 @@ public class VideoControls : MonoBehaviour
             if (progressPercentage >= 0.95f)
             {
                 clipWatched?.Invoke();
+                //hasBeenInvoked = false;
+            }
+
+            if ((progressPercentage >= 0.97f) && (hasBeenInvoked))
+            {
+                
                 hasBeenInvoked = false;
             }
 
