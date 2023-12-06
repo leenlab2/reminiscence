@@ -10,8 +10,8 @@ public class Interactable : MonoBehaviour
     [SerializeField] public bool isInteractable = false;
 
     [Header("Sound effects")]
-    [SerializeField] private AudioClip enterSound;
-    [SerializeField] private AudioClip exitSound;
+    [SerializeField] public AudioClip enterSound;
+    [SerializeField] public AudioClip exitSound;
     [SerializeField] private AudioSource audioSource;
 
     protected void Awake()
