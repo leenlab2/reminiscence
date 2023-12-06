@@ -54,16 +54,6 @@ public class ChangeCameraPosition : MonoBehaviour
     {
         _videoControls.Pause(); // pause video in case playing
 
-        Debug.Log("to player view");
-
-        // if (_originalCamera != null)
-        // {
-        //     _originalCamera.gameObject.SetActive(true);
-        //     tvViewCamera.gameObject.SetActive(false);
-
-        //     HUD.GetComponent<Canvas>().worldCamera = _originalCamera.transform.Find("UI Camera").GetComponent<Camera>();
-        // }
-
         _originalCamera.gameObject.SetActive(true);
         tvViewCamera.gameObject.SetActive(false);
 
