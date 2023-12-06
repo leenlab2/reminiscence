@@ -6476,6 +6476,18 @@ MonoBehaviour:
           m_StringArgument: Move
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5251801872577495073}
+        m_TargetAssemblyTypeName: VideoControls, Assembly-CSharp
+        m_MethodName: PlayButtonPressAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7465971701463220807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6579,6 +6591,7 @@ MonoBehaviour:
   _televisionCanvas: {fileID: 7800648725117463693}
   televisionAudioSource: {fileID: 0}
   televisionParticleEffects: {fileID: 0}
+  buttonPressAudio: {fileID: 0}
 --- !u!114 &299153196807860427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6601,9 +6614,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f583e9866931d415d9a04c1b187709a1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.87
+  m_Volume: 0.65
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7243,6 +7256,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5251801872577495073}
+    - target: {fileID: 7764375522285755147, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayButtonPressAudio
+      objectReference: {fileID: 0}
     - target: {fileID: 8687096440748404360, guid: 34bde2be088a347bb8f3c968575990ac, type: 3}
       propertyPath: m_SizeDelta.x
       value: 209.64
