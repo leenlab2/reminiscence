@@ -126,13 +126,13 @@ public class InteractionCue : MonoBehaviour
         }
     }
 
-    public void SetInteractionCue(InteractionCueType type)
+    public void SetInteractionCue(InteractionCueType type) 
     {
         if (type == InteractionCueType.Empty)
         {
             _pickupText.text = empty;
             _interactText.text = empty;
-            _dialogueText.text = empty;
+            //_dialogueText.text = empty; 
 
         } else if (type == InteractionCueType.Pickup)
         {
@@ -280,8 +280,10 @@ public class InteractionCue : MonoBehaviour
             }
         }else if (type == InteractionCueType.SubtitlesOn)
         {
-            _dialogueText.text = dialogueTextInfo.value;
-        }else if (type == InteractionCueType.SubtitlesOff)
+            _dialogueText.text = dialogueTextInfo.value; 
+
+        }
+        else if (type == InteractionCueType.SubtitlesOff)
         {
             _dialogueText.text = empty;
         }

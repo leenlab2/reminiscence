@@ -1548,6 +1548,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 0213a67eb4cae4c04ad8cec4e6972691, type: 2}
     - target: {fileID: 8059658465602955140, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
+      propertyPath: TapeReactions
+      value: 
+      objectReference: {fileID: 11400000, guid: fd335c4b616467e46bca2bf6fc97a700, type: 2}
+    - target: {fileID: 8059658465602955140, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
       propertyPath: branchingItemA
       value: 
       objectReference: {fileID: 201665493}
@@ -15475,6 +15479,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8059658465602955140, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
+      propertyPath: TapeReactions
+      value: 
+      objectReference: {fileID: 11400000, guid: 1a85c44ee5cc23f418b58c77d2312225, type: 2}
     - target: {fileID: 8059658465602955140, guid: 8d5ce930cd4d7a9479e70bfb101dd82d, type: 3}
       propertyPath: branchingItemA
       value: 

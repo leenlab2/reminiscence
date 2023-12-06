@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.Audio;
 
 public enum ClipToPlay
 {
@@ -25,6 +26,8 @@ public class VideoControls : MonoBehaviour
     private DialogueManager _dialogueManager;
 
     public static Action clipWatched;
+    public static Action dialoguePrompt;
+    public static Action<string, AudioClip> dialogueSet;
 
     void Start()
     {
@@ -94,9 +97,11 @@ public class VideoControls : MonoBehaviour
         // televisionAudioSource.Play();
         televisionParticleEffects.startColor = Color.yellow; // play particles from TV
         televisionParticleEffects.Play();
-        
+
         // Set tape to fixed one and play from time the glitch was fixed
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
+        TapeReactions tapeReactionsInTV = _tapeManager.GetTapeReactionsInTV();
+
         tapeSOInTV.SetTapeToFixed(clip);
         tapeSOInTV.tapeSolutionBranch = clip;
         tapeSOInTV.clipToPlay = clip;
@@ -112,6 +117,7 @@ public class VideoControls : MonoBehaviour
     {
         //StartCoroutine(waiter(clip));
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
+        TapeReactions tapeReactionsInTV = _tapeManager.GetTapeReactionsInTV();
 
         televisionAudioSource.Play(); // Play noise from TV. TODO: Different noise between this and OnPuzzleComplete
         televisionParticleEffects.startColor = Color.white; // play particles from TV
@@ -121,6 +127,7 @@ public class VideoControls : MonoBehaviour
         {
             _videoPlayer.clip = tapeSOInTV.originalCorruptedVideoClip;
             tapeSOInTV.clipToPlay = ClipToPlay.OriginalCorrupted;
+            dialogueSet?.Invoke(tapeReactionsInTV.startSubtitles, tapeReactionsInTV.start);
         }
         else if (clip == ClipToPlay.BranchACorrupted) // switch video on TV to Branch A Corrupted
         {
@@ -149,8 +156,7 @@ public class VideoControls : MonoBehaviour
             //Dialogue Test
             if (progressPercentage >= 0.5f)
             {
-                _dialogueManager.setDialogueText("THIS IS A TEST");
-                _dialogueManager.playDialogueSubtitles();
+                dialoguePrompt?.Invoke(); 
             }
 
             if (progressPercentage >= 0.95f)
