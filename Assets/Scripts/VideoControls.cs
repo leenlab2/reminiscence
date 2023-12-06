@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.Audio;
 
 public enum ClipToPlay
 {
@@ -23,14 +24,24 @@ public class VideoControls : MonoBehaviour
     public ParticleSystem televisionParticleEffects;
     private TapeManager _tapeManager;
     [SerializeField] private AudioSource buttonPressAudio;
-
+    private DialogueManager _dialogueManager;
+    
     public static Action clipWatched;
+    
+    public static Action dialoguePrompt;
+
+    private TapeReactions tapeReactionsInTV;
+    private TapeSO tapeSOInTV;
+    private float timer;
+    private bool hasBeenInvoked;
 
     void Start()
     {
         _tapeManager = FindObjectOfType<TapeManager>();
         _videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
         buttonPressAudio = GetComponent<AudioSource>();
+        _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
+
         if (_progressBarImage != null)
         {
             _progressBarImage.fillAmount = 0;
@@ -40,6 +51,9 @@ public class VideoControls : MonoBehaviour
         televisionParticleEffects = GameObject.Find("TVEffectsPuzzleComplete").GetComponent<ParticleSystem>();
 
         InputManager.OnGamePaused += Pause;
+        tapeReactionsInTV = null;
+        float timer = 0.5f;
+        hasBeenInvoked = false;
     }
 
     private void OnDestroy()
@@ -95,9 +109,11 @@ public class VideoControls : MonoBehaviour
         // play confirmation noise from television
         televisionParticleEffects.startColor = Color.yellow; // play particles from TV
         televisionParticleEffects.Play();
-        
+
         // Set tape to fixed one and play from time the glitch was fixed
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
+        TapeReactions tapeReactionsInTV = _tapeManager.GetTapeReactionsInTV();
+
         tapeSOInTV.SetTapeToFixed(clip);
         tapeSOInTV.tapeSolutionBranch = clip;
         tapeSOInTV.clipToPlay = clip;
@@ -140,17 +156,80 @@ public class VideoControls : MonoBehaviour
 
     void Update()
     {
+        
         if (_progressBarImage == null) return;
+
+        //Get this tape's reactions if there is one
+        if (_tapeManager.televisionHasTape())
+        {
+            tapeReactionsInTV = _tapeManager.GetTapeReactionsInTV();
+            tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
+
+        }
+        else
+        {
+            return;
+        }
 
         if (_videoPlayer.length > 0)
         {
-            float progressPercentage = (float) (_videoPlayer.time / _videoPlayer.length); 
+            float progressPercentage = (float)(_videoPlayer.time / _videoPlayer.length);
             _progressBarImage.fillAmount = progressPercentage;
+
+
+            //////// DIALOGuE DIRTY/////
+            if (progressPercentage >= 0)
+            {
+                if (tapeSOInTV.clipToPlay == ClipToPlay.OriginalCorrupted)
+                {
+                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.startSubtitles, tapeReactionsInTV.start);
+                    timer = 0.1f;
+                }
+                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchACorrupted) 
+                {
+                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
+                    timer = 0.8f;
+                }
+                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBCorrupted)
+                {
+                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
+                    timer = 0.8f;
+                }
+                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchASolution)
+                {
+                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.endASubtitles, tapeReactionsInTV.endA);
+                    timer = 0.8f;
+                }
+                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBSolution)
+                {
+                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.endBSubtitles, tapeReactionsInTV.endB);
+                    timer = 0.8f;
+                }
+            }
+
+            if ((progressPercentage <= 0.94f) && (progressPercentage >= timer) && (!hasBeenInvoked))
+            {
+                dialoguePrompt?.Invoke();
+                hasBeenInvoked = true;
+            }
+
+            ///////////////////////////
+
+
 
             if (progressPercentage >= 0.95f)
             {
                 clipWatched?.Invoke();
+                //hasBeenInvoked = false;
             }
+
+            if ((progressPercentage >= 0.97f) && (hasBeenInvoked))
+            {
+                
+                hasBeenInvoked = false;
+            }
+
+
         }
         else
         {

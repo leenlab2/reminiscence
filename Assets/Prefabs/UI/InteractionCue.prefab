@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueTextInfo: {fileID: 11400000, guid: c4baf7bf52c29c64e899665b1cc8bb07, type: 2}
-  isController: 1
+  reactionTextInfo: {fileID: 11400000, guid: 9f04e6d20a185c84d8a6bf1460b9ff0a, type: 2}

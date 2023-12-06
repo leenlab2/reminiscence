@@ -158,7 +158,6 @@ public class InputManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(resumeButton);
 
         playerInputActions.Player.Disable();
-        playerInputActions.Television.Disable();
         playerInputActions.UI.Pause.Disable(); 
 
         hud.SetActive(false);
@@ -168,12 +167,13 @@ public class InputManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        Debug.Log("input manager resume");
-        playerInputActions.Television.Enable();
-        pauseMenu.SetActive(false); 
-        Time.timeScale = 1;
         gamePaused = false;
-        playerInputActions.Player.Enable();
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false); 
+        if (!inTVMode)
+        {
+            playerInputActions.Player.Enable();
+        }
         playerInputActions.UI.Pause.Enable(); 
         EventSystem.current.SetSelectedGameObject(oldSelected);
 
@@ -252,7 +252,7 @@ public class InputManager : MonoBehaviour
     #region Television Toggle
     private void OpenTelevision(InputAction.CallbackContext obj)
     {
-        Debug.Log("Opening TV button pressed");
+        Debug.Log("Opening TV");
         playerInputActions.Player.Disable();
         playerInputActions.Television.Enable();
 
@@ -264,6 +264,7 @@ public class InputManager : MonoBehaviour
 
     public void CloseTelevision(InputAction.CallbackContext obj)
     {
+        Debug.Log("Close TV");
         inTVMode = false;
 
         playerInputActions.Television.Disable();

@@ -17,7 +17,9 @@ public enum InteractionCueType
     EnterTV,
     ExitTV,
     Open,
-    Close
+    Close,
+    SubtitlesOn,
+    SubtitlesOff
 }
 
 public class InteractionCue : MonoBehaviour
@@ -27,9 +29,11 @@ public class InteractionCue : MonoBehaviour
     private TMP_Text _TVText;
     private TMP_Text _dialogueText;
     private TMP_Text _pauseText;
+    private TMP_Text _reactionText;
 
     // dialogue text
     public StringValue dialogueTextInfo;
+    public StringValue reactionTextInfo;
 
     // xbox controls
     private string xboxEnterTV = "<sprite=0> Enter TV mode";
@@ -44,7 +48,7 @@ public class InteractionCue : MonoBehaviour
     private string xboxInspectionText = "<sprite=4> Rotate                        <sprite=2> Exit";
     private string xboxBranching = "<sprite=4> Switch                         <sprite=1> Select";
     private string xboxExitMemoryText = "<sprite=2> Exit Memory";
-    private string xboxPause = "<sprite=6> Pause";
+    private string xboxPause = "<sprite=1> Pause";
 
     // keyboard/mouse controls
     private string kmEnterTV = "<sprite=12> Enter TV mode";
@@ -59,7 +63,7 @@ public class InteractionCue : MonoBehaviour
     private string kmInspectionText = "<sprite=17> Rotate                        <sprite=15> Exit";
     private string kmBranching = "<sprite=14> Switch                         <sprite=16> Select";
     private string kmExitMemoryText = "<sprite=13> Exit Memory";
-    private string kmPause = "[ESC] Pause";
+    private string kmPause = "<sprite=0> Pause";
 
     private string empty = "";
 
@@ -75,6 +79,7 @@ public class InteractionCue : MonoBehaviour
         _TVText = GameObject.Find("TV Interaction Text").GetComponent<TMP_Text>();
         _dialogueText = GameObject.Find("Dialogue Text").GetComponent<TMP_Text>();
         _pauseText = GameObject.Find("Pause Text").GetComponent<TMP_Text>();
+        _reactionText = GameObject.Find("Reaction Text").GetComponent<TMP_Text>();
 
         if (isController)
         {
@@ -124,13 +129,13 @@ public class InteractionCue : MonoBehaviour
         }
     }
 
-    public void SetInteractionCue(InteractionCueType type)
+    public void SetInteractionCue(InteractionCueType type) 
     {
         if (type == InteractionCueType.Empty)
         {
             _pickupText.text = empty;
             _interactText.text = empty;
-            _dialogueText.text = empty;
+            _dialogueText.text = empty; 
 
         } else if (type == InteractionCueType.Pickup)
         {
@@ -276,6 +281,14 @@ public class InteractionCue : MonoBehaviour
             {
                 _TVText.text = kmExitTV;
             }
+        }else if (type == InteractionCueType.SubtitlesOn)
+        {
+            _reactionText.text = reactionTextInfo.value; 
+
+        }
+        else if (type == InteractionCueType.SubtitlesOff)
+        {
+            _reactionText.text = empty;
         }
     }
 
