@@ -194,7 +194,7 @@ public class VideoControls : MonoBehaviour
                 else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchASolution)
                 {
                     _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.endASubtitles, tapeReactionsInTV.endA);
-                    timer = 0.95f;
+                    timer = 0.9f;
                 }
                 else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBSolution)
                 {
