@@ -1,12 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-// using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
-using UnityEngine.Scripting.APIUpdating;
-using UnityEngine.UI;
 
 /// <summary>
 /// Handles the communication between the player and the object. Specifically manages what object is held (`HeldObj`)

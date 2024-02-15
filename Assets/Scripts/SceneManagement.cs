@@ -15,6 +15,8 @@ public class SceneManagement : MonoBehaviour
     public GameObject enterMemoryButton;
     public Animator cameraAnimator;
 
+    public Transform spawnpoint;
+
     public AudioClip memoryEnterSfx;
     public AudioClip memoryExitSfx;
     public GameObject mainAudioSource;
@@ -81,8 +83,7 @@ public class SceneManagement : MonoBehaviour
         _originalPlayerPos = player.transform.position;
         _originalPlayerRot = player.transform.rotation;
 
-        player.transform.position = new Vector3(-5.03f, 50f, 4f);
-        player.transform.rotation = new Quaternion(0, 0, 0, 0);
+        MovePlayerToScene(spawnpoint.position, spawnpoint.rotation);
     }
 
     public void ExitMemoryScene()
@@ -92,7 +93,7 @@ public class SceneManagement : MonoBehaviour
         audioSource.pitch = 3;
         GetComponent<AudioSource>().PlayOneShot(memoryExitSfx);
 
-        player.transform.SetPositionAndRotation(_originalPlayerPos, _originalPlayerRot);
+        MovePlayerToScene(_originalPlayerPos, _originalPlayerRot);
 
         _interactionCue.SetInteractionCue(InteractionCueType.ExitMemory);
 
@@ -103,4 +104,16 @@ public class SceneManagement : MonoBehaviour
         Vector3 cameraRotationAtTelevision = new Vector3(0, 160, 0);
         player.transform.rotation = Quaternion.Euler(cameraRotationAtTelevision);
     } 
+
+    private void MovePlayerToScene(Vector3 newSpawnPointPos, Quaternion newRotation)
+    {
+        player.transform.SetPositionAndRotation(newSpawnPointPos, newRotation);
+
+        // if is holding object, move to scene
+        PickUpInteractor pickUpInteractor = player.GetComponent<PickUpInteractor>();
+        if (pickUpInteractor.isHoldingObj())
+        {
+            pickUpInteractor.HeldObj.GetComponent<PickupInteractable>().MovePlacementGuideToScene(newSpawnPointPos);
+        }
+    }
 }
