@@ -95,6 +95,10 @@ PrefabInstance:
       value: CookieJar Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 6faaa32258a057e47b855221e6f80c9b, type: 3}
+    - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: inspectionObjectText
       value: Who left these here? I should check if I can get the recipe from dad
         and make the trip worth it.

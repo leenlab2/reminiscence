@@ -91,6 +91,10 @@ PrefabInstance:
       value: PiggyBank Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 0db7d99270105684dbe1be7ffd36baf7, type: 3}
+    - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: inspectionObjectText
       value: A couple of coins! Young me would have been so happy.
       objectReference: {fileID: 0}

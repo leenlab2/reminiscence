@@ -91,6 +91,10 @@ PrefabInstance:
       value: Cup Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: dialogueAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: b2eeb2e428d006b419bda9f6b1809804, type: 3}
+    - target: {fileID: 3636712027421575462, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: inspectionObjectText
       value: Careful not to break it. The last pieces from mom's china collection.
       objectReference: {fileID: 0}
