@@ -65,6 +65,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
         playerInputActions.Player.Interact.performed += ObjectInteract;
         playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
+        playerInputActions.Player.Move.canceled += StopPlayerMove;
     }
 
     private void AssignTelevisionHandlers()
@@ -95,6 +96,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.OpenTV.performed -= OpenTelevision;
         playerInputActions.Player.Interact.performed -= ObjectInteract;
         playerInputActions.Player.InspectionToggle.performed -= ObjectInspectionToggle;
+        playerInputActions.Player.Move.canceled -= StopPlayerMove;
 
         playerInputActions.UI.Pause.performed -= PauseGame;
 
@@ -129,11 +131,7 @@ public class InputManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        // print current selected from event system
-        //Debug.Log(EventSystem.current.currentSelectedGameObject);
-    }
+
     private void OnApplicationFocus(bool focus)
     {
         if (focus)
@@ -189,6 +187,11 @@ public class InputManager : MonoBehaviour
     #endregion
 
     #region Player Movement
+    private void StopPlayerMove(InputAction.CallbackContext obj)
+    {
+        playerBody.velocity = Vector3.zero;
+    }
+
     private void MovePlayer()
     {
         Vector2 movementInput = playerInputActions.Player.Move.ReadValue<Vector2>();
