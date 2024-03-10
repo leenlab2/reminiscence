@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: 32192707ae7965c4382ad0fe699a61a7
+guid: 1ea7c4e07faf6474486c3a39e729d3f4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Music
+    second: {fileID: 2100000, guid: 3c431a40219fe2d4393088a38b382a89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_MusicSheet
+    second: {fileID: 2100000, guid: 0ca8e7f762544cc4793f4afd776c0e5e, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Scott Help Me rev1-1
+    second: {fileID: 2800000, guid: a897f7f7a9a6d3b4ab9c7af5ee32da56, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -37,7 +52,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
