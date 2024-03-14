@@ -237,11 +237,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4896732148426956475, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
       propertyPath: m_Name
       value: Cookie_jar_textures
       objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488269973354523604, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440736283497417072, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}

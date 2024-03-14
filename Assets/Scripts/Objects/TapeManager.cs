@@ -12,6 +12,9 @@ public class TapeManager : MonoBehaviour
     private PickUpInteractor pickUpInteractor;
     private bool lightsAreOn;
 
+    public List<GameObject> StartingLights;  // Window block is used to hide outside light
+    public List<Light> LightsToEnable;  // Lights to enable when tape is inserted
+
     public static Action OnFirstTapeInserted;
 
     void Start()
@@ -70,11 +73,14 @@ public class TapeManager : MonoBehaviour
 
             if (!lightsAreOn)
             {
-                GameObject.Find("Window Block").SetActive(false);
-                GameObject.Find("Tape Light").SetActive(false);
-                GameObject.Find("TVRoomSpotLight").GetComponent<Light>().enabled = true;
-                GameObject.Find("TVRoomSpotLight2").GetComponent<Light>().enabled = true;
-                GameObject.Find("Lamplight").GetComponent<Light>().enabled = true;
+                foreach (GameObject light in StartingLights)
+                {
+                    light.SetActive(false);
+                }
+                foreach (Light light in LightsToEnable)
+                {
+                    light.enabled = true;
+                }
 
                 lightsAreOn = true;
                 OnFirstTapeInserted?.Invoke();
