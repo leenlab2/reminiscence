@@ -81,6 +81,11 @@ public class PickupInteractable : Interactable
         }
     }
 
+    public void MovePlacementGuideToScene(Vector3 newSpawnPoint)
+    {
+        placementGuide.transform.position = newSpawnPoint + new Vector3(0, 0, 1);
+    }
+
     public void TransformPlacementGuide(RaycastHit hit)
     {
         if (!placementGuide.activeSelf) return;
