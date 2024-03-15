@@ -11,6 +11,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private List<AudioClip> bgmStems = new List<AudioClip>();
     private AudioSource playerAudioSource;
     private float lastStepTime = 0.0f;
+    private static float BGMDefaultVol;
 
     private void Awake()
     {
@@ -27,6 +28,8 @@ public class AudioController : MonoBehaviour
 
         PuzzleNonBranchingKeyItem.OnKeyItemPlaced += PlayBGMStem;
         PuzzleManager.OnLevelChange += SwitchBase;
+
+        BGMDefaultVol = GetComponentInChildren<AudioSource>().volume;
     }
 
     private void OnDestroy()
@@ -92,5 +95,11 @@ public class AudioController : MonoBehaviour
         {
             bgm_stem.mute = false;
         }
+    }
+
+    public static void ChangeBGMVolume(float volume)
+    {
+        AudioSource bgm = instance.GetComponentInChildren<AudioSource>();
+        bgm.volume = volume * BGMDefaultVol;
     }
 }
