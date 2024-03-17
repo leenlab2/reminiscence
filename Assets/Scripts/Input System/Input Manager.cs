@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     public PlayerInputActions playerInputActions;
     public GameObject pauseMenu;
     public GameObject resumeButton;
+    public AudioSource uiAudio;
 
     private Rigidbody playerBody;
 
@@ -151,9 +152,12 @@ public class InputManager : MonoBehaviour
     {
         gamePaused = true;
         Time.timeScale = 0;
+        uiAudio.Play();
         pauseMenu.SetActive(true);
         oldSelected = EventSystem.current.currentSelectedGameObject;
         EventSystem.current.SetSelectedGameObject(resumeButton);
+
+        AudioController.ChangeBGMVolume(0);
 
         playerInputActions.Player.Disable();
         playerInputActions.UI.Pause.Disable(); 
@@ -168,11 +172,15 @@ public class InputManager : MonoBehaviour
         gamePaused = false;
         Time.timeScale = 1;
         pauseMenu.SetActive(false); 
+
         if (!inTVMode)
         {
             playerInputActions.Player.Enable();
         }
-        playerInputActions.UI.Pause.Enable(); 
+        playerInputActions.UI.Pause.Enable();
+
+        AudioController.ChangeBGMVolume(1);
+
         EventSystem.current.SetSelectedGameObject(oldSelected);
 
         hud.SetActive(true);

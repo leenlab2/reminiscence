@@ -1027,6 +1027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
   resumeButton: {fileID: 0}
+  uiAudio: {fileID: 0}
 --- !u!114 &4343487692431442849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,7 +1040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738a21b01cc02714db306bc4ebfad0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayerReach: 8
+  maxPlayerReach: 12
   _crossHairDisplay: {fileID: 0}
   _defaultCrosshair: {fileID: 21300000, guid: caa749efeba804f428f6745c380f84bc, type: 3}
   _objectDetected: {fileID: 21300000, guid: 25e2f5b86fc7eb44bb9b41599cdb09dd, type: 3}
