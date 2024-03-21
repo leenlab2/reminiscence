@@ -115,6 +115,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
+        InputSystem.onActionChange += DetectControllerChange;
         _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
         _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
         inTVMode = false;
@@ -132,6 +133,16 @@ public class InputManager : MonoBehaviour
 
     }
 
+    private void DetectControllerChange(object obj, InputActionChange change)
+    {
+        if (obj != null && obj is InputAction action)
+        {
+            if (action.activeControl == null) return;
+            InputDevice lastDevice = action.activeControl.device;
+
+            _interactionCue.ToggleController(lastDevice is Gamepad);
+        }
+    }   
 
     private void OnApplicationFocus(bool focus)
     {

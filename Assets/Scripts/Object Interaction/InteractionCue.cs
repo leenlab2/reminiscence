@@ -93,9 +93,9 @@ public class InteractionCue : MonoBehaviour
         }
     }
 
-    public void ToggleController()
+    public void ToggleController(bool newValue)
     {
-        isController = !isController;
+        isController = newValue;
         InputManager inputManager = FindObjectOfType<InputManager>();
         if (isController)
         {
