@@ -54,6 +54,12 @@ public class PickupInteractable : Interactable
         objectAudioInfo.SetAudioClip(dialogueAudio);
     }
 
+    public void MoveToContainer(Container container)
+    {
+        MoveToPlacementGuide();
+        transform.SetParent(container.attachPoint);
+    }
+
     #region Placement Guide
     public void TogglePlacementGuide(bool on)
     {

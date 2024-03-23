@@ -14,6 +14,7 @@ public enum InteractionType
     None,
     Pickup,
     Place,
+    PlaceInContainer,
     Open,
     InsertRemoveTape
 }
@@ -92,7 +93,7 @@ public class InteractableDetector : MonoBehaviour
             //Debug.DrawRay(origin, direction * hit.distance, Color.yellow);
             //OnDrawGizmosSelected();
 
-            //Debug.Log(hit.transform.name);
+            // Debug.Log(hit.transform.name);
             OnCursorHitChange?.Invoke(hit);
 
             CheckInteractableTypeHit(hit);
@@ -165,7 +166,14 @@ public class InteractableDetector : MonoBehaviour
         }
         else if (pickUpInteractor.isHoldingObj())
         {
-            interactionType = InteractionType.Place;
+            // check if the raycast hit is container
+            if (hit.transform.GetComponent<Container>() != null)
+            {
+                interactionType = InteractionType.PlaceInContainer;
+            } else
+            {
+                interactionType = InteractionType.Place;
+            }
         }
         else if (hit.transform.GetComponent<Interactable>()?.isInteractable ?? false)
         {
@@ -173,8 +181,8 @@ public class InteractableDetector : MonoBehaviour
 
             switch (interactable)
             {
-                case OpenInteractable openInteractable:
-                    bool isOpen = hit.transform.GetComponent<OpenInteractable>().isOpen;
+                case Container openInteractable:
+                    bool isOpen = hit.transform.GetComponent<Container>().isOpen;
                     _interactionCue.ToggleOpenClose(isOpen); // TODO: change to open
                     interactionType = InteractionType.Open;
                     break;
@@ -264,11 +272,18 @@ public class InteractableDetector : MonoBehaviour
         {
             Debug.Log("Interaction type: place");
             pickUpInteractor.DropHeldObject();
-        } else if (interactionType == InteractionType.Open)
+        }
+        else if (interactionType == InteractionType.PlaceInContainer)
+        {
+            Debug.Log("Interaction type: place");
+            GameObject container = _currentHit.Value.transform.gameObject;
+            pickUpInteractor.DropHeldObject(container.GetComponent<Container>());
+        } 
+        else if (interactionType == InteractionType.Open)
         {
             Debug.Log("Interaction type: open");
             GameObject obj = _currentHit.Value.transform.gameObject;
-            obj.GetComponent<OpenInteractable>().ToggleOpen();
+            obj.GetComponent<Container>().ToggleOpen();
         }
     }
 

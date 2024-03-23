@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     [Header("Sound effects")]
     [SerializeField] public AudioClip enterSound;
     [SerializeField] public AudioClip exitSound;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] protected AudioSource audioSource;
 
     protected void Awake()
     {
