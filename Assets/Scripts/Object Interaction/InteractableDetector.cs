@@ -167,7 +167,7 @@ public class InteractableDetector : MonoBehaviour
         else if (pickUpInteractor.isHoldingObj())
         {
             // check if the raycast hit is container
-            if (hit.transform.GetComponent<Container>() != null)
+            if (hit.transform.GetComponent<Container>()?.isOpen ?? false)
             {
                 interactionType = InteractionType.PlaceInContainer;
             } else
