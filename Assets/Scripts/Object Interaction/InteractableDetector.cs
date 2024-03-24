@@ -15,7 +15,10 @@ public enum InteractionType
     Pickup,
     Place,
     Open,
-    InsertRemoveTape
+    Close,
+    InsertTape,
+    RemoveTape,
+    SwapTape,
 }
 
 /// <summary>
@@ -39,20 +42,13 @@ public class InteractableDetector : MonoBehaviour
 
     // private fields
     private RaycastHit? _currentHit = null;
-    private InteractionType interactionType;
-
-    private InteractionCue _interactionCue;
+    public static InteractionType interactionType { get; private set; } = InteractionType.None;
+    
 
     RaycastHit hit;
 
     private float sphereRadius = 0.2f;
     private GameObject currentObj = null;
-
-    private void Start()
-    {
-        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
-
-    }
 
 
     /*void OnDrawGizmosSelected()
@@ -118,23 +114,12 @@ public class InteractableDetector : MonoBehaviour
             }
         }
 
-        InputManager inputManager = FindObjectOfType<InputManager>();
-        if (inputManager.InTVMode())
+        if (InputManager.instance.InTVMode())
         {
-            _interactionCue.SetInteractionCue(InteractionCueType.Empty);
-            _interactionCue.SetInteractionCue(InteractionCueType.ExitTV);
             _lastCrossHairDisplaySize = _crossHairDisplay.rectTransform.sizeDelta;
             _crossHairDisplay.rectTransform.sizeDelta = new Vector2(0, 0);
         } else {
-            if (!inputManager.isInMemoryMode())
-            {
-                _interactionCue.SetInteractionCue(InteractionCueType.EnterTV);
-            }
             _crossHairDisplay.rectTransform.sizeDelta = _lastCrossHairDisplaySize;
-        }
-        if (inputManager.InInspection())
-        {
-            _interactionCue.SetInteractionCue(InteractionCueType.Inspection);
         }
     }
 
@@ -147,24 +132,23 @@ public class InteractableDetector : MonoBehaviour
 
         if (hit.transform.name == "VHS")
         {
-            if (pickUpInteractor.IsHeld("Tape Model"))
-            {
-                InputManager inputManager = FindObjectOfType<InputManager>();
-                _interactionCue.SetInteractionCue(InteractionCueType.InsertTape);
-            }
-
             TapeManager tapeManager = FindObjectOfType<TapeManager>();
-            if (tapeManager.televisionHasTape())
+            if (pickUpInteractor.IsHeld("Tape Model") && tapeManager.televisionHasTape())
             {
-                if (!pickUpInteractor.isHoldingObj())
-                {
-                    _interactionCue.SetInteractionCue(InteractionCueType.RemoveTape);
-                }
+                interactionType = InteractionType.SwapTape;                
+            } 
+            else if (pickUpInteractor.IsHeld("Tape Model") && !tapeManager.televisionHasTape())
+            {
+                interactionType = InteractionType.InsertTape;
             }
-            interactionType = InteractionType.InsertRemoveTape;
+            else if (!pickUpInteractor.isHoldingObj() && tapeManager.televisionHasTape())
+            {
+                interactionType = InteractionType.RemoveTape;
+            }
         }
         else if (pickUpInteractor.isHoldingObj())
         {
+            InputManager.instance.EnableInteract();
             interactionType = InteractionType.Place;
         }
         else if (hit.transform.GetComponent<Interactable>()?.isInteractable ?? false)
@@ -175,11 +159,9 @@ public class InteractableDetector : MonoBehaviour
             {
                 case OpenInteractable openInteractable:
                     bool isOpen = hit.transform.GetComponent<OpenInteractable>().isOpen;
-                    _interactionCue.ToggleOpenClose(isOpen); // TODO: change to open
-                    interactionType = InteractionType.Open;
+                    interactionType = isOpen ? InteractionType.Close : InteractionType.Open;
                     break;
                 case PickupInteractable pickupInteractable when !pickUpInteractor.isHoldingObj():
-                    _interactionCue.SetInteractionCue(InteractionCueType.Pickup);
                     interactionType = InteractionType.Pickup;
                     break;
                 default:
@@ -203,29 +185,18 @@ public class InteractableDetector : MonoBehaviour
         {
             currentObj = _currentHit.Value.transform.gameObject;
             highlightObject(currentObj);
+            InputManager.instance.EnableInteract();
         }
     }
 
     private void NotDetected()
     {
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
-        if (!pickUpInteractor.isHoldingObj())
-        {
-            InputManager inputManager = FindObjectOfType<InputManager>();
-            if (!inputManager.isInBranchingSelection()){
-                _interactionCue.SetInteractionCue(InteractionCueType.Empty);
-            }
-        }
-        if (pickUpInteractor.IsHeld("Tape Model"))
-        {
-            InputManager inputManager = FindObjectOfType<InputManager>();
-            if (!inputManager.InInspection())
-            {
-                _interactionCue.SetInteractionCue(InteractionCueType.Hold);
-            }
-        }
+
         _crossHairDisplay.sprite = _defaultCrosshair;
         _crossHairDisplay.rectTransform.sizeDelta = new Vector2(15, 15);
+
+        InputManager.instance.DisableInteract();
     }
     #endregion
 
@@ -235,28 +206,33 @@ public class InteractableDetector : MonoBehaviour
     /// </summary>
     public void InteractWithObject()
     {
+        if (interactionType == InteractionType.None) return;
+
+        TapeManager tapeManager = FindObjectOfType<TapeManager>();
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
         if (!_currentHit.HasValue && !pickUpInteractor.isHoldingObj()) return;
 
         // Delegate tasks based on interaction type
-        if (interactionType == InteractionType.InsertRemoveTape)
+        if (interactionType == InteractionType.InsertTape)
         {
-            Debug.Log("Interaction type: tape");
-            TapeManager tapeManager = FindObjectOfType<TapeManager>();
-
-            if (pickUpInteractor.IsHeld("Tape Model"))
-            {
-                tapeManager.insertTape(pickUpInteractor.HeldObj);
-            }
-            else if (!pickUpInteractor.isHoldingObj())
-            {
-                tapeManager.removeTape();
-            }
+            Debug.Log("Interaction type: tape insert");
+            tapeManager.insertTape(pickUpInteractor.HeldObj);
+        }
+        else if (interactionType == InteractionType.RemoveTape)
+        {
+            Debug.Log("Interaction type: tape remove");
+            tapeManager.removeTape();
+        }
+        else if (interactionType == InteractionType.SwapTape)
+        {
+            Debug.Log("Interaction type: tape swap");
+            GameObject heldTape = pickUpInteractor.HeldObj;
+            tapeManager.removeTape();
+            tapeManager.insertTape(heldTape);
         }
         else if (interactionType == InteractionType.Pickup)
         {
             Debug.Log("Interaction type: pickup");
-            // _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             GameObject obj = _currentHit.Value.transform.gameObject;
             pickUpInteractor.PickupObject(obj);
         }
@@ -264,9 +240,9 @@ public class InteractableDetector : MonoBehaviour
         {
             Debug.Log("Interaction type: place");
             pickUpInteractor.DropHeldObject();
-        } else if (interactionType == InteractionType.Open)
+        } else if (interactionType == InteractionType.Open || interactionType == InteractionType.Close)
         {
-            Debug.Log("Interaction type: open");
+            Debug.Log("Interaction type: open/close");
             GameObject obj = _currentHit.Value.transform.gameObject;
             obj.GetComponent<OpenInteractable>().ToggleOpen();
         }

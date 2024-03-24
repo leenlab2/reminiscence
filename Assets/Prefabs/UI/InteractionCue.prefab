@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3504773574853915377}
-  - component: {fileID: 3811801298118590172}
+  - component: {fileID: 228244130882269449}
   m_Layer: 5
   m_Name: InteractionCue
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3811801298118590172
+--- !u!114 &228244130882269449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,8 +41,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 3317526224262519937}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2430673581241d09e46ee64abd9534, type: 3}
+  m_Script: {fileID: 11500000, guid: 27c21f1596d713c49ad5ebc51d65d42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueTextInfo: {fileID: 11400000, guid: c4baf7bf52c29c64e899665b1cc8bb07, type: 2}
-  reactionTextInfo: {fileID: 11400000, guid: 9f04e6d20a185c84d8a6bf1460b9ff0a, type: 2}
+  xbox:
+    buttonSouth: {fileID: 21300000, guid: 14adbdaa29ca39e4986b92bb983e6a79, type: 3}
+    buttonNorth: {fileID: 21300000, guid: 5edf4c931cdf92d4b98d40b66b76d6b0, type: 3}
+    buttonEast: {fileID: 21300000, guid: 26fd9c8befe895a409f16a77b448e632, type: 3}
+    buttonWest: {fileID: 21300000, guid: 9c8715db55f5bf14e8fffcf70902c5f2, type: 3}
+    startButton: {fileID: 21300000, guid: 762be4fb1fb7b834a90e5d1591508a86, type: 3}
+    leftTrigger: {fileID: 21300000, guid: d78e60656049e1048837dee4369ee76f, type: 3}
+    rightTrigger: {fileID: 21300000, guid: 5410592975e14504fbdf856411702c0d, type: 3}
+    leftShoulder: {fileID: 21300000, guid: 0110326cfd7ab4f44a53b83651d9780a, type: 3}
+    rightShoulder: {fileID: 21300000, guid: 8322706dea6046c4088e219687b23e42, type: 3}
+    leftStick: {fileID: 21300000, guid: 61ab6d22355843e4ab9c7e3bfc3d8ba3, type: 3}
+    rightStick: {fileID: 21300000, guid: fb74c1e85753f814d9c73ab0e90e7118, type: 3}
+  ps4:
+    buttonSouth: {fileID: 21300000, guid: 9c8715db55f5bf14e8fffcf70902c5f2, type: 3}
+    buttonNorth: {fileID: 21300000, guid: 248c6bbf5a49bce40b8f10c3831e0713, type: 3}
+    buttonEast: {fileID: 21300000, guid: baedc361e219ac14ba1a04974fada915, type: 3}
+    buttonWest: {fileID: 21300000, guid: a08213478099e1b48a69f34e5e868f68, type: 3}
+    startButton: {fileID: 21300000, guid: 0c23648bce14a6248876a39347b15071, type: 3}
+    leftTrigger: {fileID: 21300000, guid: dc4c123c35c065b4d9a7499498487625, type: 3}
+    rightTrigger: {fileID: 21300000, guid: 9357a05eed2a5eb43b4f55930d6ce7a5, type: 3}
+    leftShoulder: {fileID: 21300000, guid: 0110326cfd7ab4f44a53b83651d9780a, type: 3}
+    rightShoulder: {fileID: 21300000, guid: 8322706dea6046c4088e219687b23e42, type: 3}
+    leftStick: {fileID: 21300000, guid: 61ab6d22355843e4ab9c7e3bfc3d8ba3, type: 3}
+    rightStick: {fileID: 21300000, guid: fb74c1e85753f814d9c73ab0e90e7118, type: 3}
+  keyboard:
+    w: {fileID: 21300000, guid: b3d12200ee0aabc4b87783b16a5dacfd, type: 3}
+    a: {fileID: 21300000, guid: b3d12200ee0aabc4b87783b16a5dacfd, type: 3}
+    s: {fileID: 21300000, guid: b3d12200ee0aabc4b87783b16a5dacfd, type: 3}
+    d: {fileID: 21300000, guid: b3d12200ee0aabc4b87783b16a5dacfd, type: 3}
+    e: {fileID: 21300000, guid: 47f173ec14cd749498509075c1fbc6e6, type: 3}
+    t: {fileID: 21300000, guid: 89312aa55fab11e4ebc0f1fef0bef5e7, type: 3}
+    tab: {fileID: 21300000, guid: 8827b18fd8e92ae4580ab0848ea89592, type: 3}
+    enter: {fileID: 21300000, guid: dec64cac18faacf46ae87f7956bb1eaf, type: 3}
+    escape: {fileID: 21300000, guid: e5959d685f2c6be4ea20011704a2f510, type: 3}
+    leftButton: {fileID: 21300000, guid: dec64cac18faacf46ae87f7956bb1eaf, type: 3}
+    delta: {fileID: 21300000, guid: 2babcb2cde5804744ad253921a5cc76c, type: 3}

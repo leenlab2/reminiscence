@@ -8,6 +8,8 @@ using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager instance;
+
     public PlayerInputActions playerInputActions;
     public GameObject pauseMenu;
     public GameObject resumeButton;
@@ -22,7 +24,6 @@ public class InputManager : MonoBehaviour
     private float _walkSpeed = 7f;
     private float _speed;
 
-    private InteractionCue _interactionCue;
     private DialogueManager _dialogueManager;
     private GameObject currSelectedBranching = null;
     private GameObject oldSelected;
@@ -39,12 +40,23 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         _speed = _walkSpeed;
         playerBody = GetComponent<Rigidbody>();
         playerAnimate = GetComponent<Animator>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
+        playerInputActions.Player.Interact.Disable();
+        playerInputActions.Player.InspectObj.Disable();
         playerInputActions.Television.Disable();
         playerInputActions.Inspect.Disable();
         playerInputActions.Branching.Disable();
@@ -65,7 +77,7 @@ public class InputManager : MonoBehaviour
     {
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
         playerInputActions.Player.Interact.performed += ObjectInteract;
-        playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
+        playerInputActions.Player.InspectObj.performed += ObjectInspectionToggle;
         playerInputActions.Player.Move.canceled += StopPlayerMove;
     }
 
@@ -88,7 +100,9 @@ public class InputManager : MonoBehaviour
 
     private void AssignInspectionHandlers()
     {
-        playerInputActions.Inspect.InspectionToggle.performed += ObjectInspectionToggle;
+        PickUpInteractor.OnObjectPickup += EnableInspect;
+        PickUpInteractor.OnObjectPlace += DisableInspect;
+        playerInputActions.Inspect.ExitInspect.performed += ObjectInspectionToggle;
     }
 
     private void OnDestroy()
@@ -96,7 +110,7 @@ public class InputManager : MonoBehaviour
         // unsubscribe from all events assigned in previous functions
         playerInputActions.Player.OpenTV.performed -= OpenTelevision;
         playerInputActions.Player.Interact.performed -= ObjectInteract;
-        playerInputActions.Player.InspectionToggle.performed -= ObjectInspectionToggle;
+        playerInputActions.Player.InspectObj.performed -= ObjectInspectionToggle;
         playerInputActions.Player.Move.canceled -= StopPlayerMove;
 
         playerInputActions.UI.Pause.performed -= PauseGame;
@@ -106,17 +120,17 @@ public class InputManager : MonoBehaviour
         playerInputActions.Memory.ExitMemoryScene.performed -= ExitMemoryScene;
 
         PickUpInteractor.OnBranchingPickup -= BranchingItemPickedUp;
+        PickUpInteractor.OnObjectPickup -= EnableInspect;
+        PickUpInteractor.OnObjectPlace -= DisableInspect;
         playerInputActions.Branching.Navigate.performed -= SwitchBranchingItem;
         playerInputActions.Branching.Submit.performed -= SubmitBranchingItem;
 
-        playerInputActions.Inspect.InspectionToggle.performed -= ObjectInspectionToggle;
+        playerInputActions.Inspect.ExitInspect.performed -= ObjectInspectionToggle;
     }
     #endregion
 
     private void Start()
     {
-        InputSystem.onActionChange += DetectControllerChange;
-        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
         _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
         inTVMode = false;
 
@@ -130,19 +144,7 @@ public class InputManager : MonoBehaviour
         MovePlayer();
         MoveCamera();
         ObjectRotation();
-
     }
-
-    private void DetectControllerChange(object obj, InputActionChange change)
-    {
-        if (obj != null && obj is InputAction action)
-        {
-            if (action.activeControl == null) return;
-            InputDevice lastDevice = action.activeControl.device;
-
-            _interactionCue.ToggleController(lastDevice is Gamepad);
-        }
-    }   
 
     private void OnApplicationFocus(bool focus)
     {
@@ -308,6 +310,7 @@ public class InputManager : MonoBehaviour
     {
         CloseTelevision(new InputAction.CallbackContext());
         playerInputActions.Player.OpenTV.Disable();
+        playerInputActions.Television.Disable();
         playerInputActions.Memory.Enable();
         inMemoryMode = true;
     }
@@ -316,6 +319,7 @@ public class InputManager : MonoBehaviour
     {
         playerInputActions.Memory.Disable();
         playerInputActions.Player.OpenTV.Enable();
+        playerInputActions.Television.Enable();
         SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
         sceneManagement.ExitMemoryScene();
         inMemoryMode = false;
@@ -330,6 +334,19 @@ public class InputManager : MonoBehaviour
     #endregion
 
     #region Object Interactions
+    public void EnableInteract()
+    {
+        if (!inBranchingSelection && !inTVMode && !inspectionMode)
+        {
+            playerInputActions.Player.Interact.Enable();
+        }
+    }
+
+    public void DisableInteract()
+    {
+        playerInputActions.Player.Interact.Disable();
+    }
+
     private void ObjectInteract(InputAction.CallbackContext context)
     {
         if (context.interaction is not HoldInteraction)
@@ -340,6 +357,16 @@ public class InputManager : MonoBehaviour
     }
 
     #region Object Inspection
+    void EnableInspect(GameObject obj)
+    {
+        playerInputActions.Player.InspectObj.Enable();
+    }
+
+    void DisableInspect(GameObject obj)
+    {
+        playerInputActions.Player.InspectObj.Disable();
+    }
+
     private void ObjectRotation()
     {
         Vector2 rotationInput = playerInputActions.Inspect.Rotate.ReadValue<Vector2>();
@@ -354,13 +381,11 @@ public class InputManager : MonoBehaviour
 
         inspectionMode = !inspectionMode;
 
-        InteractionCue interactionCue = GetComponent<InteractionCue>();
-
         if (inspectionMode)
         {
             Debug.Log("Toggling On Inspect");
-            _interactionCue.SetInteractionCue(InteractionCueType.Inspection);
             playerInputActions.Player.Disable();
+            
             playerInputActions.Inspect.Enable();
 
             inspection.ToggleFocusObject(true);
@@ -369,7 +394,6 @@ public class InputManager : MonoBehaviour
         else
         {
             Debug.Log("Toggling Off Inspect");
-            _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             playerInputActions.Player.Enable();
             playerInputActions.Inspect.Disable();
             inspection.ToggleFocusObject(false);
