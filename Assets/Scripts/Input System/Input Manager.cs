@@ -22,7 +22,6 @@ public class InputManager : MonoBehaviour
     private float _walkSpeed = 7f;
     private float _speed;
 
-    private InteractionCue _interactionCue;
     private DialogueManager _dialogueManager;
     private GameObject currSelectedBranching = null;
     private GameObject oldSelected;
@@ -115,8 +114,6 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        InputSystem.onActionChange += DetectControllerChange;
-        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
         _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
         inTVMode = false;
 
@@ -132,17 +129,6 @@ public class InputManager : MonoBehaviour
         ObjectRotation();
 
     }
-
-    private void DetectControllerChange(object obj, InputActionChange change)
-    {
-        if (obj != null && obj is InputAction action)
-        {
-            if (action.activeControl == null) return;
-            InputDevice lastDevice = action.activeControl.device;
-
-            _interactionCue.ToggleController(lastDevice is Gamepad);
-        }
-    }   
 
     private void OnApplicationFocus(bool focus)
     {
@@ -354,12 +340,9 @@ public class InputManager : MonoBehaviour
 
         inspectionMode = !inspectionMode;
 
-        InteractionCue interactionCue = GetComponent<InteractionCue>();
-
         if (inspectionMode)
         {
             Debug.Log("Toggling On Inspect");
-            _interactionCue.SetInteractionCue(InteractionCueType.Inspection);
             playerInputActions.Player.Disable();
             playerInputActions.Inspect.Enable();
 
@@ -369,7 +352,6 @@ public class InputManager : MonoBehaviour
         else
         {
             Debug.Log("Toggling Off Inspect");
-            _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             playerInputActions.Player.Enable();
             playerInputActions.Inspect.Disable();
             inspection.ToggleFocusObject(false);

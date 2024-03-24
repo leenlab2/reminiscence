@@ -11,7 +11,6 @@ using UnityEngine.Audio;
 public class DialogueManager : MonoBehaviour
 {
     private TMP_Text _interactText;
-    private InteractionCue _interactionCue;
     private PickupInteractable _pickupInteractable;
     private string _inspectionObjectText;
 
@@ -32,8 +31,8 @@ public class DialogueManager : MonoBehaviour
     {
         _inspectionObjectText = "Nothing Yet"; //tODO: REPLACE WITH EMPTY
 
-        _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
-        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
+        //_interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
+        //_interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCueOld>();
         audio = GameObject.Find("AudioDialogue").GetComponent<AudioSource>();
         audioReaction = GameObject.Find("AudioReaction").GetComponent<AudioSource>();
 
@@ -110,7 +109,7 @@ public class DialogueManager : MonoBehaviour
         audio.PlayOneShot(audio.clip, 1.0F);
 
         //Show subtitles
-        _interactionCue.SetInteractionCue(InteractionCueType.Branching); 
+        // _interactionCue.SetInteractionCue(InteractionCueType.Branching); 
 
         //Test connection
         Debug.Log("Doing the branching dialogue thing");
@@ -151,14 +150,14 @@ public class DialogueManager : MonoBehaviour
     #region Subtitle Helpers
     public void showSubtitles()
     {
-        _interactionCue.SetInteractionCue(InteractionCueType.SubtitlesOn);
+        //_interactionCue.SetInteractionCue(InteractionCueType.SubtitlesOn);
         Debug.Log("Turning ON subtitles");
 
     }
 
     public void hideSubtitles()
     {
-        _interactionCue.SetInteractionCue(InteractionCueType.SubtitlesOff);
+        //_interactionCue.SetInteractionCue(InteractionCueType.SubtitlesOff);
         Debug.Log("Turning off subtitles");
         
     }

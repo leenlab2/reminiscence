@@ -24,14 +24,11 @@ public class SceneManagement : MonoBehaviour
     private Vector3 _originalPlayerPos;
     private Quaternion _originalPlayerRot;
 
-    private InteractionCue _interactionCue;
-
     // Start is called before the first frame update
     void Start()
     {
         tapeManager = FindObjectOfType<TapeManager>();
-        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
-
+        
         // Set to dim lighting
         RenderSettings.ambientMode = AmbientMode.Flat;
         RenderSettings.ambientSkyColor = Color.black;
@@ -78,8 +75,6 @@ public class SceneManagement : MonoBehaviour
 
         FindObjectOfType<InputManager>().EnterMemoryScene();
 
-        _interactionCue.SetInteractionCue(InteractionCueType.EnterMemory);
-
         _originalPlayerPos = player.transform.position;
         _originalPlayerRot = player.transform.rotation;
 
@@ -94,8 +89,6 @@ public class SceneManagement : MonoBehaviour
         GetComponent<AudioSource>().PlayOneShot(memoryExitSfx);
 
         MovePlayerToScene(_originalPlayerPos, _originalPlayerRot);
-
-        _interactionCue.SetInteractionCue(InteractionCueType.ExitMemory);
 
         effects.SetActive(false);
 

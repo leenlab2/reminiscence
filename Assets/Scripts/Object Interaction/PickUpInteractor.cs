@@ -22,10 +22,8 @@ public class PickUpInteractor : MonoBehaviour
 
     private Quaternion originalHoldAreaRotation;
 
-    private TMP_Text _interactText;
     public static Action<GameObject> OnBranchingPickup;
 
-    private InteractionCue _interactionCue;
     private bool _firstTapePickup = false;
 
 #region IsHeld
@@ -56,9 +54,6 @@ public class PickUpInteractor : MonoBehaviour
     {
         originalHoldAreaRotation = holdArea.rotation;
         InteractableDetector.OnCursorHitChange += DetermineNewPosition;
-
-        _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
-        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
     }
 
     private void OnDestroy()
@@ -101,8 +96,6 @@ public class PickUpInteractor : MonoBehaviour
     {
         ResetHoldArea();
 
-        _interactionCue.SetInteractionCue(InteractionCueType.Hold);
-
         // _interactText.text = "Hold left to aim and click right to place. Press E to inspect.";
 
         // Fix rigid body settings of target object
@@ -138,8 +131,6 @@ public class PickUpInteractor : MonoBehaviour
         Inspection.ChangeObjectLayer(otherBranching.transform, "Branching");
 
         rightHand.parent.Find("Canvas").gameObject.SetActive(true);
-
-        _interactionCue.SetInteractionCue(InteractionCueType.Branching);
 
         // TODO: make this more efficient
         crosshairs.SetActive(false);
