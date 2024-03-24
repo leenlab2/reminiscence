@@ -110,8 +110,7 @@ public class InteractableDetector : MonoBehaviour
             }
         }
 
-        InputManager inputManager = FindObjectOfType<InputManager>();
-        if (inputManager.InTVMode())
+        if (InputManager.instance.InTVMode())
         {
             _lastCrossHairDisplaySize = _crossHairDisplay.rectTransform.sizeDelta;
             _crossHairDisplay.rectTransform.sizeDelta = new Vector2(0, 0);
@@ -131,10 +130,14 @@ public class InteractableDetector : MonoBehaviour
         {
             if (pickUpInteractor.IsHeld("Tape Model"))
             {
-                InputManager inputManager = FindObjectOfType<InputManager>();
+                Debug.Log("Holding tape");
             }
 
             TapeManager tapeManager = FindObjectOfType<TapeManager>();
+            if (tapeManager.televisionHasTape())
+            {
+                Debug.Log("TV has tape");
+            }
             interactionType = InteractionType.InsertRemoveTape;
         }
         else if (pickUpInteractor.isHoldingObj())
@@ -175,6 +178,7 @@ public class InteractableDetector : MonoBehaviour
         {
             currentObj = _currentHit.Value.transform.gameObject;
             highlightObject(currentObj);
+            InputManager.instance.EnableInteract();
         }
     }
 
@@ -184,6 +188,8 @@ public class InteractableDetector : MonoBehaviour
 
         _crossHairDisplay.sprite = _defaultCrosshair;
         _crossHairDisplay.rectTransform.sizeDelta = new Vector2(15, 15);
+
+        InputManager.instance.DisableInteract();
     }
     #endregion
 

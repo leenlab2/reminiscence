@@ -10,7 +10,8 @@ using UnityEngine.UI;
 [Serializable]
 public struct ActionHint
 {
-    public InputActionReference actionRef;
+    public String actionPath;
+    public InputAction action => InputManager.instance.playerInputActions.FindAction(actionPath);
     public string text;
 }
 
@@ -23,7 +24,7 @@ public class InteractionCue : MonoBehaviour
     [Tooltip("The actions whose cues are displayed in this part of the screen.")]
     [SerializeField] private List<ActionHint> actionHints;
 
-    private ActionHint currentActionHint;
+    private InputAction currentAction;
 
     private void Awake()
     {
@@ -33,19 +34,12 @@ public class InteractionCue : MonoBehaviour
         InteractionCueManager.OnControllerChanged += UpdateCueSprite;
     }
 
-    void Start()
-    {
-        currentActionHint = actionHints[0];
-        text.text = currentActionHint.text;
-    }
-
     private void UpdateCueSprite()
     {
-        if (currentActionHint.actionRef != null)
+        if (currentAction != null)
         {
-            InputAction action = currentActionHint.actionRef.action;
-            int index = action.GetBindingIndex(InteractionCueManager.bindingMask);
-            string controlPath = action.bindings[index].effectivePath;
+            int index = currentAction.GetBindingIndex(InteractionCueManager.bindingMask);
+            string controlPath = currentAction.bindings[index].effectivePath;
             Debug.Log(controlPath);
             image.sprite = InteractionCueManager.currentIcons.GetSprite(controlPath);
         }
@@ -53,20 +47,36 @@ public class InteractionCue : MonoBehaviour
 
     private void SetActionHint(ActionHint actionHint)
     {
-        currentActionHint = actionHint;
-        text.text = currentActionHint.text;
+        currentAction = actionHint.action;
+        text.text = actionHint.text;
         UpdateCueSprite();
     }
 
-    private void Update()
+    void ResetCue()
     {
+        currentAction = null;
+        image.sprite = null;
+        text.text = "";
+    }
+
+    void Update()
+    {
+        ActionHint? newActionHint = null;
         foreach (ActionHint actionHint in actionHints)
         {
-            if (actionHint.actionRef.action.enabled)
+            if (actionHint.action.enabled)
             {
-                SetActionHint(actionHint);
+                newActionHint = actionHint;
                 break;
             }
+        }
+
+        if (newActionHint != null)
+        {
+            SetActionHint((ActionHint)newActionHint);
+        } else
+        {
+            ResetCue();
         }
     }
 }

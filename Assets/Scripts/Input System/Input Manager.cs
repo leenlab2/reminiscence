@@ -8,6 +8,8 @@ using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager instance;
+
     public PlayerInputActions playerInputActions;
     public GameObject pauseMenu;
     public GameObject resumeButton;
@@ -38,12 +40,22 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         _speed = _walkSpeed;
         playerBody = GetComponent<Rigidbody>();
         playerAnimate = GetComponent<Animator>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
+        playerInputActions.Player.Interact.Disable();
         playerInputActions.Television.Disable();
         playerInputActions.Inspect.Disable();
         playerInputActions.Branching.Disable();
@@ -127,7 +139,6 @@ public class InputManager : MonoBehaviour
         MovePlayer();
         MoveCamera();
         ObjectRotation();
-
     }
 
     private void OnApplicationFocus(bool focus)
@@ -316,6 +327,16 @@ public class InputManager : MonoBehaviour
     #endregion
 
     #region Object Interactions
+    public void EnableInteract()
+    {
+        playerInputActions.Player.Interact.Enable();
+    }
+
+    public void DisableInteract()
+    {
+        playerInputActions.Player.Interact.Disable();
+    }
+
     private void ObjectInteract(InputAction.CallbackContext context)
     {
         if (context.interaction is not HoldInteraction)

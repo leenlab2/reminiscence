@@ -383,6 +383,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 57297246170882997}
     m_Modifications:
+    - target: {fileID: 834424863183789312, guid: 711eb71e6bca26c4795910d323a33435, type: 3}
+      propertyPath: actionHints.Array.data[0].actionPath
+      value: Player/Interact
+      objectReference: {fileID: 0}
     - target: {fileID: 5964256553330311211, guid: 711eb71e6bca26c4795910d323a33435, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -513,6 +517,18 @@ PrefabInstance:
       propertyPath: actionHints.Array.data[2].actionRef
       value: 
       objectReference: {fileID: 6925419516745877503, guid: 52416dff7036312419fb28f163ca1ca1, type: 3}
+    - target: {fileID: 834424863183789312, guid: 711eb71e6bca26c4795910d323a33435, type: 3}
+      propertyPath: actionHints.Array.data[0].actionPath
+      value: Player/OpenTV
+      objectReference: {fileID: 0}
+    - target: {fileID: 834424863183789312, guid: 711eb71e6bca26c4795910d323a33435, type: 3}
+      propertyPath: actionHints.Array.data[1].actionPath
+      value: Television/CloseTV
+      objectReference: {fileID: 0}
+    - target: {fileID: 834424863183789312, guid: 711eb71e6bca26c4795910d323a33435, type: 3}
+      propertyPath: actionHints.Array.data[2].actionPath
+      value: Memory/ExitMemoryScene
+      objectReference: {fileID: 0}
     - target: {fileID: 1557301175178055748, guid: 711eb71e6bca26c4795910d323a33435, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -691,6 +707,14 @@ PrefabInstance:
       propertyPath: actionHints.Array.data[1].actionRef
       value: 
       objectReference: {fileID: -5805568338529213476, guid: 52416dff7036312419fb28f163ca1ca1, type: 3}
+    - target: {fileID: 834424863183789312, guid: 711eb71e6bca26c4795910d323a33435, type: 3}
+      propertyPath: actionHints.Array.data[0].actionPath
+      value: Inspect/Rotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 834424863183789312, guid: 711eb71e6bca26c4795910d323a33435, type: 3}
+      propertyPath: actionHints.Array.data[1].actionPath
+      value: Branching/Navigate
+      objectReference: {fileID: 0}
     - target: {fileID: 1557301175178055748, guid: 711eb71e6bca26c4795910d323a33435, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -877,6 +901,14 @@ PrefabInstance:
       propertyPath: actionHints.Array.data[2].actionRef
       value: 
       objectReference: {fileID: 3556067587252080964, guid: 52416dff7036312419fb28f163ca1ca1, type: 3}
+    - target: {fileID: 834424863183789312, guid: 711eb71e6bca26c4795910d323a33435, type: 3}
+      propertyPath: actionHints.Array.data[0].actionPath
+      value: Player/InspectionToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 834424863183789312, guid: 711eb71e6bca26c4795910d323a33435, type: 3}
+      propertyPath: actionHints.Array.data[1].actionPath
+      value: Inspect/InspectionToggle
+      objectReference: {fileID: 0}
     - target: {fileID: 1557301175178055748, guid: 711eb71e6bca26c4795910d323a33435, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

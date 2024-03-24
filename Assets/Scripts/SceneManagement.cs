@@ -73,7 +73,7 @@ public class SceneManagement : MonoBehaviour
         RenderSettings.ambientIntensity = 0.5f;
         effects.SetActive(true);
 
-        FindObjectOfType<InputManager>().EnterMemoryScene();
+        InputManager.instance.EnterMemoryScene();
 
         _originalPlayerPos = player.transform.position;
         _originalPlayerRot = player.transform.rotation;
