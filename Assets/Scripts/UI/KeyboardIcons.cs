@@ -18,9 +18,10 @@ public class KeyboardIcons : IControlIcons
     public Sprite leftButton;
     public Sprite delta;
 
+    public Sprite error;
+
     public Sprite GetSprite(string controlPath)
     {
-        Debug.Log("getting sprite");
         // From the input system, we get the path of the control on device. So we can just
         // map from that to the sprites we have for gamepads.
         switch (controlPath)
@@ -37,7 +38,7 @@ public class KeyboardIcons : IControlIcons
             case "<Mouse>/leftButton": return leftButton;
             case "<Pointer>/delta": return delta;
         }
-        Debug.Log("Coudlnt find asprite");  
-        return null;
+
+        return error;
     }
 }

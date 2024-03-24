@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.DualShock;
 using UnityEditor;
 
 
-public class InteractionCueManager : MonoBehaviour 
+public class ControlCueManager : MonoBehaviour 
 {
     public GamepadIcons xbox;
     public GamepadIcons ps4;
@@ -20,7 +20,13 @@ public class InteractionCueManager : MonoBehaviour
 
     private void Start()
     {
+        currentIcons = keyboard;
         InputSystem.onActionChange += OnControllerChange;
+    }
+
+    private void OnDestroy()
+    {
+        InputSystem.onActionChange -= OnControllerChange;
     }
 
     #region Device Changes

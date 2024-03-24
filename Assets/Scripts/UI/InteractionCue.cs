@@ -1,87 +1,42 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 
-[Serializable]
-public struct ActionHint
+public class InteractionCue : ControlCue
 {
-    public InputActionReference actionRef;
-    public InputAction action => InputManager.instance.playerInputActions.FindAction(actionRef.action.name);
-    public string text;
-}
+    public List<InteractionType> interactions;
 
-[Serializable]
-public class InteractionCue : MonoBehaviour
-{
-    private Image image;
-    private TMP_Text text;
 
-    [Tooltip("The actions whose cues are displayed in this part of the screen.")]
-    [SerializeField] private List<ActionHint> actionHints;
-
-    private InputAction currentAction;
-
-    private void Awake()
+    protected override void SetActionHint(ActionHint actionHint)
     {
-        image = GetComponentInChildren<Image>();
-        text = GetComponentInChildren<TMP_Text>();
-
-        InteractionCueManager.OnControllerChanged += UpdateCueSprite;
-    }
-
-    private void OnDestroy()
-    {
-        InteractionCueManager.OnControllerChanged -= UpdateCueSprite;
-    }
-
-    private void UpdateCueSprite()
-    {
-        if (currentAction != null)
+        if (!interactions.Contains(InteractableDetector.interactionType))
         {
-            int index = currentAction.GetBindingIndex(InteractionCueManager.bindingMask);
-            string controlPath = currentAction.bindings[index].effectivePath;
-            Debug.Log(controlPath);
-            image.sprite = InteractionCueManager.currentIcons.GetSprite(controlPath);
+            Debug.Log("Interaction type not found in list of interactions for this cue.");
+            ResetCue();
+            return;
         }
-    }
 
-    private void SetActionHint(ActionHint actionHint)
-    {
+        Debug.Log("Setting action hint for interaction type: " + InteractableDetector.interactionType);
         currentAction = actionHint.action;
-        text.text = actionHint.text;
+        text.text = GetInteractionText();
         UpdateCueSprite();
     }
 
-    void ResetCue()
+    public static string ToFormattedText(InteractionType value)
     {
-        currentAction = null;
-        image.sprite = null;
-        text.text = "";
+        return new string(value.ToString()
+            .SelectMany(c =>
+                char.IsUpper(c)
+                ? new[] { ' ', c }
+                : new[] { c })
+            .ToArray()).Trim();
     }
 
-    void Update()
+    String GetInteractionText()
     {
-        ActionHint? newActionHint = null;
-        foreach (ActionHint actionHint in actionHints)
-        {
-            if (actionHint.action.enabled)
-            {
-                newActionHint = actionHint;
-                break;
-            }
-        }
-
-        if (newActionHint != null)
-        {
-            SetActionHint((ActionHint)newActionHint);
-        } else
-        {
-            ResetCue();
-        }
+        InteractionType interactionType = InteractableDetector.interactionType;
+        return ToFormattedText(interactionType);
     }
 }

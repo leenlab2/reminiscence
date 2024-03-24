@@ -334,7 +334,10 @@ public class InputManager : MonoBehaviour
     #region Object Interactions
     public void EnableInteract()
     {
-        playerInputActions.Player.Interact.Enable();
+        if (!inBranchingSelection && !inTVMode && !inspectionMode)
+        {
+            playerInputActions.Player.Interact.Enable();
+        }
     }
 
     public void DisableInteract()
@@ -380,6 +383,7 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Toggling On Inspect");
             playerInputActions.Player.Disable();
+            
             playerInputActions.Inspect.Enable();
 
             inspection.ToggleFocusObject(true);

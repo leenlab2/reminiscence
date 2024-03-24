@@ -18,9 +18,10 @@ public class GamepadIcons : IControlIcons
     public Sprite leftStick;
     public Sprite rightStick;
 
+    public Sprite error;
+
     public Sprite GetSprite(string controlPath)
     {
-        Debug.Log("getting sprite");
         // From the input system, we get the path of the control on device. So we can just
         // map from that to the sprites we have for gamepads.
         switch (controlPath)
@@ -37,7 +38,7 @@ public class GamepadIcons : IControlIcons
             case "<Gamepad>/leftStick": return leftStick;
             case "<Gamepad>/rightStick": return rightStick;
         }
-        Debug.Log("Coudlnt find asprite");
-        return null;
+
+        return error;
     }
 }
