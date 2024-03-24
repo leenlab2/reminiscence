@@ -56,6 +56,7 @@ public class InputManager : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
         playerInputActions.Player.Interact.Disable();
+        playerInputActions.Player.InspectObj.Disable();
         playerInputActions.Television.Disable();
         playerInputActions.Inspect.Disable();
         playerInputActions.Branching.Disable();
@@ -76,7 +77,7 @@ public class InputManager : MonoBehaviour
     {
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
         playerInputActions.Player.Interact.performed += ObjectInteract;
-        playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
+        playerInputActions.Player.InspectObj.performed += ObjectInspectionToggle;
         playerInputActions.Player.Move.canceled += StopPlayerMove;
     }
 
@@ -99,7 +100,9 @@ public class InputManager : MonoBehaviour
 
     private void AssignInspectionHandlers()
     {
-        playerInputActions.Inspect.InspectionToggle.performed += ObjectInspectionToggle;
+        PickUpInteractor.OnObjectPickup += EnableInspect;
+        PickUpInteractor.OnObjectPlace += DisableInspect;
+        playerInputActions.Inspect.ExitInspect.performed += ObjectInspectionToggle;
     }
 
     private void OnDestroy()
@@ -107,7 +110,7 @@ public class InputManager : MonoBehaviour
         // unsubscribe from all events assigned in previous functions
         playerInputActions.Player.OpenTV.performed -= OpenTelevision;
         playerInputActions.Player.Interact.performed -= ObjectInteract;
-        playerInputActions.Player.InspectionToggle.performed -= ObjectInspectionToggle;
+        playerInputActions.Player.InspectObj.performed -= ObjectInspectionToggle;
         playerInputActions.Player.Move.canceled -= StopPlayerMove;
 
         playerInputActions.UI.Pause.performed -= PauseGame;
@@ -117,10 +120,12 @@ public class InputManager : MonoBehaviour
         playerInputActions.Memory.ExitMemoryScene.performed -= ExitMemoryScene;
 
         PickUpInteractor.OnBranchingPickup -= BranchingItemPickedUp;
+        PickUpInteractor.OnObjectPickup -= EnableInspect;
+        PickUpInteractor.OnObjectPlace -= DisableInspect;
         playerInputActions.Branching.Navigate.performed -= SwitchBranchingItem;
         playerInputActions.Branching.Submit.performed -= SubmitBranchingItem;
 
-        playerInputActions.Inspect.InspectionToggle.performed -= ObjectInspectionToggle;
+        playerInputActions.Inspect.ExitInspect.performed -= ObjectInspectionToggle;
     }
     #endregion
 
@@ -347,6 +352,16 @@ public class InputManager : MonoBehaviour
     }
 
     #region Object Inspection
+    void EnableInspect(GameObject obj)
+    {
+        playerInputActions.Player.InspectObj.Enable();
+    }
+
+    void DisableInspect(GameObject obj)
+    {
+        playerInputActions.Player.InspectObj.Disable();
+    }
+
     private void ObjectRotation()
     {
         Vector2 rotationInput = playerInputActions.Inspect.Rotate.ReadValue<Vector2>();

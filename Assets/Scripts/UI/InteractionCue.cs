@@ -10,8 +10,8 @@ using UnityEngine.UI;
 [Serializable]
 public struct ActionHint
 {
-    public String actionPath;
-    public InputAction action => InputManager.instance.playerInputActions.FindAction(actionPath);
+    public InputActionReference actionRef;
+    public InputAction action => InputManager.instance.playerInputActions.FindAction(actionRef.action.name);
     public string text;
 }
 
@@ -32,6 +32,11 @@ public class InteractionCue : MonoBehaviour
         text = GetComponentInChildren<TMP_Text>();
 
         InteractionCueManager.OnControllerChanged += UpdateCueSprite;
+    }
+
+    private void OnDestroy()
+    {
+        InteractionCueManager.OnControllerChanged -= UpdateCueSprite;
     }
 
     private void UpdateCueSprite()

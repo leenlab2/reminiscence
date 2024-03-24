@@ -142,6 +142,7 @@ public class InteractableDetector : MonoBehaviour
         }
         else if (pickUpInteractor.isHoldingObj())
         {
+            InputManager.instance.EnableInteract();
             interactionType = InteractionType.Place;
         }
         else if (hit.transform.GetComponent<Interactable>()?.isInteractable ?? false)

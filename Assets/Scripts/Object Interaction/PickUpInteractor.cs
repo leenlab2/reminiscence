@@ -22,6 +22,8 @@ public class PickUpInteractor : MonoBehaviour
 
     private Quaternion originalHoldAreaRotation;
 
+    public static Action<GameObject> OnObjectPickup;
+    public static Action<GameObject> OnObjectPlace;
     public static Action<GameObject> OnBranchingPickup;
 
     private bool _firstTapePickup = false;
@@ -84,6 +86,8 @@ public class PickUpInteractor : MonoBehaviour
         {
             PickupObject(pickObj);
         }
+
+        OnObjectPickup?.Invoke(obj);
     }
 
     public void PickupObject(PickupInteractable obj)
@@ -177,7 +181,7 @@ public class PickUpInteractor : MonoBehaviour
     public void DropHeldObject()
     {
         PlaceObject(HeldObj);
-
+        OnObjectPlace?.Invoke(HeldObj);
         ResetHoldArea();
     }
 

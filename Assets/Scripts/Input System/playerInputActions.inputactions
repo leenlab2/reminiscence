@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "InspectionToggle",
+                    "name": "InspectObj",
                     "type": "Button",
                     "id": "4b3cfd31-8751-4e33-8343-cb806e0e02c7",
                     "expectedControlType": "Button",
@@ -213,7 +213,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "InspectionToggle",
+                    "action": "InspectObj",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -224,7 +224,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "InspectionToggle",
+                    "action": "InspectObj",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1136,7 +1136,7 @@
             "id": "5a821b14-d3b5-4c44-a19c-4baa73d90819",
             "actions": [
                 {
-                    "name": "InspectionToggle",
+                    "name": "ExitInspect",
                     "type": "Button",
                     "id": "c7acaa67-b3d2-4926-a634-d5addcba681f",
                     "expectedControlType": "Button",
@@ -1184,7 +1184,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "InspectionToggle",
+                    "action": "ExitInspect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1195,7 +1195,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "InspectionToggle",
+                    "action": "ExitInspect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
