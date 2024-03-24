@@ -44,9 +44,9 @@ public class ControlCue : MonoBehaviour
         if (currentAction != null)
         {
             int index = currentAction.GetBindingIndex(ControlCueManager.bindingMask);
+            Debug.Log("Binding index: " + index + " for action " + currentAction.name);
             string controlPath = currentAction.bindings[index].effectivePath;
-            IControlIcons myicons = ControlCueManager.currentIcons;
-            Sprite mysprite = myicons.GetSprite(controlPath);
+            Sprite mysprite = ControlCueManager.currentIcons.GetSprite(controlPath);
             image.sprite = mysprite;
         }
     }
@@ -65,7 +65,7 @@ public class ControlCue : MonoBehaviour
         text.text = "";
     }
 
-    void Update()
+    protected virtual void Update()
     {
         ActionHint? newActionHint = null;
         foreach (ActionHint actionHint in actionHints)

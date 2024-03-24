@@ -39,4 +39,14 @@ public class InteractionCue : ControlCue
         InteractionType interactionType = InteractableDetector.interactionType;
         return ToFormattedText(interactionType);
     }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (currentAction != null && !currentAction.enabled)
+        {
+            ResetCue();
+        }
+    }
 }

@@ -310,6 +310,7 @@ public class InputManager : MonoBehaviour
     {
         CloseTelevision(new InputAction.CallbackContext());
         playerInputActions.Player.OpenTV.Disable();
+        playerInputActions.Television.Disable();
         playerInputActions.Memory.Enable();
         inMemoryMode = true;
     }
@@ -318,6 +319,7 @@ public class InputManager : MonoBehaviour
     {
         playerInputActions.Memory.Disable();
         playerInputActions.Player.OpenTV.Enable();
+        playerInputActions.Television.Enable();
         SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
         sceneManagement.ExitMemoryScene();
         inMemoryMode = false;
