@@ -100,8 +100,6 @@ public class PickUpInteractor : MonoBehaviour
     {
         ResetHoldArea();
 
-        // _interactText.text = "Hold left to aim and click right to place. Press E to inspect.";
-
         // Fix rigid body settings of target object
         obj.TogglePlacementGuide(true);
         obj.ToggleFreezeBody(true);
@@ -174,14 +172,21 @@ public class PickUpInteractor : MonoBehaviour
     private void ResetHoldArea()
     {
         HeldObj = null;
-        holdArea.transform.rotation = originalHoldAreaRotation;
+    public void DropHeldObject(Container container = null)
     }
+        if (container)
+        {
+            PlaceObjectInContainer(HeldObj, container);
+        } else
+        {
+            PlaceObject(HeldObj);
+        }
 
-    #region Object Drop
-    public void DropHeldObject()
+        OnObjectPlace?.Invoke(HeldObj);
+    public void DropHeldObject(Container container = null)
     {
         PlaceObject(HeldObj);
-        OnObjectPlace?.Invoke(HeldObj);
+
         ResetHoldArea();
     }
 
@@ -191,6 +196,17 @@ public class PickUpInteractor : MonoBehaviour
 
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
         pickObj.MoveToPlacementGuide();
+        pickObj.TogglePlacementGuide(false);
+        pickObj.ToggleFreezeBody(false);
+        pickObj.MakeObjBig();
+    }
+
+    void PlaceObjectInContainer(GameObject obj, Container container)
+    {
+        ToggleObjectColliders(obj, true);
+
+        PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
+        pickObj.MoveToContainer(container);
         pickObj.TogglePlacementGuide(false);
         pickObj.ToggleFreezeBody(false);
         pickObj.MakeObjBig();
