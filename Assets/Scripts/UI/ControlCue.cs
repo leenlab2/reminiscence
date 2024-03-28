@@ -11,10 +11,9 @@ using UnityEngine.UI;
 public struct ActionHint
 {
     public InputActionReference actionRef;
-    public InputAction action => InputManager.instance.playerInputActions.FindAction(actionRef.action.name);
+    public InputAction action => ControlCue.GetActionFromRef(actionRef);
     public string text;
 }
-
 
 public class ControlCue : MonoBehaviour
 {
@@ -37,6 +36,15 @@ public class ControlCue : MonoBehaviour
     private void OnDestroy()
     {
         ControlCueManager.OnControllerChanged -= UpdateCueSprite;
+    }
+
+    public static InputAction GetActionFromRef(InputActionReference actionRef)
+    {
+        InputActionMap actionMap = InputManager.instance.playerInputActions.asset.FindActionMap(actionRef.action.actionMap.name);
+        if (actionMap == null) return null;
+
+
+        return actionMap.FindAction(actionRef.action.name);
     }
 
     protected void UpdateCueSprite()
@@ -66,6 +74,8 @@ public class ControlCue : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (currentAction != null && currentAction.enabled && GetComponent<InteractionCue>() == null) return;
+
         ActionHint? newActionHint = null;
         foreach (ActionHint actionHint in actionHints)
         {

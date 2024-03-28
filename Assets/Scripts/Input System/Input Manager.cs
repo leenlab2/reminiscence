@@ -34,6 +34,7 @@ public class InputManager : MonoBehaviour
     private bool gamePaused = false;
     private bool inBranchingSelection = false;
     private bool inspectionMode = false;
+    private bool wasInspectEnabled = false;
 
     public static Action OnGamePaused;
     public static Action OnGameResumed;
@@ -277,6 +278,7 @@ public class InputManager : MonoBehaviour
     private void OpenTelevision(InputAction.CallbackContext obj)
     {
         Debug.Log("Opening TV");
+        wasInspectEnabled = playerInputActions.Player.InspectObj.enabled;
         playerInputActions.Player.Disable();
         playerInputActions.Television.Enable();
 
@@ -293,6 +295,11 @@ public class InputManager : MonoBehaviour
 
         playerInputActions.Television.Disable();
         playerInputActions.Player.Enable();
+        
+        if (!wasInspectEnabled)
+        {
+            playerInputActions.Player.InspectObj.Disable();
+        }
 
         ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
         cameraCtrl.SwitchToPlayerView();
