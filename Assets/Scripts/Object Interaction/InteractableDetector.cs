@@ -43,6 +43,7 @@ public class InteractableDetector : MonoBehaviour
 
     // private fields
     private RaycastHit? _currentHit = null;
+    private Transform _currentInteractable = null;  // what the player looked at when the interaction type was determined
     public static InteractionType interactionType { get; private set; } = InteractionType.None;
     
 
@@ -129,6 +130,7 @@ public class InteractableDetector : MonoBehaviour
     /// </summary>
     private void CheckInteractableTypeHit(RaycastHit hit)
     {
+        _currentInteractable = hit.transform;
         PickUpInteractor pickUpInteractor = GetComponent<PickUpInteractor>();
 
         if (hit.transform.name == "VHS")
@@ -149,15 +151,6 @@ public class InteractableDetector : MonoBehaviour
         }
         else if (pickUpInteractor.isHoldingObj())
         {
-            // check if the raycast hit is container
-            if (hit.transform.GetComponent<Container>()?.isOpen ?? false)
-            {
-                interactionType = InteractionType.PlaceInContainer;
-            } else
-            {
-                interactionType = InteractionType.Place;
-            }
-        }
             InputManager.instance.EnableInteract();
             interactionType = InteractionType.Place;
         }
@@ -169,10 +162,6 @@ public class InteractableDetector : MonoBehaviour
             {
                 case Container openInteractable:
                     bool isOpen = hit.transform.GetComponent<Container>().isOpen;
-                    _interactionCue.ToggleOpenClose(isOpen); // TODO: change to open
-                    interactionType = InteractionType.Open;
-                case OpenInteractable openInteractable:
-                    bool isOpen = hit.transform.GetComponent<OpenInteractable>().isOpen;
                     interactionType = isOpen ? InteractionType.Close : InteractionType.Open;
                     break;
                 case PickupInteractable pickupInteractable when !pickUpInteractor.isHoldingObj():
@@ -186,6 +175,7 @@ public class InteractableDetector : MonoBehaviour
         else
         {
             interactionType = InteractionType.None;
+            _currentInteractable = null;
         }
     }
 
@@ -252,20 +242,22 @@ public class InteractableDetector : MonoBehaviour
         }
         else if (interactionType == InteractionType.Place)
         {
-            Debug.Log("Interaction type: place");
-            pickUpInteractor.DropHeldObject();
+            // check if the raycast hit is container
+            if (_currentInteractable.GetComponent<Container>()?.isOpen ?? false)
+            {
+                Debug.Log("Interaction type: place in container");
+                GameObject container = _currentInteractable.gameObject;
+                pickUpInteractor.DropHeldObject(container.GetComponent<Container>());
+            } else
+            {
+                Debug.Log("Interaction type: place");
+                pickUpInteractor.DropHeldObject();
+            }
         }
-        else if (interactionType == InteractionType.PlaceInContainer)
-        {
-            Debug.Log("Interaction type: place");
-            GameObject container = _currentHit.Value.transform.gameObject;
-            pickUpInteractor.DropHeldObject(container.GetComponent<Container>());
-        } 
-        else if (interactionType == InteractionType.Open)
-        } else if (interactionType == InteractionType.Open || interactionType == InteractionType.Close)
+        else if (interactionType == InteractionType.Open || interactionType == InteractionType.Close)
         {
             Debug.Log("Interaction type: open/close");
-            GameObject obj = _currentHit.Value.transform.gameObject;
+            GameObject obj = _currentInteractable.gameObject;
             obj.GetComponent<Container>().ToggleOpen();
         }
     }

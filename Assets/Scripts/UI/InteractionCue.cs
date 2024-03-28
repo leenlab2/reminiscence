@@ -13,12 +13,12 @@ public class InteractionCue : ControlCue
     {
         if (!interactions.Contains(InteractableDetector.interactionType))
         {
-            Debug.Log("Interaction type not found in list of interactions for this cue.");
+            //Debug.Log("Interaction type not found in list of interactions for this cue.");
             ResetCue();
             return;
         }
 
-        Debug.Log("Setting action hint for interaction type: " + InteractableDetector.interactionType);
+        // Debug.Log("Setting action hint for interaction type: " + InteractableDetector.interactionType);
         currentAction = actionHint.action;
         text.text = GetInteractionText();
         UpdateCueSprite();

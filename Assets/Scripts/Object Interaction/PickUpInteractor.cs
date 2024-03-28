@@ -172,21 +172,22 @@ public class PickUpInteractor : MonoBehaviour
     private void ResetHoldArea()
     {
         HeldObj = null;
-    public void DropHeldObject(Container container = null)
+        holdArea.transform.rotation = originalHoldAreaRotation;
     }
+
+    #region Object Drop
+    public void DropHeldObject(Container container = null)
+    {
         if (container)
         {
             PlaceObjectInContainer(HeldObj, container);
-        } else
+        }
+        else
         {
             PlaceObject(HeldObj);
         }
 
         OnObjectPlace?.Invoke(HeldObj);
-    public void DropHeldObject(Container container = null)
-    {
-        PlaceObject(HeldObj);
-
         ResetHoldArea();
     }
 

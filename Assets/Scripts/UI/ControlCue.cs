@@ -44,7 +44,6 @@ public class ControlCue : MonoBehaviour
         if (currentAction != null)
         {
             int index = currentAction.GetBindingIndex(ControlCueManager.bindingMask);
-            Debug.Log("Binding index: " + index + " for action " + currentAction.name);
             string controlPath = currentAction.bindings[index].effectivePath;
             Sprite mysprite = ControlCueManager.currentIcons.GetSprite(controlPath);
             image.sprite = mysprite;
