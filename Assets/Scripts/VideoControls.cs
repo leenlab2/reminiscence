@@ -182,36 +182,36 @@ public class VideoControls : MonoBehaviour
 
 
             //////// DIALOGuE DIRTY/////
-            if (progressPercentage >= 0)
+            if (progressPercentage >= 0 && InputManager.instance.InTVMode())
             {
                 if (tapeSOInTV.clipToPlay == ClipToPlay.OriginalCorrupted)
                 {
-                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.startSubtitles, tapeReactionsInTV.start);
+                    _dialogueManager.SetDialogue(tapeReactionsInTV.startSubtitles, tapeReactionsInTV.start);
                     timer = 0.1f;
                 }
                 else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchACorrupted) 
                 {
-                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
+                    _dialogueManager.SetDialogue(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
                     timer = 0.8f;
                 }
                 else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBCorrupted)
                 {
-                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
+                    _dialogueManager.SetDialogue(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
                     timer = 0.8f;
                 }
                 else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchASolution)
                 {
-                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.endASubtitles, tapeReactionsInTV.endA);
+                    _dialogueManager.SetDialogue(tapeReactionsInTV.endASubtitles, tapeReactionsInTV.endA);
                     timer = 0.8f;
                 }
                 else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBSolution)
                 {
-                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.endBSubtitles, tapeReactionsInTV.endB);
+                    _dialogueManager.SetDialogue(tapeReactionsInTV.endBSubtitles, tapeReactionsInTV.endB);
                     timer = 0.8f;
                 }
             }
 
-            if ((progressPercentage <= 0.94f) && (progressPercentage >= timer) && (!hasBeenInvoked))
+            if ((progressPercentage <= 0.94f) && (progressPercentage >= timer) && (!hasBeenInvoked) && InputManager.instance.InTVMode())
             {
                 dialoguePrompt?.Invoke();
                 hasBeenInvoked = true;

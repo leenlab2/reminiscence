@@ -10,34 +10,39 @@ using UnityEngine.Audio;
 
 public class DialogueManager : MonoBehaviour
 {
-    private TMP_Text _interactText;
+    public static DialogueManager instance;
+
+    [Header("Info on Held Item")]
     private PickupInteractable _pickupInteractable;
     private string _inspectionObjectText;
 
-    public StringValue objectTextInfo;
-    public AudioClipScriptableObject objectAudioInfo;
+    public StringValue textInfo;
+    public AudioClipScriptableObject audioInfo;
 
-    //Reactions
-    public StringValue reactionTextInfo;
-    public AudioClipScriptableObject reactionAudioInfo;
-    
+    [Header("Audio")]
     public AudioClip dialogueAudio;
+    [SerializeField] private AudioSource audioSource;
 
-    private AudioSource audio;
-    private AudioSource audioReaction;
+    [Header("Subtitles")]
+    public TMP_Text subtitlesText;
+    public TMP_Text reactionsText;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     void Start()
     {
         _inspectionObjectText = "Nothing Yet"; //tODO: REPLACE WITH EMPTY
-
-        //_interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
-        //_interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCueOld>();
-        audio = GameObject.Find("AudioDialogue").GetComponent<AudioSource>();
-        audioReaction = GameObject.Find("AudioReaction").GetComponent<AudioSource>();
-
         VideoControls.dialoguePrompt += PlayDialogue;
-
     }
 
     private void OnDestroy()
@@ -45,123 +50,100 @@ public class DialogueManager : MonoBehaviour
         VideoControls.dialoguePrompt -= PlayDialogue;
     }
    
-    void PlayDialogue()
+    public void PlayDialogue()
     {
+        Debug.Log("Playing Dialogue: " + _inspectionObjectText);
+        float timer = audioSource.clip.length;
 
-        float timer = playReaction();
-        if (timer > 10f) { timer = 10f; } //TAKE THIS OUT ONCE CLIPS HAVE BEEN TRIMMED
-        playDialogueSubtitles(timer);
-        Invoke("stopReaction", timer);
+        TMP_Text textField;
+        if (InputManager.instance.InTVMode())
+        {
+            textField = reactionsText;
+        } else
+        {
+            textField = subtitlesText;
+        }
+
+        ShowSubtitles(timer, textField);
+        PlayVoicelineAudio();
+    }
+
+    public void Stop()
+    {
+        stopDialogue();
+        subtitlesText.text = "";
     }
 
     #region Set Dialogue + Subtitles
-    public void setDialogue(GameObject obj)
+    public void SetDialogue(GameObject obj)
     {
-
+        Debug.Log("Setting Dialogue for: " + obj.name);
         _pickupInteractable = obj.GetComponent<PickupInteractable>();
         _inspectionObjectText = _pickupInteractable.inspectionObjectText;
-
-        objectAudioInfo.SetAudioClip(_pickupInteractable.dialogueAudio);
-        objectTextInfo.value = _inspectionObjectText;
+        audioSource.clip = _pickupInteractable.dialogueAudio;
     }
 
-    /*public void SetDialogueNoObject(string text, AudioClip dialogueAudio)
+    public void SetDialogue(string text, AudioClip dialogueAudio)
     {
-        reactionTextInfo.value = text;
-        reactionAudioInfo.SetAudioClip(dialogueAudio);
-    }*/
-
-    #region Set Individual
-    public void setDialogueText(string text)
-    {
+        Debug.Log("Setting Dialogue for: " + text);
         _inspectionObjectText = text;
-        objectTextInfo.value = _inspectionObjectText;
+        audioSource.clip = dialogueAudio;
+        //VideoControls.dialoguePrompt += PlayDialogue;
     }
-
-    public void setDialogueAudio(AudioClip dialogueAudio)
-    {
-        objectAudioInfo.SetAudioClip(dialogueAudio);
-    }
-    #endregion
     #endregion
 
     #region Play/Stop Audio
-    public void playDialogue()
+    public void PlayVoicelineAudio()
     {
-        //Dialogue Audio
-        audio.clip = objectAudioInfo.GetSoundClip();
-        audio.PlayOneShot(audio.clip, 1.0F);
-
+        audioSource.PlayOneShot(audioSource.clip, 1.0F);
     }
 
     public void stopDialogue()
     {
-        audio.Stop();
+        audioSource.Stop();
     }
     #endregion
-
-
-
-    public void playBranchingDialogue()
-    {
-        //Dialogue Audio
-        audio.clip = objectAudioInfo.GetSoundClip();
-        audio.PlayOneShot(audio.clip, 1.0F);
-
-        //Show subtitles
-        // _interactionCue.SetInteractionCue(InteractionCueType.Branching); 
-
-        //Test connection
-        Debug.Log("Doing the branching dialogue thing");
-    }
-
-    #region Reactions
-    public void SetDialogueNoObject(string text, AudioClip dialogueAudio)
-    {
-        reactionTextInfo.value = text;
-        reactionAudioInfo.SetAudioClip(dialogueAudio);
-        //VideoControls.dialoguePrompt += PlayDialogue;
-    }
-    public float playReaction()
-    {
-        //Dialogue Audio
-        audioReaction.clip = reactionAudioInfo.GetSoundClip();
-        audioReaction.PlayOneShot(audioReaction.clip, 1.0F);
-        return audioReaction.clip.length;
-
-    }
-
-    public void stopReaction()
-    {
-        audioReaction.Stop();
-    }
 
     #region Subtitles
-    public void playDialogueSubtitles(float timer)
+    public void ShowSubtitles(float timer, TMP_Text uitext)
     {
-        //_interactionCue.SetInteractionCue(InteractionCueType.SubtitlesOn); 
-        //_interactionCue.SetInteractionCue(InteractionCueType.SubtitlesOff);
-
-        showSubtitles();
-        Invoke("hideSubtitles", timer);
-
-    }
-
-    #region Subtitle Helpers
-    public void showSubtitles()
-    {
-        //_interactionCue.SetInteractionCue(InteractionCueType.SubtitlesOn);
         Debug.Log("Turning ON subtitles");
 
+        uitext.text = _inspectionObjectText;
+        uitext.ForceMeshUpdate();
+        uitext.pageToDisplay = 1;
+
+        // if the text spans multiple overflow pages
+        if (uitext.textInfo.pageCount > 1)
+        {
+            StartCoroutine(ScrollSubtitles(uitext, timer));
+        }
+        
+        StartCoroutine(ResetSubtitles(uitext, timer));
     }
 
-    public void hideSubtitles()
+    public IEnumerator ScrollSubtitles(TMP_Text uitext, float timer)
     {
-        //_interactionCue.SetInteractionCue(InteractionCueType.SubtitlesOff);
-        Debug.Log("Turning off subtitles");
-        
+        int pages = uitext.textInfo.pageCount;
+        float timePerPage = timer / pages;
+        Debug.Log(timer);
+        Debug.Log("Time per page: " + timePerPage);
+
+        for (int i = 0; i < pages; i++)
+        {
+            Debug.Log("Scrolling to page: " + uitext.pageToDisplay);
+            
+            yield return new WaitForSeconds(timePerPage);
+            uitext.pageToDisplay = i + 2;
+
+        }
     }
-    #endregion
-    #endregion
+
+    public IEnumerator ResetSubtitles(TMP_Text uitext, float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        uitext.text = "";
+        Debug.Log("Turning off subtitles");
+    }
     #endregion
 }

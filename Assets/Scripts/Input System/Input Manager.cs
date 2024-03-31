@@ -24,7 +24,6 @@ public class InputManager : MonoBehaviour
     private float _walkSpeed = 7f;
     private float _speed;
 
-    private DialogueManager _dialogueManager;
     private GameObject currSelectedBranching = null;
     private GameObject oldSelected;
     private GameObject hud;
@@ -132,7 +131,6 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
         inTVMode = false;
 
         hud = GameObject.Find("HUD");
@@ -392,11 +390,10 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Toggling On Inspect");
             playerInputActions.Player.Disable();
-            
             playerInputActions.Inspect.Enable();
 
             inspection.ToggleFocusObject(true);
-            _dialogueManager.playDialogue();
+            DialogueManager.instance.PlayDialogue();
         }
         else
         {
@@ -406,7 +403,7 @@ public class InputManager : MonoBehaviour
             inspection.ToggleFocusObject(false);
 
             //Stop dialogue
-            _dialogueManager.stopDialogue();
+            DialogueManager.instance.Stop();
         }
     }
 
@@ -426,8 +423,8 @@ public class InputManager : MonoBehaviour
         inBranchingSelection = true;
 
         //Update dialogue and play audio
-        _dialogueManager.setDialogue(currSelectedBranching);
-        _dialogueManager.playBranchingDialogue();
+        DialogueManager.instance.SetDialogue(currSelectedBranching);
+        DialogueManager.instance.PlayVoicelineAudio();
     }
 
     void SwitchBranchingItem(InputAction.CallbackContext ctx)
@@ -441,9 +438,9 @@ public class InputManager : MonoBehaviour
         currSelectedBranching = otherBranching;
 
         //Update dialogue and play audio
-        _dialogueManager.stopDialogue();
-        _dialogueManager.setDialogue(currSelectedBranching);
-        _dialogueManager.playBranchingDialogue();
+        DialogueManager.instance.stopDialogue();
+        DialogueManager.instance.SetDialogue(currSelectedBranching);
+        DialogueManager.instance.PlayVoicelineAudio();
 
     }
 
@@ -461,7 +458,7 @@ public class InputManager : MonoBehaviour
         inBranchingSelection = false;
 
         //Stop the dialogue on select
-        _dialogueManager.stopDialogue();
+        DialogueManager.instance.stopDialogue();
     }
 
     public bool isInBranchingSelection()

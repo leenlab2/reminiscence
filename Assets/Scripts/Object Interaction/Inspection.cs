@@ -5,7 +5,6 @@ using UnityEngine;
 public class Inspection : MonoBehaviour
 {
     public GameObject holdArea;
-    public AudioClipScriptableObject objectAudioInfo;
 
     private Camera cam;
     private Vector3 screenspaceCenter;
