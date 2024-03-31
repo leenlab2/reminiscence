@@ -171,6 +171,7 @@ public class InputManager : MonoBehaviour
 
         AudioController.ChangeBGMVolume(0);
 
+        wasInspectEnabled = playerInputActions.Player.InspectObj.enabled;
         playerInputActions.Player.Disable();
         playerInputActions.UI.Pause.Disable(); 
 
@@ -188,6 +189,10 @@ public class InputManager : MonoBehaviour
         if (!inTVMode)
         {
             playerInputActions.Player.Enable();
+            if (!wasInspectEnabled)
+            {
+                playerInputActions.Player.InspectObj.Disable();
+            }
         }
         playerInputActions.UI.Pause.Enable();
 

@@ -18,7 +18,6 @@ public class InteractionCue : ControlCue
             return;
         }
 
-        // Debug.Log("Setting action hint for interaction type: " + InteractableDetector.interactionType);
         currentAction = actionHint.action;
         text.text = GetInteractionText();
         UpdateCueSprite();
@@ -38,15 +37,5 @@ public class InteractionCue : ControlCue
     {
         InteractionType interactionType = InteractableDetector.interactionType;
         return ToFormattedText(interactionType);
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-
-        if (currentAction != null && !currentAction.enabled)
-        {
-            ResetCue();
-        }
     }
 }

@@ -23,7 +23,7 @@ public class ControlCue : MonoBehaviour
     [Tooltip("The actions whose cues are displayed in this part of the screen.")]
     [SerializeField] protected List<ActionHint> actionHints;
 
-    protected InputAction currentAction;
+    protected InputAction currentAction = null;
 
     private void Awake()
     {
@@ -89,7 +89,7 @@ public class ControlCue : MonoBehaviour
         if (newActionHint != null)
         {
             SetActionHint((ActionHint)newActionHint);
-        } else if (GetComponent<InteractionCue>() == null)
+        } else if (currentAction != null && !currentAction.enabled)
         {
             ResetCue();
         }

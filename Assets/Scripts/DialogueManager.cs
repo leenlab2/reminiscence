@@ -27,6 +27,9 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text subtitlesText;
     public TMP_Text reactionsText;
 
+    private Coroutine resetCoroutine;
+    private Coroutine scrollCoroutine;
+
     private void Awake()
     {
         if (instance == null)
@@ -72,6 +75,17 @@ public class DialogueManager : MonoBehaviour
     {
         stopDialogue();
         subtitlesText.text = "";
+
+        if (resetCoroutine != null)
+        {
+            StopCoroutine(resetCoroutine);
+            resetCoroutine = null;
+        }
+        if (scrollCoroutine != null)
+        {
+            StopCoroutine(scrollCoroutine);
+            scrollCoroutine = null;
+        }
     }
 
     #region Set Dialogue + Subtitles
@@ -116,10 +130,10 @@ public class DialogueManager : MonoBehaviour
         // if the text spans multiple overflow pages
         if (uitext.textInfo.pageCount > 1)
         {
-            StartCoroutine(ScrollSubtitles(uitext, timer));
+            scrollCoroutine = StartCoroutine(ScrollSubtitles(uitext, timer));
         }
         
-        StartCoroutine(ResetSubtitles(uitext, timer));
+        resetCoroutine = StartCoroutine(ResetSubtitles(uitext, timer));
     }
 
     public IEnumerator ScrollSubtitles(TMP_Text uitext, float timer)
