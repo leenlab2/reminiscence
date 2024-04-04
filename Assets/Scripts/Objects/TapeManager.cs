@@ -9,6 +9,7 @@ public class TapeManager : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
     private GameObject currentTapeInTv;
+    private GameObject tempHolderForSwap;
     private PickUpInteractor pickUpInteractor;
     private bool lightsAreOn;
 
@@ -36,6 +37,21 @@ public class TapeManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void swapTape(GameObject tapeGameObject)
+    {
+        if (!televisionHasTape()) // if television does not have tape, do nothing
+        {
+            return;
+        }
+        else // if television has tape in it, remove it
+        {
+            removeTape(true);
+            insertTape(tapeGameObject);
+            pickUpInteractor.PickupObject(tempHolderForSwap);
+            tempHolderForSwap = null;
+        }
     }
 
     public void insertTape(GameObject tapeGameObject)
@@ -89,7 +105,7 @@ public class TapeManager : MonoBehaviour
         }
     }
 
-    public void removeTape()
+    public void removeTape(bool swap = false)
     {
         if (!televisionHasTape()) // if television does not have tape, do nothing
         {
@@ -109,7 +125,15 @@ public class TapeManager : MonoBehaviour
             // set clip on TV's player to null
             currentTapeInTv.SetActive(true);
             videoPlayer.targetTexture.Release();
-            pickUpInteractor.PickupObject(currentTapeInTv);
+
+            if (!swap)
+            {
+                pickUpInteractor.PickupObject(currentTapeInTv);
+            } else
+            {
+                tempHolderForSwap = currentTapeInTv;
+            }
+
             videoPlayer.clip = null;
             currentTapeInTv = null;
         }

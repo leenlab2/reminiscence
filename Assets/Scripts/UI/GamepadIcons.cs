@@ -36,9 +36,12 @@ public class GamepadIcons : IControlIcons
             case "<Gamepad>/leftShoulder": return leftShoulder;
             case "<Gamepad>/rightShoulder": return rightShoulder;
             case "<Gamepad>/leftStick": return leftStick;
+            case "<Gamepad>/leftStick/left": return leftStick;
+            case "<Gamepad>/leftStick/right": return leftStick;
             case "<Gamepad>/rightStick": return rightStick;
         }
 
+        Debug.LogError($"No sprite found for control path '{controlPath}'");
         return error;
     }
 }

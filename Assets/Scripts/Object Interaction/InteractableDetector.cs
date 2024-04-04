@@ -230,9 +230,7 @@ public class InteractableDetector : MonoBehaviour
         else if (interactionType == InteractionType.SwapTape)
         {
             Debug.Log("Interaction type: tape swap");
-            GameObject heldTape = pickUpInteractor.HeldObj;
-            tapeManager.removeTape();
-            tapeManager.insertTape(heldTape);
+            tapeManager.swapTape(pickUpInteractor.HeldObj);
         }
         else if (interactionType == InteractionType.Pickup)
         {

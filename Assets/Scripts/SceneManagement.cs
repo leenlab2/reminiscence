@@ -74,6 +74,7 @@ public class SceneManagement : MonoBehaviour
         effects.SetActive(true);
 
         InputManager.instance.EnterMemoryScene();
+        DialogueManager.instance.Stop();
 
         _originalPlayerPos = player.transform.position;
         _originalPlayerRot = player.transform.rotation;

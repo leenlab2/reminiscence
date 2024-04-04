@@ -38,6 +38,7 @@ public class VideoControls : MonoBehaviour
     private TapeSO tapeSOInTV;
     private float timer;
     private bool hasBeenInvoked;
+    private bool dialogueSet = false;
 
     void Start()
     {
@@ -156,6 +157,38 @@ public class VideoControls : MonoBehaviour
         // play for one frame to update render texture
         _videoPlayer.Play();
         _videoPlayer.Pause();
+
+        dialogueSet = false;
+    }
+
+    void ChangeReactionVoicelineForTape()
+    {
+        Debug.Log("Changing voiceline for tape");
+        if (tapeSOInTV.clipToPlay == ClipToPlay.OriginalCorrupted)
+        {
+            _dialogueManager.SetDialogue(tapeReactionsInTV.startSubtitles, tapeReactionsInTV.start);
+            timer = 0.1f;
+        }
+        else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchACorrupted)
+        {
+            _dialogueManager.SetDialogue(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
+            timer = 0.8f;
+        }
+        else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBCorrupted)
+        {
+            _dialogueManager.SetDialogue(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
+            timer = 0.8f;
+        }
+        else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchASolution)
+        {
+            _dialogueManager.SetDialogue(tapeReactionsInTV.endASubtitles, tapeReactionsInTV.endA);
+            timer = 0.8f;
+        }
+        else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBSolution)
+        {
+            _dialogueManager.SetDialogue(tapeReactionsInTV.endBSubtitles, tapeReactionsInTV.endB);
+            timer = 0.8f;
+        }
     }
 
     void Update()
@@ -168,7 +201,6 @@ public class VideoControls : MonoBehaviour
         {
             tapeReactionsInTV = _tapeManager.GetTapeReactionsInTV();
             tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
-
         }
         else
         {
@@ -180,44 +212,17 @@ public class VideoControls : MonoBehaviour
             float progressPercentage = (float)(_videoPlayer.time / _videoPlayer.length);
             _progressBarImage.fillAmount = progressPercentage;
 
-
-            //////// DIALOGuE DIRTY/////
-            if (progressPercentage >= 0 && InputManager.instance.InTVMode())
+            if (!dialogueSet && InputManager.instance.InTVMode())
             {
-                if (tapeSOInTV.clipToPlay == ClipToPlay.OriginalCorrupted)
-                {
-                    _dialogueManager.SetDialogue(tapeReactionsInTV.startSubtitles, tapeReactionsInTV.start);
-                    timer = 0.1f;
-                }
-                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchACorrupted) 
-                {
-                    _dialogueManager.SetDialogue(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
-                    timer = 0.8f;
-                }
-                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBCorrupted)
-                {
-                    _dialogueManager.SetDialogue(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
-                    timer = 0.8f;
-                }
-                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchASolution)
-                {
-                    _dialogueManager.SetDialogue(tapeReactionsInTV.endASubtitles, tapeReactionsInTV.endA);
-                    timer = 0.8f;
-                }
-                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBSolution)
-                {
-                    _dialogueManager.SetDialogue(tapeReactionsInTV.endBSubtitles, tapeReactionsInTV.endB);
-                    timer = 0.8f;
-                }
+                ChangeReactionVoicelineForTape();
+                dialogueSet = true;
             }
 
-            if ((progressPercentage <= 0.94f) && (progressPercentage >= timer) && (!hasBeenInvoked) && InputManager.instance.InTVMode())
+            if ((progressPercentage <= 0.94f) && (progressPercentage >= timer) && (!hasBeenInvoked) && dialogueSet && InputManager.instance.InTVMode())
             {
                 dialoguePrompt?.Invoke();
                 hasBeenInvoked = true;
             }
-
-            ///////////////////////////
 
             if (progressPercentage >= 0.95f && !(_videoPlayer.clip.name == insertTapeVideoClip.name))
             {

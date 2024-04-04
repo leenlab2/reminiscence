@@ -45,15 +45,25 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         _inspectionObjectText = "Nothing Yet"; //tODO: REPLACE WITH EMPTY
-        VideoControls.dialoguePrompt += PlayDialogue;
+        VideoControls.dialoguePrompt += Play;
+        PickUpInteractor.OnObjectPlace += HandlePlace;
     }
 
     private void OnDestroy()
     {
-        VideoControls.dialoguePrompt -= PlayDialogue;
+        VideoControls.dialoguePrompt -= Play;
+        PickUpInteractor.OnObjectPlace -= HandlePlace;
     }
    
-    public void PlayDialogue()
+    void HandlePlace(GameObject obj) 
+    {
+        Stop();
+
+        _pickupInteractable = null;
+        _inspectionObjectText = "";
+    }
+    
+    public void Play()
     {
         Debug.Log("Playing Dialogue: " + _inspectionObjectText);
         float timer = audioSource.clip.length;
@@ -73,8 +83,9 @@ public class DialogueManager : MonoBehaviour
 
     public void Stop()
     {
-        stopDialogue();
+        audioSource.Stop();
         subtitlesText.text = "";
+        reactionsText.text = "";
 
         if (resetCoroutine != null)
         {
@@ -110,11 +121,6 @@ public class DialogueManager : MonoBehaviour
     public void PlayVoicelineAudio()
     {
         audioSource.PlayOneShot(audioSource.clip, 1.0F);
-    }
-
-    public void stopDialogue()
-    {
-        audioSource.Stop();
     }
     #endregion
 

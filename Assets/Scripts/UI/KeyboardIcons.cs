@@ -39,6 +39,7 @@ public class KeyboardIcons : IControlIcons
             case "<Pointer>/delta": return delta;
         }
 
+        Debug.LogError($"No sprite found for control path '{controlPath}'");
         return error;
     }
 }
