@@ -69,12 +69,13 @@ public class SceneManagement : MonoBehaviour
     }
 
     public void SetupMemoryScene()
-    { 
+    {
+        TVReactionVoicelineManager.instance.Stop();
+
         RenderSettings.ambientIntensity = 0.5f;
         effects.SetActive(true);
 
         InputManager.instance.EnterMemoryScene();
-        DialogueManager.instance.Stop();
 
         _originalPlayerPos = player.transform.position;
         _originalPlayerRot = player.transform.rotation;

@@ -191,7 +191,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 11400000, guid: 4b3979585c8374123afe38456d5b66fc, type: 2}
+  m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
@@ -325,7 +325,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 11400000, guid: 4b3979585c8374123afe38456d5b66fc, type: 2}
+  m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
@@ -505,7 +505,7 @@ MonoBehaviour:
   actionHints:
   - actionRef: {fileID: 3604023747491683442, guid: 52416dff7036312419fb28f163ca1ca1, type: 3}
     text: Interact
-  interactions: 010000000300000004000000050000000600000007000000
+  interactions: 01000000030000000400000005000000060000000700000008000000
 --- !u!1001 &4602700971244167902
 PrefabInstance:
   m_ObjectHideFlags: 0

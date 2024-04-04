@@ -44,7 +44,7 @@ public class PickupInteractable : Interactable
         onWall = false;
         guideOnWall = false;
 
-        DialogueManager.instance.SetDialogue(inspectionObjectText, dialogueAudio);
+        ObjectVoicelineManager.instance.SetDialogue(inspectionObjectText, dialogueAudio);
 
         if (pickupSound.clip != null)
         {

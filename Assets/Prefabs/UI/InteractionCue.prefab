@@ -56,6 +56,7 @@ MonoBehaviour:
     rightShoulder: {fileID: 21300000, guid: 8322706dea6046c4088e219687b23e42, type: 3}
     leftStick: {fileID: 21300000, guid: 61ab6d22355843e4ab9c7e3bfc3d8ba3, type: 3}
     rightStick: {fileID: 21300000, guid: fb74c1e85753f814d9c73ab0e90e7118, type: 3}
+    error: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   ps4:
     buttonSouth: {fileID: 21300000, guid: 9c8715db55f5bf14e8fffcf70902c5f2, type: 3}
     buttonNorth: {fileID: 21300000, guid: 248c6bbf5a49bce40b8f10c3831e0713, type: 3}
@@ -68,6 +69,7 @@ MonoBehaviour:
     rightShoulder: {fileID: 21300000, guid: 8322706dea6046c4088e219687b23e42, type: 3}
     leftStick: {fileID: 21300000, guid: 61ab6d22355843e4ab9c7e3bfc3d8ba3, type: 3}
     rightStick: {fileID: 21300000, guid: fb74c1e85753f814d9c73ab0e90e7118, type: 3}
+    error: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   keyboard:
     w: {fileID: 21300000, guid: b3d12200ee0aabc4b87783b16a5dacfd, type: 3}
     a: {fileID: 21300000, guid: b3d12200ee0aabc4b87783b16a5dacfd, type: 3}
@@ -80,3 +82,4 @@ MonoBehaviour:
     escape: {fileID: 21300000, guid: e5959d685f2c6be4ea20011704a2f510, type: 3}
     leftButton: {fileID: 21300000, guid: dec64cac18faacf46ae87f7956bb1eaf, type: 3}
     delta: {fileID: 21300000, guid: 2babcb2cde5804744ad253921a5cc76c, type: 3}
+    error: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

@@ -24,7 +24,6 @@ public class VideoControls : MonoBehaviour
     private ParticleSystem televisionParticleEffects;
     private TapeManager _tapeManager;
     private AudioSource buttonPressAudio;
-    private DialogueManager _dialogueManager;
     
 
     [SerializeField]
@@ -34,7 +33,6 @@ public class VideoControls : MonoBehaviour
     
     public static Action dialoguePrompt;
 
-    private TapeReactions tapeReactionsInTV;
     private TapeSO tapeSOInTV;
     private float timer;
     private bool hasBeenInvoked;
@@ -45,7 +43,6 @@ public class VideoControls : MonoBehaviour
         _tapeManager = FindObjectOfType<TapeManager>();
         _videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
         buttonPressAudio = GetComponent<AudioSource>();
-        _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
 
         if (_progressBarImage != null)
         {
@@ -56,7 +53,6 @@ public class VideoControls : MonoBehaviour
         televisionParticleEffects = GameObject.Find("TVEffectsPuzzleComplete").GetComponent<ParticleSystem>();
 
         InputManager.OnGamePaused += Pause;
-        tapeReactionsInTV = null;
         float timer = 0.5f;
         hasBeenInvoked = false;
     }
@@ -161,36 +157,6 @@ public class VideoControls : MonoBehaviour
         dialogueSet = false;
     }
 
-    void ChangeReactionVoicelineForTape()
-    {
-        Debug.Log("Changing voiceline for tape");
-        if (tapeSOInTV.clipToPlay == ClipToPlay.OriginalCorrupted)
-        {
-            _dialogueManager.SetDialogue(tapeReactionsInTV.startSubtitles, tapeReactionsInTV.start);
-            timer = 0.1f;
-        }
-        else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchACorrupted)
-        {
-            _dialogueManager.SetDialogue(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
-            timer = 0.8f;
-        }
-        else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBCorrupted)
-        {
-            _dialogueManager.SetDialogue(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
-            timer = 0.8f;
-        }
-        else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchASolution)
-        {
-            _dialogueManager.SetDialogue(tapeReactionsInTV.endASubtitles, tapeReactionsInTV.endA);
-            timer = 0.8f;
-        }
-        else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBSolution)
-        {
-            _dialogueManager.SetDialogue(tapeReactionsInTV.endBSubtitles, tapeReactionsInTV.endB);
-            timer = 0.8f;
-        }
-    }
-
     void Update()
     {
         
@@ -199,7 +165,6 @@ public class VideoControls : MonoBehaviour
         //Get this tape's reactions if there is one
         if (_tapeManager.televisionHasTape())
         {
-            tapeReactionsInTV = _tapeManager.GetTapeReactionsInTV();
             tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
         }
         else
@@ -214,7 +179,7 @@ public class VideoControls : MonoBehaviour
 
             if (!dialogueSet && InputManager.instance.InTVMode())
             {
-                ChangeReactionVoicelineForTape();
+                timer = TVReactionVoicelineManager.instance.ChangeReactionVoicelineForTape(tapeSOInTV.clipToPlay);
                 dialogueSet = true;
             }
 

@@ -8,27 +8,27 @@ using UnityEngine.EventSystems;
 using UnityEngine.Audio;
 
 
-public class DialogueManager : MonoBehaviour
+/* This script is a dirty fix, ideally those would be managed by animation
+ * timelines.
+ */
+public class TVReactionVoicelineManager : MonoBehaviour
 {
-    public static DialogueManager instance;
+    public static TVReactionVoicelineManager instance;
 
-    [Header("Info on Held Item")]
-    private PickupInteractable _pickupInteractable;
-    private string _inspectionObjectText;
-
-    public StringValue textInfo;
-    public AudioClipScriptableObject audioInfo;
+    private TapeReactions _tapeReactions = null;
+    private string _voiceline;
 
     [Header("Audio")]
-    public AudioClip dialogueAudio;
+    private AudioClip _dialogueAudio;
     [SerializeField] private AudioSource audioSource;
 
     [Header("Subtitles")]
     public TMP_Text subtitlesText;
-    public TMP_Text reactionsText;
 
     private Coroutine resetCoroutine;
     private Coroutine scrollCoroutine;
+
+    private TapeManager tapeManager;
 
     private void Awake()
     {
@@ -40,42 +40,27 @@ public class DialogueManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+        tapeManager = FindObjectOfType<TapeManager>();
     }
 
     void Start()
     {
-        _inspectionObjectText = "Nothing Yet"; //tODO: REPLACE WITH EMPTY
+        _voiceline = "Nothing Yet"; //tODO: REPLACE WITH EMPTY
         VideoControls.dialoguePrompt += Play;
-        PickUpInteractor.OnObjectPlace += HandlePlace;
     }
 
     private void OnDestroy()
     {
         VideoControls.dialoguePrompt -= Play;
-        PickUpInteractor.OnObjectPlace -= HandlePlace;
     }
-   
-    void HandlePlace(GameObject obj) 
-    {
-        Stop();
 
-        _pickupInteractable = null;
-        _inspectionObjectText = "";
-    }
-    
     public void Play()
     {
-        Debug.Log("Playing Dialogue: " + _inspectionObjectText);
-        float timer = audioSource.clip.length;
+        Debug.Log("Playing Dialogue: " + _voiceline);
+        float timer = _dialogueAudio.length;
 
-        TMP_Text textField;
-        if (InputManager.instance.InTVMode())
-        {
-            textField = reactionsText;
-        } else
-        {
-            textField = subtitlesText;
-        }
+        TMP_Text textField = subtitlesText;
 
         ShowSubtitles(timer, textField);
         PlayVoicelineAudio();
@@ -85,7 +70,6 @@ public class DialogueManager : MonoBehaviour
     {
         audioSource.Stop();
         subtitlesText.text = "";
-        reactionsText.text = "";
 
         if (resetCoroutine != null)
         {
@@ -100,26 +84,55 @@ public class DialogueManager : MonoBehaviour
     }
 
     #region Set Dialogue + Subtitles
-    public void SetDialogue(GameObject obj)
-    {
-        Debug.Log("Setting Dialogue for: " + obj.name);
-        _pickupInteractable = obj.GetComponent<PickupInteractable>();
-        _inspectionObjectText = _pickupInteractable.inspectionObjectText;
-        audioSource.clip = _pickupInteractable.dialogueAudio;
-    }
-
     public void SetDialogue(string text, AudioClip dialogueAudio)
     {
         Debug.Log("Setting Dialogue for: " + text);
-        _inspectionObjectText = text;
-        audioSource.clip = dialogueAudio;
+        _voiceline = text;
+        _dialogueAudio = dialogueAudio;
         //VideoControls.dialoguePrompt += PlayDialogue;
+    }
+
+    public float ChangeReactionVoicelineForTape(ClipToPlay currentClip)
+    {
+        Debug.Log("Changing voiceline for tape");
+        float timer = 0.0f;
+
+        switch(currentClip)
+        {
+            case ClipToPlay.OriginalCorrupted:
+                SetDialogue(_tapeReactions.startSubtitles, _tapeReactions.start);
+                timer = 0.1f;
+                break;
+
+            case ClipToPlay.BranchACorrupted:
+                SetDialogue(_tapeReactions.middleSubtitles, _tapeReactions.middle);
+                timer = 0.8f;
+                break;
+
+            case ClipToPlay.BranchBCorrupted:
+                SetDialogue(_tapeReactions.middleSubtitles, _tapeReactions.middle);
+                timer = 0.8f;
+                break;
+
+            case ClipToPlay.BranchASolution:
+                SetDialogue(_tapeReactions.endASubtitles, _tapeReactions.endA);
+                timer = 0.8f;
+                break;
+
+            case ClipToPlay.BranchBSolution:
+                SetDialogue(_tapeReactions.endBSubtitles, _tapeReactions.endB);
+                timer = 0.8f;
+                break;
+        }
+
+        return timer;
     }
     #endregion
 
     #region Play/Stop Audio
     public void PlayVoicelineAudio()
     {
+        audioSource.clip = _dialogueAudio;
         audioSource.PlayOneShot(audioSource.clip, 1.0F);
     }
     #endregion
@@ -129,7 +142,7 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("Turning ON subtitles");
 
-        uitext.text = _inspectionObjectText;
+        uitext.text = _voiceline;
         uitext.ForceMeshUpdate();
         uitext.pageToDisplay = 1;
 
@@ -138,7 +151,7 @@ public class DialogueManager : MonoBehaviour
         {
             scrollCoroutine = StartCoroutine(ScrollSubtitles(uitext, timer));
         }
-        
+
         resetCoroutine = StartCoroutine(ResetSubtitles(uitext, timer));
     }
 
@@ -152,7 +165,7 @@ public class DialogueManager : MonoBehaviour
         for (int i = 0; i < pages; i++)
         {
             Debug.Log("Scrolling to page: " + uitext.pageToDisplay);
-            
+
             yield return new WaitForSeconds(timePerPage);
             uitext.pageToDisplay = i + 2;
 
@@ -166,4 +179,13 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Turning off subtitles");
     }
     #endregion
+
+    private void Update()
+    {
+        if (tapeManager.televisionHasTape())
+        {
+            _tapeReactions = tapeManager.GetTapeReactionsInTV();
+        }
+    }
 }
+
