@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 589dccdb05762f44b97b62d5784efb7e
+guid: d0cd149bcb0cd694a810105853211bd5
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects:
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: VHS
-    second: {fileID: 2100000, guid: bc0519f7e0830ce4697cd98d65f8ce6e, type: 2}
+      name: cup_Base_color
+    second: {fileID: 2800000, guid: 4f226edfb3e23d84ea2a030470d72909, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: T_VHS_Broken String_BC
-    second: {fileID: 2800000, guid: 360b3cb313c70c04da11389280ca203c, type: 3}
+      name: cup_Normal
+    second: {fileID: 2800000, guid: 3a13ffa17b2099d40af46b8406149b13, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -45,7 +45,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 2
+    globalScale: 1
     meshCompression: 0
     addColliders: 1
     useSRGBMaterialColor: 1
@@ -100,7 +100,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 2
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
