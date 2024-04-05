@@ -17,6 +17,7 @@ MonoBehaviour:
   branchBCorruptedVideoClip: {fileID: 32900000, guid: e3c751a928f81524993d74cf92478ae1, type: 3}
   branchASolutionVideoClip: {fileID: 32900000, guid: c45f21523b620da4f94890860894b752, type: 3}
   branchBSolutionVideoClip: {fileID: 32900000, guid: 4ad6045e7662b0c42b4ca0dd112bfeca, type: 3}
+  transitionToCorruptedClip: {fileID: 32900000, guid: 33eb14cd796c1e446a98cdee63bbb96b, type: 3}
   tapeIsFixed: 0
   clipToPlay: 0
   tapeSolutionBranch: 0
