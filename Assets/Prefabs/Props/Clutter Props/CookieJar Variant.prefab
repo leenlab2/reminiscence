@@ -48,7 +48,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8501798923432027397, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4896732148426956475, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2991356093382464568, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -56,11 +68,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cookie_jar_textures (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2452489660738809236, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488269973354523604, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440736283497417072, guid: 17a27e968d8b923469bbba376f432c1e, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}

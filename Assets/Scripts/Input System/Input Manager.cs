@@ -8,6 +8,8 @@ using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager instance;
+
     public PlayerInputActions playerInputActions;
     public GameObject pauseMenu;
     public GameObject resumeButton;
@@ -22,29 +24,45 @@ public class InputManager : MonoBehaviour
     private float _walkSpeed = 7f;
     private float _speed;
 
-    private InteractionCue _interactionCue;
-    private DialogueManager _dialogueManager;
     private GameObject currSelectedBranching = null;
     private GameObject oldSelected;
     private GameObject hud;
 
-    private bool inTVMode = false;
-    private bool inMemoryMode = false;
-    private bool gamePaused = false;
-    private bool inBranchingSelection = false;
-    private bool inspectionMode = false;
+    private enum PlayerState
+    {
+        TVMode,
+        MemoryMode,
+        BranchingSelection,
+        InspectionMode,
+        GamePaused,
+        Normal
+    }
+    private PlayerState _state = PlayerState.Normal;
+    private PlayerState _previousState;
+    private bool wasInspectEnabled = false;
 
     public static Action OnGamePaused;
     public static Action OnGameResumed;
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         _speed = _walkSpeed;
         playerBody = GetComponent<Rigidbody>();
         playerAnimate = GetComponent<Animator>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
+        playerInputActions.Player.Interact.Disable();
+        playerInputActions.Player.InspectObj.Disable();
         playerInputActions.Television.Disable();
         playerInputActions.Inspect.Disable();
         playerInputActions.Branching.Disable();
@@ -65,7 +83,7 @@ public class InputManager : MonoBehaviour
     {
         playerInputActions.Player.OpenTV.performed += OpenTelevision;
         playerInputActions.Player.Interact.performed += ObjectInteract;
-        playerInputActions.Player.InspectionToggle.performed += ObjectInspectionToggle;
+        playerInputActions.Player.InspectObj.performed += ObjectInspectionToggle;
         playerInputActions.Player.Move.canceled += StopPlayerMove;
     }
 
@@ -88,7 +106,9 @@ public class InputManager : MonoBehaviour
 
     private void AssignInspectionHandlers()
     {
-        playerInputActions.Inspect.InspectionToggle.performed += ObjectInspectionToggle;
+        PickUpInteractor.OnObjectPickup += EnableInspect;
+        PickUpInteractor.OnObjectPlace += DisableInspect;
+        playerInputActions.Inspect.ExitInspect.performed += ObjectInspectionToggle;
     }
 
     private void OnDestroy()
@@ -96,7 +116,7 @@ public class InputManager : MonoBehaviour
         // unsubscribe from all events assigned in previous functions
         playerInputActions.Player.OpenTV.performed -= OpenTelevision;
         playerInputActions.Player.Interact.performed -= ObjectInteract;
-        playerInputActions.Player.InspectionToggle.performed -= ObjectInspectionToggle;
+        playerInputActions.Player.InspectObj.performed -= ObjectInspectionToggle;
         playerInputActions.Player.Move.canceled -= StopPlayerMove;
 
         playerInputActions.UI.Pause.performed -= PauseGame;
@@ -106,43 +126,28 @@ public class InputManager : MonoBehaviour
         playerInputActions.Memory.ExitMemoryScene.performed -= ExitMemoryScene;
 
         PickUpInteractor.OnBranchingPickup -= BranchingItemPickedUp;
+        PickUpInteractor.OnObjectPickup -= EnableInspect;
+        PickUpInteractor.OnObjectPlace -= DisableInspect;
         playerInputActions.Branching.Navigate.performed -= SwitchBranchingItem;
         playerInputActions.Branching.Submit.performed -= SubmitBranchingItem;
 
-        playerInputActions.Inspect.InspectionToggle.performed -= ObjectInspectionToggle;
+        playerInputActions.Inspect.ExitInspect.performed -= ObjectInspectionToggle;
     }
     #endregion
 
     private void Start()
     {
-        InputSystem.onActionChange += DetectControllerChange;
-        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
-        _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
-        inTVMode = false;
-
         hud = GameObject.Find("HUD");
     }
 
     private void FixedUpdate()
     {
-        if (inTVMode || gamePaused) return;
+        if (_state == PlayerState.TVMode || _state == PlayerState.GamePaused) return;
 
         MovePlayer();
         MoveCamera();
         ObjectRotation();
-
     }
-
-    private void DetectControllerChange(object obj, InputActionChange change)
-    {
-        if (obj != null && obj is InputAction action)
-        {
-            if (action.activeControl == null) return;
-            InputDevice lastDevice = action.activeControl.device;
-
-            _interactionCue.ToggleController(lastDevice is Gamepad);
-        }
-    }   
 
     private void OnApplicationFocus(bool focus)
     {
@@ -161,7 +166,9 @@ public class InputManager : MonoBehaviour
     #region Pause Menu
     private void PauseGame(InputAction.CallbackContext obj)
     {
-        gamePaused = true;
+        _previousState = _state;
+        _state = PlayerState.GamePaused;
+
         Time.timeScale = 0;
         uiAudio.Play();
         pauseMenu.SetActive(true);
@@ -170,6 +177,7 @@ public class InputManager : MonoBehaviour
 
         AudioController.ChangeBGMVolume(0);
 
+        wasInspectEnabled = playerInputActions.Player.InspectObj.enabled;
         playerInputActions.Player.Disable();
         playerInputActions.UI.Pause.Disable(); 
 
@@ -180,13 +188,17 @@ public class InputManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        gamePaused = false;
+        _state = _previousState;
         Time.timeScale = 1;
         pauseMenu.SetActive(false); 
 
-        if (!inTVMode)
+        if (_state != PlayerState.TVMode)
         {
             playerInputActions.Player.Enable();
+            if (!wasInspectEnabled)
+            {
+                playerInputActions.Player.InspectObj.Disable();
+            }
         }
         playerInputActions.UI.Pause.Enable();
 
@@ -201,7 +213,7 @@ public class InputManager : MonoBehaviour
 
     public bool isPaused()
     {
-        return gamePaused;
+        return _state == PlayerState.GamePaused;
     }
     #endregion
 
@@ -275,10 +287,12 @@ public class InputManager : MonoBehaviour
     private void OpenTelevision(InputAction.CallbackContext obj)
     {
         Debug.Log("Opening TV");
+        wasInspectEnabled = playerInputActions.Player.InspectObj.enabled;
         playerInputActions.Player.Disable();
         playerInputActions.Television.Enable();
 
-        inTVMode = true;
+        _previousState = _state;
+        _state = PlayerState.TVMode;
 
         ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
         cameraCtrl.SwitchToTapeView();
@@ -287,10 +301,15 @@ public class InputManager : MonoBehaviour
     public void CloseTelevision(InputAction.CallbackContext obj)
     {
         Debug.Log("Close TV");
-        inTVMode = false;
+        _state = _previousState;
 
         playerInputActions.Television.Disable();
         playerInputActions.Player.Enable();
+        
+        if (!wasInspectEnabled)
+        {
+            playerInputActions.Player.InspectObj.Disable();
+        }
 
         ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
         cameraCtrl.SwitchToPlayerView();
@@ -298,7 +317,7 @@ public class InputManager : MonoBehaviour
 
     public bool InTVMode()
     {
-        return inTVMode;
+        return _state == PlayerState.TVMode;
     }
 
     #endregion
@@ -306,10 +325,13 @@ public class InputManager : MonoBehaviour
     #region SceneManagement
     public void EnterMemoryScene()
     {
+        Debug.Log("Entering memory scene, from input manager");
+        wasInspectEnabled = true;
         CloseTelevision(new InputAction.CallbackContext());
         playerInputActions.Player.OpenTV.Disable();
         playerInputActions.Memory.Enable();
-        inMemoryMode = true;
+        
+        _state = PlayerState.MemoryMode;
     }
 
     public void ExitMemoryScene(InputAction.CallbackContext obj)
@@ -318,18 +340,32 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.OpenTV.Enable();
         SceneManagement sceneManagement = FindObjectOfType<SceneManagement>();
         sceneManagement.ExitMemoryScene();
-        inMemoryMode = false;
+
+        _state = PlayerState.Normal;
     }
 
     public bool isInMemoryMode()
     {
-        return inMemoryMode;
+        return _state == PlayerState.MemoryMode;
     }
 
 
     #endregion
 
     #region Object Interactions
+    public void EnableInteract()
+    {
+        if (_state == PlayerState.Normal || _state == PlayerState.MemoryMode)
+        {
+            playerInputActions.Player.Interact.Enable();
+        }
+    }
+
+    public void DisableInteract()
+    {
+        playerInputActions.Player.Interact.Disable();
+    }
+
     private void ObjectInteract(InputAction.CallbackContext context)
     {
         if (context.interaction is not HoldInteraction)
@@ -340,6 +376,16 @@ public class InputManager : MonoBehaviour
     }
 
     #region Object Inspection
+    void EnableInspect(GameObject obj)
+    {
+        playerInputActions.Player.InspectObj.Enable();
+    }
+
+    void DisableInspect(GameObject obj)
+    {
+        playerInputActions.Player.InspectObj.Disable();
+    }
+
     private void ObjectRotation()
     {
         Vector2 rotationInput = playerInputActions.Inspect.Rotate.ReadValue<Vector2>();
@@ -352,36 +398,35 @@ public class InputManager : MonoBehaviour
         Inspection inspection = GetComponentInChildren<Inspection>();
         if (!inspection.InspectIsValid()) return;
 
-        inspectionMode = !inspectionMode;
-
-        InteractionCue interactionCue = GetComponent<InteractionCue>();
-
-        if (inspectionMode)
+        if (_state != PlayerState.InspectionMode)
         {
             Debug.Log("Toggling On Inspect");
-            _interactionCue.SetInteractionCue(InteractionCueType.Inspection);
             playerInputActions.Player.Disable();
             playerInputActions.Inspect.Enable();
 
+            _previousState = _state;
+            _state = PlayerState.InspectionMode;
+
             inspection.ToggleFocusObject(true);
-            _dialogueManager.playDialogue();
+            ObjectVoicelineManager.instance.Play();
         }
         else
         {
             Debug.Log("Toggling Off Inspect");
-            _interactionCue.SetInteractionCue(InteractionCueType.Hold);
             playerInputActions.Player.Enable();
             playerInputActions.Inspect.Disable();
             inspection.ToggleFocusObject(false);
 
+            _state = _previousState;
+
             //Stop dialogue
-            _dialogueManager.stopDialogue();
+            ObjectVoicelineManager.instance.Stop();
         }
     }
 
     public bool InInspection()
     {
-        return inspectionMode;
+        return _state == PlayerState.InspectionMode;
     }
     #endregion
     #endregion
@@ -392,11 +437,13 @@ public class InputManager : MonoBehaviour
         currSelectedBranching = obj;
         playerInputActions.Player.Disable();
         playerInputActions.Branching.Enable();
-        inBranchingSelection = true;
+        
+        _previousState = _state;
+        _state = PlayerState.BranchingSelection;
 
         //Update dialogue and play audio
-        _dialogueManager.setDialogue(currSelectedBranching);
-        _dialogueManager.playBranchingDialogue();
+        ObjectVoicelineManager.instance.SetDialogue(currSelectedBranching);
+        ObjectVoicelineManager.instance.Play();
     }
 
     void SwitchBranchingItem(InputAction.CallbackContext ctx)
@@ -410,9 +457,9 @@ public class InputManager : MonoBehaviour
         currSelectedBranching = otherBranching;
 
         //Update dialogue and play audio
-        _dialogueManager.stopDialogue();
-        _dialogueManager.setDialogue(currSelectedBranching);
-        _dialogueManager.playBranchingDialogue();
+        ObjectVoicelineManager.instance.Stop();
+        ObjectVoicelineManager.instance.SetDialogue(currSelectedBranching);
+        ObjectVoicelineManager.instance.Play();
 
     }
 
@@ -427,15 +474,15 @@ public class InputManager : MonoBehaviour
         playerInputActions.Branching.Disable();
         playerInputActions.Player.Enable();
 
-        inBranchingSelection = false;
+        _state = _previousState;
 
         //Stop the dialogue on select
-        _dialogueManager.stopDialogue();
+        ObjectVoicelineManager.instance.Stop();
     }
 
     public bool isInBranchingSelection()
     {
-        return inBranchingSelection;
+        return _state == PlayerState.BranchingSelection;
     }
     #endregion
 }

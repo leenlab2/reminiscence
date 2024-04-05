@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "InspectionToggle",
+                    "name": "InspectObj",
                     "type": "Button",
                     "id": "4b3cfd31-8751-4e33-8343-cb806e0e02c7",
                     "expectedControlType": "Button",
@@ -213,7 +213,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "InspectionToggle",
+                    "action": "InspectObj",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -224,7 +224,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "InspectionToggle",
+                    "action": "InspectObj",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -767,7 +767,7 @@
                 {
                     "name": "",
                     "id": "6ea51378-5cd0-4485-b91b-d186b2976eec",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -1136,7 +1136,7 @@
             "id": "5a821b14-d3b5-4c44-a19c-4baa73d90819",
             "actions": [
                 {
-                    "name": "InspectionToggle",
+                    "name": "ExitInspect",
                     "type": "Button",
                     "id": "c7acaa67-b3d2-4926-a634-d5addcba681f",
                     "expectedControlType": "Button",
@@ -1184,7 +1184,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "InspectionToggle",
+                    "action": "ExitInspect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1195,7 +1195,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "InspectionToggle",
+                    "action": "ExitInspect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1257,31 +1257,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
-                    "id": "17d8e22f-77d2-46c8-a6d4-65e047c622d8",
-                    "path": "<Gamepad>/rightStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "right",
                     "id": "3d6013c0-45f3-4ed6-bc55-b8ad6704416f",
                     "path": "<Gamepad>/leftStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "83f8c045-318e-421d-8234-74c79554480d",
-                    "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -1389,7 +1367,7 @@
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "ExitMemoryScene",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1397,10 +1375,10 @@
                 {
                     "name": "",
                     "id": "6a80a074-893d-4e6a-8990-5f5728cba8d7",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "ExitMemoryScene",
                     "isComposite": false,
                     "isPartOfComposite": false

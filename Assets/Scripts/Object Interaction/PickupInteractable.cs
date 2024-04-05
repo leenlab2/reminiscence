@@ -24,8 +24,6 @@ public class PickupInteractable : Interactable
     private bool onWall;
 
     [Header("Inspection Dialogue")]
-    public StringValue objectTextInfo;
-    public AudioClipScriptableObject objectAudioInfo;
     public string inspectionObjectText;
     public AudioClip dialogueAudio;
 
@@ -45,13 +43,13 @@ public class PickupInteractable : Interactable
         transform.SetParent(holdArea);
         onWall = false;
         guideOnWall = false;
-        objectTextInfo.value = inspectionObjectText;
+
+        ObjectVoicelineManager.instance.SetDialogue(inspectionObjectText, dialogueAudio);
 
         if (pickupSound.clip != null)
         {
             pickupSound.Play();
         }
-        objectAudioInfo.SetAudioClip(dialogueAudio);
     }
 
     public void MoveToContainer(Container container)

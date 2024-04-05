@@ -22,10 +22,10 @@ public class PickUpInteractor : MonoBehaviour
 
     private Quaternion originalHoldAreaRotation;
 
-    private TMP_Text _interactText;
+    public static Action<GameObject> OnObjectPickup;
+    public static Action<GameObject> OnObjectPlace;
     public static Action<GameObject> OnBranchingPickup;
 
-    private InteractionCue _interactionCue;
     private bool _firstTapePickup = false;
 
 #region IsHeld
@@ -56,9 +56,6 @@ public class PickUpInteractor : MonoBehaviour
     {
         originalHoldAreaRotation = holdArea.rotation;
         InteractableDetector.OnCursorHitChange += DetermineNewPosition;
-
-        _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
-        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
     }
 
     private void OnDestroy()
@@ -89,6 +86,8 @@ public class PickUpInteractor : MonoBehaviour
         {
             PickupObject(pickObj);
         }
+
+        OnObjectPickup?.Invoke(obj);
     }
 
     public void PickupObject(PickupInteractable obj)
@@ -100,8 +99,6 @@ public class PickUpInteractor : MonoBehaviour
     private void NormalObjPickup(PickupInteractable obj, Transform newPos)
     {
         ResetHoldArea();
-
-        _interactionCue.SetInteractionCue(InteractionCueType.Hold);
 
         // Fix rigid body settings of target object
         obj.TogglePlacementGuide(true);
@@ -136,8 +133,6 @@ public class PickUpInteractor : MonoBehaviour
         Inspection.ChangeObjectLayer(otherBranching.transform, "Branching");
 
         rightHand.parent.Find("Canvas").gameObject.SetActive(true);
-
-        _interactionCue.SetInteractionCue(InteractionCueType.Branching);
 
         // TODO: make this more efficient
         crosshairs.SetActive(false);
@@ -186,10 +181,13 @@ public class PickUpInteractor : MonoBehaviour
         if (container)
         {
             PlaceObjectInContainer(HeldObj, container);
-        } else
+        }
+        else
         {
             PlaceObject(HeldObj);
         }
+
+        OnObjectPlace?.Invoke(HeldObj);
         ResetHoldArea();
     }
 

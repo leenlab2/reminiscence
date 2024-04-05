@@ -64,7 +64,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""InspectionToggle"",
+                    ""name"": ""InspectObj"",
                     ""type"": ""Button"",
                     ""id"": ""4b3cfd31-8751-4e33-8343-cb806e0e02c7"",
                     ""expectedControlType"": ""Button"",
@@ -235,7 +235,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""InspectionToggle"",
+                    ""action"": ""InspectObj"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -246,7 +246,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""InspectionToggle"",
+                    ""action"": ""InspectObj"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -789,7 +789,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6ea51378-5cd0-4485-b91b-d186b2976eec"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -1158,7 +1158,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""id"": ""5a821b14-d3b5-4c44-a19c-4baa73d90819"",
             ""actions"": [
                 {
-                    ""name"": ""InspectionToggle"",
+                    ""name"": ""ExitInspect"",
                     ""type"": ""Button"",
                     ""id"": ""c7acaa67-b3d2-4926-a634-d5addcba681f"",
                     ""expectedControlType"": ""Button"",
@@ -1206,7 +1206,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""InspectionToggle"",
+                    ""action"": ""ExitInspect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1217,7 +1217,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""InspectionToggle"",
+                    ""action"": ""ExitInspect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1279,31 +1279,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""17d8e22f-77d2-46c8-a6d4-65e047c622d8"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""right"",
                     ""id"": ""3d6013c0-45f3-4ed6-bc55-b8ad6704416f"",
                     ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""83f8c045-318e-421d-8234-74c79554480d"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -1411,7 +1389,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""ExitMemoryScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1419,10 +1397,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6a80a074-893d-4e6a-8990-5f5728cba8d7"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""ExitMemoryScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1499,7 +1477,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_OpenTV = m_Player.FindAction("OpenTV", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_InspectionToggle = m_Player.FindAction("InspectionToggle", throwIfNotFound: true);
+        m_Player_InspectObj = m_Player.FindAction("InspectObj", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1520,7 +1498,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Television_Navigate = m_Television.FindAction("Navigate", throwIfNotFound: true);
         // Inspect
         m_Inspect = asset.FindActionMap("Inspect", throwIfNotFound: true);
-        m_Inspect_InspectionToggle = m_Inspect.FindAction("InspectionToggle", throwIfNotFound: true);
+        m_Inspect_ExitInspect = m_Inspect.FindAction("ExitInspect", throwIfNotFound: true);
         m_Inspect_Rotate = m_Inspect.FindAction("Rotate", throwIfNotFound: true);
         // Branching
         m_Branching = asset.FindActionMap("Branching", throwIfNotFound: true);
@@ -1595,7 +1573,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_OpenTV;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_InspectionToggle;
+    private readonly InputAction m_Player_InspectObj;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1604,7 +1582,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @OpenTV => m_Wrapper.m_Player_OpenTV;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @InspectionToggle => m_Wrapper.m_Player_InspectionToggle;
+        public InputAction @InspectObj => m_Wrapper.m_Player_InspectObj;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1626,9 +1604,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @InspectionToggle.started += instance.OnInspectionToggle;
-            @InspectionToggle.performed += instance.OnInspectionToggle;
-            @InspectionToggle.canceled += instance.OnInspectionToggle;
+            @InspectObj.started += instance.OnInspectObj;
+            @InspectObj.performed += instance.OnInspectObj;
+            @InspectObj.canceled += instance.OnInspectObj;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1645,9 +1623,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @InspectionToggle.started -= instance.OnInspectionToggle;
-            @InspectionToggle.performed -= instance.OnInspectionToggle;
-            @InspectionToggle.canceled -= instance.OnInspectionToggle;
+            @InspectObj.started -= instance.OnInspectObj;
+            @InspectObj.performed -= instance.OnInspectObj;
+            @InspectObj.canceled -= instance.OnInspectObj;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1857,13 +1835,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     // Inspect
     private readonly InputActionMap m_Inspect;
     private List<IInspectActions> m_InspectActionsCallbackInterfaces = new List<IInspectActions>();
-    private readonly InputAction m_Inspect_InspectionToggle;
+    private readonly InputAction m_Inspect_ExitInspect;
     private readonly InputAction m_Inspect_Rotate;
     public struct InspectActions
     {
         private @PlayerInputActions m_Wrapper;
         public InspectActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @InspectionToggle => m_Wrapper.m_Inspect_InspectionToggle;
+        public InputAction @ExitInspect => m_Wrapper.m_Inspect_ExitInspect;
         public InputAction @Rotate => m_Wrapper.m_Inspect_Rotate;
         public InputActionMap Get() { return m_Wrapper.m_Inspect; }
         public void Enable() { Get().Enable(); }
@@ -1874,9 +1852,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_InspectActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_InspectActionsCallbackInterfaces.Add(instance);
-            @InspectionToggle.started += instance.OnInspectionToggle;
-            @InspectionToggle.performed += instance.OnInspectionToggle;
-            @InspectionToggle.canceled += instance.OnInspectionToggle;
+            @ExitInspect.started += instance.OnExitInspect;
+            @ExitInspect.performed += instance.OnExitInspect;
+            @ExitInspect.canceled += instance.OnExitInspect;
             @Rotate.started += instance.OnRotate;
             @Rotate.performed += instance.OnRotate;
             @Rotate.canceled += instance.OnRotate;
@@ -1884,9 +1862,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IInspectActions instance)
         {
-            @InspectionToggle.started -= instance.OnInspectionToggle;
-            @InspectionToggle.performed -= instance.OnInspectionToggle;
-            @InspectionToggle.canceled -= instance.OnInspectionToggle;
+            @ExitInspect.started -= instance.OnExitInspect;
+            @ExitInspect.performed -= instance.OnExitInspect;
+            @ExitInspect.canceled -= instance.OnExitInspect;
             @Rotate.started -= instance.OnRotate;
             @Rotate.performed -= instance.OnRotate;
             @Rotate.canceled -= instance.OnRotate;
@@ -2066,7 +2044,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnOpenTV(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnInspectionToggle(InputAction.CallbackContext context);
+        void OnInspectObj(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -2090,7 +2068,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     }
     public interface IInspectActions
     {
-        void OnInspectionToggle(InputAction.CallbackContext context);
+        void OnExitInspect(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
     }
     public interface IBranchingActions
