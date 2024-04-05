@@ -15,6 +15,7 @@ public class TapeManager : MonoBehaviour
 
     public List<GameObject> StartingLights;  // Window block is used to hide outside light
     public List<Light> LightsToEnable;  // Lights to enable when tape is inserted
+    public List<Light> LightsToDisable;
 
     public static Action OnFirstTapeInserted;
 
@@ -96,6 +97,10 @@ public class TapeManager : MonoBehaviour
                 foreach (Light light in LightsToEnable)
                 {
                     light.enabled = true;
+                }
+                foreach(Light light in LightsToDisable)
+                {
+                    light.enabled = false;
                 }
 
                 lightsAreOn = true;

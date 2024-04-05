@@ -7827,6 +7827,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 299153196807860427, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: LightsToDisable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 299153196807860427, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: LightsToEnable.Array.data[0]
       value: 
       objectReference: {fileID: 835934517657488844}
@@ -7846,6 +7850,10 @@ PrefabInstance:
       propertyPath: StartingLights.Array.data[1]
       value: 
       objectReference: {fileID: 9074878833364160704}
+    - target: {fileID: 299153196807860427, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: LightsToDisable.Array.data[0]
+      value: 
+      objectReference: {fileID: 1007898651}
     - target: {fileID: 1348566425497209271, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: m_Camera
       value: 
