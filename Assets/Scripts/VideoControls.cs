@@ -113,7 +113,6 @@ public class VideoControls : MonoBehaviour
 
         // Set tape to fixed one and play from time the glitch was fixed
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
-        TapeReactions tapeReactionsInTV = _tapeManager.GetTapeReactionsInTV();
 
         tapeSOInTV.SetTapeToFixed(clip);
         tapeSOInTV.tapeSolutionBranch = clip;
@@ -123,6 +122,8 @@ public class VideoControls : MonoBehaviour
         // play for one frame to update render texture
         _videoPlayer.Play();
         _videoPlayer.Pause();
+
+        dialogueSet = false;
     }
     
     // Call this method to change the video when the tape is not yet completed
@@ -139,27 +140,49 @@ public class VideoControls : MonoBehaviour
         {
             _videoPlayer.clip = tapeSOInTV.originalCorruptedVideoClip;
             tapeSOInTV.clipToPlay = ClipToPlay.OriginalCorrupted;
+
+            // play for one frame to update render texture
+            _videoPlayer.Play();
+            _videoPlayer.Pause();
         }
         else if (clip == ClipToPlay.BranchACorrupted) // switch video on TV to Branch A Corrupted
         {
-            _videoPlayer.clip = tapeSOInTV.branchACorruptedVideoClip;
+            _videoPlayer.clip = tapeSOInTV.transitionToCorruptedClip;
             tapeSOInTV.clipToPlay = ClipToPlay.BranchACorrupted;
+            _videoPlayer.isLooping = true;
+            _videoPlayer.Play();
         }
         else if (clip == ClipToPlay.BranchBCorrupted) // switch video on TV to Branch B Corrupted
         {
-            _videoPlayer.clip = tapeSOInTV.branchBCorruptedVideoClip;
+            _videoPlayer.clip = tapeSOInTV.transitionToCorruptedClip;
             tapeSOInTV.clipToPlay = ClipToPlay.BranchBCorrupted;
+            _videoPlayer.isLooping = true;
+            _videoPlayer.Play();
         }
-        // play for one frame to update render texture
-        _videoPlayer.Play();
-        _videoPlayer.Pause();
 
         dialogueSet = false;
     }
 
+    void SwitchToCorruptedBranch()
+    {
+        _videoPlayer.Pause();
+        _videoPlayer.time = 0;
+        _videoPlayer.isLooping = false;
+
+        if (tapeSOInTV.clipToPlay == ClipToPlay.BranchACorrupted)
+        {
+            _videoPlayer.clip = tapeSOInTV.branchACorruptedVideoClip;
+        }
+        else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBCorrupted)
+        {
+            _videoPlayer.clip = tapeSOInTV.branchBCorruptedVideoClip;
+        }
+
+        _videoPlayer.Play();
+    }
+
     void Update()
     {
-        
         if (_progressBarImage == null) return;
 
         //Get this tape's reactions if there is one
@@ -170,6 +193,11 @@ public class VideoControls : MonoBehaviour
         else
         {
             return;
+        }
+
+        if (InputManager.instance.InTVMode() && _videoPlayer.clip == tapeSOInTV.transitionToCorruptedClip)
+        {
+            SwitchToCorruptedBranch();
         }
 
         if (_videoPlayer.length > 0)
