@@ -1,19 +1,14 @@
 fileFormatVersion: 2
-guid: c4be0adde206c594fb9ccc8197ec2732
+guid: 4d406d5221f83804d8a632e300d4eafc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects:
   - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert2
-    second: {fileID: 2100000, guid: fd6c564a548dc9648b26eebb6fd49264, type: 2}
-  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Piggy_bank_BaseColor
-    second: {fileID: 2800000, guid: 7e58ff3dae8c09b40857381f2a710be5, type: 3}
+    second: {fileID: 2800000, guid: 18662b91e99f66344b0af9f1e73bd275, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -45,7 +40,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 90
+    globalScale: 1.25
     meshCompression: 0
     addColliders: 1
     useSRGBMaterialColor: 1
@@ -100,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 90
+    globalScale: 0.012499999
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
