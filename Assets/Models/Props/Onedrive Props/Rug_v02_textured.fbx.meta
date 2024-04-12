@@ -1,19 +1,14 @@
 fileFormatVersion: 2
-guid: 3fb74a6be06f9164eac7b87c40fb22eb
+guid: e0a835e692f081b4a9c24a6642a4c1bc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects:
   - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_Rug
-    second: {fileID: 2100000, guid: 2cdd3a1a69379d445a76f705df645f9c, type: 2}
-  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: T_Rug_BC
-    second: {fileID: 2800000, guid: 1b11bea0f79446f4ea55e988d06a009e, type: 3}
+    second: {fileID: 2800000, guid: ba74feab08ec10948bc4086d78f9642e, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -45,7 +40,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.3
+    globalScale: 1
     meshCompression: 0
     addColliders: 1
     useSRGBMaterialColor: 1
@@ -100,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.3
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
