@@ -1,19 +1,14 @@
 fileFormatVersion: 2
-guid: f2b55b496bbe13a4b9fc8e457e591e34
+guid: 2ce32e9dfaa7997408f7a215a56259d5
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects:
   - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_SprayCan
-    second: {fileID: 2100000, guid: 1e736322338792b4f9b108e9e90f64de, type: 2}
-  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: T_SprayCan_BC
-    second: {fileID: 2800000, guid: e2e5501feaa0f344592389a00f794ab0, type: 3}
+    second: {fileID: 2800000, guid: df80f38830c824d46ac9aae45d357a9f, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -100,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1.5
+    globalScale: 0.015
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
