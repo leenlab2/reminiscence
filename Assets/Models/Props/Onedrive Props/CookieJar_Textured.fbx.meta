@@ -1,19 +1,14 @@
 fileFormatVersion: 2
-guid: 17a27e968d8b923469bbba376f432c1e
+guid: 3bad27e7e84a569458e131ae83f34825
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects:
   - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Cookie_jar
-    second: {fileID: 2100000, guid: 806904ec2be0fca4ea7c6032479a7dc8, type: 2}
-  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Cookie_jar_BaseColor
-    second: {fileID: 2800000, guid: 7a4a8ac7a9033434c85f5d430c5d706f, type: 3}
+    second: {fileID: 2800000, guid: ea633f01599f95f4ba675b3699c1df32, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -42,10 +37,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 6
+    globalScale: 1
     meshCompression: 0
     addColliders: 1
     useSRGBMaterialColor: 1
@@ -100,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 6
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
