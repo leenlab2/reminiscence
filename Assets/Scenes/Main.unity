@@ -11784,17 +11784,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962304846}
   m_Mesh: {fileID: 3135326922652161176, guid: d72a815a660dbac458570421fc3cd956, type: 3}
---- !u!114 &1979552525 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6366853262242383670, guid: a95cda5751e83dc44965723d559893cd, type: 3}
-  m_PrefabInstance: {fileID: 3661609574494775559}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc08f9385ebb7924e893193fbb036050, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1985482165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12310,7 +12299,7 @@ PrefabInstance:
     - target: {fileID: 8893952310554194324, guid: 3c62d3de721f74c408418603d93d771c, type: 3}
       propertyPath: startingContents.Array.data[0]
       value: 
-      objectReference: {fileID: 1979552525}
+      objectReference: {fileID: 3633529926145596899}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14204,6 +14193,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8016555927383513165, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016555927383513165, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.441
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016555927383513165, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.558
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016555927383513165, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016555927383513165, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016555927383513165, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016555927383513165, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016555927383513165, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016555927383513165, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8118909190837960655, guid: 5b808565b965f7546964b95a2373c447, type: 3}
       propertyPath: m_Name
       value: Composition Book
@@ -14217,6 +14242,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+--- !u!114 &3633529926145596899 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7022103686450763553, guid: 5b808565b965f7546964b95a2373c447, type: 3}
+  m_PrefabInstance: {fileID: 3633529926145596898}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085501618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc08f9385ebb7924e893193fbb036050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3641915367015408533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14390,7 +14426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4537452034365911004, guid: a95cda5751e83dc44965723d559893cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.18
+      value: 3.252
       objectReference: {fileID: 0}
     - target: {fileID: 4537452034365911004, guid: a95cda5751e83dc44965723d559893cd, type: 3}
       propertyPath: m_LocalPosition.z
