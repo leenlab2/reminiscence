@@ -1294,19 +1294,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a97a88bc1672954a8496834924708c6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.54887694
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a97a88bc1672954a8496834924708c6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a97a88bc1672954a8496834924708c6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.83590317
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a97a88bc1672954a8496834924708c6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a97a88bc1672954a8496834924708c6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1314,7 +1314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a97a88bc1672954a8496834924708c6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 113.42
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a97a88bc1672954a8496834924708c6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1452,35 +1452,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 140346988126114387, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.533
+      value: -13.08
       objectReference: {fileID: 0}
     - target: {fileID: 140346988126114387, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.517
+      value: 4.244
       objectReference: {fileID: 0}
     - target: {fileID: 140346988126114387, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.647
+      value: -9.383
       objectReference: {fileID: 0}
     - target: {fileID: 140346988126114387, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.54887456
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 140346988126114387, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 140346988126114387, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8359048
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 140346988126114387, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 140346988126114387, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 113.42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1135362213715467583, guid: 2e1828c6120bf8b4facd22f188fa08d2, type: 3}
       propertyPath: dialogueAudio
