@@ -72,7 +72,7 @@ public class SceneManagement : MonoBehaviour
     {
         TVReactionVoicelineManager.instance.Stop();
 
-        RenderSettings.ambientIntensity = 0.5f;
+        // RenderSettings.ambientIntensity = 0.5f;
         effects.SetActive(true);
 
         InputManager.instance.EnterMemoryScene();
@@ -94,7 +94,7 @@ public class SceneManagement : MonoBehaviour
 
         effects.SetActive(false);
 
-        RenderSettings.ambientIntensity = 1;
+        // RenderSettings.ambientIntensity = 0.5f;
 
         Vector3 cameraRotationAtTelevision = new Vector3(0, 160, 0);
         player.transform.rotation = Quaternion.Euler(cameraRotationAtTelevision);

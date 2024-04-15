@@ -248,11 +248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ebad75564aabc714ea485f60acfb6f21, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.25
+      value: -0.97
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ebad75564aabc714ea485f60acfb6f21, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.147
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ebad75564aabc714ea485f60acfb6f21, type: 3}
       propertyPath: m_LocalRotation.w
@@ -285,6 +285,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ebad75564aabc714ea485f60acfb6f21, type: 3}
       propertyPath: m_Name
       value: Baywindow_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491632914757088168, guid: ebad75564aabc714ea485f60acfb6f21, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 00b2431fcf5c1c443bc337664eadfe8f, type: 2}
+    - target: {fileID: 6627299320531581636, guid: ebad75564aabc714ea485f60acfb6f21, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

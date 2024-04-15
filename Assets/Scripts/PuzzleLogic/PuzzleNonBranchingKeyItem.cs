@@ -32,7 +32,7 @@ public class PuzzleNonBranchingKeyItem : PuzzleKeyItem
     public override void HandleCorrectPosition()
     {
         // Make memory scene brighter
-        memoryLight.intensity += 20;
+        // memoryLight.intensity += 20;
         
         base.HandleCorrectPosition();
 
