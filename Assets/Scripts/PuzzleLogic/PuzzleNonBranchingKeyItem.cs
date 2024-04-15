@@ -20,7 +20,7 @@ public class PuzzleNonBranchingKeyItem : PuzzleKeyItem
     void Start()
     {
         base.Start();
-        memoryLight = GameObject.Find("Memory Light").GetComponent<Light>();
+        //memoryLight = GameObject.Find("Memory Light").GetComponent<Light>();
         PuzzleManager.OnLevelChange += HandleLevelChange;
     }
 
