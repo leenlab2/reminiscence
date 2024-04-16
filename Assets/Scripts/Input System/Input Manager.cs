@@ -326,7 +326,6 @@ public class InputManager : MonoBehaviour
     public void EnterMemoryScene()
     {
         Debug.Log("Entering memory scene, from input manager");
-        wasInspectEnabled = true;
         CloseTelevision(new InputAction.CallbackContext());
         playerInputActions.Player.OpenTV.Disable();
         playerInputActions.Memory.Enable();
