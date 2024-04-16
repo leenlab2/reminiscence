@@ -83,6 +83,12 @@ public class TapeManager : MonoBehaviour
                 tapeInfo.branchingItemA.GetComponent<ObjectDistance>().enabled = true;
                 tapeInfo.branchingItemB.GetComponent<ObjectDistance>().enabled = true;
                 ShowBranchCues();
+
+                if (GameState.level == 2)
+                {
+                    PuzzleManager puzzleManager = FindAnyObjectByType<PuzzleManager>();
+                    puzzleManager.DisableBoxHighlight();
+                }
             }
 
             // After insert tape change to normal lighting

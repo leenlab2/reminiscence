@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
         Normal
     }
     private PlayerState _state = PlayerState.Normal;
-    private PlayerState _previousState;
+    private Stack<PlayerState> _previousState = new Stack<PlayerState>();
     private bool wasInspectEnabled = false;
 
     public static Action OnGamePaused;
@@ -166,7 +166,7 @@ public class InputManager : MonoBehaviour
     #region Pause Menu
     private void PauseGame(InputAction.CallbackContext obj)
     {
-        _previousState = _state;
+        _previousState.Push(_state);
         _state = PlayerState.GamePaused;
 
         Time.timeScale = 0;
@@ -188,7 +188,7 @@ public class InputManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        _state = _previousState;
+        _state = _previousState.Pop();
         Time.timeScale = 1;
         pauseMenu.SetActive(false); 
 
@@ -291,7 +291,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Disable();
         playerInputActions.Television.Enable();
 
-        _previousState = _state;
+        _previousState.Push(_state);
         _state = PlayerState.TVMode;
 
         ChangeCameraPosition cameraCtrl = GetComponentInChildren<ChangeCameraPosition>();
@@ -301,7 +301,7 @@ public class InputManager : MonoBehaviour
     public void CloseTelevision(InputAction.CallbackContext obj)
     {
         Debug.Log("Close TV");
-        _state = _previousState;
+        _state = _previousState.Pop();
 
         playerInputActions.Television.Disable();
         playerInputActions.Player.Enable();
@@ -404,7 +404,7 @@ public class InputManager : MonoBehaviour
             playerInputActions.Player.Disable();
             playerInputActions.Inspect.Enable();
 
-            _previousState = _state;
+            _previousState.Push(_state);
             _state = PlayerState.InspectionMode;
 
             inspection.ToggleFocusObject(true);
@@ -417,7 +417,7 @@ public class InputManager : MonoBehaviour
             playerInputActions.Inspect.Disable();
             inspection.ToggleFocusObject(false);
 
-            _state = _previousState;
+            _state = _previousState.Pop();
 
             //Stop dialogue
             ObjectVoicelineManager.instance.Stop();
@@ -438,7 +438,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Disable();
         playerInputActions.Branching.Enable();
         
-        _previousState = _state;
+        _previousState.Push(_state);
         _state = PlayerState.BranchingSelection;
 
         //Update dialogue and play audio
@@ -474,7 +474,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Branching.Disable();
         playerInputActions.Player.Enable();
 
-        _state = _previousState;
+        _state = _previousState.Pop();
 
         //Stop the dialogue on select
         ObjectVoicelineManager.instance.Stop();
