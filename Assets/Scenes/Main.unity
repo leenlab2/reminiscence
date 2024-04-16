@@ -8279,6 +8279,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 299153196807860427, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: LightsToEnable.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 299153196807860427, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: LightsToDisable.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -8294,6 +8298,10 @@ PrefabInstance:
       propertyPath: LightsToEnable.Array.data[2]
       value: 
       objectReference: {fileID: 1058433231}
+    - target: {fileID: 299153196807860427, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
+      propertyPath: LightsToEnable.Array.data[3]
+      value: 
+      objectReference: {fileID: 5976639021996445864}
     - target: {fileID: 299153196807860427, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: StartingLights.Array.data[0]
       value: 
@@ -10611,7 +10619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7725960569295941807, guid: eb61e4b31b59fb6468e1b09a862ffa83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3
+      value: -1.64
       objectReference: {fileID: 0}
     - target: {fileID: 7725960569295941807, guid: eb61e4b31b59fb6468e1b09a862ffa83, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10619,7 +10627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7725960569295941807, guid: eb61e4b31b59fb6468e1b09a862ffa83, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.242
+      value: 12.83
       objectReference: {fileID: 0}
     - target: {fileID: 7725960569295941807, guid: eb61e4b31b59fb6468e1b09a862ffa83, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15716,17 +15724,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 344803841}
     m_Modifications:
-    - target: {fileID: 1877454910406685285, guid: 94af693a3e4b17e4fa5dbdfff808087f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2613391563093762208, guid: 94af693a3e4b17e4fa5dbdfff808087f, type: 3}
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
     - target: {fileID: 5996772567981858980, guid: 94af693a3e4b17e4fa5dbdfff808087f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.98
+      value: -1.8
       objectReference: {fileID: 0}
     - target: {fileID: 5996772567981858980, guid: 94af693a3e4b17e4fa5dbdfff808087f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15734,7 +15738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5996772567981858980, guid: 94af693a3e4b17e4fa5dbdfff808087f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.8
+      value: 8.01
       objectReference: {fileID: 0}
     - target: {fileID: 5996772567981858980, guid: 94af693a3e4b17e4fa5dbdfff808087f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15772,6 +15776,11 @@ PrefabInstance:
 --- !u!4 &5976639021996445863 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5996772567981858980, guid: 94af693a3e4b17e4fa5dbdfff808087f, type: 3}
+  m_PrefabInstance: {fileID: 5976639021996445862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &5976639021996445864 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 4979890078521707683, guid: 94af693a3e4b17e4fa5dbdfff808087f, type: 3}
   m_PrefabInstance: {fileID: 5976639021996445862}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6076221155204497354
