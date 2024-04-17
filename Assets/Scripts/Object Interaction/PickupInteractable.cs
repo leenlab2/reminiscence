@@ -37,31 +37,40 @@ public class PickupInteractable : Interactable
         guideOnWall = false;
     }
 
-    public void MoveToHand(Transform holdArea, Camera pickupCamera)
+    public void MoveToHand(Transform holdArea, Camera pickupCamera, bool branching = false)
     {
-        // convert the hold area position to screen space
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(holdArea.position);
+        Vector3 newPos = holdArea.position;
 
-        // scale camera according to object size
-        Bounds objBounds = Inspection.GetObjectBounds(transform);
-        float largestDim = Mathf.Max(objBounds.size.x, objBounds.size.y, objBounds.size.z);
-        pickupCamera.orthographicSize = largestDim * 2;
+        if (!branching)
+        {
+            // convert the hold area position to screen space
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(holdArea.position);
 
-        // move object to hold area
-        Vector3 camPos = pickupCamera.ScreenToWorldPoint(screenPos);
-        Vector3 offset = transform.position - objBounds.center;
+            // scale camera according to object size
+            Bounds objBounds = Inspection.GetObjectBounds(transform);
+            float largestDim = Mathf.Max(objBounds.size.x, objBounds.size.y, objBounds.size.z);
+            pickupCamera.orthographicSize = largestDim * 2;
 
-        transform.SetPositionAndRotation(camPos + offset, holdArea.rotation);
+            // move object to hold area
+            Vector3 camPos = pickupCamera.ScreenToWorldPoint(screenPos);
+            Vector3 offset = transform.position - objBounds.center;
+            newPos = camPos + offset;
+        }
+
+
+        transform.SetPositionAndRotation(newPos, holdArea.rotation);
         transform.SetParent(holdArea);
-        Inspection.ChangeObjectLayer(transform, "Pickup");
 
         // Update trackers
         onWall = false;
         guideOnWall = false;
 
-        // Add outline
-        GetComponent<Outline>().OutlineWidth = 5f;
-        GetComponent<Outline>().OutlineColor = Color.grey;
+        if (!branching) { 
+            // Add outline
+            GetComponent<Outline>().OutlineWidth = 5f;
+            GetComponent<Outline>().OutlineColor = Color.grey;
+            Inspection.ChangeObjectLayer(transform, "Pickup");
+        }
 
         ObjectVoicelineManager.instance.SetDialogue(inspectionObjectText, dialogueAudio);
 

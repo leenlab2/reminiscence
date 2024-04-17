@@ -97,7 +97,7 @@ public class PickUpInteractor : MonoBehaviour
         HeldObj = obj.gameObject;
     }
 
-    private void NormalObjPickup(PickupInteractable obj, Transform newPos)
+    private void NormalObjPickup(PickupInteractable obj, Transform newPos, bool branching=false)
     {
         ResetHoldArea();
 
@@ -107,7 +107,7 @@ public class PickUpInteractor : MonoBehaviour
         obj.MakeObjSmall();
 
         // Move to hand
-        obj.MoveToHand(newPos, pickupCamera);
+        obj.MoveToHand(newPos, pickupCamera, branching);
 
         ToggleObjectColliders(obj.gameObject, false);
 
@@ -126,8 +126,8 @@ public class PickUpInteractor : MonoBehaviour
         PuzzleBranchingKeyItem puzzleItem = obj.GetComponent<PuzzleBranchingKeyItem>();
         GameObject otherBranching = puzzleItem.otherBranchingItem;
 
-        NormalObjPickup(obj.GetComponent<PickupInteractable>(), rightHand);
-        NormalObjPickup(otherBranching.GetComponent<PickupInteractable>(), leftHand);
+        NormalObjPickup(obj.GetComponent<PickupInteractable>(), rightHand, true);
+        NormalObjPickup(otherBranching.GetComponent<PickupInteractable>(), leftHand, true);
 
         // add picked up items to Branching layer
         Inspection.ChangeObjectLayer(obj.transform, "Branching");
@@ -153,11 +153,11 @@ public class PickUpInteractor : MonoBehaviour
         DropObject(righthandObj);
         DropObject(lefthandObj);
 
-        PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
-        PickupObject(pickObj);
-
         Inspection.ChangeObjectLayer(righthandObj.transform, "Default");
         Inspection.ChangeObjectLayer(lefthandObj.transform, "Default");
+
+        PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
+        PickupObject(pickObj);
 
         rightHand.parent.Find("Canvas").gameObject.SetActive(false);
         crosshairs.SetActive(true);
