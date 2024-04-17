@@ -6610,7 +6610,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   LightsToDisable:
+  - {fileID: 0}
   - {fileID: 0}
 --- !u!82 &6188064217674475734
 AudioSource:

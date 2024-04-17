@@ -9,6 +9,7 @@ using TMPro;
 public class PickUpInteractor : MonoBehaviour
 {
     // Inspector settings
+    [SerializeField] public Camera pickupCamera;
     [SerializeField] private Transform holdArea;
 
     [Header("Branching Item Held Position")]
@@ -54,7 +55,7 @@ public class PickUpInteractor : MonoBehaviour
 
     private void Start()
     {
-        originalHoldAreaRotation = holdArea.rotation;
+        originalHoldAreaRotation = holdArea.localRotation;
         InteractableDetector.OnCursorHitChange += DetermineNewPosition;
     }
 
@@ -106,7 +107,7 @@ public class PickUpInteractor : MonoBehaviour
         obj.MakeObjSmall();
 
         // Move to hand
-        obj.MoveToHand(newPos);
+        obj.MoveToHand(newPos, pickupCamera);
 
         ToggleObjectColliders(obj.gameObject, false);
 
@@ -172,7 +173,7 @@ public class PickUpInteractor : MonoBehaviour
     private void ResetHoldArea()
     {
         HeldObj = null;
-        holdArea.transform.rotation = originalHoldAreaRotation;
+        holdArea.transform.localRotation = originalHoldAreaRotation;
     }
 
     #region Object Drop

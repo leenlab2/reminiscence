@@ -8279,14 +8279,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 299153196807860427, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
-      propertyPath: LightsToEnable.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 299153196807860427, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
-      propertyPath: LightsToDisable.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 299153196807860427, guid: 6f6d17ea0fc5344e18e7996364e27cfd, type: 3}
       propertyPath: LightsToEnable.Array.data[0]
       value: 
       objectReference: {fileID: 835934517657488844}
