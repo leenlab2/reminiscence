@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalRotation.x
@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -124,7 +124,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.094911866
+      value: -0.004029498
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalPosition.y
@@ -132,19 +132,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.004029348
+      value: -0.09491235
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f9ee6068df6aa478d299df186c2664, type: 3}
       propertyPath: m_LocalRotation.z
@@ -228,6 +228,26 @@ PrefabInstance:
       propertyPath: inspectionObjectText
       value: Creepy. Looks like sis taste in toys transfer to her taste in lovers
         urgh.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344622818634122826, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344622818634122826, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344622818634122826, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344622818634122826, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344622818634122826, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4377233922160096776, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       propertyPath: m_audioClip

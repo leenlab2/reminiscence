@@ -37,12 +37,40 @@ public class PickupInteractable : Interactable
         guideOnWall = false;
     }
 
-    public void MoveToHand(Transform holdArea)
+    public void MoveToHand(Transform holdArea, Camera pickupCamera, bool branching = false)
     {
-        transform.SetPositionAndRotation(holdArea.position, holdArea.rotation);
+        Vector3 newPos = holdArea.position;
+
+        if (!branching)
+        {
+            // convert the hold area position to screen space
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(holdArea.position);
+
+            // scale camera according to object size
+            Bounds objBounds = Inspection.GetObjectBounds(transform);
+            float largestDim = Mathf.Max(objBounds.size.x, objBounds.size.y, objBounds.size.z);
+            pickupCamera.orthographicSize = largestDim * 2;
+
+            // move object to hold area
+            Vector3 camPos = pickupCamera.ScreenToWorldPoint(screenPos);
+            Vector3 offset = transform.position - objBounds.center;
+            newPos = camPos + offset;
+        }
+
+
+        transform.SetPositionAndRotation(newPos, holdArea.rotation);
         transform.SetParent(holdArea);
+
+        // Update trackers
         onWall = false;
         guideOnWall = false;
+
+        if (!branching) { 
+            // Add outline
+            GetComponent<Outline>().OutlineWidth = 5f;
+            GetComponent<Outline>().OutlineColor = Color.grey;
+            Inspection.ChangeObjectLayer(transform, "Pickup");
+        }
 
         ObjectVoicelineManager.instance.SetDialogue(inspectionObjectText, dialogueAudio);
 
@@ -71,6 +99,8 @@ public class PickupInteractable : Interactable
 
     public void MoveToPlacementGuide()
     {
+        GetComponent<Outline>().OutlineWidth = 0f;
+        Inspection.ChangeObjectLayer(transform, "Default");
         transform.SetPositionAndRotation(placementGuide.transform.position, placementGuide.transform.rotation);
         transform.SetParent(originalParent);
 

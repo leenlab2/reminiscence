@@ -269,7 +269,11 @@ public class InteractableDetector : MonoBehaviour
 
     public void unhighlightObject(GameObject obj)
     {
-        obj.GetComponent<Outline>().OutlineWidth = 0f;
+        if (!GetComponent<PickUpInteractor>().IsHeld(obj))
+        {
+            obj.GetComponent<Outline>().OutlineWidth = 0f; 
+        }
+
         RemoveMaterial(obj);
     }
 

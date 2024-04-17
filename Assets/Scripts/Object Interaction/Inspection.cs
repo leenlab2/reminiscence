@@ -19,7 +19,7 @@ public class Inspection : MonoBehaviour
         cam = Camera.main;
         screenspaceCenter = new Vector3(Screen.width / 2, Screen.height / 2, 1.5f);
         localSidePosition = holdArea.transform.localPosition;
-        originalRotation = holdArea.transform.rotation;
+        originalRotation = holdArea.transform.localRotation;
     }
 
     public bool InspectIsValid()
@@ -45,8 +45,8 @@ public class Inspection : MonoBehaviour
         } else
         {
             newPosition = localSidePosition;
-            holdArea.transform.rotation = originalRotation;
-            newLayer = "Default";
+            holdArea.transform.localRotation = originalRotation;
+            newLayer = "Pickup";
         }
 
         holdArea.transform.localPosition = newPosition;
@@ -63,11 +63,9 @@ public class Inspection : MonoBehaviour
         }
     }
 
-    private void GetObjectBounds()
+    public static Bounds GetObjectBounds(Transform transf)
     {
-        Transform heldObj = holdArea.transform.GetChild(0);
-
-        Renderer[] renderers = heldObj.GetComponentsInChildren<Renderer>();
+        Renderer[] renderers = transf.GetComponentsInChildren<Renderer>();
         Bounds bounds = renderers[0].bounds;
 
         for (int i = 1; i < renderers.Length; ++i)
@@ -76,12 +74,12 @@ public class Inspection : MonoBehaviour
             bounds.Encapsulate(renderers[i].bounds.max);
         }
 
-        heldObjBounds = bounds;
+        return bounds;
     }
 
     private float CalcDistFromFace()
     {
-        GetObjectBounds();
+        heldObjBounds = GetObjectBounds(holdArea.transform.GetChild(0));
 
         float largestDim = Mathf.Max(heldObjBounds.size.x, heldObjBounds.size.y, heldObjBounds.size.z);
 
@@ -101,7 +99,7 @@ public class Inspection : MonoBehaviour
     {
         if (holdArea.transform.childCount == 0) return;
 
-        GetObjectBounds();
+        heldObjBounds = GetObjectBounds(holdArea.transform.GetChild(0));
         Transform heldObjectRotation = holdArea.transform;
         Vector3 objectCenter = heldObjBounds.center;
         heldObjectRotation.RotateAround(objectCenter, transform.up, -rotationInput.x);
