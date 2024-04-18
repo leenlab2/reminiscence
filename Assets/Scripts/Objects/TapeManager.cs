@@ -80,6 +80,7 @@ public class TapeManager : MonoBehaviour
             // If user has not placed a branching item down for the current tape in TV, enable branching items' object distance scripts
             if (tapeInfo.TapeSO.clipToPlay == ClipToPlay.OriginalCorrupted)
             {
+                AudioController.instance.SwitchBase(GameState.level);
                 tapeInfo.branchingItemA.GetComponent<ObjectDistance>().enabled = true;
                 tapeInfo.branchingItemB.GetComponent<ObjectDistance>().enabled = true;
                 ShowBranchCues();

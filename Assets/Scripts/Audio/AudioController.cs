@@ -29,7 +29,6 @@ public class AudioController : MonoBehaviour
         playerAudioSource = GameObject.Find("Player").GetComponentInChildren<AudioSource>();
 
         PuzzleNonBranchingKeyItem.OnKeyItemPlaced += PlayBGMStem;
-        PuzzleManager.OnLevelChange += SwitchBase;
 
         BGMDefaultVol = GetComponentInChildren<AudioSource>().volume;
         previousMuteStates = new bool[bgmSources.Count];
@@ -44,7 +43,6 @@ public class AudioController : MonoBehaviour
     private void OnDestroy()
     {
         PuzzleNonBranchingKeyItem.OnKeyItemPlaced -= PlayBGMStem;
-        PuzzleManager.OnLevelChange -= SwitchBase;
     }
 
     public void SwitchAndPlayAudio(AudioClip audioClip)
@@ -54,8 +52,9 @@ public class AudioController : MonoBehaviour
         playerAudioSource.Play();
     }
 
-    void SwitchBase(int level)
+    public void SwitchBase(int level)
     {
+        // wait for new tape to be inserted into tv
         GetComponentInChildren<AudioSource>().clip = bgmStems[level - 1];
         GetComponentInChildren<AudioSource>().Play();
 
