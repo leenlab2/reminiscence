@@ -9,9 +9,11 @@ public class AudioController : MonoBehaviour
 
     [SerializeField] private List<AudioClip> footsteps = new List<AudioClip>();
     [SerializeField] private List<AudioClip> bgmStems = new List<AudioClip>();
+    [SerializeField] private List<AudioSource> bgmSources = new List<AudioSource>();
     private AudioSource playerAudioSource;
     private float lastStepTime = 0.0f;
     private static float BGMDefaultVol;
+    private bool[] previousMuteStates;
 
     private void Awake()
     {
@@ -30,6 +32,13 @@ public class AudioController : MonoBehaviour
         PuzzleManager.OnLevelChange += SwitchBase;
 
         BGMDefaultVol = GetComponentInChildren<AudioSource>().volume;
+        previousMuteStates = new bool[bgmSources.Count];
+
+        // Store the initial mute states of all other audio sources
+        for (int i = 0; i < bgmSources.Count; i++)
+        {
+            previousMuteStates[i] = bgmSources[i].mute;
+        }
     }
 
     private void OnDestroy()
@@ -99,7 +108,39 @@ public class AudioController : MonoBehaviour
 
     public static void ChangeBGMVolume(float volume)
     {
-        AudioSource bgm = instance.GetComponentInChildren<AudioSource>();
-        bgm.volume = volume * BGMDefaultVol;
+        print("Changing BGM volume to: " + volume);
+        foreach (AudioSource bgm in instance.bgmSources)
+        {
+            bgm.volume = (volume / 10) * BGMDefaultVol;
+        }
+    }
+
+    public static void ToggleMuteBGM()
+    {
+        if (!instance.GetComponentInChildren<AudioSource>().mute)
+        {
+            //update previous mute states
+            for (int i = 0; i < instance.bgmSources.Count; i++)
+            {
+                instance.previousMuteStates[i] = instance.bgmSources[i].mute;
+                instance.bgmSources[i].mute = true;
+            }
+        } else
+        {
+            for (int i = 0; i < instance.bgmSources.Count; i++)
+            {
+                instance.bgmSources[i].mute = instance.previousMuteStates[i];
+            }
+        }
+    }
+
+    public static void ActivateFilters(bool on = true)
+    {
+        // for each bgm source, enable echofilter and distortion
+        foreach (AudioSource bgm in instance.bgmSources)
+        {
+            bgm.GetComponent<AudioDistortionFilter>().enabled = on;
+            bgm.GetComponent<AudioEchoFilter>().enabled = on;
+        }
     }
 }
