@@ -13,9 +13,8 @@ public class PuzzleManager : MonoBehaviour
 
     public GameObject currentBranchingItemModel;
     public GameObject memorySceneCanvas;
-    public Animator tape2Box; 
+    public Animator tape2Box;
 
-    private InputManager inputManager;
     private PlacementAudio placementAudio;
 
     [SerializeField] private List<GameObject> tapeObjs; // tape objects, index 0 is level 1 tape
@@ -29,7 +28,6 @@ public class PuzzleManager : MonoBehaviour
         currentBranch = Branch.None;
 
         _videoControls = FindObjectOfType<VideoControls>();
-        inputManager = FindObjectOfType<InputManager>();
         placementAudio = FindObjectOfType<PlacementAudio>();
 
         StartNextLevel();
@@ -133,14 +131,25 @@ public class PuzzleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         memorySceneCanvas.SetActive(false);
-        inputManager.ExitMemoryScene(new InputAction.CallbackContext());
+        InputManager.instance.ExitMemoryScene(new InputAction.CallbackContext());
 
         if (GameState.level == 2 && countKeyItemsLeft == 3 && currentBranch == Branch.None)
         {
             yield return new WaitForSeconds(0.5f);
             Debug.Log("Opening tape box");
             tape2Box.SetBool("IsOpen", true);
+
+            GameObject model = tape2Box.transform.GetChild(0).gameObject;
+            InteractableDetector interactableDet = FindAnyObjectByType<InteractableDetector>();
+            interactableDet.highlightObject(model);
         }
+    }
+
+    public void DisableBoxHighlight()
+    {
+        GameObject model = tape2Box.transform.GetChild(0).gameObject;
+        InteractableDetector interactableDet = FindAnyObjectByType<InteractableDetector>();
+        interactableDet.unhighlightObject(model);
     }
 
     void OnGameComplete()

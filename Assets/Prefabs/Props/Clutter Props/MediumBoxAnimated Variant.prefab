@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 736f286bf45865f4ea224617f1062565, type: 2}
     - target: {fileID: 5048657029521396570, guid: d55716beda4c5bf44a6a9f5c4dbe7223, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.27
+      value: -9.23
       objectReference: {fileID: 0}
     - target: {fileID: 5048657029521396570, guid: d55716beda4c5bf44a6a9f5c4dbe7223, type: 3}
       propertyPath: m_LocalPosition.y
@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5048657029521396570, guid: d55716beda4c5bf44a6a9f5c4dbe7223, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.59
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5048657029521396570, guid: d55716beda4c5bf44a6a9f5c4dbe7223, type: 3}
       propertyPath: m_LocalRotation.w
@@ -247,8 +247,11 @@ MonoBehaviour:
   isInteractable: 0
   enterSound: {fileID: 8300000, guid: 4ad82151490954cf3bce49aaf47e656f, type: 3}
   exitSound: {fileID: 8300000, guid: 4ad82151490954cf3bce49aaf47e656f, type: 3}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 3067531770343063804}
   isOpen: 0
+  attachPoint: {fileID: 9062446878209335424}
+  startingContents:
+  - {fileID: 0}
 --- !u!114 &7158441751114336505
 MonoBehaviour:
   m_ObjectHideFlags: 0

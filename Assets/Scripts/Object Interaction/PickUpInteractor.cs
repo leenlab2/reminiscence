@@ -1,12 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-// using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
-using UnityEngine.Scripting.APIUpdating;
-using UnityEngine.UI;
 
 /// <summary>
 /// Handles the communication between the player and the object. Specifically manages what object is held (`HeldObj`)
@@ -14,6 +9,7 @@ using UnityEngine.UI;
 public class PickUpInteractor : MonoBehaviour
 {
     // Inspector settings
+    [SerializeField] public Camera pickupCamera;
     [SerializeField] private Transform holdArea;
 
     [Header("Branching Item Held Position")]
@@ -27,10 +23,10 @@ public class PickUpInteractor : MonoBehaviour
 
     private Quaternion originalHoldAreaRotation;
 
-    private TMP_Text _interactText;
+    public static Action<GameObject> OnObjectPickup;
+    public static Action<GameObject> OnObjectPlace;
     public static Action<GameObject> OnBranchingPickup;
 
-    private InteractionCue _interactionCue;
     private bool _firstTapePickup = false;
 
 #region IsHeld
@@ -59,11 +55,8 @@ public class PickUpInteractor : MonoBehaviour
 
     private void Start()
     {
-        originalHoldAreaRotation = holdArea.rotation;
+        originalHoldAreaRotation = holdArea.localRotation;
         InteractableDetector.OnCursorHitChange += DetermineNewPosition;
-
-        _interactText = GameObject.Find("Interact Text").GetComponent<TMP_Text>();
-        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
     }
 
     private void OnDestroy()
@@ -94,6 +87,8 @@ public class PickUpInteractor : MonoBehaviour
         {
             PickupObject(pickObj);
         }
+
+        OnObjectPickup?.Invoke(obj);
     }
 
     public void PickupObject(PickupInteractable obj)
@@ -102,13 +97,9 @@ public class PickUpInteractor : MonoBehaviour
         HeldObj = obj.gameObject;
     }
 
-    private void NormalObjPickup(PickupInteractable obj, Transform newPos)
+    private void NormalObjPickup(PickupInteractable obj, Transform newPos, bool branching=false)
     {
         ResetHoldArea();
-
-        _interactionCue.SetInteractionCue(InteractionCueType.Hold);
-
-        // _interactText.text = "Hold left to aim and click right to place. Press E to inspect.";
 
         // Fix rigid body settings of target object
         obj.TogglePlacementGuide(true);
@@ -116,7 +107,7 @@ public class PickUpInteractor : MonoBehaviour
         obj.MakeObjSmall();
 
         // Move to hand
-        obj.MoveToHand(newPos);
+        obj.MoveToHand(newPos, pickupCamera, branching);
 
         ToggleObjectColliders(obj.gameObject, false);
 
@@ -135,16 +126,14 @@ public class PickUpInteractor : MonoBehaviour
         PuzzleBranchingKeyItem puzzleItem = obj.GetComponent<PuzzleBranchingKeyItem>();
         GameObject otherBranching = puzzleItem.otherBranchingItem;
 
-        NormalObjPickup(obj.GetComponent<PickupInteractable>(), rightHand);
-        NormalObjPickup(otherBranching.GetComponent<PickupInteractable>(), leftHand);
+        NormalObjPickup(obj.GetComponent<PickupInteractable>(), rightHand, true);
+        NormalObjPickup(otherBranching.GetComponent<PickupInteractable>(), leftHand, true);
 
         // add picked up items to Branching layer
         Inspection.ChangeObjectLayer(obj.transform, "Branching");
         Inspection.ChangeObjectLayer(otherBranching.transform, "Branching");
 
         rightHand.parent.Find("Canvas").gameObject.SetActive(true);
-
-        _interactionCue.SetInteractionCue(InteractionCueType.Branching);
 
         // TODO: make this more efficient
         crosshairs.SetActive(false);
@@ -164,11 +153,11 @@ public class PickUpInteractor : MonoBehaviour
         DropObject(righthandObj);
         DropObject(lefthandObj);
 
-        PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
-        PickupObject(pickObj);
-
         Inspection.ChangeObjectLayer(righthandObj.transform, "Default");
         Inspection.ChangeObjectLayer(lefthandObj.transform, "Default");
+
+        PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
+        PickupObject(pickObj);
 
         rightHand.parent.Find("Canvas").gameObject.SetActive(false);
         crosshairs.SetActive(true);
@@ -184,14 +173,22 @@ public class PickUpInteractor : MonoBehaviour
     private void ResetHoldArea()
     {
         HeldObj = null;
-        holdArea.transform.rotation = originalHoldAreaRotation;
+        holdArea.transform.localRotation = originalHoldAreaRotation;
     }
 
     #region Object Drop
-    public void DropHeldObject()
+    public void DropHeldObject(Container container = null)
     {
-        PlaceObject(HeldObj);
+        if (container)
+        {
+            PlaceObjectInContainer(HeldObj, container);
+        }
+        else
+        {
+            PlaceObject(HeldObj);
+        }
 
+        OnObjectPlace?.Invoke(HeldObj);
         ResetHoldArea();
     }
 
@@ -201,6 +198,17 @@ public class PickUpInteractor : MonoBehaviour
 
         PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
         pickObj.MoveToPlacementGuide();
+        pickObj.TogglePlacementGuide(false);
+        pickObj.ToggleFreezeBody(false);
+        pickObj.MakeObjBig();
+    }
+
+    void PlaceObjectInContainer(GameObject obj, Container container)
+    {
+        ToggleObjectColliders(obj, true);
+
+        PickupInteractable pickObj = obj.GetComponent<PickupInteractable>();
+        pickObj.MoveToContainer(container);
         pickObj.TogglePlacementGuide(false);
         pickObj.ToggleFreezeBody(false);
         pickObj.MakeObjBig();

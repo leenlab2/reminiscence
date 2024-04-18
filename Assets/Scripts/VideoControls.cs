@@ -24,7 +24,6 @@ public class VideoControls : MonoBehaviour
     private ParticleSystem televisionParticleEffects;
     private TapeManager _tapeManager;
     private AudioSource buttonPressAudio;
-    private DialogueManager _dialogueManager;
     
 
     [SerializeField]
@@ -34,17 +33,16 @@ public class VideoControls : MonoBehaviour
     
     public static Action dialoguePrompt;
 
-    private TapeReactions tapeReactionsInTV;
     private TapeSO tapeSOInTV;
     private float timer;
     private bool hasBeenInvoked;
+    private bool dialogueSet = false;
 
     void Start()
     {
         _tapeManager = FindObjectOfType<TapeManager>();
         _videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
         buttonPressAudio = GetComponent<AudioSource>();
-        _dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
 
         if (_progressBarImage != null)
         {
@@ -55,7 +53,6 @@ public class VideoControls : MonoBehaviour
         televisionParticleEffects = GameObject.Find("TVEffectsPuzzleComplete").GetComponent<ParticleSystem>();
 
         InputManager.OnGamePaused += Pause;
-        tapeReactionsInTV = null;
         float timer = 0.5f;
         hasBeenInvoked = false;
     }
@@ -116,7 +113,6 @@ public class VideoControls : MonoBehaviour
 
         // Set tape to fixed one and play from time the glitch was fixed
         TapeSO tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
-        TapeReactions tapeReactionsInTV = _tapeManager.GetTapeReactionsInTV();
 
         tapeSOInTV.SetTapeToFixed(clip);
         tapeSOInTV.tapeSolutionBranch = clip;
@@ -126,6 +122,8 @@ public class VideoControls : MonoBehaviour
         // play for one frame to update render texture
         _videoPlayer.Play();
         _videoPlayer.Pause();
+
+        dialogueSet = false;
     }
     
     // Call this method to change the video when the tape is not yet completed
@@ -142,37 +140,64 @@ public class VideoControls : MonoBehaviour
         {
             _videoPlayer.clip = tapeSOInTV.originalCorruptedVideoClip;
             tapeSOInTV.clipToPlay = ClipToPlay.OriginalCorrupted;
+
+            // play for one frame to update render texture
+            _videoPlayer.Play();
+            _videoPlayer.Pause();
         }
         else if (clip == ClipToPlay.BranchACorrupted) // switch video on TV to Branch A Corrupted
         {
-            _videoPlayer.clip = tapeSOInTV.branchACorruptedVideoClip;
+            _videoPlayer.clip = tapeSOInTV.transitionToCorruptedClip;
             tapeSOInTV.clipToPlay = ClipToPlay.BranchACorrupted;
+            _videoPlayer.isLooping = true;
+            _videoPlayer.Play();
         }
         else if (clip == ClipToPlay.BranchBCorrupted) // switch video on TV to Branch B Corrupted
         {
-            _videoPlayer.clip = tapeSOInTV.branchBCorruptedVideoClip;
+            _videoPlayer.clip = tapeSOInTV.transitionToCorruptedClip;
             tapeSOInTV.clipToPlay = ClipToPlay.BranchBCorrupted;
+            _videoPlayer.isLooping = true;
+            _videoPlayer.Play();
         }
-        // play for one frame to update render texture
-        _videoPlayer.Play();
+
+        dialogueSet = false;
+    }
+
+    void SwitchToCorruptedBranch()
+    {
         _videoPlayer.Pause();
+        _videoPlayer.time = 0;
+        _videoPlayer.isLooping = false;
+
+        if (tapeSOInTV.clipToPlay == ClipToPlay.BranchACorrupted)
+        {
+            _videoPlayer.clip = tapeSOInTV.branchACorruptedVideoClip;
+        }
+        else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBCorrupted)
+        {
+            _videoPlayer.clip = tapeSOInTV.branchBCorruptedVideoClip;
+        }
+
+        _videoPlayer.Play();
     }
 
     void Update()
     {
-        
         if (_progressBarImage == null) return;
 
         //Get this tape's reactions if there is one
         if (_tapeManager.televisionHasTape())
         {
-            tapeReactionsInTV = _tapeManager.GetTapeReactionsInTV();
             tapeSOInTV = _tapeManager.GetCurrentTapeInTV();
-
         }
         else
         {
             return;
+        }
+
+        if (InputManager.instance.InTVMode() && _videoPlayer.clip == tapeSOInTV.transitionToCorruptedClip)
+        {
+            SwitchToCorruptedBranch();
         }
 
         if (_videoPlayer.length > 0)
@@ -180,44 +205,17 @@ public class VideoControls : MonoBehaviour
             float progressPercentage = (float)(_videoPlayer.time / _videoPlayer.length);
             _progressBarImage.fillAmount = progressPercentage;
 
-
-            //////// DIALOGuE DIRTY/////
-            if (progressPercentage >= 0)
+            if (!dialogueSet && InputManager.instance.InTVMode())
             {
-                if (tapeSOInTV.clipToPlay == ClipToPlay.OriginalCorrupted)
-                {
-                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.startSubtitles, tapeReactionsInTV.start);
-                    timer = 0.1f;
-                }
-                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchACorrupted) 
-                {
-                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
-                    timer = 0.8f;
-                }
-                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBCorrupted)
-                {
-                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.middleSubtitles, tapeReactionsInTV.middle);
-                    timer = 0.8f;
-                }
-                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchASolution)
-                {
-                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.endASubtitles, tapeReactionsInTV.endA);
-                    timer = 0.8f;
-                }
-                else if (tapeSOInTV.clipToPlay == ClipToPlay.BranchBSolution)
-                {
-                    _dialogueManager.SetDialogueNoObject(tapeReactionsInTV.endBSubtitles, tapeReactionsInTV.endB);
-                    timer = 0.8f;
-                }
+                timer = TVReactionVoicelineManager.instance.ChangeReactionVoicelineForTape(tapeSOInTV.clipToPlay);
+                dialogueSet = true;
             }
 
-            if ((progressPercentage <= 0.94f) && (progressPercentage >= timer) && (!hasBeenInvoked))
+            if ((progressPercentage <= 0.94f) && (progressPercentage >= timer) && (!hasBeenInvoked) && dialogueSet && InputManager.instance.InTVMode())
             {
                 dialoguePrompt?.Invoke();
                 hasBeenInvoked = true;
             }
-
-            ///////////////////////////
 
             if (progressPercentage >= 0.95f && !(_videoPlayer.clip.name == insertTapeVideoClip.name))
             {

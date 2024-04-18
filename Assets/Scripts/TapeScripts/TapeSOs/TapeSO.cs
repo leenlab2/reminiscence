@@ -12,6 +12,8 @@ public class TapeSO : ScriptableObject
     public VideoClip branchBCorruptedVideoClip;
     [SerializeField] private VideoClip branchASolutionVideoClip;
     [SerializeField] private VideoClip branchBSolutionVideoClip;
+
+    public VideoClip transitionToCorruptedClip;
     
     public bool tapeIsFixed = false;
     public ClipToPlay clipToPlay = ClipToPlay.OriginalCorrupted;

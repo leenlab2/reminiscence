@@ -20,7 +20,7 @@ public class PuzzleNonBranchingKeyItem : PuzzleKeyItem
     void Start()
     {
         base.Start();
-        memoryLight = GameObject.Find("Memory Light").GetComponent<Light>();
+        //memoryLight = GameObject.Find("Memory Light").GetComponent<Light>();
         PuzzleManager.OnLevelChange += HandleLevelChange;
     }
 
@@ -32,7 +32,7 @@ public class PuzzleNonBranchingKeyItem : PuzzleKeyItem
     public override void HandleCorrectPosition()
     {
         // Make memory scene brighter
-        memoryLight.intensity += 20;
+        // memoryLight.intensity += 20;
         
         base.HandleCorrectPosition();
 

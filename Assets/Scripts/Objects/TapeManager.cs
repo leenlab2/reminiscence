@@ -9,8 +9,13 @@ public class TapeManager : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
     private GameObject currentTapeInTv;
+    private GameObject tempHolderForSwap;
     private PickUpInteractor pickUpInteractor;
     private bool lightsAreOn;
+
+    public List<GameObject> StartingLights;  // Window block is used to hide outside light
+    public List<Light> LightsToEnable;  // Lights to enable when tape is inserted
+    public List<Light> LightsToDisable;
 
     public static Action OnFirstTapeInserted;
 
@@ -33,6 +38,21 @@ public class TapeManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void swapTape(GameObject tapeGameObject)
+    {
+        if (!televisionHasTape()) // if television does not have tape, do nothing
+        {
+            return;
+        }
+        else // if television has tape in it, remove it
+        {
+            removeTape(true);
+            insertTape(tapeGameObject);
+            pickUpInteractor.PickupObject(tempHolderForSwap);
+            tempHolderForSwap = null;
+        }
     }
 
     public void insertTape(GameObject tapeGameObject)
@@ -63,6 +83,12 @@ public class TapeManager : MonoBehaviour
                 tapeInfo.branchingItemA.GetComponent<ObjectDistance>().enabled = true;
                 tapeInfo.branchingItemB.GetComponent<ObjectDistance>().enabled = true;
                 ShowBranchCues();
+
+                if (GameState.level == 2)
+                {
+                    PuzzleManager puzzleManager = FindAnyObjectByType<PuzzleManager>();
+                    puzzleManager.DisableBoxHighlight();
+                }
             }
 
             // After insert tape change to normal lighting
@@ -70,11 +96,18 @@ public class TapeManager : MonoBehaviour
 
             if (!lightsAreOn)
             {
-                GameObject.Find("Window Block").SetActive(false);
-                GameObject.Find("Tape Light").SetActive(false);
-                GameObject.Find("TVRoomSpotLight").GetComponent<Light>().enabled = true;
-                GameObject.Find("TVRoomSpotLight2").GetComponent<Light>().enabled = true;
-                GameObject.Find("Lamplight").GetComponent<Light>().enabled = true;
+                foreach (GameObject light in StartingLights)
+                {
+                    light.SetActive(false);
+                }
+                foreach (Light light in LightsToEnable)
+                {
+                    light.enabled = true;
+                }
+                foreach(Light light in LightsToDisable)
+                {
+                    light.enabled = false;
+                }
 
                 lightsAreOn = true;
                 OnFirstTapeInserted?.Invoke();
@@ -83,7 +116,7 @@ public class TapeManager : MonoBehaviour
         }
     }
 
-    public void removeTape()
+    public void removeTape(bool swap = false)
     {
         if (!televisionHasTape()) // if television does not have tape, do nothing
         {
@@ -103,7 +136,15 @@ public class TapeManager : MonoBehaviour
             // set clip on TV's player to null
             currentTapeInTv.SetActive(true);
             videoPlayer.targetTexture.Release();
-            pickUpInteractor.PickupObject(currentTapeInTv);
+
+            if (!swap)
+            {
+                pickUpInteractor.PickupObject(currentTapeInTv);
+            } else
+            {
+                tempHolderForSwap = currentTapeInTv;
+            }
+
             videoPlayer.clip = null;
             currentTapeInTv = null;
         }

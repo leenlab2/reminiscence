@@ -15,6 +15,8 @@ public class SceneManagement : MonoBehaviour
     public GameObject enterMemoryButton;
     public Animator cameraAnimator;
 
+    public Transform spawnpoint;
+
     public AudioClip memoryEnterSfx;
     public AudioClip memoryExitSfx;
     public GameObject mainAudioSource;
@@ -22,14 +24,11 @@ public class SceneManagement : MonoBehaviour
     private Vector3 _originalPlayerPos;
     private Quaternion _originalPlayerRot;
 
-    private InteractionCue _interactionCue;
-
     // Start is called before the first frame update
     void Start()
     {
         tapeManager = FindObjectOfType<TapeManager>();
-        _interactionCue = GameObject.Find("InteractionCue").GetComponent<InteractionCue>();
-
+        
         // Set to dim lighting
         RenderSettings.ambientMode = AmbientMode.Flat;
         RenderSettings.ambientSkyColor = Color.black;
@@ -70,19 +69,18 @@ public class SceneManagement : MonoBehaviour
     }
 
     public void SetupMemoryScene()
-    { 
-        RenderSettings.ambientIntensity = 0.5f;
+    {
+        TVReactionVoicelineManager.instance.Stop();
+
+        // RenderSettings.ambientIntensity = 0.5f;
         effects.SetActive(true);
 
-        FindObjectOfType<InputManager>().EnterMemoryScene();
-
-        _interactionCue.SetInteractionCue(InteractionCueType.EnterMemory);
+        InputManager.instance.EnterMemoryScene();
 
         _originalPlayerPos = player.transform.position;
         _originalPlayerRot = player.transform.rotation;
 
-        player.transform.position = new Vector3(-5.03f, 50f, 4f);
-        player.transform.rotation = new Quaternion(0, 0, 0, 0);
+        MovePlayerToScene(spawnpoint.position, spawnpoint.rotation);
     }
 
     public void ExitMemoryScene()
@@ -92,15 +90,25 @@ public class SceneManagement : MonoBehaviour
         audioSource.pitch = 3;
         GetComponent<AudioSource>().PlayOneShot(memoryExitSfx);
 
-        player.transform.SetPositionAndRotation(_originalPlayerPos, _originalPlayerRot);
-
-        _interactionCue.SetInteractionCue(InteractionCueType.ExitMemory);
+        MovePlayerToScene(_originalPlayerPos, _originalPlayerRot);
 
         effects.SetActive(false);
 
-        RenderSettings.ambientIntensity = 1;
+        // RenderSettings.ambientIntensity = 0.5f;
 
         Vector3 cameraRotationAtTelevision = new Vector3(0, 160, 0);
         player.transform.rotation = Quaternion.Euler(cameraRotationAtTelevision);
     } 
+
+    private void MovePlayerToScene(Vector3 newSpawnPointPos, Quaternion newRotation)
+    {
+        player.transform.SetPositionAndRotation(newSpawnPointPos, newRotation);
+
+        // if is holding object, move to scene
+        PickUpInteractor pickUpInteractor = player.GetComponent<PickUpInteractor>();
+        if (pickUpInteractor.isHoldingObj())
+        {
+            pickUpInteractor.HeldObj.GetComponent<PickupInteractable>().MovePlacementGuideToScene(newSpawnPointPos);
+        }
+    }
 }
