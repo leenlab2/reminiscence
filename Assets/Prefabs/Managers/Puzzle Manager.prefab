@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6771175446397445861}
   - component: {fileID: 4563849132696020942}
   - component: {fileID: 1745181952052932677}
+  - component: {fileID: 6959393325685899949}
   m_Layer: 0
   m_Name: Puzzle Manager
   m_TagString: Untagged
@@ -162,3 +163,26 @@ MonoBehaviour:
   tapeObjs:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!320 &6959393325685899949
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8704303653242440373}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -7721482993617544105, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1050790487863801328, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3016132969304492405, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []

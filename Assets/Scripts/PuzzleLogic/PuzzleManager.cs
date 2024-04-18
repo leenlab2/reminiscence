@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class PuzzleManager : MonoBehaviour
@@ -40,7 +41,7 @@ public class PuzzleManager : MonoBehaviour
     {
         PuzzleNonBranchingKeyItem.OnKeyItemPlaced -= HandleNonBranchingKeyItemPlaced;
         PuzzleBranchingKeyItem.OnBranchingKeyItemPlaced -= HandleBranchingItemPlaced;
-        VideoControls.clipWatched -= OnGameComplete;
+        VideoControls.clipWatched -= OnClipWatched;
     }
 
     public void HandleBranchingItemPlaced(GameObject placedBranchingItemModel)
@@ -91,7 +92,7 @@ public class PuzzleManager : MonoBehaviour
             }
             else if (GameState.level == 2) // Player has completed game
             {
-                VideoControls.clipWatched += OnGameComplete;
+                VideoControls.clipWatched += OnClipWatched;
             }
 
         }
@@ -152,10 +153,33 @@ public class PuzzleManager : MonoBehaviour
         interactableDet.unhighlightObject(model);
     }
 
-    void OnGameComplete()
+    void OnClipWatched()
     {
+        StartCoroutine(OnGameComplete());
+    }
+
+    IEnumerator OnGameComplete()
+    {
+        // wait for player to exit tv mode
+        while (InputManager.instance.InTVMode()) { yield return null;}
+
         Debug.Log("Game complete");
+        if (GameState.ending == Ending.EndingB)
+        {
+            GetComponent<PlayableDirector>().Play();
+
+            // wait for end of timeline
+            while (GetComponent<PlayableDirector>().state != PlayState.Paused) { yield return null; }
+            
+        } else
+        {
+            // wait for audiodiaglogue to finish
+            AudioSource audioDialogue = GameObject.Find("Player").transform.Find("AudioDialogue").GetComponent<AudioSource>();
+            while (audioDialogue.isPlaying) { yield return null; }
+        }
+
         StartCoroutine(GameLoader.LoadYourAsyncScene("Ending"));
+
     }
 
     IEnumerator completeSFXWaiter()
