@@ -155,6 +155,7 @@ public class PuzzleManager : MonoBehaviour
 
     void OnClipWatched()
     {
+        VideoControls.clipWatched -= OnClipWatched;
         StartCoroutine(OnGameComplete());
     }
 
@@ -162,14 +163,17 @@ public class PuzzleManager : MonoBehaviour
     {
         // wait for player to exit tv mode
         while (InputManager.instance.InTVMode()) { yield return null;}
+        AudioController.ToggleMuteBGM();
+        AudioController.instance.GetComponent<AudioSource>().Stop();
+        AudioController.instance.GetComponent<AudioSource>().mute = false;
 
         Debug.Log("Game complete");
         if (GameState.ending == Ending.EndingB)
         {
-            GetComponent<PlayableDirector>().Play();
+            PlayableDirector director = GetComponent<PlayableDirector>();
+            director.Play();
 
-            // wait for end of timeline
-            while (GetComponent<PlayableDirector>().state != PlayState.Paused) { yield return null; }
+            while (director.time < director.duration) { yield return null; }
             
         } else
         {
@@ -178,8 +182,8 @@ public class PuzzleManager : MonoBehaviour
             while (audioDialogue.isPlaying) { yield return null; }
         }
 
+        Debug.Log("Loading ending scene");
         StartCoroutine(GameLoader.LoadYourAsyncScene("Ending"));
-
     }
 
     IEnumerator completeSFXWaiter()
