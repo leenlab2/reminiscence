@@ -180,6 +180,8 @@ public class PuzzleManager : MonoBehaviour
             // wait for audiodiaglogue to finish
             AudioSource audioDialogue = GameObject.Find("Player").transform.Find("AudioDialogue").GetComponent<AudioSource>();
             while (audioDialogue.isPlaying) { yield return null; }
+
+            GameObject.Find("Fade to Black").SetActive(true);
         }
 
         Debug.Log("Loading ending scene");
