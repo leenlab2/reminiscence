@@ -13326,10 +13326,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 873426269}
     m_Modifications:
-    - target: {fileID: 1831708785936251279, guid: b28ee1b9959646743b56d865220a4a2c, type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2653315999638514274, guid: b28ee1b9959646743b56d865220a4a2c, type: 3}
       propertyPath: m_Name
       value: Settings Menu
