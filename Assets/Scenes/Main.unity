@@ -11021,17 +11021,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7762675187843565928, guid: 55140f8776d0abf4ba71559713e9a5ef, type: 3}
   m_PrefabInstance: {fileID: 1664661217}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1686437067 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6992450636416142980, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
-  m_PrefabInstance: {fileID: 560125895}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1686437069 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8944915732866438509, guid: 42eb54cd506f0694781137b88ae762f6, type: 3}
   m_PrefabInstance: {fileID: 560125895}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686437067}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9925b11742c30314e9c346ab72cf3170, type: 3}
@@ -14260,10 +14255,6 @@ PrefabInstance:
       propertyPath: cameraAnimator
       value: 
       objectReference: {fileID: 1160039103}
-    - target: {fileID: 2030963388574207995, guid: c1047ff49c7f8a44ba57c555856614e0, type: 3}
-      propertyPath: mainAudioSource
-      value: 
-      objectReference: {fileID: 1686437067}
     - target: {fileID: 2030963388574207995, guid: c1047ff49c7f8a44ba57c555856614e0, type: 3}
       propertyPath: enterMemoryButton
       value: 

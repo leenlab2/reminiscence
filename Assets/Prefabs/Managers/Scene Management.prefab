@@ -49,6 +49,7 @@ MonoBehaviour:
   player: {fileID: 0}
   enterMemoryButton: {fileID: 0}
   cameraAnimator: {fileID: 0}
+  spawnpoint: {fileID: 0}
   memoryEnterSfx: {fileID: 8300000, guid: b46cc0a68b6af714ca23b97aa450b587, type: 3}
   memoryExitSfx: {fileID: 8300000, guid: 3e0ef8da1f3a3674293c692ad87d461d, type: 3}
 --- !u!82 &7137716535454357835
@@ -63,7 +64,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.65
   m_Pitch: 1
   Loop: 0
   Mute: 0

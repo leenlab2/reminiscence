@@ -19,8 +19,6 @@ public class PuzzleManager : MonoBehaviour
     private PlacementAudio placementAudio;
 
     [SerializeField] private List<GameObject> tapeObjs; // tape objects, index 0 is level 1 tape
-
-    public static Action<int> OnLevelChange;
     
     void Start()
     {
@@ -57,6 +55,8 @@ public class PuzzleManager : MonoBehaviour
         {
             _videoControls.ChangeCorruptedVideo(ClipToPlay.BranchBCorrupted);
         }
+
+        InputManager.instance.playerInputActions.Memory.ExitMemoryScene.Disable();
         memorySceneCanvas.SetActive(true);
 
         StartCoroutine(waiter());
@@ -83,6 +83,7 @@ public class PuzzleManager : MonoBehaviour
                 GameState.RecordRoute(false);
                 _videoControls.CompletePuzzle(ClipToPlay.BranchBSolution);
             }
+            InputManager.instance.playerInputActions.Memory.ExitMemoryScene.Disable();
             memorySceneCanvas.SetActive(true);
             StartCoroutine(waiter());
 
@@ -118,14 +119,6 @@ public class PuzzleManager : MonoBehaviour
     
         // Reset branch to none (neither A nor B)
         currentBranch = Branch.None;
-
-        StartCoroutine(TurnOffAudio());
-    }
-    
-    IEnumerator TurnOffAudio()
-    {
-        yield return new WaitForSeconds(1);
-        OnLevelChange?.Invoke(GameState.level);
     }
 
     IEnumerator waiter()
@@ -177,11 +170,10 @@ public class PuzzleManager : MonoBehaviour
             
         } else
         {
+            GameObject.Find("Fade to Black").SetActive(true);
             // wait for audiodiaglogue to finish
             AudioSource audioDialogue = GameObject.Find("Player").transform.Find("AudioDialogue").GetComponent<AudioSource>();
             while (audioDialogue.isPlaying) { yield return null; }
-
-            GameObject.Find("Fade to Black").SetActive(true);
         }
 
         Debug.Log("Loading ending scene");

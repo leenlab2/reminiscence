@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class AudioController : MonoBehaviour
     private float lastStepTime = 0.0f;
     private static float BGMDefaultVol;
     private bool[] previousMuteStates;
+
+    public static event Action<int> OnLevelChange;
 
     private void Awake()
     {
@@ -62,6 +65,8 @@ public class AudioController : MonoBehaviour
         {
             GetComponentInChildren<AudioSource>().volume = 1f;
         }
+
+        OnLevelChange?.Invoke(level);
     }
 
     public void PlayFootsteps(float velocity)
@@ -75,7 +80,7 @@ public class AudioController : MonoBehaviour
 
         // Determine whether to play the floor creak noise
         int randomIndex;
-        float rand = Random.value;
+        float rand = UnityEngine.Random.value;
         if (rand < 0.1f)
         {
             randomIndex = footsteps.Count - 1;
@@ -83,10 +88,10 @@ public class AudioController : MonoBehaviour
         } else
         {
             // Select a random footstep noise
-            randomIndex = Random.Range(0, footsteps.Count - 1);
+            randomIndex = UnityEngine.Random.Range(0, footsteps.Count - 1);
             while (footsteps[randomIndex] == playerAudioSource.clip)
             {
-                randomIndex = Random.Range(0, footsteps.Count - 1);
+                randomIndex = UnityEngine.Random.Range(0, footsteps.Count - 1);
             }
         }
 
