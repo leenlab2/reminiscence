@@ -175,7 +175,7 @@ public class InputManager : MonoBehaviour
         oldSelected = EventSystem.current.currentSelectedGameObject;
         EventSystem.current.SetSelectedGameObject(resumeButton);
 
-        AudioController.ChangeBGMVolume(0);
+        AudioController.ToggleMuteBGM();
 
         wasInspectEnabled = playerInputActions.Player.InspectObj.enabled;
         playerInputActions.Player.Disable();
@@ -202,7 +202,7 @@ public class InputManager : MonoBehaviour
         }
         playerInputActions.UI.Pause.Enable();
 
-        AudioController.ChangeBGMVolume(1);
+        AudioController.ToggleMuteBGM();
 
         EventSystem.current.SetSelectedGameObject(oldSelected);
 

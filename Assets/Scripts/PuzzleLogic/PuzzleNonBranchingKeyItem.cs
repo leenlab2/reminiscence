@@ -21,12 +21,12 @@ public class PuzzleNonBranchingKeyItem : PuzzleKeyItem
     {
         base.Start();
         //memoryLight = GameObject.Find("Memory Light").GetComponent<Light>();
-        PuzzleManager.OnLevelChange += HandleLevelChange;
+        AudioController.OnLevelChange += HandleLevelChange;
     }
 
     private void OnDestroy()
     {
-        PuzzleManager.OnLevelChange -= HandleLevelChange;
+        AudioController.OnLevelChange -= HandleLevelChange;
     }
 
     public override void HandleCorrectPosition()

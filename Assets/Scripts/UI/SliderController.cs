@@ -21,6 +21,7 @@ public class SliderController : MonoBehaviour
 
     public void CameraSliderChange(float value)
     {
+        value = value / 20;
         float localValue = value * maxSliderAmount;
         float changeValue = localValue - 1.0f;
         InputManager.instance.changeCameraSpeed(1.0f + (float) Math.Tan(changeValue * 0.5f));

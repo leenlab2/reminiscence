@@ -22,6 +22,8 @@ public class PickUpInteractor : MonoBehaviour
     private GameObject lefthandObj;
 
     private Quaternion originalHoldAreaRotation;
+    private Vector3 originalPositionOtherBranching;
+    private Quaternion originalRotationOtherBranching;
 
     public static Action<GameObject> OnObjectPickup;
     public static Action<GameObject> OnObjectPlace;
@@ -125,6 +127,8 @@ public class PickUpInteractor : MonoBehaviour
     {    
         PuzzleBranchingKeyItem puzzleItem = obj.GetComponent<PuzzleBranchingKeyItem>();
         GameObject otherBranching = puzzleItem.otherBranchingItem;
+        originalPositionOtherBranching = otherBranching.transform.position;
+        originalRotationOtherBranching = otherBranching.transform.rotation;
 
         NormalObjPickup(obj.GetComponent<PickupInteractable>(), rightHand, true);
         NormalObjPickup(otherBranching.GetComponent<PickupInteractable>(), leftHand, true);
@@ -152,6 +156,8 @@ public class PickUpInteractor : MonoBehaviour
     {
         DropObject(righthandObj);
         DropObject(lefthandObj);
+        lefthandObj.transform.position = originalPositionOtherBranching;
+        lefthandObj.transform.rotation = originalRotationOtherBranching;
 
         Inspection.ChangeObjectLayer(righthandObj.transform, "Default");
         Inspection.ChangeObjectLayer(lefthandObj.transform, "Default");
