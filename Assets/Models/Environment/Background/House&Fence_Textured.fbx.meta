@@ -3,7 +3,52 @@ guid: 26803082b4ce2d041a760d630075c574
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Brick_basecolor
+    second: {fileID: 2800000, guid: 6890c64affa3ae840bafcfcd560f6a92, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Brick_basecolor_02
+    second: {fileID: 2800000, guid: 96c3953a221c13b46a1f1ba963f8cb56, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Door02_Tex
+    second: {fileID: 2800000, guid: b702159c9fc054c4693630b9a6021d91, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Door_Tex
+    second: {fileID: 2800000, guid: 6118b5ce638ac204483dd05d9fab94d8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: NumberPlate
+    second: {fileID: 2800000, guid: 0537cbf61a831e949896c382f78e23f2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: PorchFenceL
+    second: {fileID: 2800000, guid: 9c53124be4b640a4d815235a5b1dd9bb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Substance_graph_ambientocclusion
+    second: {fileID: 2800000, guid: 6cffdc359d7a21c4787c6440a72346e5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Vent
+    second: {fileID: 2800000, guid: 2cf7ddd3f0f852248834632771c4bf3d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Window_01
+    second: {fileID: 2800000, guid: 96c5b0b8385c08c4b854189d590addd1, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
