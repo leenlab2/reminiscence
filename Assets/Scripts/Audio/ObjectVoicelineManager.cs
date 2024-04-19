@@ -61,7 +61,7 @@ public class ObjectVoicelineManager : MonoBehaviour
     public void Play()
     {
         Debug.Log("Playing Dialogue: " + _inspectionObjectText);
-        float timer = Math.Min(_dialogueAudio.length, 10f);
+        float timer = Math.Min(_dialogueAudio.length, 15f);
 
         TMP_Text textField = subtitlesText;
 

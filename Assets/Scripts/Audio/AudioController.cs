@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class AudioController : MonoBehaviour
     private static float BGMDefaultVol;
     private bool[] previousMuteStates;
 
+    public static event Action<int> OnLevelChange;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -29,7 +32,6 @@ public class AudioController : MonoBehaviour
         playerAudioSource = GameObject.Find("Player").GetComponentInChildren<AudioSource>();
 
         PuzzleNonBranchingKeyItem.OnKeyItemPlaced += PlayBGMStem;
-        PuzzleManager.OnLevelChange += SwitchBase;
 
         BGMDefaultVol = GetComponentInChildren<AudioSource>().volume;
         previousMuteStates = new bool[bgmSources.Count];
@@ -44,7 +46,6 @@ public class AudioController : MonoBehaviour
     private void OnDestroy()
     {
         PuzzleNonBranchingKeyItem.OnKeyItemPlaced -= PlayBGMStem;
-        PuzzleManager.OnLevelChange -= SwitchBase;
     }
 
     public void SwitchAndPlayAudio(AudioClip audioClip)
@@ -54,8 +55,9 @@ public class AudioController : MonoBehaviour
         playerAudioSource.Play();
     }
 
-    void SwitchBase(int level)
+    public void SwitchBase(int level)
     {
+        // wait for new tape to be inserted into tv
         GetComponentInChildren<AudioSource>().clip = bgmStems[level - 1];
         GetComponentInChildren<AudioSource>().Play();
 
@@ -63,6 +65,8 @@ public class AudioController : MonoBehaviour
         {
             GetComponentInChildren<AudioSource>().volume = 1f;
         }
+
+        OnLevelChange?.Invoke(level);
     }
 
     public void PlayFootsteps(float velocity)
@@ -76,7 +80,7 @@ public class AudioController : MonoBehaviour
 
         // Determine whether to play the floor creak noise
         int randomIndex;
-        float rand = Random.value;
+        float rand = UnityEngine.Random.value;
         if (rand < 0.1f)
         {
             randomIndex = footsteps.Count - 1;
@@ -84,10 +88,10 @@ public class AudioController : MonoBehaviour
         } else
         {
             // Select a random footstep noise
-            randomIndex = Random.Range(0, footsteps.Count - 1);
+            randomIndex = UnityEngine.Random.Range(0, footsteps.Count - 1);
             while (footsteps[randomIndex] == playerAudioSource.clip)
             {
-                randomIndex = Random.Range(0, footsteps.Count - 1);
+                randomIndex = UnityEngine.Random.Range(0, footsteps.Count - 1);
             }
         }
 
