@@ -3,7 +3,17 @@ guid: d71ee890151a9b94d9f0abed43730e55
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Road
+    second: {fileID: 2800000, guid: 5cffcccc98258df408eae4dbfdc6c697, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sidewalk
+    second: {fileID: 2800000, guid: a5c631bcc911f384d8762a6ae27bdd71, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
