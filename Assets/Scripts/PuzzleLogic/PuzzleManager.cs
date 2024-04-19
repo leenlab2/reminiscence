@@ -14,6 +14,7 @@ public class PuzzleManager : MonoBehaviour
 
     public GameObject currentBranchingItemModel;
     public GameObject memorySceneCanvas;
+    [SerializeField]  public GameObject fadeBlack;
     public Animator tape2Box;
 
     private PlacementAudio placementAudio;
@@ -170,7 +171,7 @@ public class PuzzleManager : MonoBehaviour
             
         } else
         {
-            GameObject.Find("Fade to Black").SetActive(true);
+            fadeBlack.SetActive(true);
             // wait for audiodiaglogue to finish
             AudioSource audioDialogue = GameObject.Find("Player").transform.Find("AudioDialogue").GetComponent<AudioSource>();
             while (audioDialogue.isPlaying) { yield return null; }
