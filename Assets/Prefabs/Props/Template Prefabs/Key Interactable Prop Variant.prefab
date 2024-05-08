@@ -102,6 +102,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2569194390380454344, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4673312867759188523}
+    - targetCorrespondingSourceObject: {fileID: 2569194390380454344, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5716336132564989421}
+    - targetCorrespondingSourceObject: {fileID: 2569194390380454344, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5028597539541240126}
     - targetCorrespondingSourceObject: {fileID: 43770993739950759, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6006811398805241733}
@@ -210,6 +216,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!168 &5716336132564989421
+AudioEchoFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2170228245570418129}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Delay: 1000
+  m_DecayRatio: 0.25
+  m_WetMix: 1
+  m_DryMix: 0.5
+--- !u!170 &5028597539541240126
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2170228245570418129}
+  m_Enabled: 0
+  m_DistortionLevel: 0.35
 --- !u!1 &4405134806923755198 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 43770993739950759, guid: 1676c170746d9f14e8f4ac131ad7d1c6, type: 3}

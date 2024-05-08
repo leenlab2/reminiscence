@@ -11,6 +11,7 @@ public class TapeManager : MonoBehaviour
     private GameObject currentTapeInTv;
     private GameObject tempHolderForSwap;
     private PickUpInteractor pickUpInteractor;
+    private VideoControls _videoControls;
     private bool lightsAreOn;
 
     public List<GameObject> StartingLights;  // Window block is used to hide outside light
@@ -22,6 +23,7 @@ public class TapeManager : MonoBehaviour
     void Start()
     {
         videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
+        _videoControls = FindObjectOfType<VideoControls>();
         pickUpInteractor = FindObjectOfType<PickUpInteractor>();
         TapeSO tapeSO = GameObject.Find("Tape").GetComponentInChildren<TapeInformation>().TapeSO;
         tapeSO.tapeIsFixed = false;
@@ -65,21 +67,26 @@ public class TapeManager : MonoBehaviour
         {
             // hide obj and put corresponding video clip on TV
             TapeSO tapeSO = tapeGameObject.GetComponent<TapeInformation>().TapeSO;
+            TapeInformation tapeInfo = tapeGameObject.GetComponent<TapeInformation>();
+            currentTapeInTv = tapeGameObject;
+            _videoControls.ChangeCorruptedVideo(tapeInfo.TapeSO.clipToPlay);
             videoPlayer.clip = tapeSO.GetVideoClip();
             videoPlayer.time = 0;
 
             // play first frame to update render text
-            videoPlayer.Play();
-            videoPlayer.Pause();
-            currentTapeInTv = tapeGameObject;
+            //videoPlayer.Play();
+            //videoPlayer.Pause();
+            //currentTapeInTv = tapeGameObject;
             tapeGameObject.active = false;
             pickUpInteractor.DropHeldObject();
             
-            TapeInformation tapeInfo = currentTapeInTv.GetComponent<TapeInformation>();
             
+            
+
             // If user has not placed a branching item down for the current tape in TV, enable branching items' object distance scripts
             if (tapeInfo.TapeSO.clipToPlay == ClipToPlay.OriginalCorrupted)
             {
+                AudioController.instance.SwitchBase(GameState.level);
                 tapeInfo.branchingItemA.GetComponent<ObjectDistance>().enabled = true;
                 tapeInfo.branchingItemB.GetComponent<ObjectDistance>().enabled = true;
                 ShowBranchCues();

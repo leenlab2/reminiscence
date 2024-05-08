@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6435359707947890125}
   - component: {fileID: 8944915732866438509}
   - component: {fileID: 8039753086054777744}
+  - component: {fileID: 1554189654640346073}
   m_Layer: 0
   m_Name: Main Audio Source
   m_TagString: Untagged
@@ -153,6 +154,19 @@ MonoBehaviour:
   bgmStems:
   - {fileID: 8300000, guid: 9d6d31da7d4558845b62f092561b0386, type: 3}
   - {fileID: 8300000, guid: 527694199a722b741941b6dfa25ee947, type: 3}
+  bgmSources:
+  - {fileID: 6435359707947890125}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!168 &8039753086054777744
 AudioEchoFilter:
   m_ObjectHideFlags: 0
@@ -166,3 +180,12 @@ AudioEchoFilter:
   m_DecayRatio: 0.25
   m_WetMix: 1
   m_DryMix: 0.5
+--- !u!170 &1554189654640346073
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6992450636416142980}
+  m_Enabled: 0
+  m_DistortionLevel: 0.35

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6771175446397445861}
   - component: {fileID: 4563849132696020942}
   - component: {fileID: 1745181952052932677}
+  - component: {fileID: 6959393325685899949}
   m_Layer: 0
   m_Name: Puzzle Manager
   m_TagString: Untagged
@@ -60,7 +61,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -162,3 +163,43 @@ MonoBehaviour:
   tapeObjs:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!320 &6959393325685899949
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8704303653242440373}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 0
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -7721482993617544105, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1050790487863801328, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3016132969304492405, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2451318219318640242, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3392029737851756869, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8813972254816899339, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7274211329574900412, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7360146624813848159, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8389502362750775426, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3037689493776124090, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6115639803976773807, guid: 33e7e4dee69bddf45996a3eedd514143, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References:
+    - 456ecc2c52620ec4397806a94b11cf89: {fileID: 0}
