@@ -377,7 +377,10 @@ public class InputManager : MonoBehaviour
     #region Object Inspection
     void EnableInspect(GameObject obj)
     {
-        playerInputActions.Player.InspectObj.Enable();
+        if (_state != PlayerState.BranchingSelection)
+        {
+            playerInputActions.Player.InspectObj.Enable();
+        }
     }
 
     void DisableInspect(GameObject obj)
